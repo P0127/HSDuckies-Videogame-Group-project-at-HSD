@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://esi7qim0g042"]
+
+[ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bp8gs76r0swmn" path="res://hud.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cxmww8udy40n2" path="res://wall.tscn" id="4_1bvp3"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ig7tw")
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Player" parent="." instance=ExtResource("2_h2yge")]
+
+[node name="Hud" parent="." instance=ExtResource("3_h2yge")]
+
+[node name="Wallcontainer" type="Node" parent="."]
+
+[node name="Wall" parent="Wallcontainer" instance=ExtResource("4_1bvp3")]
+position = Vector2(256, 135)
+
+[node name="Wall2" parent="Wallcontainer" instance=ExtResource("4_1bvp3")]
+position = Vector2(185, 186)
+rotation = 1.5708
+
+[node name="Wall3" parent="Wallcontainer" instance=ExtResource("4_1bvp3")]
+position = Vector2(185, 308)
+rotation = 1.5708
+
+[node name="Wall4" parent="Wallcontainer" instance=ExtResource("4_1bvp3")]
+position = Vector2(237, 362)
+
+[node name="Wall5" parent="Wallcontainer" instance=ExtResource("4_1bvp3")]
+position = Vector2(377, 135)
+
+[node name="Wall6" parent="Wallcontainer" instance=ExtResource("4_1bvp3")]
+position = Vector2(498, 135)
+
+[node name="Wall7" parent="Wallcontainer" instance=ExtResource("4_1bvp3")]
+position = Vector2(550, 187)
+rotation = 1.5708
+
+[node name="Wall8" parent="Wallcontainer" instance=ExtResource("4_1bvp3")]
+position = Vector2(550, 309)
+rotation = 1.5708
+
+[node name="Wall9" parent="Wallcontainer" instance=ExtResource("4_1bvp3")]
+position = Vector2(498, 360)
+
+[node name="Wall10" parent="Wallcontainer" instance=ExtResource("4_1bvp3")]
+position = Vector2(708, 286)
+rotation = 1.5708
+
+[connection signal="start_game" from="Hud" to="." method="new_game"]
