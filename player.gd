@@ -5,7 +5,9 @@ var screen_size #game window size
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	screen_size = get_viewport_rect().size
+	#screen_size = get_viewport_rect().size
+	#^not needed rn since we move camera with player
+	#could be useful later for enemy spawning maybe if reset on every frame limit spawn area to around player?
 	hide() #hides player on startup to avoid showing behind hud
 
 
@@ -31,7 +33,9 @@ func _physics_process(delta):
 		pass #could add sth if player walks into wall prob not needed unless we want to add a spiky wall or so?
 	else:
 		position += velocity * delta #if no collision player is allowed to move
-	position = position.clamp(Vector2.ZERO, screen_size)#clamp makes sure player cant leave screen
+	
+	#position = position.clamp(Vector2.ZERO, screen_size)#clamp makes sure player cant leave screen
+	#^not needed anymore since we have a camera that moves with the player
 
 #function for start of game to move player to start position and show player
 func start(pos):
