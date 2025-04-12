@@ -9,7 +9,6 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
-Mob = ExtResource("6_7mycd")
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(576, 324)

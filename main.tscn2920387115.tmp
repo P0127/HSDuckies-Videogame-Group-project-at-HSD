@@ -9,12 +9,12 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
-Mob = ExtResource("6_7mycd")
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(576, 324)
 
 [node name="Player" parent="." instance=ExtResource("2_h2yge")]
+speed = null
 
 [node name="Hud" parent="." instance=ExtResource("3_h2yge")]
 
@@ -82,4 +82,5 @@ rotation = 0.785398
 
 [node name="Mob" parent="." instance=ExtResource("6_7mycd")]
 
+[connection signal="PlayerMoved" from="Player" to="." method="_on_player_player_moved"]
 [connection signal="start_game" from="Hud" to="." method="new_game"]
