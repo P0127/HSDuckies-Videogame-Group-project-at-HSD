@@ -1,28 +1,36 @@
 extends CharacterBody2D
 
-@export var movement_speed: float = 4.0
-@onready var navigation_agent: NavigationAgent2D = get_node("NavigationAgent2D")
-
-func _ready() -> void:
-	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
-
-func set_movement_target(movement_target: Vector2):
-	navigation_agent.set_target_position(movement_target)
+#maybe potential future link to player for scaling?
+var movement_speed = 45 #+ 10 * PlayerLevel 
+@onready var player = $"/root/Main/Player"
+var target #saveslot for current target to make it possible to run out of aggro range
 
 func _physics_process(delta):
-	# Do not query when the map has never synchronized and is empty.
-	if NavigationServer2D.map_get_iteration_id(navigation_agent.get_navigation_map()) == 0:
-		return
-	if navigation_agent.is_navigation_finished():
-		return
+	velocity = Vector2.ZERO
+	if target:
+		velocity = global_position.direction_to(target.global_position) * movement_speed
+		move_and_slide()
 
-	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
-	var new_velocity: Vector2 = global_position.direction_to(next_path_position) * movement_speed
-	if navigation_agent.avoidance_enabled:
-		navigation_agent.set_velocity(new_velocity)
-	else:
-		_on_velocity_computed(new_velocity)
+#the two following functions go into effect whenever any body enters our mobs AwarenessRadius
+#if the body is a player we set it as current target/if player body leaves AwarenessRadius we 
+#get rid of the target on the player
+#this can be used as aggro range/maybe for a future stealth mechanic 
+func _on_DetectRadius_body_entered(body):
+	if body==player:
+		target = player
+	#pass 
 
-func _on_velocity_computed(safe_velocity: Vector2):
-	velocity = safe_velocity
-	move_and_slide()
+func _on_DetectRadius_body_exited(body):
+	if body==player:
+		target = null
+	#pass
+
+#for use of NavigationAgent2D stuff we'll first need to define the map with connected nodes aka with
+#other 2D Nav nodes
+
+
+#temporarily added for mobs to despawn upon leaving players screen... will prob remove later or
+#try to find a way to increase range in order to avoid player just despawning everything with
+#edge of screen
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed = 200 #player movement speed in pixels/sec
 var screen_size #game window size
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#screen_size = get_viewport_rect().size
