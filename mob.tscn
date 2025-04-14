@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkla36ebv0n0o"]
+
+[ext_resource type="Texture2D" uid="uid://bdjm1xpug2bj8" path="res://icon.svg" id="1_dy6sc"]
+[ext_resource type="Script" path="res://mob.gd" id="1_nokgg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nokgg"]
+size = Vector2(24, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
+radius = 221.02
+
+[node name="Mob" type="CharacterBody2D"]
+script = ExtResource("1_nokgg")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(119.976, 1, 0.160784, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_dy6sc")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nokgg")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AwarenessRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AwarenessRadius"]
+shape = SubResource("CircleShape2D_nokgg")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="AwarenessRadius" to="." method="_on_DetectRadius_body_entered"]
+[connection signal="body_exited" from="AwarenessRadius" to="." method="_on_DetectRadius_body_exited"]
