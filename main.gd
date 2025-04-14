@@ -21,5 +21,5 @@ func _input(event):
 	if event.is_action_pressed("click"):
 		if Mob.can_instantiate():
 			var new_Mob = Mob.instantiate()
-			new_Mob.position = $Player.position + get_viewport().get_mouse_position() - Vector2($StartPosition.position)
+			new_Mob.position = $Player.position + get_viewport().get_mouse_position() - Vector2($StartPosition.position) * 0.8 - Vector2(260,0)
 			add_child(new_Mob)

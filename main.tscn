@@ -18,8 +18,6 @@ position = Vector2(400, 400)
 [node name="Player" parent="." instance=ExtResource("2_h2yge")]
 speed = 400
 
-[node name="Mob" parent="." instance=ExtResource("4_lquwl")]
-
 [node name="TileMapLayer" parent="." instance=ExtResource("6_7mycd")]
 scale = Vector2(0.1, 0.1)
 
