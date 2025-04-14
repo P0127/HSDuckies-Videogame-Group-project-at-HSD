@@ -1,28 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://esi7qim0g042"]
+[gd_scene load_steps=6 format=3 uid="uid://esi7qim0g042"]
 
 [ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bp8gs76r0swmn" path="res://hud.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dkla36ebv0n0o" path="res://mob.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bsho8pj8tpcp1" path="res://Tile Maps/foyer.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://cik7p27jxqold" path="res://mob.tscn" id="6_7mycd"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
-Mob = ExtResource("6_7mycd")
+Mob = ExtResource("4_lquwl")
+
+[node name="Hud" parent="." instance=ExtResource("3_h2yge")]
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(400, 400)
 
 [node name="Player" parent="." instance=ExtResource("2_h2yge")]
 position = Vector2(673, 536)
 scale = Vector2(4.47452, 4.49109)
 speed = 400
 
-[node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(400, 400)
-
-[node name="Hud" parent="." instance=ExtResource("3_h2yge")]
+[node name="Mob" parent="." instance=ExtResource("4_lquwl")]
 
 [node name="TileMapLayer" parent="." instance=ExtResource("6_7mycd")]
 scale = Vector2(0.35, 0.35)
-
-[node name="Mob" parent="." instance=ExtResource("6_7mycd")]
 
 [connection signal="start_game" from="Hud" to="." method="new_game"]
