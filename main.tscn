@@ -14,13 +14,11 @@ scale = Vector2(4.47452, 4.49109)
 speed = 400
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(630, 171)
+position = Vector2(400, 400)
 
 [node name="Hud" parent="." instance=ExtResource("3_h2yge")]
-visible = false
 
 [node name="TileMapLayer" parent="." instance=ExtResource("6_7mycd")]
-position = Vector2(-657, -489)
-scale = Vector2(0.331097, 0.331097)
+scale = Vector2(0.35, 0.35)
 
 [connection signal="start_game" from="Hud" to="." method="new_game"]
