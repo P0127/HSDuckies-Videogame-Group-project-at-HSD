@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://esi7qim0g042"]
+
+[ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bp8gs76r0swmn" path="res://hud.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cxmww8udy40n2" path="res://wall.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bcjk5x4snxb31" path="res://temp_building.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cik7p27jxqold" path="res://mob.tscn" id="6_7mycd"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ig7tw")
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Player" parent="." instance=ExtResource("2_h2yge")]
+speed = null
+
+[node name="Hud" parent="." instance=ExtResource("3_h2yge")]
+
+[node name="Temp OuterWalls" type="Node" parent="."]
+
+[node name="Wall10" parent="Temp OuterWalls" instance=ExtResource("4_1bvp3")]
+modulate = Color(0.139981, 0.470714, 0.229678, 1)
+position = Vector2(-986, 251)
+rotation = 1.5708
+scale = Vector2(10, 10)
+
+[node name="Wall14" parent="Temp OuterWalls" instance=ExtResource("4_1bvp3")]
+modulate = Color(0.139981, 0.470714, 0.229678, 1)
+position = Vector2(-478, -470)
+scale = Vector2(10, 10)
+
+[node name="Wall15" parent="Temp OuterWalls" instance=ExtResource("4_1bvp3")]
+modulate = Color(0.139981, 0.470714, 0.229678, 1)
+position = Vector2(445, -470)
+scale = Vector2(10, 10)
+
+[node name="Wall16" parent="Temp OuterWalls" instance=ExtResource("4_1bvp3")]
+modulate = Color(0.139981, 0.470714, 0.229678, 1)
+position = Vector2(1398, -470)
+scale = Vector2(10, 10)
+
+[node name="Wall11" parent="Temp OuterWalls" instance=ExtResource("4_1bvp3")]
+modulate = Color(0.139981, 0.470714, 0.229678, 1)
+position = Vector2(1918, 251)
+rotation = 1.5708
+scale = Vector2(10, 10)
+
+[node name="Wall12" parent="Temp OuterWalls" instance=ExtResource("4_1bvp3")]
+modulate = Color(0.139981, 0.470714, 0.229678, 1)
+position = Vector2(-465, 959)
+scale = Vector2(10, 10)
+
+[node name="Wall13" parent="Temp OuterWalls" instance=ExtResource("4_1bvp3")]
+modulate = Color(0.139981, 0.470714, 0.229678, 1)
+position = Vector2(458, 959)
+scale = Vector2(10, 10)
+
+[node name="Wall17" parent="Temp OuterWalls" instance=ExtResource("4_1bvp3")]
+modulate = Color(0.139981, 0.470714, 0.229678, 1)
+position = Vector2(1411, 959)
+scale = Vector2(10, 10)
+
+[node name="Temp Houses" type="Node" parent="."]
+
+[node name="TempBuilding" parent="Temp Houses" instance=ExtResource("5_lquwl")]
+position = Vector2(225, 313)
+
+[node name="TempBuilding2" parent="Temp Houses" instance=ExtResource("5_lquwl")]
+position = Vector2(-412, 550)
+
+[node name="TempBuilding3" parent="Temp Houses" instance=ExtResource("5_lquwl")]
+position = Vector2(1481, -141)
+
+[node name="TempBuilding4" parent="Temp Houses" instance=ExtResource("5_lquwl")]
+position = Vector2(1395, 605)
+
+[node name="Wall" parent="Temp Houses" instance=ExtResource("4_1bvp3")]
+position = Vector2(850, 308)
+rotation = 0.785398
+
+[node name="Mob" parent="." instance=ExtResource("6_7mycd")]
+
+[connection signal="PlayerMoved" from="Player" to="." method="_on_player_player_moved"]
+[connection signal="start_game" from="Hud" to="." method="new_game"]

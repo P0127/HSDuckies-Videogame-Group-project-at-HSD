@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bp8gs76r0swmn" path="res://hud.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bsho8pj8tpcp1" path="res://Tile Maps/foyer.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cik7p27jxqold" path="res://mob.tscn" id="6_7mycd"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
+Mob = ExtResource("6_7mycd")
 
 [node name="Player" parent="." instance=ExtResource("2_h2yge")]
 position = Vector2(673, 536)
@@ -20,5 +22,7 @@ position = Vector2(400, 400)
 
 [node name="TileMapLayer" parent="." instance=ExtResource("6_7mycd")]
 scale = Vector2(0.35, 0.35)
+
+[node name="Mob" parent="." instance=ExtResource("6_7mycd")]
 
 [connection signal="start_game" from="Hud" to="." method="new_game"]
