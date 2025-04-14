@@ -15,6 +15,8 @@ func new_game():
 	$Player.start($StartPosition.position)
 	#moves player to starting position & removed hide()
 
+#Spawns Mobs if Left Mouse Button is clicked at Mouse position
+#For Testing
 func _input(event):
 	if event.is_action_pressed("click"):
 		if Mob.can_instantiate():

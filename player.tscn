@@ -34,13 +34,9 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_i3pqv")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 script = ExtResource("2_hqtel")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.8, 0.8)
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sweqy")

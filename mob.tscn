@@ -1,7 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkla36ebv0n0o"]
+[gd_scene load_steps=7 format=3 uid="uid://dkla36ebv0n0o"]
 
-[ext_resource type="Texture2D" uid="uid://bdjm1xpug2bj8" path="res://icon.svg" id="1_dy6sc"]
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://mob.gd" id="1_nokgg"]
+[ext_resource type="Texture2D" uid="uid://djx060swy5oal" path="res://assets/Student1_active.png" id="2_p11y5"]
+[ext_resource type="Texture2D" uid="uid://bh6bcq8kaiqj8" path="res://assets/Student1_inactive.png" id="3_s5nov"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b3mxk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p11y5")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_s5nov")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nokgg"]
 size = Vector2(24, 24)
@@ -13,10 +33,10 @@ radius = 221.02
 script = ExtResource("1_nokgg")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(119.976, 1, 0.160784, 1)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_dy6sc")
+[node name="AnimatedEnemySprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_b3mxk")
+animation = &"inactive"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nokgg")

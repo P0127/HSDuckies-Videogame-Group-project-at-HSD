@@ -10,6 +10,16 @@ func _physics_process(delta):
 	if target:
 		velocity = global_position.direction_to(target.global_position) * movement_speed
 		move_and_slide()
+		
+	#Inactive Animation standing still
+	if velocity.length() == 0:
+		$AnimatedEnemySprite.animation = "inactive"
+	#Flips Animation if walking to the side
+	if velocity.x != 0:
+		$AnimatedEnemySprite.animation = "active"
+		# uprightposture
+		$AnimatedEnemySprite.flip_v = false
+		$AnimatedEnemySprite.flip_h = velocity.x < 0
 
 #the two following functions go into effect whenever any body enters our mobs AwarenessRadius
 #if the body is a player we set it as current target/if player body leaves AwarenessRadius we 
