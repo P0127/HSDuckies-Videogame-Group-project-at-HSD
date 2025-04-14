@@ -8,6 +8,7 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
+Mob = ExtResource("4_lquwl")
 
 [node name="Hud" parent="." instance=ExtResource("3_h2yge")]
 
