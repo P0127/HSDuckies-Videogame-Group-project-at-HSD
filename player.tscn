@@ -23,6 +23,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 16
 collision_priority = 2.0
 script = ExtResource("1_onrkg")
 metadata/_edit_group_ = true
@@ -37,6 +38,8 @@ position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 script = ExtResource("2_hqtel")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sweqy")
 animation = &"walk"
