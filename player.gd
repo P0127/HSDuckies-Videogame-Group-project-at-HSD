@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 200 #player movement speed in pixels/sec
 var screen_size #game window size
+var current_direction#saveslot for weapon/projectile direction
 
 
 # Called when the node enters the scene tree for the first time.
@@ -43,6 +44,8 @@ func _physics_process(delta):
 		velocity.y -= 1
 	
 	if velocity.length() > 0:
+		current_direction = velocity.normalized() #testing weapon direction
+		rotate_weapon(current_direction)#opens method to rotate weapon
 		velocity = velocity.normalized() * speed
 		#normalized so that player is not faster moving diagonally 
 	
@@ -56,6 +59,13 @@ func _physics_process(delta):
 	
 	#Player can move
 	position += velocity * delta
+	
+
+#function that rotates the weapon along with the players movement
+#atan2 math is needed to calc the Vector2 into a rotation angle
+func rotate_weapon(direction):#direction param is a Vector2 here
+	var angle = atan2(current_direction.y, current_direction.x)
+	$"player weapon".rotation = angle
 
 #function for start of game to move player to start position and show player
 func start(pos):

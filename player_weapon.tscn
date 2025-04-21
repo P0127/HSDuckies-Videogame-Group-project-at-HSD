@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0dp7ykne4ajl"]
+
+[ext_resource type="Script" uid="uid://cds1ogvatg4y6" path="res://player_weapon.gd" id="1_awtn4"]
+[ext_resource type="Texture2D" uid="uid://bdjm1xpug2bj8" path="res://icon.svg" id="1_i60qs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_awtn4"]
+
+[node name="player weapon" type="Area2D"]
+script = ExtResource("1_awtn4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_awtn4")
+disabled = true
+
+[node name="CharCenter" type="Marker2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="CharCenter"]
+position = Vector2(30, 0)
+scale = Vector2(0.123438, 0.0296875)
+texture = ExtResource("1_i60qs")
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="CharCenter/Icon"]
+position = Vector2(64.8101, 0)
+
+[node name="attack speed" type="Timer" parent="."]
+wait_time = 0.45
+autostart = true
+
+[connection signal="timeout" from="attack speed" to="." method="_on_attack_speed_timeout"]

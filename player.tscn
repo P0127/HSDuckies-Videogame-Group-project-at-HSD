@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c135wng7wv7tp"]
+[gd_scene load_steps=8 format=3 uid="uid://c135wng7wv7tp"]
 
 [ext_resource type="Script" uid="uid://b6ykbxg8byxue" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://cqxxf6tj5g1qs" path="res://camera_2d.gd" id="2_hqtel"]
 [ext_resource type="Texture2D" uid="uid://be8221cs2yg8y" path="res://assets/MeisterFluffbutt_sprite.png" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://dtxoui6jvjroq" path="res://assets/MeisterFluffbutt_sprite_2.png" id="3_hqtel"]
+[ext_resource type="PackedScene" uid="uid://d0dp7ykne4ajl" path="res://player_weapon.tscn" id="5_sweqy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 50.1199
@@ -42,3 +43,5 @@ script = ExtResource("2_hqtel")
 sprite_frames = SubResource("SpriteFrames_sweqy")
 animation = &"walk"
 frame_progress = 0.665032
+
+[node name="player weapon" parent="." instance=ExtResource("5_sweqy")]
