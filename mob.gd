@@ -4,6 +4,12 @@ extends CharacterBody2D
 var movement_speed = 45 #+ 10 * PlayerLevel 
 @onready var player = $"/root/Main/Player"
 var target #saveslot for current target to make it possible to run out of aggro range
+@export var health = 3 #Hits required to kill
+
+func _ready():
+	#We only have to change one Variable, Progress Bar adjusts automaticly
+	$ProgressBar.max_value = health
+	$ProgressBar.value = health
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
@@ -44,3 +50,10 @@ func _on_DetectRadius_body_exited(body):
 #edge of screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
+
+#Subtracts Hitpoints from Mob
+func take_damage():
+	health -= 1
+	$ProgressBar.value = health
+	if health == 0:
+		queue_free()

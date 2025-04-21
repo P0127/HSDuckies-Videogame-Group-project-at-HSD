@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c135wng7wv7tp"]
+[gd_scene load_steps=11 format=3 uid="uid://c135wng7wv7tp"]
 
 [ext_resource type="Script" uid="uid://b6ykbxg8byxue" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://cqxxf6tj5g1qs" path="res://camera_2d.gd" id="2_hqtel"]
@@ -8,6 +8,20 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 50.1199
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweqy"]
+bg_color = Color(0.52, 0.162067, 0.156, 0.580392)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hs0m"]
+bg_color = Color(0.34083, 0.63, 0.3087, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sweqy"]
 animations = [{
@@ -22,6 +36,9 @@ animations = [{
 "name": &"walk",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
+radius = 25.02
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 16
@@ -39,9 +56,30 @@ position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 script = ExtResource("2_hqtel")
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -15.0
+offset_top = -25.0
+offset_right = 15.0
+offset_bottom = -20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2hs0m")
+step = 1.0
+value = 100.0
+rounded = true
+show_percentage = false
+
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sweqy")
 animation = &"walk"
 frame_progress = 0.665032
 
 [node name="player weapon" parent="." instance=ExtResource("5_sweqy")]
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_sweqy")
+debug_color = Color(0.981976, 0.133144, 7.70092e-07, 0.42)

@@ -60,4 +60,5 @@ click={
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_physics/layer_2="Hitbox"
 2d_physics/layer_5="Walls"
