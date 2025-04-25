@@ -6,9 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dtxoui6jvjroq" path="res://assets/MeisterFluffbutt_sprite_2.png" id="3_hqtel"]
 [ext_resource type="PackedScene" uid="uid://d0dp7ykne4ajl" path="res://player_weapon.tscn" id="5_sweqy"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
-radius = 50.1199
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweqy"]
 bg_color = Color(0.52, 0.162067, 0.156, 0.580392)
 corner_radius_top_left = 2
@@ -38,18 +35,17 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
-radius = 28.0
+radius = 241.015
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
+radius = 456.039
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.3, 0.3)
 collision_mask = 16
 collision_priority = 2.0
 script = ExtResource("1_onrkg")
 metadata/_edit_group_ = true
-
-[node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("CircleShape2D_i3pqv")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -73,13 +69,19 @@ sprite_frames = SubResource("SpriteFrames_sweqy")
 animation = &"walk"
 frame_progress = 0.665032
 
-[node name="player weapon" parent="." instance=ExtResource("5_sweqy")]
-
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 4)
+position = Vector2(0, 32)
 shape = SubResource("CircleShape2D_sweqy")
 debug_color = Color(0.981976, 0.133144, 7.70092e-07, 0.42)
+
+[node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 32)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_i3pqv")
+
+[node name="player weapon" parent="." instance=ExtResource("5_sweqy")]
+scale = Vector2(10, 10)

@@ -2,8 +2,8 @@ extends Camera2D
 
 #Constants dictate the final position of the Zoom-Stage
 const ZOOM_DEFAULT : Vector2 = Vector2(1.0 ,1.0)
-const ZOOM_MIN : Vector2 = Vector2(0.8, 0.8)
-const ZOOM_MAX : Vector2 = Vector2(1.2, 1.2)
+const ZOOM_MIN : Vector2 = Vector2(0.3, 0.3) #eig 0.8 für testen mehr
+const ZOOM_MAX : Vector2 = Vector2(1.2, 1.2) 
 
 #How long the tweening plays for
 const TWEEN_DURATION : float = 0.3
