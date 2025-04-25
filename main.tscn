@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://esi7qim0g042"]
+[gd_scene load_steps=6 format=3 uid="uid://esi7qim0g042"]
 
 [ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bp8gs76r0swmn" path="res://hud.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dkla36ebv0n0o" path="res://mob.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bsho8pj8tpcp1" path="res://Tile Maps/foyer.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://djr2ebk8jm13r" path="res://duck_collectable.tscn" id="6_272bh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
@@ -21,8 +20,5 @@ speed = 400
 
 [node name="TileMapLayer" parent="." instance=ExtResource("6_7mycd")]
 scale = Vector2(0.3, 0.3)
-
-[node name="Duck_Collectable" parent="." instance=ExtResource("6_272bh")]
-position = Vector2(1063, 677)
 
 [connection signal="start_game" from="Hud" to="." method="new_game"]
