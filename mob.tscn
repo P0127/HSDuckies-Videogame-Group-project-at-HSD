@@ -1,20 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkla36ebv0n0o"]
+[gd_scene load_steps=10 format=3 uid="uid://dkla36ebv0n0o"]
 
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://mob.gd" id="1_nokgg"]
+[ext_resource type="Texture2D" uid="uid://d36lt1oqr5d6g" path="res://hud/healthbar_under.png" id="2_b3mxk"]
 [ext_resource type="Texture2D" uid="uid://djx060swy5oal" path="res://assets/Student1_active.png" id="2_p11y5"]
+[ext_resource type="Texture2D" uid="uid://bdy5iqrx56ob6" path="res://hud/healthbar_over.png" id="3_1qmh0"]
 [ext_resource type="Texture2D" uid="uid://bh6bcq8kaiqj8" path="res://assets/Student1_inactive.png" id="3_s5nov"]
+[ext_resource type="Texture2D" uid="uid://br2nrg4rhe5je" path="res://hud/healthbar_progress_mob.png" id="4_gfurk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
-radius = 221.02
+radius = 230.169
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ubaqv"]
 radius = 229.264
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p11y5"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubaqv"]
-bg_color = Color(0.354967, 0.3036, 0.92, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3mxk"]
 animations = [{
@@ -49,25 +46,29 @@ metadata/_edit_group_ = true
 [node name="AwarenessRadius" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AwarenessRadius"]
+scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_nokgg")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ubaqv")
 debug_color = Color(0.7, 0, 0.0116665, 0.419608)
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -10.0
-offset_top = -20.0
-offset_right = 10.0
-offset_bottom = -15.0
-size_flags_horizontal = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_p11y5")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ubaqv")
-max_value = 3.0
-step = 1.0
-value = 3.0
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = -220.0
+offset_right = 160.0
+offset_bottom = -172.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+value = 50.0
 rounded = true
-show_percentage = false
+texture_under = ExtResource("2_b3mxk")
+texture_over = ExtResource("3_1qmh0")
+texture_progress = ExtResource("4_gfurk")
 
 [node name="AnimatedEnemySprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b3mxk")

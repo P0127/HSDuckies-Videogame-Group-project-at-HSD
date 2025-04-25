@@ -2,6 +2,7 @@ extends Node
 
 @export var Mob: PackedScene
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass #replace with function if needed

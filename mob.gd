@@ -2,14 +2,19 @@ extends CharacterBody2D
 
 #maybe potential future link to player for scaling?
 var movement_speed = 45 #+ 10 * PlayerLevel 
+@onready var main = $"/root/Main"
 @onready var player = $"/root/Main/Player"
 var target #saveslot for current target to make it possible to run out of aggro range
 @export var health = 3 #Hits required to kill
+
+#to Instantiate drop item later on
+var drop_scene := preload("res://duck_collectable.tscn")
 
 func _ready():
 	#We only have to change one Variable, Progress Bar adjusts automaticly
 	$ProgressBar.max_value = health
 	$ProgressBar.value = health
+	$ProgressBar.hide()
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
@@ -54,6 +59,25 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 #Subtracts Hitpoints from Mob
 func take_damage():
 	health -= 1
+	$ProgressBar.show()
 	$ProgressBar.value = health
 	if health == 0:
-		queue_free()
+		die()
+
+#When Mob gets killed, Animations get stopped
+func die():
+	#Makes the Mob Stop responding or Animating
+	#Unneeded if we just use queue_free in the end
+	$AnimatedEnemySprite.stop()
+	$Hitbox.set_deferred("disabled",true)
+	$AwarenessRadius/CollisionShape2D.set_deferred("disabled",true)
+	#can be taken out in case we want a death animation first... etc
+	queue_free()
+	drop_item()
+
+#Calls on the preloaded duck drop scene to instantiate it once
+func drop_item():
+	var drop = drop_scene.instantiate()
+	drop.position = position
+	#will run after physics proccessees, lessens errors (deferred)
+	main.call_deferred("add_child", drop)
