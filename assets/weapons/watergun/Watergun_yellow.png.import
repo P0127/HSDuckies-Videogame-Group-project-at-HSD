@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uofmihmvk1ci"
-path="res://.godot/imported/wand2.png-7cef362ee8840e3a07a1f67c7adf623d.ctex"
+uid="uid://b547fhl3y02ur"
+path="res://.godot/imported/Watergun_yellow.png-8f3c1e166e4930d946bb4787304c843c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tile Maps/Sprites/wand2.png"
-dest_files=["res://.godot/imported/wand2.png-7cef362ee8840e3a07a1f67c7adf623d.ctex"]
+source_file="res://assets/weapons/watergun/Watergun_yellow.png"
+dest_files=["res://.godot/imported/Watergun_yellow.png-8f3c1e166e4930d946bb4787304c843c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4dmmj4h0qiu"
-path="res://.godot/imported/wand-im-hoersaal.png-53f21a4351245edcc12bbf2c2bc6e878.ctex"
+uid="uid://dstkbe1sbtjq"
+path="res://.godot/imported/wand1.png-a70db07ad415d0859b051d40e46b68bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tile Maps/Sprites/wand-im-hoersaal.png"
-dest_files=["res://.godot/imported/wand-im-hoersaal.png-53f21a4351245edcc12bbf2c2bc6e878.ctex"]
+source_file="res://assets/Tile Maps/Sprites/wand1.png"
+dest_files=["res://.godot/imported/wand1.png-a70db07ad415d0859b051d40e46b68bf.ctex"]
 
 [params]
 

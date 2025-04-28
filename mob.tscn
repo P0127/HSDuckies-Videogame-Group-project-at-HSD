@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://mob.gd" id="1_nokgg"]
 [ext_resource type="Texture2D" uid="uid://d36lt1oqr5d6g" path="res://hud/healthbar_under.png" id="2_b3mxk"]
-[ext_resource type="Texture2D" uid="uid://djx060swy5oal" path="res://assets/Student1_active.png" id="2_p11y5"]
+[ext_resource type="Texture2D" uid="uid://djx060swy5oal" path="res://assets/mobs/Student1_active.png" id="2_p11y5"]
 [ext_resource type="Texture2D" uid="uid://bdy5iqrx56ob6" path="res://hud/healthbar_over.png" id="3_1qmh0"]
-[ext_resource type="Texture2D" uid="uid://bh6bcq8kaiqj8" path="res://assets/Student1_inactive.png" id="3_s5nov"]
+[ext_resource type="Texture2D" uid="uid://bh6bcq8kaiqj8" path="res://assets/mobs/Student1_inactive.png" id="3_s5nov"]
 [ext_resource type="Texture2D" uid="uid://br2nrg4rhe5je" path="res://hud/healthbar_progress_mob.png" id="4_gfurk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]

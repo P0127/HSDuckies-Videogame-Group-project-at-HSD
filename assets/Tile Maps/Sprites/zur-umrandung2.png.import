@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dstkbe1sbtjq"
-path="res://.godot/imported/wand1.png-64aba682089a5c664a032773fe6b6839.ctex"
+uid="uid://drjaldubw1kwk"
+path="res://.godot/imported/zur-umrandung2.png-8f1a0aacc1721ae4b5bea4ef134e25ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tile Maps/Sprites/wand1.png"
-dest_files=["res://.godot/imported/wand1.png-64aba682089a5c664a032773fe6b6839.ctex"]
+source_file="res://assets/Tile Maps/Sprites/zur-umrandung2.png"
+dest_files=["res://.godot/imported/zur-umrandung2.png-8f1a0aacc1721ae4b5bea4ef134e25ac.ctex"]
 
 [params]
 

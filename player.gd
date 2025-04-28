@@ -62,6 +62,7 @@ func _physics_process(delta):
 		# uprightposture
 		$AnimatedPlayerSprite.flip_v = false
 		$AnimatedPlayerSprite.flip_h = velocity.x > 0
+		
 	
 	#Player can move
 	position += velocity * delta

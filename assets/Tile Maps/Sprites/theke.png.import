@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djx060swy5oal"
-path="res://.godot/imported/Student1_active.png-d39dd7072d1a45d446349108db8e0fab.ctex"
+uid="uid://bv4p3iy6ejtgl"
+path="res://.godot/imported/theke.png-499777beb2f872294be45b36f66873b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Student1_active.png"
-dest_files=["res://.godot/imported/Student1_active.png-d39dd7072d1a45d446349108db8e0fab.ctex"]
+source_file="res://assets/Tile Maps/Sprites/theke.png"
+dest_files=["res://.godot/imported/theke.png-499777beb2f872294be45b36f66873b2.ctex"]
 
 [params]
 

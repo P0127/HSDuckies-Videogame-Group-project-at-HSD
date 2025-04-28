@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1hfsk4g6h86j"
-path="res://.godot/imported/zur-umrandung.png-c450980c659b1dda49c545fd3f28eef3.ctex"
+uid="uid://c5b154sk04p8w"
+path="res://.godot/imported/Student2_front_inactive.png-4e17ca8edc42976e735f0dc9e0b9582d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tile Maps/Sprites/zur-umrandung.png"
-dest_files=["res://.godot/imported/zur-umrandung.png-c450980c659b1dda49c545fd3f28eef3.ctex"]
+source_file="res://assets/mobs/Student2_front_inactive.png"
+dest_files=["res://.godot/imported/Student2_front_inactive.png-4e17ca8edc42976e735f0dc9e0b9582d.ctex"]
 
 [params]
 

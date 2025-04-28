@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv4p3iy6ejtgl"
-path="res://.godot/imported/theke.png-2994b942a2b7e3990106d40ad8cced4d.ctex"
+uid="uid://cym0uk0wu7pi8"
+path="res://.godot/imported/watergun_top_down.png-9250b6296f5195c57a8c66f8d00215d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tile Maps/Sprites/theke.png"
-dest_files=["res://.godot/imported/theke.png-2994b942a2b7e3990106d40ad8cced4d.ctex"]
+source_file="res://assets/weapons/watergun/watergun_top_down.png"
+dest_files=["res://.godot/imported/watergun_top_down.png-9250b6296f5195c57a8c66f8d00215d7.ctex"]
 
 [params]
 

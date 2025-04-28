@@ -1,7 +1,7 @@
 extends Area2D #player weapon
 
 const BULLET = preload("res://projectile.tscn")
-@onready var spawnpoint = $CharCenter/Icon/BulletSpawnPoint
+@onready var spawnpoint = $CharCenter/Weapon/BulletSpawnPoint
 #yes that var is needed and we cant just reference the BSP node since for some reason
 #that creates an error and will act like it doesnt have a position for us to 
 #reference even though it very much does

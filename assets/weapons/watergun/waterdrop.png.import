@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cedq8ekmj0s3r"
-path="res://.godot/imported/treppe.png-fb331805cb1bfb1d0e04c2fa1f8cc0b8.ctex"
+uid="uid://dqf0qqlbpd0q0"
+path="res://.godot/imported/waterdrop.png-848773c035e057eba8a3bff6505cc67c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tile Maps/Sprites/treppe.png"
-dest_files=["res://.godot/imported/treppe.png-fb331805cb1bfb1d0e04c2fa1f8cc0b8.ctex"]
+source_file="res://assets/weapons/watergun/waterdrop.png"
+dest_files=["res://.godot/imported/waterdrop.png-848773c035e057eba8a3bff6505cc67c.ctex"]
 
 [params]
 
