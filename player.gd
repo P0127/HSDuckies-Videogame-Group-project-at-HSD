@@ -5,6 +5,10 @@ signal health_death #Custom Signal; Death / Game_over due to health depletion
 @export var speed = 200 #player movement speed in pixels/sec
 var screen_size #game window size
 var current_direction#saveslot for weapon/projectile direction
+var movement_timer : float = 0.0#timer to count how long moving in a direction
+var weapon_direction_change_min_time = 0.5#time how long is needed till weapon direction changes 
+var last_direction = Vector2.RIGHT#saveslot for where we were last moving/for when we stop
+#by default set to Right to avoid crashes
 
 @export var health = 100.0 #Player health
 
@@ -51,9 +55,26 @@ func _physics_process(delta):
 	
 	if velocity.length() > 0:
 		current_direction = velocity.normalized() #testing weapon direction
-		rotate_weapon(current_direction)#opens method to rotate weapon
+		#rotate_weapon(current_direction)#removed to add delay
 		velocity = velocity.normalized() * speed
 		#normalized so that player is not faster moving diagonally 
+		
+		
+		last_direction = current_direction#for standing still
+		
+		#delay added:
+		movement_timer += delta#count up how long we've been going in a direction
+		if movement_timer >= weapon_direction_change_min_time:
+			rotate_weapon(current_direction)#opens method to rotate weapon
+			movement_timer = 0#reset timer
+	else:#same timer for when we stop moving but had turned
+		movement_timer += delta
+		if movement_timer >= weapon_direction_change_min_time:
+			rotate_weapon(last_direction)
+			movement_timer = 0
+	
+	
+	
 	
 	#Which Animation plays, should be added on to 
 	#Flips Animation if walking to the side
@@ -84,8 +105,13 @@ func _physics_process(delta):
 #function that rotates the weapon along with the players movement
 #atan2 math is needed to calc the Vector2 into a rotation angle
 func rotate_weapon(direction):#direction param is a Vector2 here
-	var angle = atan2(current_direction.y, current_direction.x)
+	var angle = atan2(direction.y, direction.x)
 	$"player weapon".rotation = angle
+	#print("Angle=", angle)#testing angle values
+	if angle < -2 or angle >= 1:
+		$"player weapon/CharCenter/Weapon".flip_v = true
+	else:
+		$"player weapon/CharCenter/Weapon".flip_v = false
 
 #function for start of game to move player to start position and show player
 func start(pos):
