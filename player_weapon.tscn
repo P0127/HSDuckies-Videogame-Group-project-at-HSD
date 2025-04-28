@@ -36,13 +36,12 @@ disabled = true
 
 [node name="Weapon" type="AnimatedSprite2D" parent="CharCenter"]
 position = Vector2(30, 0)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_sd7s4")
 animation = &"sideways"
 
 [node name="BulletSpawnPoint" type="Marker2D" parent="CharCenter/Weapon"]
-position = Vector2(64.8101, 0)
-scale = Vector2(1, 1)
+position = Vector2(50, -18)
 
 [node name="attack speed" type="Timer" parent="."]
 wait_time = 0.45
