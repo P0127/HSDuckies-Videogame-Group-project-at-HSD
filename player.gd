@@ -61,7 +61,7 @@ func _physics_process(delta):
 		$AnimatedPlayerSprite.animation = "walk"
 		# uprightposture
 		$AnimatedPlayerSprite.flip_v = false
-		$AnimatedPlayerSprite.flip_h = velocity.x > 0
+		$AnimatedPlayerSprite.flip_h = velocity.x < 0
 		
 	
 	#Player can move
@@ -69,7 +69,7 @@ func _physics_process(delta):
 	
 	#Checking each Frame if Mobs are touching the Player
 	var overlapping_mobs = $HurtBox.get_overlapping_bodies()
-	const DAMAGE_RATE = 5.0 #Damage the Mobs do to the Player (maybe give this to mobs?)
+	const DAMAGE_RATE = 10.0 #Damage the Mobs do to the Player (maybe give this to mobs?)
 	
 	if overlapping_mobs.size() > 0:
 		#Why Delta? Else we'd loose health per Frame, not per Second!
