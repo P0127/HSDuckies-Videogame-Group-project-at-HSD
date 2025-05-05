@@ -9,6 +9,8 @@ var target #saveslot for current target to make it possible to run out of aggro 
 
 #to Instantiate drop item later on
 var drop_scene := preload("res://duck_collectable.tscn")
+#to instantiate scene of mob running away upon defeat
+var run_away_scene := preload("res://mob_run_away.tscn")
 
 func _ready():
 	#We only have to change one Variable, Progress Bar adjusts automaticly
@@ -72,6 +74,7 @@ func die():
 	$Hitbox.set_deferred("disabled",true)
 	$AwarenessRadius/CollisionShape2D.set_deferred("disabled",true)
 	#can be taken out in case we want a death animation first... etc
+	run_away()#spawns running away scene BEFORE we get rid of current mob
 	queue_free()
 	drop_item()
 
@@ -81,3 +84,9 @@ func drop_item():
 	drop.position = position
 	#will run after physics proccessees, lessens errors (deferred)
 	main.call_deferred("add_child", drop)
+
+#function to spawn the running away scene
+func run_away():
+	var running = run_away_scene.instantiate()
+	running.position = position
+	main.call_deferred("add_child", running)

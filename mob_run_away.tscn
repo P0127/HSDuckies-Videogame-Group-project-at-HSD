@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://6vufn16sgq15"]
+
+[ext_resource type="Texture2D" uid="uid://uer8sryxietf" path="res://assets/mobs/Student2_back_inactive.png" id="1_h5nwv"]
+[ext_resource type="Script" uid="uid://ba0n0mljnpvaq" path="res://mob_run_away.gd" id="1_pybp8"]
+[ext_resource type="Texture2D" uid="uid://c5b154sk04p8w" path="res://assets/mobs/Student2_front_inactive.png" id="2_pybp8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0auhb"]
+radius = 815.022
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6wo65"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h5nwv")
+}],
+"loop": true,
+"name": &"back_view",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pybp8")
+}],
+"loop": true,
+"name": &"front_view",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mwmas"]
+radius = 72.0
+height = 226.0
+
+[node name="mob_run_away" type="CharacterBody2D"]
+scale = Vector2(0.7, 0.7)
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_pybp8")
+metadata/_edit_group_ = true
+
+[node name="Vision_circle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision_circle"]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_0auhb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6wo65")
+animation = &"back_view"
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 7)
+shape = SubResource("CapsuleShape2D_mwmas")
+
+[node name="Time_to_live" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="body_entered" from="Vision_circle" to="." method="_on_vision_circle_body_entered"]
+[connection signal="timeout" from="Time_to_live" to="." method="_on_time_to_live_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
