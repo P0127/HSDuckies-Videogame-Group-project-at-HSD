@@ -112,6 +112,9 @@ func rotate_sprite(velocity, movement_timer):
 				$AnimatedPlayerSprite.animation = "walk_front"
 			0, -45, 180, -135:
 				$AnimatedPlayerSprite.animation = "walk_side"
+		#Flips Animation if walking to the side
+		$AnimatedPlayerSprite.flip_h = velocity.x < 0
+		
 		#saveslot for last direction faced while walking, without reseting in "stand" mode
 		#only saves this value, if direction has been faced for a fixed while
 		if movement_timer >= weapon_direction_change_min_time:
@@ -119,5 +122,3 @@ func rotate_sprite(velocity, movement_timer):
 	else:
 		$AnimatedPlayerSprite.animation = "stand"
 	
-	#Flips Animation if walking to the side
-	$AnimatedPlayerSprite.flip_h = velocity.x < 0
