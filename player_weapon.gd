@@ -8,12 +8,24 @@ const BULLET = preload("res://projectile.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$CharCenter/Weapon.animation = "sideways"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	pass
+	#Switches Animations depending on the rotation
+	match int(rotation_degrees):
+		90, -90:
+			$CharCenter/Weapon.animation = "topdown"
+		_:
+			$CharCenter/Weapon.animation = "sideways"
+	
+	#Flips Sprites depending on rotation (position to Player)
+	match int(rotation_degrees):
+		-135, 180, 135:
+			$CharCenter/Weapon.flip_v = true
+		_:
+			$CharCenter/Weapon.flip_v = false
 
 func shoot():
 	if BULLET.can_instantiate():
