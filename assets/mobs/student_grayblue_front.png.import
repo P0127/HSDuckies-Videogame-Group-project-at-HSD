@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtxoui6jvjroq"
-path="res://.godot/imported/MeisterFluffbutt_sprite_2.png-8e44d60431a6f6ea3ce577f839477378.ctex"
+uid="uid://cvsqxd18kwq5"
+path="res://.godot/imported/student_grayblue_front.png-a93cdd42f298cfb4a067092473222e80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/MeisterFluffbutt_sprite_2.png"
-dest_files=["res://.godot/imported/MeisterFluffbutt_sprite_2.png-8e44d60431a6f6ea3ce577f839477378.ctex"]
+source_file="res://assets/mobs/student_grayblue_front.png"
+dest_files=["res://.godot/imported/student_grayblue_front.png-a93cdd42f298cfb4a067092473222e80.ctex"]
 
 [params]
 

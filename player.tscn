@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c135wng7wv7tp"]
+[gd_scene load_steps=17 format=3 uid="uid://c135wng7wv7tp"]
 
 [ext_resource type="Script" uid="uid://b6ykbxg8byxue" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://cqxxf6tj5g1qs" path="res://camera_2d.gd" id="2_hqtel"]
@@ -6,7 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://bdy5iqrx56ob6" path="res://hud/healthbar_over.png" id="4_b26j0"]
 [ext_resource type="Texture2D" uid="uid://befbobny0fs64" path="res://hud/healthbar_progress_player.png" id="5_n7ghd"]
 [ext_resource type="PackedScene" uid="uid://d0dp7ykne4ajl" path="res://player_weapon.tscn" id="5_sweqy"]
-[ext_resource type="Texture2D" uid="uid://d0duj6rq0y1l6" path="res://assets/Player.png" id="6_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://oprv8vc258ex" path="res://assets/character sprites/player1_front2.png" id="6_b26j0"]
+[ext_resource type="Texture2D" uid="uid://dlq5wm4l1o187" path="res://assets/character sprites/player1_front3.png" id="8_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://crtf64x6dc8l8" path="res://assets/character sprites/player1_back.png" id="9_ivps1"]
+[ext_resource type="Texture2D" uid="uid://dqunjh8o7d3n4" path="res://assets/character sprites/player1_front.png" id="9_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://c46ql7ge7koo8" path="res://assets/character sprites/player1_side1.png" id="10_urp6f"]
+[ext_resource type="Texture2D" uid="uid://clg4mxvf1ykw" path="res://assets/character sprites/player1_side2.png" id="11_bwjto"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dw050"]
 radius = 293.352
@@ -21,11 +26,41 @@ radius = 456.039
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_1jxqw")
+"texture": ExtResource("9_n7ghd")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_b26j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_n7ghd")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ivps1")
+}],
+"loop": true,
+"name": &"walk_back",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bwjto")
+}],
+"loop": true,
+"name": &"walk_side",
+"speed": 2.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -84,8 +119,7 @@ texture_progress = ExtResource("5_n7ghd")
 position = Vector2(3.33333, 53.3334)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_sweqy")
-animation = &"walk"
-frame_progress = 0.665032
+animation = &"walk_back"
 
 [node name="player weapon" parent="." instance=ExtResource("5_sweqy")]
 scale = Vector2(10, 10)

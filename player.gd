@@ -73,20 +73,10 @@ func _physics_process(delta):
 			rotate_weapon(last_direction)
 			movement_timer = 0
 	
-	
-	
-	
-	#Which Animation plays, should be added on to 
-	#Flips Animation if walking to the side
-	if velocity.x != 0:
-		$AnimatedPlayerSprite.animation = "walk"
-		# uprightposture
-		$AnimatedPlayerSprite.flip_v = false
-		$AnimatedPlayerSprite.flip_h = velocity.x < 0
-		
-	
 	#Player can move
 	position += velocity * delta
+	#Correct Sprite Rotation
+	sprite_rotation(velocity)
 	
 	#Checking each Frame if Mobs are touching the Player
 	var overlapping_mobs = $HurtBox.get_overlapping_bodies()
@@ -97,7 +87,6 @@ func _physics_process(delta):
 		health -= DAMAGE_RATE * overlapping_mobs.size() * delta 
 		#Progress Bar is linked with health Variable
 		$ProgressBar.value = health
-		print(health)
 		if health <= 0.0:
 			health_death.emit()
 			print("DEATH")
@@ -120,3 +109,23 @@ func start(pos):
 	#starts the animation
 	$AnimatedPlayerSprite.play()
 	$PlayerCollisionShape.disabled = false
+	
+
+func sprite_rotation(velocity):
+	#Which Animation plays
+	#Flips Animation if walking to the side
+	if int(velocity.x != 0) | int(velocity.y != 0):
+		if int(velocity.y > 0):
+			$AnimatedPlayerSprite.animation = "walk"
+			$AnimatedPlayerSprite.flip_h = velocity.x < 0
+		elif int(velocity.x == 0):
+			$AnimatedPlayerSprite.animation = "walk_back"
+			$AnimatedPlayerSprite.flip_h = velocity.x < 0
+		else:
+			$AnimatedPlayerSprite.animation = "walk_side"
+			$AnimatedPlayerSprite.flip_h = velocity.x < 0
+			
+	else:
+		$AnimatedPlayerSprite.animation = "stand"
+		$AnimatedPlayerSprite.flip_h = velocity.x < 0
+		
