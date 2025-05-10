@@ -5,7 +5,7 @@ extends Area2D
 var direction#saveslot for direction out projectile will fly
 @export var projectile_speed = 500
 var travelled_distance = 0 #saveslot for despawning bullets after a while
-const MAX_RANGE = 500 #max distance a bullet should live
+const MAX_RANGE = 1000 #max distance a bullet should live
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

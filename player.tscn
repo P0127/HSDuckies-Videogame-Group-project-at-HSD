@@ -34,22 +34,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("9_ivps1")
+}],
+"loop": true,
+"name": &"walk_back",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_b26j0")
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_n7ghd")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk_front",
 "speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_ivps1")
-}],
-"loop": true,
-"name": &"walk_back",
-"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -119,7 +119,8 @@ texture_progress = ExtResource("5_n7ghd")
 position = Vector2(3.33333, 53.3334)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_sweqy")
-animation = &"walk_back"
+animation = &"walk_front"
 
 [node name="player weapon" parent="." instance=ExtResource("5_sweqy")]
+position = Vector2(0, 150)
 scale = Vector2(10, 10)
