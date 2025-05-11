@@ -35,7 +35,7 @@ disabled = true
 [node name="CharCenter" type="Marker2D" parent="."]
 
 [node name="Weapon" type="AnimatedSprite2D" parent="CharCenter"]
-position = Vector2(30, 0)
+position = Vector2(23, 0)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_sd7s4")
 animation = &"sideways"

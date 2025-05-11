@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtxoui6jvjroq"
-path="res://.godot/imported/MeisterFluffbutt_sprite_2.png-8e44d60431a6f6ea3ce577f839477378.ctex"
+uid="uid://b1yl2ds4ep1fy"
+path="res://.godot/imported/characterS27.png-5897df5e1375e413cf846528d14263ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/MeisterFluffbutt_sprite_2.png"
-dest_files=["res://.godot/imported/MeisterFluffbutt_sprite_2.png-8e44d60431a6f6ea3ce577f839477378.ctex"]
+source_file="res://assets/character sprites/characterS27.png"
+dest_files=["res://.godot/imported/characterS27.png-5897df5e1375e413cf846528d14263ab.ctex"]
 
 [params]
 

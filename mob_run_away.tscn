@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://6vufn16sgq15"]
 
-[ext_resource type="Texture2D" uid="uid://uer8sryxietf" path="res://assets/mobs/Student2_back_inactive.png" id="1_h5nwv"]
 [ext_resource type="Script" uid="uid://ba0n0mljnpvaq" path="res://mob_run_away.gd" id="1_pybp8"]
-[ext_resource type="Texture2D" uid="uid://c5b154sk04p8w" path="res://assets/mobs/Student2_front_inactive.png" id="2_pybp8"]
+[ext_resource type="Texture2D" uid="uid://b6i7lg72o3xoa" path="res://assets/mobs/student_purple_back.png" id="2_pybp8"]
+[ext_resource type="Texture2D" uid="uid://cftaxd0wgfk6m" path="res://assets/mobs/student_purple_front.png" id="3_6wo65"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0auhb"]
 radius = 815.022
@@ -11,7 +11,7 @@ radius = 815.022
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_h5nwv")
+"texture": ExtResource("2_pybp8")
 }],
 "loop": true,
 "name": &"back_view",
@@ -19,7 +19,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_pybp8")
+"texture": ExtResource("3_6wo65")
 }],
 "loop": true,
 "name": &"front_view",

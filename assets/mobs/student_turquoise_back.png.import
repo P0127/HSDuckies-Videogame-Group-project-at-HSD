@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da0qh51gjossh"
-path="res://.godot/imported/Student1_active_sideview.png-423d69f254eb4788277b724ded078403.ctex"
+uid="uid://b4cce8rcc7v0f"
+path="res://.godot/imported/student_turquoise_back.png-4c036d884437829baef50b4eae7791c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mobs/Student1_active_sideview.png"
-dest_files=["res://.godot/imported/Student1_active_sideview.png-423d69f254eb4788277b724ded078403.ctex"]
+source_file="res://assets/mobs/student_turquoise_back.png"
+dest_files=["res://.godot/imported/student_turquoise_back.png-4c036d884437829baef50b4eae7791c2.ctex"]
 
 [params]
 

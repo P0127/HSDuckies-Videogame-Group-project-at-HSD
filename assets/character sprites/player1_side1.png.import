@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uer8sryxietf"
-path="res://.godot/imported/Student2_back_inactive.png-398eb80dd510f2749233aabab39624cb.ctex"
+uid="uid://c46ql7ge7koo8"
+path="res://.godot/imported/player1_side1.png-74d9c1d26a0ce3903880b34c6b838572.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mobs/Student2_back_inactive.png"
-dest_files=["res://.godot/imported/Student2_back_inactive.png-398eb80dd510f2749233aabab39624cb.ctex"]
+source_file="res://assets/character sprites/player1_side1.png"
+dest_files=["res://.godot/imported/player1_side1.png-74d9c1d26a0ce3903880b34c6b838572.ctex"]
 
 [params]
 
