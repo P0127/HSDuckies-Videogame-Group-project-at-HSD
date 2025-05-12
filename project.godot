@@ -11,9 +11,7 @@ config_version=5
 [application]
 
 config/name="IP1-Godot"
-run/main_scene="uid://esi7qim0g042"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
