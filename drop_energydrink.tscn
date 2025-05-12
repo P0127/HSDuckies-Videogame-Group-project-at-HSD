@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxxshl650lvlw"]
+
+[ext_resource type="Script" uid="uid://bn2petr4a0lfn" path="res://drop_energydrink.gd" id="1_ca22y"]
+[ext_resource type="Texture2D" uid="uid://dnhygbiwttnwy" path="res://assets/Energydrink (1).png" id="1_t4bxx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ca22y"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_t4bxx")
+}],
+"loop": true,
+"name": &"energydrink",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4bxx"]
+size = Vector2(96.5, 108)
+
+[node name="Drop_energydrink" type="Area2D"]
+script = ExtResource("1_ca22y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.5, 0)
+scale = Vector2(1.00893, 1)
+sprite_frames = SubResource("SpriteFrames_ca22y")
+animation = &"energydrink"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_t4bxx")
+one_way_collision_margin = 127.8
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

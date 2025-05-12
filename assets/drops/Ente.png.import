@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be3lhskgu0ae7"
-path="res://.godot/imported/characterS23.png-5018a9553a02fa5902a3c498a744bed7.ctex"
+uid="uid://blo0wpyfk7dww"
+path="res://.godot/imported/Ente.png-861a528cd2dc3637a8e71f5c0121a5f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character sprites/characterS23.png"
-dest_files=["res://.godot/imported/characterS23.png-5018a9553a02fa5902a3c498a744bed7.ctex"]
+source_file="res://assets/drops/Ente.png"
+dest_files=["res://.godot/imported/Ente.png-861a528cd2dc3637a8e71f5c0121a5f9.ctex"]
 
 [params]
 

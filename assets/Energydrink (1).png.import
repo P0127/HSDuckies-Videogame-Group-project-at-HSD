@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8y0s7pc76w8d"
-path="res://.godot/imported/Bouncy_Platform_Long.png-19ae356e310b320c2f12da4d9cf8cb2f.ctex"
+uid="uid://dnhygbiwttnwy"
+path="res://.godot/imported/Energydrink (1).png-37d0b8ae567a3f5888c04cd1fac3570d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Bouncy_Platform_Long.png"
-dest_files=["res://.godot/imported/Bouncy_Platform_Long.png-19ae356e310b320c2f12da4d9cf8cb2f.ctex"]
+source_file="res://assets/Energydrink (1).png"
+dest_files=["res://.godot/imported/Energydrink (1).png-37d0b8ae567a3f5888c04cd1fac3570d.ctex"]
 
 [params]
 

@@ -1,8 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://djr2ebk8jm13r"]
+[gd_scene load_steps=8 format=3 uid="uid://djr2ebk8jm13r"]
 
 [ext_resource type="Script" uid="uid://bh4d7allge8nj" path="res://duck_collectable.gd" id="1_npn1j"]
-[ext_resource type="Texture2D" uid="uid://phvniyfuroxg" path="res://assets/duck_sitting.jpg" id="2_nj65u"]
-[ext_resource type="Texture2D" uid="uid://dsbajsv3my85m" path="res://assets/duck_flapping.jpg" id="3_5fan6"]
+[ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://assets/drops/Ente.png" id="2_nj65u"]
+[ext_resource type="Texture2D" uid="uid://dpfcf728xfwsl" path="res://assets/drops/EnteA1.2.png" id="3_5fan6"]
+[ext_resource type="Texture2D" uid="uid://cslr4g6svm0uv" path="res://assets/drops/EnteA1.png" id="4_g1qbf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oatfm"]
+radius = 280.178
+
+[sub_resource type="Curve2D" id="Curve2D_nj65u"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, -207.11, -108.334, 207.11, 108.334, 350, -80, 0, 0, 0, 0, 600, 590)
+}
+point_count = 3
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g1qbf"]
 animations = [{
@@ -17,24 +27,35 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_5fan6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g1qbf")
 }],
 "loop": true,
-"name": &"spawning",
-"speed": 5.0
+"name": &"flapping",
+"speed": 10.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_oatfm"]
-radius = 431.464
 
 [node name="Duck_Collectable" type="Area2D"]
 scale = Vector2(0.1, 0.1)
 collision_layer = 4
 script = ExtResource("1_npn1j")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_g1qbf")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oatfm")
 
+[node name="DuckPath" type="Path2D" parent="."]
+scale = Vector2(1, 1)
+curve = SubResource("Curve2D_nj65u")
+
+[node name="DuckPathFollow" type="PathFollow2D" parent="DuckPath"]
+rotates = false
+loop = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DuckPath/DuckPathFollow"]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_g1qbf")
+animation = &"flapping"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
