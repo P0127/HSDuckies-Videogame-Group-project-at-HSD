@@ -19,7 +19,6 @@ Mob = ExtResource("4_lquwl")
 position = Vector2(400, 400)
 
 [node name="Player" parent="." instance=ExtResource("2_h2yge")]
-speed = 400
 
 [node name="TileMapLayer" parent="." instance=ExtResource("6_7mycd")]
 scale = Vector2(0.3, 0.3)

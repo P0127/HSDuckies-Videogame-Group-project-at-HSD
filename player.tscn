@@ -84,6 +84,9 @@ position = Vector2(0, 30)
 shape = SubResource("CircleShape2D_dw050")
 debug_color = Color(0.605295, 0.541183, 0, 0.42)
 
+[node name="EffectTimer" type="Timer" parent="PickUp"]
+wait_time = 3.0
+
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
@@ -124,3 +127,5 @@ animation = &"walk_front"
 [node name="player weapon" parent="." instance=ExtResource("5_sweqy")]
 position = Vector2(0, 150)
 scale = Vector2(10, 10)
+
+[connection signal="timeout" from="PickUp/EffectTimer" to="." method="_on_effect_timer_timeout"]
