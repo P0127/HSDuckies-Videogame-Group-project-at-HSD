@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal health_death #Custom Signal; Death / Game_over due to health depletion
 
-@export var speed = 200 #player movement speed in pixels/sec
+@export var speed = 400 #player movement speed in pixels/sec
 var screen_size #game window size
 var current_direction = Vector2.ZERO #Direction Player is moving in
 var movement_timer : float = 0.0 #timer to count how long moving in a direction
@@ -11,7 +11,9 @@ var last_direction = Vector2.RIGHT #saveslot for where we were last moving/for w
 var last_direction_faced = Vector2.RIGHT #saveslot for the last direction faced while moving
 #RIGHT: weapon spawns default on that side
 
-@export var health = 100.0 #Player health
+
+const max_health = 100.0 #Set Health Amount
+@export var health = max_health #Player health current
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +24,10 @@ func _ready():
 	#We only have to change one Variable, Progress Bar adjusts automaticly
 	$ProgressBar.max_value = health
 	$ProgressBar.value = health
+	
+	#Listens to the following Signals
+	GlobalSignals.health_collected_signal.connect(health_collected)
+	GlobalSignals.boost_speed_collected_signal.connect(boost_speed_collected)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,10 +72,12 @@ func _physics_process(delta):
 		#Why Delta? Else we'd loose health per Frame, not per Second!
 		health -= DAMAGE_RATE * overlapping_mobs.size() * delta 
 		#Progress Bar is linked with health Variable
-		$ProgressBar.value = health
 		if health <= 0.0:
 			health_death.emit()
 			print("DEATH")
+			
+	#Updates progress bar
+	$ProgressBar.value = health
 
 
 #function for start of game to move player to start position and show player
@@ -122,3 +130,19 @@ func rotate_sprite(velocity, movement_timer):
 	else:
 		$AnimatedPlayerSprite.animation = "stand"
 	
+
+
+# Functions for the Signals received
+func health_collected():
+	if (health + 20.0) < max_health:
+		health += 20.0
+		
+	else:
+		health = max_health
+
+func boost_speed_collected():
+	$PickUp/EffectTimer.start(3)
+	speed = 500
+
+func _on_effect_timer_timeout() -> void:
+	speed = 400

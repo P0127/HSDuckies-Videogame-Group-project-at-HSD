@@ -9,6 +9,9 @@ const BULLET = preload("res://projectile.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CharCenter/Weapon.animation = "sideways"
+	
+	
+	GlobalSignals.boost_firerate_collected_signal.connect(boost_firerate_collected)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,6 +41,12 @@ func shoot():
 		spawnpoint.add_child(new_bullet)
 
 
+
 #shoots bullet everytime atk speed timer timesout
 func _on_attack_speed_timeout():
 	shoot()
+
+#ticks up firerate on item pickup
+func boost_firerate_collected():
+	$"attack speed".wait_time = 0.30
+	
