@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b77eif0xb3g3t"
-path="res://.godot/imported/characterS17.png-8af2f84e8f4c1b1443c396b945944b89.ctex"
+uid="uid://dpfcf728xfwsl"
+path="res://.godot/imported/EnteA1.2.png-1878e045ba845d2c7171dd9a14647d80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character sprites/characterS17.png"
-dest_files=["res://.godot/imported/characterS17.png-8af2f84e8f4c1b1443c396b945944b89.ctex"]
+source_file="res://assets/drops/EnteA1.2.png"
+dest_files=["res://.godot/imported/EnteA1.2.png-1878e045ba845d2c7171dd9a14647d80.ctex"]
 
 [params]
 
