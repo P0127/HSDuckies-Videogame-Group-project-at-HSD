@@ -13,6 +13,10 @@
 script = ExtResource("1_ig7tw")
 Mob = ExtResource("4_lquwl")
 
+[node name="Test_Tilemap" parent="." instance=ExtResource("9_kek77")]
+z_index = -1
+scale = Vector2(4, 4)
+
 [node name="Hud" parent="." instance=ExtResource("3_h2yge")]
 
 [node name="StartPosition" type="Marker2D" parent="."]
@@ -21,16 +25,12 @@ position = Vector2(400, 400)
 [node name="Player" parent="." instance=ExtResource("2_h2yge")]
 
 [node name="drop_chocolatebar" parent="." instance=ExtResource("6_5vw27")]
-position = Vector2(100, 2012)
+position = Vector2(1696, 2832)
 
 [node name="Drop_energydrink" parent="." instance=ExtResource("7_kek77")]
-position = Vector2(1674, 1510)
+position = Vector2(2426, 256)
 
 [node name="drop_Mensaessen" parent="." instance=ExtResource("8_4c57u")]
-position = Vector2(666, 91)
-
-[node name="Test_Tilemap" parent="." instance=ExtResource("9_kek77")]
-z_index = -1
-scale = Vector2(4, 4)
+position = Vector2(4165, 1125)
 
 [connection signal="start_game" from="Hud" to="." method="new_game"]
