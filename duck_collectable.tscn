@@ -45,7 +45,6 @@ script = ExtResource("1_npn1j")
 shape = SubResource("CircleShape2D_oatfm")
 
 [node name="DuckPath" type="Path2D" parent="."]
-scale = Vector2(1, 1)
 curve = SubResource("Curve2D_nj65u")
 
 [node name="DuckPathFollow" type="PathFollow2D" parent="DuckPath"]
@@ -53,7 +52,6 @@ rotates = false
 loop = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DuckPath/DuckPathFollow"]
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_g1qbf")
 animation = &"flapping"
 

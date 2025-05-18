@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://csysokjejtsbt"]
 
 [ext_resource type="Script" uid="uid://dvun4ru5bltos" path="res://drop_chocolatebar.gd" id="1_etqx1"]
-[ext_resource type="Texture2D" uid="uid://cb2676g4mdjot" path="res://assets/chocolatebar.png" id="2_etqx1"]
+[ext_resource type="Texture2D" uid="uid://cb2676g4mdjot" path="res://assets/drops/chocolatebar.png" id="2_etqx1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_etqx1"]
 animations = [{

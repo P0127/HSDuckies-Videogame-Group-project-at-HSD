@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ls35oqi028hm"]
 
 [ext_resource type="Script" uid="uid://cvw1jwmj7pda7" path="res://drop_mensaessen.gd" id="1_pscde"]
-[ext_resource type="Texture2D" uid="uid://dnsn6bjjhc5jp" path="res://assets/Mensaessen.png" id="1_xscuf"]
+[ext_resource type="Texture2D" uid="uid://dnsn6bjjhc5jp" path="res://assets/drops/Mensaessen.png" id="1_xscuf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pscde"]
 animations = [{
