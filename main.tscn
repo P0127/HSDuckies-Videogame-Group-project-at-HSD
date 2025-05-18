@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://esi7qim0g042"]
+[gd_scene load_steps=10 format=3 uid="uid://esi7qim0g042"]
 
 [ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://player.tscn" id="2_h2yge"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bsho8pj8tpcp1" path="res://assets/Tile Maps/foyer.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bxxshl650lvlw" path="res://drop_energydrink.tscn" id="7_kek77"]
 [ext_resource type="PackedScene" uid="uid://ls35oqi028hm" path="res://drop_mensaessen.tscn" id="8_4c57u"]
+[ext_resource type="PackedScene" uid="uid://b23fkwbnh2ijx" path="res://assets/Tile Maps/test_tilemap.tscn" id="9_kek77"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
@@ -21,15 +22,20 @@ position = Vector2(400, 400)
 [node name="Player" parent="." instance=ExtResource("2_h2yge")]
 
 [node name="TileMapLayer" parent="." instance=ExtResource("6_7mycd")]
+visible = false
 scale = Vector2(0.3, 0.3)
 
 [node name="drop_chocolatebar" parent="." instance=ExtResource("6_5vw27")]
 position = Vector2(100, 2012)
 
 [node name="Drop_energydrink" parent="." instance=ExtResource("7_kek77")]
-position = Vector2(2218, 1437)
+position = Vector2(1674, 1510)
 
 [node name="drop_Mensaessen" parent="." instance=ExtResource("8_4c57u")]
 position = Vector2(666, 91)
+
+[node name="Test_Tilemap" parent="." instance=ExtResource("9_kek77")]
+z_index = -1
+scale = Vector2(4, 4)
 
 [connection signal="start_game" from="Hud" to="." method="new_game"]
