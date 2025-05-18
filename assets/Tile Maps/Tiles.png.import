@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcbu7nuj1aqi"
-path="res://.godot/imported/TilemapBearbeitet.jpg-818a11bc9e3a8d1665b5d745c3996452.ctex"
+uid="uid://c5kpd4xkjxfji"
+path="res://.godot/imported/Tiles.png-1381fd5efb4baa9754bb6bb1fef42d73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tile Maps/TilemapBearbeitet.jpg"
-dest_files=["res://.godot/imported/TilemapBearbeitet.jpg-818a11bc9e3a8d1665b5d745c3996452.ctex"]
+source_file="res://assets/Tile Maps/Tiles.png"
+dest_files=["res://.godot/imported/Tiles.png-1381fd5efb4baa9754bb6bb1fef42d73.ctex"]
 
 [params]
 

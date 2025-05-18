@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxxshl650lvlw"]
 
 [ext_resource type="Script" uid="uid://bn2petr4a0lfn" path="res://drop_energydrink.gd" id="1_ca22y"]
-[ext_resource type="Texture2D" uid="uid://dnhygbiwttnwy" path="res://assets/Energydrink (1).png" id="1_t4bxx"]
+[ext_resource type="Texture2D" uid="uid://dnhygbiwttnwy" path="res://assets/drops/Energydrink (1).png" id="1_t4bxx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ca22y"]
 animations = [{
