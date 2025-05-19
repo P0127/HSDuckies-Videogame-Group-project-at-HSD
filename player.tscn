@@ -122,7 +122,7 @@ texture_progress = ExtResource("5_bwjto")
 position = Vector2(3.33333, 53.3334)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_sweqy")
-animation = &"walk_front"
+animation = &"stand"
 
 [node name="player weapon" parent="." instance=ExtResource("5_sweqy")]
 position = Vector2(0, 150)

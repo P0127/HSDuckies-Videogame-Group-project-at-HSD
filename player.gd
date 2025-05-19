@@ -142,7 +142,15 @@ func health_collected():
 
 func boost_speed_collected():
 	$PickUp/EffectTimer.start(3)
-	speed = 500
+	speed = 500 #we may want to increase this a bit to make it more noticeable
 
 func _on_effect_timer_timeout() -> void:
 	speed = 400
+
+#Subtracts Hitpoints from Player #honestly no clue why we didnt have this here yet
+func take_damage():
+	health -= 1
+	$ProgressBar.show()
+	$ProgressBar.value = health
+	if health == 0:
+		print("you died")
