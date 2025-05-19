@@ -17,6 +17,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	#will prob remove this later and make it invisble or sth
+	#however might be a problem for visibility so we'll see
 	#Switches Animations depending on the rotation
 	match int(rotation_degrees):
 		90, -90:

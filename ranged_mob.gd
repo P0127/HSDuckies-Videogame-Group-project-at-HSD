@@ -42,7 +42,10 @@ func _physics_process(delta):
 	$mob_weapon.rotation = weapon_direction.angle()
 	
 	if (target == player):
-		$mob_weapon/attack_speed.set_autostart(true)
+		$mob_weapon/attack_speed.set_paused(false)
+		#$mob_weapon/attack_speed.set_autostart(true)
+	else:
+		$mob_weapon/attack_speed.set_paused(true)
 	
 
 #the two following functions go into effect whenever any body enters our mobs AwarenessRadius

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://6bgp0bll47ev" path="res://mob_weapon.tscn" id="8_m8u27"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mno16"]
-radius = 3056.81
+radius = 2604.05
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lasut"]
 radius = 288.338
