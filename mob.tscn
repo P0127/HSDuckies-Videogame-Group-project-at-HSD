@@ -46,7 +46,7 @@ metadata/_edit_group_ = true
 [node name="AwarenessRadius" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AwarenessRadius"]
-scale = Vector2(8, 8)
+scale = Vector2(12, 12)
 shape = SubResource("CircleShape2D_nokgg")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
