@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw4afi77kbi7"
-path="res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"
+uid="uid://cy68dx0onfxtd"
+path="res://.godot/imported/student_turquoise_front.png-2db1eacfcd66354cd748170a02acd8c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/font_item_zahler.png"
-dest_files=["res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"]
+source_file="res://Mobs/Mobs_assets/student_turquoise_front.png"
+dest_files=["res://.godot/imported/student_turquoise_front.png-2db1eacfcd66354cd748170a02acd8c5.ctex"]
 
 [params]
 

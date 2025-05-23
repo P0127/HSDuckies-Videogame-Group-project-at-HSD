@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw4afi77kbi7"
-path="res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"
+uid="uid://b547fhl3y02ur"
+path="res://.godot/imported/Watergun_yellow.png-b6b006a82611241bc0caa71497e5c8fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/font_item_zahler.png"
-dest_files=["res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"]
+source_file="res://Weapon/Weapon_assets/Watergun_yellow.png"
+dest_files=["res://.godot/imported/Watergun_yellow.png-b6b006a82611241bc0caa71497e5c8fb.ctex"]
 
 [params]
 

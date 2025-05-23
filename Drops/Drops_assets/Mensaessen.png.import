@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw4afi77kbi7"
-path="res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"
+uid="uid://dnsn6bjjhc5jp"
+path="res://.godot/imported/Mensaessen.png-819f0610e7bc5cec085d546152c4006a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/font_item_zahler.png"
-dest_files=["res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"]
+source_file="res://Drops/Drops_assets/Mensaessen.png"
+dest_files=["res://.godot/imported/Mensaessen.png-819f0610e7bc5cec085d546152c4006a.ctex"]
 
 [params]
 

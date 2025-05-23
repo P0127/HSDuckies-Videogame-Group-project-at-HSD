@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://dkla36ebv0n0o"]
+
+[ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://Mobs/mob.gd" id="1_nokgg"]
+[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
+[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://Hud/Hud_assets/healthbar_progress_player_v01_over.png" id="3_1qmh0"]
+[ext_resource type="Texture2D" uid="uid://dua0vsfn1mf8x" path="res://Hud/Hud_assets/healthbar_progress_player_v02_under.png" id="4_gfurk"]
+[ext_resource type="Texture2D" uid="uid://1s4binyeljpr" path="res://Mobs/Mobs_assets/student_grayblue_front_active.png" id="5_b3mxk"]
+[ext_resource type="Texture2D" uid="uid://cvsqxd18kwq5" path="res://Mobs/Mobs_assets/student_grayblue_front.png" id="6_1qmh0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
+radius = 230.169
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ubaqv"]
+radius = 229.264
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b3mxk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_b3mxk")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_1qmh0")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
+
+[node name="Mob" type="CharacterBody2D"]
+scale = Vector2(0.3, 0.3)
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_nokgg")
+metadata/_edit_group_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AwarenessRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AwarenessRadius"]
+scale = Vector2(12, 12)
+shape = SubResource("CircleShape2D_nokgg")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ubaqv")
+debug_color = Color(0.7, 0, 0.0116665, 0.419608)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = -220.0
+offset_right = 160.0
+offset_bottom = -172.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+value = 50.0
+rounded = true
+texture_under = ExtResource("2_b3mxk")
+texture_over = ExtResource("3_1qmh0")
+texture_progress = ExtResource("4_gfurk")
+
+[node name="AnimatedEnemySprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b3mxk")
+animation = &"inactive"
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="AwarenessRadius" to="." method="_on_DetectRadius_body_entered"]
+[connection signal="body_exited" from="AwarenessRadius" to="." method="_on_DetectRadius_body_exited"]

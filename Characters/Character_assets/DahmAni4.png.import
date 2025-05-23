@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw4afi77kbi7"
-path="res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"
+uid="uid://dik0rr7kbjrd7"
+path="res://.godot/imported/DahmAni4.png-44d2550450216cb8b8ae8cd7b4ebce1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/font_item_zahler.png"
-dest_files=["res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"]
+source_file="res://Characters/Character_assets/DahmAni4.png"
+dest_files=["res://.godot/imported/DahmAni4.png-44d2550450216cb8b8ae8cd7b4ebce1b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw4afi77kbi7"
-path="res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"
+uid="uid://ddjx4ligd8ljx"
+path="res://.godot/imported/TilemapBearbeitet3.jpg-33c93e59f2148146a54ca439a92b03e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/font_item_zahler.png"
-dest_files=["res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"]
+source_file="res://Map/Map_Tilemap/TilemapBearbeitet3.jpg"
+dest_files=["res://.godot/imported/TilemapBearbeitet3.jpg-33c93e59f2148146a54ca439a92b03e8.ctex"]
 
 [params]
 
