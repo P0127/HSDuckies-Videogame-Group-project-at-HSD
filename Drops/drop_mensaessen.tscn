@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ls35oqi028hm"]
+[gd_scene load_steps=6 format=3 uid="uid://ls35oqi028hm"]
 
 [ext_resource type="Script" uid="uid://cvw1jwmj7pda7" path="res://Drops/drop_mensaessen.gd" id="1_pscde"]
 [ext_resource type="Texture2D" uid="uid://dnsn6bjjhc5jp" path="res://Drops/Drops_assets/Mensaessen.png" id="1_xscuf"]
+[ext_resource type="PackedScene" uid="uid://br1bp20f38ir1" path="res://Drops/pickable.tscn" id="3_xgkgc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pscde"]
 animations = [{
@@ -31,5 +32,7 @@ animation = &"Mensaessen"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pscde")
+
+[node name="pickable" parent="." instance=ExtResource("3_xgkgc")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

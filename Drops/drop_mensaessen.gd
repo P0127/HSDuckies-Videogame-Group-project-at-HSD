@@ -1,6 +1,5 @@
 extends Area2D
 
-@export var health_healed = 40
 
 func _ready():
 	pass 

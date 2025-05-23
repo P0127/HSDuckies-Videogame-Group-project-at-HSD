@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://csysokjejtsbt"]
+[gd_scene load_steps=6 format=3 uid="uid://csysokjejtsbt"]
 
 [ext_resource type="Script" uid="uid://dvun4ru5bltos" path="res://Drops/drop_chocolatebar.gd" id="1_gs7gw"]
 [ext_resource type="Texture2D" uid="uid://cb2676g4mdjot" path="res://Drops/Drops_assets/chocolatebar.png" id="2_gvph5"]
+[ext_resource type="PackedScene" uid="uid://br1bp20f38ir1" path="res://Drops/pickable.tscn" id="3_gvph5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_etqx1"]
 animations = [{
@@ -34,5 +35,7 @@ animation = &"chocolatebar"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_etqx1")
+
+[node name="pickable" parent="." instance=ExtResource("3_gvph5")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
