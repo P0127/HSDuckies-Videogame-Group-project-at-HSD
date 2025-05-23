@@ -47,7 +47,6 @@ metadata/_edit_group_ = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="AwarenessRadius" type="Area2D" parent="."]
-collision_layer = 0
 
 [node name="AwarenessBox" type="CollisionShape2D" parent="AwarenessRadius"]
 scale = Vector2(12, 12)
@@ -55,7 +54,6 @@ shape = SubResource("CircleShape2D_nokgg")
 debug_color = Color(0.8, 0.956863, 1, 0.176471)
 
 [node name="HurtPlayerArea" type="Area2D" parent="."]
-collision_layer = 0
 
 [node name="HurtBox" type="CollisionShape2D" parent="HurtPlayerArea"]
 shape = SubResource("CircleShape2D_xi5bs")

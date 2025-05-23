@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://clg4mxvf1ykw" path="res://Player/Player_assets/player1_side2.png" id="11_bwjto"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dw050"]
-radius = 293.352
+radius = 306.685
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
 radius = 241.015
@@ -63,9 +63,9 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.3, 0.3)
-collision_mask = 16
+collision_mask = 20
 collision_priority = 2.0
 script = ExtResource("1_onrkg")
 metadata/_edit_group_ = true
@@ -76,8 +76,8 @@ position_smoothing_speed = 3.0
 script = ExtResource("2_hqtel")
 
 [node name="PickUp" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUp"]
 position = Vector2(0, 30)
@@ -128,4 +128,5 @@ animation = &"walk_front"
 position = Vector2(0, 150)
 scale = Vector2(10, 10)
 
+[connection signal="body_entered" from="PickUp" to="." method="_on_pick_up_body_entered"]
 [connection signal="timeout" from="PickUp/EffectTimer" to="." method="_on_effect_timer_timeout"]

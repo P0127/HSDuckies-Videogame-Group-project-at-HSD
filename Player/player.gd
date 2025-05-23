@@ -36,7 +36,9 @@ func _ready():
 	#Listens to the following Signals
 	GlobalSignals.health_collected_signal.connect(health_collected)
 	GlobalSignals.boost_speed_collected_signal.connect(boost_speed_collected)
-
+	
+	#adds this to the Player group to be called on globally for body (entered) checks
+	add_to_group("Player")
 
 # Function for start of game to move player to start position and show player
 func start(pos):
@@ -46,33 +48,32 @@ func start(pos):
 	spritePlayer.play()
 	$PlayerCollisionShape.disabled = false
 
-
 #Called as often as possible. For effects and independent proccesses
-func _process(delta):
+func _process(delta : float):
 	
 	progressBar.value = health #Updates progress bar
 
-
 #Called every frame. 'delta' is the elapsed time since the previous frame. Keeps Framerate
-func _physics_process(delta):
+func _physics_process(delta : float):
 	
 	## MOVEMENT
 	velocity = Vector2.ZERO #Player's movement vector reset for every Frame
 	_movement(delta) #Player's movement via Keyboard Input
 	movement_timer += delta #count up how long we've been moving, relevant for Weapon turn
 	
-	## SPRITE AND WEAPON ORIENTATION
+	## SPRITE ORIENTATION
 	_rotate_sprite(movement_timer)
 	_rotate_weapon(last_direction_faced)
 	#If this is done in the function, would only be saved globally
 	if movement_timer >= weapon_direction_change_min_time:
 		movement_timer = 0 #reset timer
 	
-	_collision(delta)
+	## COLLISION
+	move_and_collide(velocity * delta) #check for collisions with walls
 
 
 # Function that processes Player's movement
-func _movement(delta):
+func _movement(delta : float):
 	#checks input and adjusts walking direction accordingly
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -91,29 +92,13 @@ func _movement(delta):
 	position += velocity * delta
 
 #function that proccesses damage taken to the Player
-func damage(delta, damageAmount : float):
+func take_damage(delta : float, damage_amount : float):
 	if health > 0.0:
 		#Why Delta? Else we'd loose health per Frame, not per Second!
-		health -= damageAmount * delta
+		health -= damage_amount * delta
 	else:
 		health_death.emit()
 		print("DEATH")
-
-
-#function that checks all collision
-func _collision(delta):
-	move_and_collide(velocity * delta) #check for collisions with walls
-	_collision_mobs(delta) #checks for collisions with mobs
-
-#function that checks collision with mobs
-func _collision_mobs(delta):
-	#checking each Frame if Mobs are touching the Player
-	var overlapping_mobs = $HurtBox.get_overlapping_bodies()
-	const DAMAGE_RATE = 10.0 #damage the Mobs do to the Player (maybe give this to mobs?)
-	
-	if overlapping_mobs.size() > 0:
-		for amount in overlapping_mobs.size():
-			damage(delta, DAMAGE_RATE)
 
 
 #function that sets Sprite Animation in relation to the direction faced by the Player
@@ -169,3 +154,7 @@ func boost_speed_collected():
 
 func _on_effect_timer_timeout() -> void:
 	speed = STANDARD_SPEED
+
+
+func _on_pick_up_body_entered(body: Node2D) -> void:
+	print("EFFEKT")

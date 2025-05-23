@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxxshl650lvlw"]
+[gd_scene load_steps=5 format=3 uid="uid://bxxshl650lvlw"]
 
 [ext_resource type="Script" uid="uid://bn2petr4a0lfn" path="res://Drops/drop_energydrink.gd" id="1_ca22y"]
 [ext_resource type="Texture2D" uid="uid://dnhygbiwttnwy" path="res://Drops/Drops_assets/Energydrink (1).png" id="1_t4bxx"]
-[ext_resource type="PackedScene" uid="uid://br1bp20f38ir1" path="res://Drops/pickable.tscn" id="3_4qgrx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ca22y"]
 animations = [{
@@ -23,7 +22,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4bxx"]
 size = Vector2(96.5, 108)
 
-[node name="Drop_energydrink" type="Area2D"]
+[node name="Drop_energydrink" type="Area2D" groups=["pickupable_player"]]
+collision_layer = 4
 script = ExtResource("1_ca22y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -36,7 +36,5 @@ animation = &"energydrink"
 position = Vector2(-0.25, 0)
 shape = SubResource("RectangleShape2D_t4bxx")
 one_way_collision_margin = 127.8
-
-[node name="pickable" parent="." instance=ExtResource("3_4qgrx")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
