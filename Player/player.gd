@@ -9,7 +9,7 @@ signal health_death #Custom Signal; Death / Game_over due to health depletion
 @onready var spritePlayer = $AnimatedPlayerSprite
 
 ## STATS
-const MAX_HEALTH = 100.0 #Set Health Amount
+const MAX_HEALTH : float = 100.0 #Set Health Amount
 const STANDARD_SPEED = 250 #original Speed (backup for speedchanges via pickups)
 var health = MAX_HEALTH #Player health current
 var speed = STANDARD_SPEED #player movement speed in pixels/sec
@@ -20,7 +20,7 @@ var last_direction = Vector2.RIGHT #saveslot for where we were last moving/for w
 var last_direction_faced = Vector2.RIGHT #saveslot for the last direction faced while moving
 #RIGHT: weapon spawns default on that side
 var movement_timer : float = 0.0 #timer to count how long moving in a direction
-var weapon_direction_change_min_time = 0.1 #time how long is needed till weapon direction changes 
+var weapon_direction_change_min_time : float = 0.1 #time how long is needed till weapon direction changes 
 
 
 #Called when the node enters the scene tree for the first time.
@@ -90,6 +90,15 @@ func _movement(delta):
 	#Player can move
 	position += velocity * delta
 
+#function that proccesses damage taken to the Player
+func damage(delta, damageAmount : float):
+	if health > 0.0:
+		#Why Delta? Else we'd loose health per Frame, not per Second!
+		health -= damageAmount * delta
+	else:
+		health_death.emit()
+		print("DEATH")
+
 
 #function that checks all collision
 func _collision(delta):
@@ -103,16 +112,12 @@ func _collision_mobs(delta):
 	const DAMAGE_RATE = 10.0 #damage the Mobs do to the Player (maybe give this to mobs?)
 	
 	if overlapping_mobs.size() > 0:
-		#Why Delta? Else we'd loose health per Frame, not per Second!
-		health -= DAMAGE_RATE * overlapping_mobs.size() * delta 
-		#Progress Bar is linked with health Variable
-		if health <= 0.0:
-			health_death.emit()
-			print("DEATH")
+		for amount in overlapping_mobs.size():
+			damage(delta, DAMAGE_RATE)
 
 
 #function that sets Sprite Animation in relation to the direction faced by the Player
-func _rotate_sprite(movement_timer):
+func _rotate_sprite(movement_timer : float):
 	if velocity != Vector2.ZERO:
 		#int to eliminate decimals (reduces errors)
 		#rad to deg to have easy, whole numbers to work with
@@ -135,7 +140,7 @@ func _rotate_sprite(movement_timer):
 		spritePlayer.animation = "stand"
 
 #function that rotates the weapon along with the players movement
-func _rotate_weapon(direction_player): #direction param is a Vector2 here
+func _rotate_weapon(direction_player : Vector2): 
 	weapon.rotation = direction_player.angle() #both work via vector
 	match int(rad_to_deg((direction_player.angle()))): 
 		#Corrects Position of Weapon due to Sprite model
@@ -155,10 +160,8 @@ func _rotate_weapon(direction_player): #direction param is a Vector2 here
 func health_collected():
 	if (health + 20.0) < MAX_HEALTH:
 		health += 20.0
-		
 	else:
 		health = MAX_HEALTH
-
 
 func boost_speed_collected():
 	$PickUp/EffectTimer.start(3)

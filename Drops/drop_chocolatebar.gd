@@ -12,6 +12,6 @@ func _on_body_entered(body):
 	GlobalSignals.boost_firerate_collected_signal.emit()#using a global script to get the signal
 	#to the hud without requiring it to be a child/parent node 
 
-func _pickup(Node:Node2D):
+func _pickup(body : Node2D):
 	print("effect")
 	
