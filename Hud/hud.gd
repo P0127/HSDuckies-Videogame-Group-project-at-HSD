@@ -22,4 +22,7 @@ func _on_start_button_pressed():
 
 func duck_collected_func():
 	ducks_collected += 1
-	$"Duck counter".text = "Ducks: " + str(ducks_collected)
+	$"Counter/Duck counter letters".text = "Ducks: " 
+	$"Counter/Duck counter digits".text = str(ducks_collected)
+	#devided into two labels so that the use of the custom font for numbers only 
+	#would be possible
