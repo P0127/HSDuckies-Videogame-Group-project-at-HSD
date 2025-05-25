@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drjaldubw1kwk"
-path="res://.godot/imported/zur-umrandung2.png-18550b08b05073eeb81261e67773ea3a.ctex"
+uid="uid://cn5r51qbiy1gh"
+path="res://.godot/imported/dekotiles.png-5ba2b05464c0ccd680da0f03e678eab1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Map/Map_Tilemap/Sprites/zur-umrandung2.png"
-dest_files=["res://.godot/imported/zur-umrandung2.png-18550b08b05073eeb81261e67773ea3a.ctex"]
+source_file="res://Map/Map_Tilemap/Sprites/dekotiles.png"
+dest_files=["res://.godot/imported/dekotiles.png-5ba2b05464c0ccd680da0f03e678eab1.ctex"]
 
 [params]
 
