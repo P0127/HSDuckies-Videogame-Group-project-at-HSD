@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw4afi77kbi7"
-path="res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"
+uid="uid://ddy6webmb8qyx"
+path="res://.godot/imported/player2_side.png-bbe6c2f0564a85965993b32a0d294e71.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/font_item_zahler.png"
-dest_files=["res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"]
+source_file="res://Player/Player_assets/player2_side.png"
+dest_files=["res://.godot/imported/player2_side.png-bbe6c2f0564a85965993b32a0d294e71.ctex"]
 
 [params]
 

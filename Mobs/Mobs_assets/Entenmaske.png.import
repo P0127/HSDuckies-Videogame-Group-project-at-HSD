@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw4afi77kbi7"
-path="res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"
+uid="uid://dioacykb7ya24"
+path="res://.godot/imported/Entenmaske.png-cfd50176a68339505479fae8adf367cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/font_item_zahler.png"
-dest_files=["res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"]
+source_file="res://Mobs/Mobs_assets/Entenmaske.png"
+dest_files=["res://.godot/imported/Entenmaske.png-cfd50176a68339505479fae8adf367cb.ctex"]
 
 [params]
 

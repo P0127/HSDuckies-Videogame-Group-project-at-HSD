@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ca5aq6g0vepts"
-path="res://.godot/imported/Xolonium-Regular.ttf-504ec2ef3fc3ddb9719f016979292baa.fontdata"
+uid="uid://dmoqmmrb2ndjb"
+path="res://.godot/imported/font_counter_letters.ttf-c432bfef1b1affc1264e1279eef86d65.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Xolonium-Regular.ttf"
-dest_files=["res://.godot/imported/Xolonium-Regular.ttf-504ec2ef3fc3ddb9719f016979292baa.fontdata"]
+source_file="res://Fonts/font_counter_letters.ttf"
+dest_files=["res://.godot/imported/font_counter_letters.ttf-c432bfef1b1affc1264e1279eef86d65.fontdata"]
 
 [params]
 

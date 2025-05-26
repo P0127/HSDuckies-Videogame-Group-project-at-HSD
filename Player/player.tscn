@@ -1,0 +1,128 @@
+[gd_scene load_steps=17 format=3 uid="uid://c135wng7wv7tp"]
+
+[ext_resource type="Script" uid="uid://b6ykbxg8byxue" path="res://Player/player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://cqxxf6tj5g1qs" path="res://Player/camera_2d.gd" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="3_ivps1"]
+[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://Hud/Hud_assets/healthbar_progress_player_v01_over.png" id="4_urp6f"]
+[ext_resource type="Texture2D" uid="uid://dg1i5oinsggsi" path="res://Hud/Hud_assets/healthbar_progress_player_v01_under.png" id="5_bwjto"]
+[ext_resource type="PackedScene" uid="uid://d0dp7ykne4ajl" path="res://Weapon/player_weapon.tscn" id="5_sweqy"]
+[ext_resource type="Texture2D" uid="uid://oprv8vc258ex" path="res://Player/Player_assets/player1_front2.png" id="6_b26j0"]
+[ext_resource type="Texture2D" uid="uid://dlq5wm4l1o187" path="res://Player/Player_assets/player1_front3.png" id="8_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://crtf64x6dc8l8" path="res://Player/Player_assets/player1_back.png" id="9_ivps1"]
+[ext_resource type="Texture2D" uid="uid://dqunjh8o7d3n4" path="res://Player/Player_assets/player1_front.png" id="9_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://c46ql7ge7koo8" path="res://Player/Player_assets/player1_side1.png" id="10_urp6f"]
+[ext_resource type="Texture2D" uid="uid://clg4mxvf1ykw" path="res://Player/Player_assets/player1_side2.png" id="11_bwjto"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dw050"]
+radius = 306.685
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
+radius = 241.015
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
+radius = 456.039
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sweqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_n7ghd")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ivps1")
+}],
+"loop": true,
+"name": &"walk_back",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_b26j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_n7ghd")
+}],
+"loop": true,
+"name": &"walk_front",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bwjto")
+}],
+"loop": true,
+"name": &"walk_side",
+"speed": 2.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(0.3, 0.3)
+collision_mask = 20
+collision_priority = 2.0
+script = ExtResource("1_onrkg")
+metadata/_edit_group_ = true
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+script = ExtResource("2_hqtel")
+
+[node name="PickUp" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUp"]
+position = Vector2(0, 30)
+shape = SubResource("CircleShape2D_dw050")
+debug_color = Color(0.605295, 0.541183, 0, 0.42)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 32)
+shape = SubResource("CircleShape2D_sweqy")
+debug_color = Color(0.981976, 0.133144, 7.70092e-07, 0.42)
+
+[node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 32)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_i3pqv")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = -220.0
+offset_right = 160.0
+offset_bottom = -172.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+value = 50.0
+rounded = true
+texture_under = ExtResource("3_ivps1")
+texture_over = ExtResource("4_urp6f")
+texture_progress = ExtResource("5_bwjto")
+
+[node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(3.33333, 53.3334)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"stand"
+
+[node name="player weapon" parent="." instance=ExtResource("5_sweqy")]
+position = Vector2(0, 150)
+scale = Vector2(10, 10)
+
+[connection signal="area_entered" from="PickUp" to="." method="_on_pick_up_area_entered"]
