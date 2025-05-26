@@ -7,7 +7,6 @@ func _ready():
 func pickup(player : Node2D):
 	print("ENERGY DRINK METHOD")
 	player.speed_up(100, true)
-	GlobalSignals.timer_speedUp.start(3)
 	queue_free()
 
 func _timer_timeout():
