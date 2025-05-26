@@ -9,9 +9,6 @@ const BULLET = preload("res://Weapon/projectile.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CharCenter/Weapon.animation = "sideways"
-	
-	
-	GlobalSignals.boost_firerate_collected_signal.connect(boost_firerate_collected)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

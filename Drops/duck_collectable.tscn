@@ -36,7 +36,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Duck_Collectable" type="Area2D" groups=["pickupable_player"]]
+[node name="Duck_Collectable" type="Area2D"]
 scale = Vector2(0.1, 0.1)
 collision_layer = 4
 script = ExtResource("1_npn1j")

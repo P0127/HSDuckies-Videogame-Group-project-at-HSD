@@ -2,11 +2,16 @@ extends Area2D
 
 
 func _ready():
-	pass  
+	pass
 
-func _on_body_entered(body):
-	print("Energy Drink is collected!")
-	
-	queue_free()  # Entfernt den Energy Drink aus der Szene
-	GlobalSignals.boost_speed_collected_signal.emit()#using a global script to get the signal
-	#to the hud without requiring it to be a child/parent node 
+func pickup(player : Node2D):
+	print("ENERGY DRINK METHOD")
+	player.speed_up(100, true)
+	GlobalSignals.timer_speedUp.start(3)
+	queue_free()
+
+func _timer_timeout():
+	pass
+
+func _on_global_timer_speedUp_timeout():
+	print("timer")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://Player/player.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bp8gs76r0swmn" path="res://hud/hud.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bp8gs76r0swmn" path="res://Hud/hud.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dkla36ebv0n0o" path="res://Mobs/mob.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://csysokjejtsbt" path="res://Drops/drop_chocolatebar.tscn" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bxxshl650lvlw" path="res://Drops/drop_energydrink.tscn" id="7_kek77"]
@@ -28,9 +28,15 @@ position = Vector2(400, 400)
 position = Vector2(1696, 2832)
 
 [node name="Drop_energydrink" parent="." instance=ExtResource("7_kek77")]
-position = Vector2(151, 507)
+position = Vector2(128, 512)
 
 [node name="drop_Mensaessen" parent="." instance=ExtResource("8_4c57u")]
 position = Vector2(4165, 1125)
+
+[node name="Drop_energydrink2" parent="." instance=ExtResource("7_kek77")]
+position = Vector2(1064, 545)
+
+[node name="Drop_energydrink3" parent="." instance=ExtResource("7_kek77")]
+position = Vector2(592, 504)
 
 [connection signal="start_game" from="Hud" to="." method="new_game"]

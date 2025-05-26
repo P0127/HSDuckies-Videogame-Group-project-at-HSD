@@ -33,10 +33,6 @@ func _ready():
 	progressBar.max_value = health
 	progressBar.value = health
 	
-	#Listens to the following Signals
-	GlobalSignals.health_collected_signal.connect(health_collected)
-	GlobalSignals.boost_speed_collected_signal.connect(boost_speed_collected)
-	
 	#adds this to the Player group to be called on globally for body (entered) checks
 	add_to_group("Player")
 
@@ -141,20 +137,20 @@ func _rotate_weapon(direction_player : Vector2):
 			weapon.position.x = 0
 
 
-# Functions for the Signals received
-func health_collected():
-	if (health + 20.0) < MAX_HEALTH:
-		health += 20.0
+#functions used for pickups 
+func heal(heal_amount : float):
+	if (health + heal_amount) < MAX_HEALTH:
+		health += heal_amount
 	else:
 		health = MAX_HEALTH
 
-func boost_speed_collected():
-	$PickUp/EffectTimer.start(3)
-	speed = 500
+func speed_up(speed_amount : int, speed_up : bool):
+	if speed_up:
+		if speed == STANDARD_SPEED:
+			speed += speed_amount
+	else:
+		speed = STANDARD_SPEED
 
-func _on_effect_timer_timeout() -> void:
-	speed = STANDARD_SPEED
-
-
-func _on_pick_up_body_entered(body: Node2D) -> void:
-	print("EFFEKT")
+func _on_pick_up_area_entered(area: Area2D) -> void:
+	if area.is_in_group("pickupable_player"):
+		area.pickup(self)
