@@ -1,6 +1,7 @@
 extends Node
 
 @export var Mob: PackedScene
+@export var RangedMob : PackedScene #testing
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,4 +25,7 @@ func _input(event):
 			var new_Mob = Mob.instantiate()
 			new_Mob.position = $Player.position + get_viewport().get_mouse_position() - Vector2($StartPosition.position) * 0.8 - Vector2(260,230)
 			add_child(new_Mob)
-			
+		if RangedMob.can_instantiate():
+			var new_Mob = RangedMob.instantiate()
+			new_Mob.position = $Player.position + get_viewport().get_mouse_position() - Vector2($StartPosition.position) * 0.8 - Vector2(260,230)
+			add_child(new_Mob)

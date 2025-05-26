@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://6bgp0bll47ev"]
+
+[ext_resource type="Script" uid="uid://bhfuor4ywmu" path="res://Mobs/mob_weapon.gd" id="1_si18a"]
+[ext_resource type="Texture2D" uid="uid://b547fhl3y02ur" path="res://Weapon/Weapon_assets/Watergun_yellow.png" id="2_vbhc7"]
+[ext_resource type="Texture2D" uid="uid://cym0uk0wu7pi8" path="res://Weapon/Weapon_assets/watergun_top_down.png" id="3_b8h4o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_awtn4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sd7s4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vbhc7")
+}],
+"loop": true,
+"name": &"sideways",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_b8h4o")
+}],
+"loop": true,
+"name": &"topdown",
+"speed": 5.0
+}]
+
+[node name="mob_weapon" type="Area2D"]
+scale = Vector2(10, 10)
+script = ExtResource("1_si18a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_awtn4")
+disabled = true
+
+[node name="CharCenter" type="Marker2D" parent="."]
+
+[node name="Weapon" type="AnimatedSprite2D" parent="CharCenter"]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(23, 0)
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_sd7s4")
+animation = &"sideways"
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="CharCenter/Weapon"]
+position = Vector2(50, -18)
+
+[node name="attack_speed" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="attack_speed" to="." method="_on_attack_speed_timeout"]
