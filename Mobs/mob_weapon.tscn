@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://6bgp0bll47ev"]
 
-[ext_resource type="Script" uid="uid://bhfuor4ywmu" path="res://mob_weapon.gd" id="1_si18a"]
-[ext_resource type="Texture2D" uid="uid://b547fhl3y02ur" path="res://assets/weapons/watergun/Watergun_yellow.png" id="2_vbhc7"]
-[ext_resource type="Texture2D" uid="uid://cym0uk0wu7pi8" path="res://assets/weapons/watergun/watergun_top_down.png" id="3_b8h4o"]
+[ext_resource type="Script" uid="uid://bhfuor4ywmu" path="res://Mobs/mob_weapon.gd" id="1_si18a"]
+[ext_resource type="Texture2D" uid="uid://b547fhl3y02ur" path="res://Weapon/Weapon_assets/Watergun_yellow.png" id="2_vbhc7"]
+[ext_resource type="Texture2D" uid="uid://cym0uk0wu7pi8" path="res://Weapon/Weapon_assets/watergun_top_down.png" id="3_b8h4o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_awtn4"]
 

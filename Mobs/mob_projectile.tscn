@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvpeo0ew5bwc6"]
 
-[ext_resource type="Script" uid="uid://cndknxyhfvd7y" path="res://mob_projectile.gd" id="1_appwa"]
-[ext_resource type="Texture2D" uid="uid://dqf0qqlbpd0q0" path="res://assets/weapons/watergun/waterdrop.png" id="2_vcqlq"]
+[ext_resource type="Script" uid="uid://cndknxyhfvd7y" path="res://Mobs/mob_projectile.gd" id="1_appwa"]
+[ext_resource type="Texture2D" uid="uid://dqf0qqlbpd0q0" path="res://Weapon/Weapon_assets/waterdrop.png" id="2_vcqlq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qxf0c"]
 radius = 28.0179

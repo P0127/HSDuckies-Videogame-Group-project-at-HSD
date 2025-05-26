@@ -2,7 +2,7 @@ extends Area2D #Mob weapon
 #yes I know its weirdly big right now will look into it later with why that much scale is required??
 
 
-const BULLET = preload("res://mob_projectile.tscn")
+const BULLET = preload("res://Mobs/mob_projectile.tscn")
 @onready var spawnpoint = $CharCenter/Weapon/BulletSpawnPoint
 #yes that var is needed and we cant just reference the BSP node since for some reason
 #that creates an error and will act like it doesnt have a position for us to 
