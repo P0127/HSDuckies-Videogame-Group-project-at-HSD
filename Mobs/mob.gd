@@ -5,7 +5,15 @@ extends CharacterBody2D
 ## SCENES (multiple usage)
 @onready var main = $"/root/Main"
 @onready var progressBar = $ProgressBar
-@onready var spriteMob = $AnimatedMobSprite
+#@onready var spriteMob = $AnimatedMobSprite
+@onready var mob_sprites = [  
+	$AnimatedMobSprite,
+	$AnimatedMobSprite2,
+	$AnimatedMobSprite3,
+	$AnimatedMobSprite4,
+	$AnimatedMobSprite5
+] #list of all mob sprite variations
+var spriteMob : AnimatedSprite2D  #assigned in _ready() function
 
 var drop_scene := preload("res://Drops/duck_collectable.tscn") #to Instantiate drop item later on
 var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate scene of mob running away upon defeat
@@ -21,6 +29,27 @@ var target_homing : Node2D #saveslot for current target to make it possible to r
 
 
 func _ready():
+	randomize()
+	
+	for sprite in mob_sprites:
+		sprite.visible = false  #Hide every mob sprite in the list – so that none are visible at the beginning
+		sprite.stop() #Stops all animations
+
+	var random_index = randi() % mob_sprites.size()
+	#Generates a random number between 0 and (number of mob sprites - 1)
+	#Used to select a random sprite from the list
+	
+	spriteMob = mob_sprites[random_index] 
+	# Selects a sprite from the mob_sprites list at random_index
+	# Assigns this sprite node to spriteMob
+	# spriteMob will be used throughout the entire code as the active sprite
+	
+	spriteMob.visible = true
+	 #only the randomly selected sprite is visible
+	
+	spriteMob.play("active")  
+	#starts the movement animation of the mob sprite
+	
 	#We only have to change one Variable, Progress Bar adjusts automaticly
 	progressBar.max_value = health
 	progressBar.value = health
