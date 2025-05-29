@@ -1,11 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkla36ebv0n0o"]
+[gd_scene load_steps=24 format=3 uid="uid://dkla36ebv0n0o"]
 
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://Mobs/mob.gd" id="1_nokgg"]
 [ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
 [ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://Hud/Hud_assets/healthbar_progress_player_v01_over.png" id="3_1qmh0"]
 [ext_resource type="Texture2D" uid="uid://dua0vsfn1mf8x" path="res://Hud/Hud_assets/healthbar_progress_player_v02_under.png" id="4_gfurk"]
 [ext_resource type="Texture2D" uid="uid://1s4binyeljpr" path="res://Mobs/Mobs_assets/student_grayblue_front_active.png" id="5_b3mxk"]
-[ext_resource type="Texture2D" uid="uid://cvsqxd18kwq5" path="res://Mobs/Mobs_assets/student_grayblue_front.png" id="6_1qmh0"]
+[ext_resource type="Texture2D" uid="uid://dfxhn4xxwifem" path="res://Mobs/Mobs_assets/student_grayblue.png" id="5_kbsid"]
+[ext_resource type="Texture2D" uid="uid://bkvhqe2sg6tny" path="res://Mobs/Mobs_assets/student_grayblue__active_sideview.png" id="7_di24j"]
+[ext_resource type="Texture2D" uid="uid://l3mefo0yosfg" path="res://Mobs/Mobs_assets/student_green_back.png" id="8_vsrpp"]
+[ext_resource type="Texture2D" uid="uid://b0sysyfr82jvd" path="res://Mobs/Mobs_assets/student_green_front.png" id="9_ex74s"]
+[ext_resource type="Texture2D" uid="uid://bth1lgexdw2h1" path="res://Mobs/Mobs_assets/student_green_side.png" id="10_8n4pd"]
+[ext_resource type="Texture2D" uid="uid://b8w2fcg33oy24" path="res://Mobs/Mobs_assets/student_lilac_back.png" id="11_jqjwq"]
+[ext_resource type="Texture2D" uid="uid://djby5v37lnarv" path="res://Mobs/Mobs_assets/Student_lilac_front.png" id="12_s0j0i"]
+[ext_resource type="Texture2D" uid="uid://cybb5q47lxlr" path="res://Mobs/Mobs_assets/student_lilac_side.png" id="13_pduau"]
+[ext_resource type="Texture2D" uid="uid://cyhmiddjx18ej" path="res://Mobs/Mobs_assets/student_orange_back.png" id="14_anuj1"]
+[ext_resource type="Texture2D" uid="uid://cd7pylurgpjft" path="res://Mobs/Mobs_assets/student_orange_front.png" id="15_2uhec"]
+[ext_resource type="Texture2D" uid="uid://bj3ciyn0uv0a1" path="res://Mobs/Mobs_assets/student_orange_side.png" id="16_n3yji"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
 radius = 230.169
@@ -20,18 +30,107 @@ radius = 206.774
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_b3mxk")
+"texture": ExtResource("5_kbsid")
 }],
 "loop": true,
-"name": &"active",
+"name": &"back",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_1qmh0")
+"texture": ExtResource("5_b3mxk")
 }],
 "loop": true,
-"name": &"inactive",
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_di24j")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_65cxp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_vsrpp")
+}],
+"loop": true,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ex74s")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_8n4pd")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_du7bc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_jqjwq")
+}],
+"loop": true,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_s0j0i")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_pduau")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ui2w4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_anuj1")
+}],
+"loop": true,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_2uhec")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_n3yji")
+}],
+"loop": true,
+"name": &"side",
 "speed": 5.0
 }]
 
@@ -84,7 +183,19 @@ texture_progress = ExtResource("4_gfurk")
 
 [node name="AnimatedMobSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b3mxk")
-animation = &"inactive"
+animation = &"back"
+
+[node name="AnimatedMobSprite2" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_65cxp")
+animation = &"side"
+
+[node name="AnimatedMobSprite3" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_du7bc")
+animation = &"side"
+
+[node name="AnimatedMobSprite4" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ui2w4")
+animation = &"side"
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_DetectRadius_body_entered"]

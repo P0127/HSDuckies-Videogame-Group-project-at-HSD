@@ -10,8 +10,7 @@ extends CharacterBody2D
 	$AnimatedMobSprite,
 	$AnimatedMobSprite2,
 	$AnimatedMobSprite3,
-	$AnimatedMobSprite4,
-	$AnimatedMobSprite5
+	$AnimatedMobSprite4
 ] #list of all mob sprite variations
 var spriteMob : AnimatedSprite2D  #assigned in _ready() function
 
@@ -78,15 +77,21 @@ func _physics_process(delta : float):
 
 #function that manages the sprite animation
 func _rotate_sprite():
-	#Inactive Animation standing still
-	if velocity.length() == 0:
-		spriteMob.animation = "inactive"
-	#Flips Animation if walking to the side
-	if velocity.x != 0:
-		spriteMob.animation = "active"
-		# uprightposture
-		spriteMob.flip_v = false
+	if velocity != Vector2.ZERO:
+		#int to eliminate decimals (reduces errors)
+		#rad to deg to have easy, whole numbers to work with
+		#velocity.angle() gives back angle (right is 1,0 - down is 0,1) in radians!
+		match int(rad_to_deg((velocity.angle()))):
+			-90:
+				spriteMob.animation = "back"
+			45, 90, 135: 
+				spriteMob.animation = "front"
+			0, -45, 180, -135:
+				spriteMob.animation = "side"
+		#Flips Animation if walking to the side
 		spriteMob.flip_h = velocity.x < 0
+	else:
+		spriteMob.animation = "front"
 
 #for use of NavigationAgent2D stuff we'll first need to define the map with connected nodes aka with
 #other 2D Nav nodes
