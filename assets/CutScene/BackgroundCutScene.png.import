@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dua0vsfn1mf8x"
-path="res://.godot/imported/healthbar_progress_player_v02_under.png-fde4b896981bf44027ece57346f91ccb.ctex"
+uid="uid://dhxq32a8tjdw4"
+path="res://.godot/imported/BackgroundCutScene.png-c7553bd41d34bbc37c549dd6d7d00ee5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/Hud_assets/healthbar_progress_player_v02_under.png"
-dest_files=["res://.godot/imported/healthbar_progress_player_v02_under.png-fde4b896981bf44027ece57346f91ccb.ctex"]
+source_file="res://assets/CutScene/BackgroundCutScene.png"
+dest_files=["res://.godot/imported/BackgroundCutScene.png-c7553bd41d34bbc37c549dd6d7d00ee5.ctex"]
 
 [params]
 
