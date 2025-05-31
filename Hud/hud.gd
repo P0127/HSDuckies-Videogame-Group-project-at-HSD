@@ -11,11 +11,19 @@ func _ready() -> void:
 	#made names longer for claritys
 
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func _on_start_button_pressed():
+	# plays pressed animation
+	$StartButton/StartButtonAnimations.play("pressed")
+	
+	#delays hiding the button until animation finishes
+	await $StartButton/StartButtonAnimations.animation_finished
+
+	
 	$StartButton.hide()
 	$"Title Text".hide()
 	start_game.emit()

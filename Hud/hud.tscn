@@ -1,9 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://bp8gs76r0swmn"]
+[gd_scene load_steps=11 format=3 uid="uid://bp8gs76r0swmn"]
 
 [ext_resource type="Script" uid="uid://dw6uqc1wm6rho" path="res://hud/hud.gd" id="1_37p78"]
 [ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://fonts/Xolonium-Regular.ttf" id="2_64ctp"]
 [ext_resource type="FontFile" uid="uid://dekqnr7q8ahcs" path="res://fonts/font_counter_digits.png" id="3_318vg"]
+[ext_resource type="Texture2D" uid="uid://bwtxhwe4kvqde" path="res://hud/Hud_assets/start_button_spritesheet.png" id="3_svhta"]
 [ext_resource type="FontFile" uid="uid://dmoqmmrb2ndjb" path="res://fonts/font_counter_letters.ttf" id="3_w8tcp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svhta"]
+atlas = ExtResource("3_svhta")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjv1a"]
+atlas = ExtResource("3_svhta")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ivg5"]
+atlas = ExtResource("3_svhta")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kkc0"]
+atlas = ExtResource("3_svhta")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qv4qp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svhta")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjv1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ivg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kkc0")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 10.0
+}]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_37p78")
@@ -22,20 +64,28 @@ theme_override_font_sizes/font_size = 64
 text = "Duck Duck Düsseldorf"
 
 [node name="StartButton" type="Button" parent="."]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -88.5
-offset_top = 26.0
-offset_right = 88.5
-offset_bottom = 112.0
+offset_left = -205.0
+offset_top = -80.9999
+offset_right = -28.0
+offset_bottom = 5.00006
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_64ctp")
-theme_override_font_sizes/font_size = 64
-text = "Start"
+scale = Vector2(2.5, 2.5)
+focus_mode = 0
+flat = true
+icon_alignment = 1
+
+[node name="StartButtonAnimations" type="AnimatedSprite2D" parent="StartButton"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_qv4qp")
+animation = &"normal"
+centered = false
 
 [node name="Counter" type="Control" parent="."]
 layout_mode = 3
