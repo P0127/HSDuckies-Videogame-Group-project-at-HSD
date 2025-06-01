@@ -1,9 +1,9 @@
 [gd_scene load_steps=24 format=3 uid="uid://dkla36ebv0n0o"]
 
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://Mobs/mob.gd" id="1_nokgg"]
-[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
-[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://Hud/Hud_assets/healthbar_progress_player_v01_over.png" id="3_1qmh0"]
-[ext_resource type="Texture2D" uid="uid://dua0vsfn1mf8x" path="res://Hud/Hud_assets/healthbar_progress_player_v02_under.png" id="4_gfurk"]
+[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
+[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://hud/Hud_assets/healthbar_progress_player_v01_over.png" id="3_1qmh0"]
+[ext_resource type="Texture2D" uid="uid://dua0vsfn1mf8x" path="res://hud/Hud_assets/healthbar_progress_player_v02_under.png" id="4_gfurk"]
 [ext_resource type="Texture2D" uid="uid://1s4binyeljpr" path="res://Mobs/Mobs_assets/student_grayblue_front_active.png" id="5_b3mxk"]
 [ext_resource type="Texture2D" uid="uid://dfxhn4xxwifem" path="res://Mobs/Mobs_assets/student_grayblue.png" id="5_kbsid"]
 [ext_resource type="Texture2D" uid="uid://bkvhqe2sg6tny" path="res://Mobs/Mobs_assets/student_grayblue__active_sideview.png" id="7_di24j"]
