@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://cttwy28pac8t1"]
+
+[ext_resource type="Script" uid="uid://ck4o6aerkkloc" path="res://Dialogue/dialogue.gd" id="1_nrco7"]
+[ext_resource type="Texture2D" uid="uid://vu6p6i4a0nr3" path="res://Dialogue/pc-pool.webp.tres" id="2_nrco7"]
+[ext_resource type="Texture2D" uid="uid://cq4gt1ntokfdm" path="res://Characters/Character_assets/DahmSpeakingAni1.png" id="3_42d6y"]
+[ext_resource type="Texture2D" uid="uid://dr2unqfxmnnbn" path="res://Characters/Character_assets/DahmSpeakingAni.png" id="4_6o3qb"]
+[ext_resource type="Texture2D" uid="uid://dcs8iww0ytpna" path="res://Dialogue/textbox.png.tres" id="5_esyp7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_haow2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_42d6y")
+}],
+"loop": true,
+"name": &"1)",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6o3qb")
+}],
+"loop": true,
+"name": &"2)",
+"speed": 5.0
+}]
+
+[node name="dialogue_Ende" type="Node2D"]
+script = ExtResource("1_nrco7")
+d_file = "res://Dialogue/Dialogue_Dahm.json"
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1916.0
+offset_bottom = 1075.0
+
+[node name="Hintergrund" type="Sprite2D" parent="Panel"]
+position = Vector2(960.5, 540)
+scale = Vector2(3.74023, 3.74306)
+texture = ExtResource("2_nrco7")
+
+[node name="Herr Dahm" type="AnimatedSprite2D" parent="."]
+position = Vector2(159, 955)
+scale = Vector2(10.3213, 9.51757)
+sprite_frames = SubResource("SpriteFrames_haow2")
+animation = &"2)"
+
+[node name="textbox" type="NinePatchRect" parent="."]
+offset_left = 310.0
+offset_top = 832.0
+offset_right = 1861.0
+offset_bottom = 1039.0
+texture = ExtResource("5_esyp7")
+patch_margin_left = 98
+patch_margin_right = 95
+
+[node name="name" type="Label" parent="textbox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.026
+anchor_top = 0.151
+anchor_right = 0.026
+anchor_bottom = 0.151
+offset_left = 0.503998
+offset_top = -14.029
+offset_right = 440.504
+offset_bottom = 51.971
+theme_override_colors/font_shadow_color = Color(0.154876, 0.154876, 0.154876, 1)
+theme_override_font_sizes/font_size = 28
+ellipsis_char = ""
+
+[node name="text" type="Label" parent="textbox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.442
+anchor_right = 0.029
+anchor_bottom = 0.442
+offset_left = -0.284
+offset_top = -0.0240021
+offset_right = 1514.72
+offset_bottom = 72.976
+theme_override_colors/font_shadow_color = Color(0.114897, 0.114897, 0.114897, 1)
+theme_override_font_sizes/font_size = 27
