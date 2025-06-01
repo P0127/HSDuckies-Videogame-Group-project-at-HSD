@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var main = $"/root/Main"
 @onready var progressBar = $ProgressBar
 @onready var spriteMob = $AnimatedRangedMobSprite
+@onready var weapon = $mob_weapon
 
 var drop_scene := preload("res://Drops/duck_collectable.tscn") #to Instantiate drop item later on
 var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate scene of mob running away upon defeat
@@ -17,7 +18,7 @@ var damage_rate : float = 3.0 #damage done to Player by touching
 var target_damage : Node2D #saveslot for Player on body entered
 var target_homing : Node2D #saveslot for current target to make it possible to run out of aggro range
 var weapon_direction = Vector2.RIGHT #used for weapon direction
-
+var duck_status : int = 1 #modifier for running direction, dependant on wether it's a duck (1) or student (-1)
 
 func _ready():
 	#We only have to change one Variable, Progress Bar adjusts automaticly
@@ -34,7 +35,7 @@ func _physics_process(delta : float):
 	velocity = Vector2.ZERO
 	#target_homing is the Player Node (checked in Signals) and calls on Player Position
 	if target_homing:
-		velocity = global_position.direction_to(target_homing.global_position) * movement_speed
+		velocity = global_position.direction_to(target_homing.global_position) * movement_speed * duck_status
 		move_and_slide()
 		
 	## SPRITE ORIENTATION
@@ -62,20 +63,19 @@ func _rotate_sprite():
 			0, -45, 180, -135:
 				spriteMob.animation = "side"
 		#Flips Animation if walking to the side
-		spriteMob.flip_h = velocity.x < 0
+		spriteMob.flip_h = velocity.x < 0 * duck_status
 	else:
 		spriteMob.animation = "front"
 
 #function that manages the weapon rotation
 func _rotate_weapon():
 	weapon_direction = velocity.normalized()
-	$mob_weapon.rotation = weapon_direction.angle()
+	weapon.rotation = weapon_direction.angle()
 	
 	if target_homing:
-		$mob_weapon/attack_speed.set_paused(false)
-		#$mob_weapon/attack_speed.set_autostart(true)
+		weapon.attack(true)
 	else:
-		$mob_weapon/attack_speed.set_paused(true)
+		weapon.attack(false)
 
 
 #Subtracts Hitpoints from Mob
@@ -84,19 +84,20 @@ func take_damage():
 	progressBar.show()
 	progressBar.value = health
 	if health == 0:
-		die()
+		#die()
+		liberated()
 
 #When Mob gets killed, Animations get stopped
-func die():
-	#Makes the Mob Stop responding or Animating
-	#Unneeded if we just use queue_free in the end
-	$CollisionShape.set_deferred("disabled",true)
-	$AwarenessRadius/AwarenessBox.set_deferred("disabled",true)
-	$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
-	#can be taken out in case we want a death animation first... etc
-	run_away()#spawns running away scene BEFORE we get rid of current mob
-	queue_free()
-	drop_item()
+#func die():
+	##Makes the Mob Stop responding or Animating
+	##Unneeded if we just use queue_free in the end
+	#$CollisionShape.set_deferred("disabled",true)
+	#$AwarenessRadius/AwarenessBox.set_deferred("disabled",true)
+	#$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
+	##can be taken out in case we want a death animation first... etc
+	#run_away()#spawns running away scene BEFORE we get rid of current mob
+	#queue_free()
+	#drop_item()
 
 #Calls on the preloaded duck drop scene to instantiate it once
 func drop_item():
@@ -106,10 +107,20 @@ func drop_item():
 	main.call_deferred("add_child", drop)
 
 #function to spawn the running away scene
-func run_away():
-	var running = run_away_scene.instantiate()
-	running.position = position
-	main.call_deferred("add_child", running)
+#func run_away():
+	#var running = run_away_scene.instantiate()
+	#running.position = position
+	#main.call_deferred("add_child", running)
+
+func liberated():
+	duck_status = -1 #becomes a student, runs away from Player
+	movement_speed = 300
+	$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
+	$AwarenessRadius/AwarenessBox.apply_scale(Vector2(2.0, 2.0))
+	weapon.set_deferred("disabled", true)
+	weapon.hide()
+	progressBar.hide()
+	drop_item()
 
 
 #temporarily added for mobs to despawn upon leaving players screen... will prob remove later or

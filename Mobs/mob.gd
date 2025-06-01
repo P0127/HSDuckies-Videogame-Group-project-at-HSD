@@ -25,7 +25,7 @@ var damage_rate : float = 10.0 #damage done to Player
 ## TARGETS
 var target_damage : Node2D #saveslot for Player on body entered
 var target_homing : Node2D #saveslot for current target to make it possible to run out of aggro range
-
+var duck_status : int = 1 #modifier for running direction, dependant on wether it's a duck (1) or student (-1)
 
 func _ready():
 	randomize()
@@ -46,9 +46,6 @@ func _ready():
 	spriteMob.visible = true
 	 #only the randomly selected sprite is visible
 	
-	spriteMob.play("active")  
-	#starts the movement animation of the mob sprite
-	
 	#We only have to change one Variable, Progress Bar adjusts automaticly
 	progressBar.max_value = health
 	progressBar.value = health
@@ -63,7 +60,7 @@ func _physics_process(delta : float):
 	velocity = Vector2.ZERO
 	#target_homing is the Player Node (checked in Signals) and calls on Player Position
 	if target_homing:
-		velocity = global_position.direction_to(target_homing.global_position) * movement_speed
+		velocity = global_position.direction_to(target_homing.global_position) * movement_speed * duck_status
 		move_and_slide()
 	
 	## SPRITE ORIENTATION
@@ -89,7 +86,7 @@ func _rotate_sprite():
 			0, -45, 180, -135:
 				spriteMob.animation = "side"
 		#Flips Animation if walking to the side
-		spriteMob.flip_h = velocity.x < 0
+		spriteMob.flip_h = velocity.x < 0 * duck_status
 	else:
 		spriteMob.animation = "front"
 
@@ -102,20 +99,21 @@ func take_damage():
 	progressBar.show()
 	health -= 1
 	if health == 0:
-		_die()
+		#_die()
+		liberated()
 
 #When Mob gets killed, Animations get stopped
-func _die():
-	#Makes the Mob Stop responding or Animating
-	#Unneeded if we just use queue_free in the end
-	spriteMob.stop()
-	$CollisionShape.set_deferred("disabled",true)
-	$AwarenessRadius/AwarenessBox.set_deferred("disabled",true)
-	$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
-	#can be taken out in case we want a death animation first... etc
-	run_away()#spawns running away scene BEFORE we get rid of current mob
-	queue_free()
-	drop_item()
+#func _die():
+	##Makes the Mob Stop responding or Animating
+	##Unneeded if we just use queue_free in the end
+	#spriteMob.stop()
+	#$CollisionShape.set_deferred("disabled",true)
+	#$AwarenessRadius/AwarenessBox.set_deferred("disabled",true)
+	#$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
+	##can be taken out in case we want a death animation first... etc
+	#run_away()#spawns running away scene BEFORE we get rid of current mob
+	#queue_free()
+	#drop_item()
 
 #Calls on the preloaded duck drop scene to instantiate it once
 func drop_item():
@@ -125,10 +123,23 @@ func drop_item():
 	main.call_deferred("add_child", drop)
 
 #function to spawn the running away scene
-func run_away():
-	var running = run_away_scene.instantiate()
-	running.position = position
-	main.call_deferred("add_child", running)
+#func run_away():
+	#var running = run_away_scene.instantiate()
+	#running.position = position
+	#main.call_deferred("add_child", running)
+
+#function called once mob is "killed" (transforms into student)
+func liberated():
+	duck_status = -1 #becomes a student, runs away from Player
+	movement_speed = 300
+	$Time_to_live.start()
+	$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
+	$AwarenessRadius/AwarenessBox.apply_scale(Vector2(20.0, 20.0))
+	progressBar.hide()
+	drop_item()
+
+func _on_time_to_live_timeout():
+	queue_free()
 
 
 #temporarily added for mobs to despawn upon leaving players screen... will prob remove later or

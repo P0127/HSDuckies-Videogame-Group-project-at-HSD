@@ -164,6 +164,28 @@ debug_color = Color(0.971984, 0.0381848, 3.85046e-07, 0.42)
 shape = SubResource("CircleShape2D_ubaqv")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
+[node name="AnimatedMobSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b3mxk")
+animation = &"front"
+
+[node name="AnimatedMobSprite2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-17, -30)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_65cxp")
+animation = &"front"
+
+[node name="AnimatedMobSprite3" type="AnimatedSprite2D" parent="."]
+position = Vector2(-17, -30)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_du7bc")
+animation = &"front"
+
+[node name="AnimatedMobSprite4" type="AnimatedSprite2D" parent="."]
+position = Vector2(-17, -30)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_ui2w4")
+animation = &"front"
+
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
@@ -181,24 +203,13 @@ texture_under = ExtResource("2_b3mxk")
 texture_over = ExtResource("3_1qmh0")
 texture_progress = ExtResource("4_gfurk")
 
-[node name="AnimatedMobSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_b3mxk")
-animation = &"back"
-
-[node name="AnimatedMobSprite2" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_65cxp")
-animation = &"side"
-
-[node name="AnimatedMobSprite3" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_du7bc")
-animation = &"side"
-
-[node name="AnimatedMobSprite4" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_ui2w4")
-animation = &"side"
+[node name="Time_to_live" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="AwarenessRadius" to="." method="_on_DetectRadius_body_exited"]
 [connection signal="body_entered" from="HurtPlayerArea" to="." method="_on_hurt_player_area_body_entered"]
 [connection signal="body_exited" from="HurtPlayerArea" to="." method="_on_hurt_player_area_body_exited"]
+[connection signal="timeout" from="Time_to_live" to="." method="_on_time_to_live_timeout"]

@@ -44,7 +44,8 @@ func shoot():
 		#add new bullets as child nodes of the spawnpoint
 		spawnpoint.add_child(new_bullet)
 
-
+func attack(status : bool):
+	$attack_speed.set_paused(!status)
 
 #shoots bullet everytime atk speed timer timesout
 func _on_attack_speed_timeout():
