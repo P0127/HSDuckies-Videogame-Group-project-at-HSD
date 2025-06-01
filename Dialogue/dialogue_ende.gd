@@ -1,5 +1,6 @@
 extends Node2D
 
+
 @export var d_file: String  # JSON dialogue file path
 
 var dialogue = []           # Loaded dialogue lines
@@ -30,7 +31,7 @@ func load_dialogue():
 func _input(event):
 	if not d_active: 
 		return
-	if event.is_action_pressed("ui_accept"): # On confirm key
+	if event.is_action_pressed("ui_accept"): # On confirm key for example space 
 		next_script()   # Next dialogue line
 
 func next_script():
