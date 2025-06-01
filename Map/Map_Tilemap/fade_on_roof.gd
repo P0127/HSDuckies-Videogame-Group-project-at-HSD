@@ -1,26 +1,24 @@
+class_name fadeIN_and_fadeOut
 extends Area2D
 
+@onready var dach: TileMapLayer = $"../Dach-Empfang"
+#var dach: TileMapLayer
 
-const fade_speed: float = 5.0
 var fading_in: bool
 var fading_out: bool
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+const fade_speed: float = 5.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if fading_in:
-		%Dach.modulate.a += delta * fade_speed
-		if %Dach.modulate.a >= 1.0:
+		dach.modulate.a += delta * fade_speed
+		if dach.modulate.a >= 1.0:
 			fading_in = false
 	if fading_out:
-		%Dach.modulate.a -= delta * fade_speed
-		if %Dach.modulate.a <= 0.0:
+		dach.modulate.a -= delta * fade_speed
+		if dach.modulate.a <= 0.0:
 			fading_out = false
-
 
 func _check_fade(body: CharacterBody2D, entered: bool) -> void:
 	if entered:
