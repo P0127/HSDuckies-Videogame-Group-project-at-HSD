@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cq4gt1ntokfdm"
-path="res://.godot/imported/DahmSpeakingAni1.png-1ac5c0cf5576ef0e41987a78d4040fb0.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Characters/Character_assets/DahmSpeakingAni1.png"
-dest_files=["res://.godot/imported/DahmSpeakingAni1.png-1ac5c0cf5576ef0e41987a78d4040fb0.ctex"]
 
 [params]
 
