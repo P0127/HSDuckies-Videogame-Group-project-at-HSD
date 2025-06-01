@@ -25,5 +25,5 @@ func _physics_process(delta: float):
 
 func _on_body_entered(body):
 	queue_free()
-	if body.has_method("take_hit"):
-		body.take_hit(damage_rate)
+	if body.has_method("take_damage"):
+		body.take_damage(1, damage_rate)   # delta = 1 to circumvent frame calculation, this is 1-hit damage

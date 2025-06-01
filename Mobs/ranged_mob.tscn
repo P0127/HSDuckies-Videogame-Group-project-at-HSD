@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://6bgp0bll47ev" path="res://Mobs/mob_weapon.tscn" id="8_m8u27"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mno16"]
-radius = 2604.05
+radius = 3000.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8iikj"]
 radius = 267.952
@@ -46,6 +46,7 @@ animations = [{
 }]
 
 [node name="Ranged-Mob" type="CharacterBody2D"]
+position = Vector2(471, 267)
 scale = Vector2(0.28, 0.28)
 collision_layer = 2
 collision_mask = 17
