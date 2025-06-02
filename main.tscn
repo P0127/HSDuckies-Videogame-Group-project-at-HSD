@@ -42,7 +42,7 @@ position = Vector2(-1511, -897.001)
 rotation = -0.00137741
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 5.0
 
 [node name="drop_chocolatebar" parent="." instance=ExtResource("6_5vw27")]
 position = Vector2(1696, 2832)

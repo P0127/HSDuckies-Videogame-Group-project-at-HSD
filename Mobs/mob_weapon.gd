@@ -7,6 +7,8 @@ const BULLET = preload("res://Mobs/mob_projectile.tscn")
 #yes that var is needed and we cant just reference the BSP node since for some reason
 #that creates an error and will act like it doesnt have a position for us to 
 #reference even though it very much does
+@onready var bulletspawnpoint = $"/root/Main"
+#bullets will now be spawned as a child of main, that way they dont despawn alongside the ranged mob upon defeat
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,7 +44,7 @@ func shoot():
 		new_bullet.global_rotation = spawnpoint.global_rotation
 		
 		#add new bullets as child nodes of the spawnpoint
-		spawnpoint.add_child(new_bullet)
+		bulletspawnpoint.add_child(new_bullet)
 
 func attack(status : bool):
 	$attack_speed.set_paused(!status)
