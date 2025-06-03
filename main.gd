@@ -43,7 +43,6 @@ func spawn_mob():
 	if (which_mob > 0.2): #80% chance for meelee mob
 		var new_mob = preload("res://Mobs/mob.tscn").instantiate()
 		MobSpawningPath.progress_ratio = randf() #produces rdm decimal number between 0 & 1
-		#if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position)) != -1 or MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position)) not in $Test_Tilemap/Räume.get_used_cells()):
 		#if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position / 3.33)) == 4 and MapFloor.local_to_map(MobSpawningPath.global_position) not in $Test_Tilemap/Räume.get_used_cells()):
 		if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position / 3.33)) == 4):
 			new_mob.global_position = MobSpawningPath.global_position
@@ -53,16 +52,15 @@ func spawn_mob():
 			print("meelee")
 			print($Test_Tilemap/Boden.get_cell_source_id($Test_Tilemap/Boden.local_to_map(MobSpawningPath.global_position)))
 			print(MapFloor.local_to_map(MobSpawningPath.global_position))
-			#spawn_mob()
+			spawn_mob()
 	else: #20% chance for ranged mob
 		var new_mob = preload("res://Mobs/ranged_mob.tscn").instantiate()
 		MobSpawningPath.progress_ratio = randf() #produces rdm decimal number between 0 & 1
-		#if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position)) != -1):
 		if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position / 3.33)) == 4):
 			new_mob.global_position = MobSpawningPath.global_position
 			add_child(new_mob)
 		else:
-			#spawn_mob()
+			spawn_mob()
 			print("ranged:")
 			print(MapFloor.get_cell_source_id(MobSpawningPath.global_position)) #testing
 
@@ -70,5 +68,5 @@ func spawn_mob():
 func _on_mob_spawn_timer_timeout():
 	spawn_mob()
 	if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec to not spawn wayyyy too many mobs
-		MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.002)
+		MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.0025)
 		#print(MobSpawnTimer.get_wait_time()) #testing to make sure it works correctly
