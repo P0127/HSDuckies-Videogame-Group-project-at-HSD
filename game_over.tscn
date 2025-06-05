@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://nurlt37qi2ul"]
+[gd_scene load_steps=14 format=3 uid="uid://nurlt37qi2ul"]
 
 [ext_resource type="Script" uid="uid://bdp0ve7hb1mb7" path="res://game_over.gd" id="1_yxx3c"]
 [ext_resource type="Texture2D" uid="uid://cwn7e60lwk240" path="res://hud/Hud_assets/menu_button.png" id="2_ccer4"]
+[ext_resource type="Texture2D" uid="uid://c7ymyt04wtwpv" path="res://hud/Hud_assets/quit_button.png" id="3_ccer4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5r80v"]
 atlas = ExtResource("2_ccer4")
@@ -39,7 +40,44 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u835"]
+atlas = ExtResource("3_ccer4")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftari"]
+atlas = ExtResource("3_ccer4")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28vn7"]
+atlas = ExtResource("3_ccer4")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2vha"]
+atlas = ExtResource("3_ccer4")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkf4o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u835")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftari")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28vn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2vha")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 8.0
+}]
+
 [node name="GameOver" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_yxx3c")
 
 [node name="GameOverText" type="Label" parent="."]
@@ -88,7 +126,16 @@ offset_right = 217.84
 offset_bottom = 79.32
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 text = "Quit
 "
+flat = true
+
+[node name="AnimatedQuitButton" type="AnimatedSprite2D" parent="Quit"]
+position = Vector2(198, 66)
+scale = Vector2(1.7, 1.7)
+sprite_frames = SubResource("SpriteFrames_fkf4o")
+animation = &"pressed"
 
 [connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
