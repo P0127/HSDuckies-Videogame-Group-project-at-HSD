@@ -22,10 +22,6 @@ var last_direction_faced = Vector2.RIGHT #saveslot for the last direction faced 
 var movement_timer : float = 0.0 #timer to count how long moving in a direction
 var weapon_direction_change_min_time : float = 0.1 #time how long is needed till weapon direction changes 
 
-#variables tied to showing the game over screen as overlay
-#var game_over_shown = false
-#var GameOverScene = preload("res://game_over_screen.tscn")
-# In Scene A's script
 
 
 
@@ -102,9 +98,7 @@ func take_damage(delta : float, damage_amount : float):
 	else:
 		health_death.emit()
 		print("DEATH")
-		#GameOver.show()
-		#show_game_over()
-		#calling the method that shows the game over screen over the main scene
+		
 
 
 #function that sets Sprite Animation in relation to the direction faced by the Player
@@ -165,12 +159,7 @@ func _on_pick_up_area_entered(area: Area2D) -> void:
 	if area.is_in_group("pickupable_player"):
 		area.pickup(self)
 
-#shows the game overscreen as overlay (by adding it to the main scene dynamically)	
-#func show_game_over() -> void:
-#	var game_over_instance = GameOverScene.instantiate()
-#	get_tree().get_current_scene().add_child(game_over_instance)
-	
-# In your Player script or wherever you want to call GameOver
+
 
 
  

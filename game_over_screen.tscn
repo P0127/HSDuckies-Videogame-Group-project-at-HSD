@@ -1,8 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://cltrc3111kplr"]
+[gd_scene load_steps=7 format=3 uid="uid://beyx28ofpnal7"]
 
-[ext_resource type="Script" uid="uid://djjfsx40klqxv" path="res://game_over_screen.gd" id="1_gt22q"]
 [ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://fonts/Xolonium-Regular.ttf" id="2_l4tlu"]
 [ext_resource type="Texture2D" uid="uid://cwn7e60lwk240" path="res://hud/Hud_assets/menu_button.png" id="2_w3hxg"]
+
+[sub_resource type="GDScript" id="GDScript_w3hxg"]
+script/source = "extends CanvasLayer
+
+
+@onready var menu_button = $MainMenuButton
+@onready var menu_button_anim = $MenuButtonAnimation
+
+signal game_over
+	
+func _ready() -> void:
+	#$MenuButtonSpriteSheet	.frame = 0 
+	 #Show normal button frame
+	pass
+	
+	
+	
+# Closes the whole game
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
+	
+	
+# Loads the main scene which functions as main menu
+func _on_main_menu_button_pressed() -> void:
+	
+	menu_button_anim.play(\"pressed\")
+	
+	#await menu_button_anim.animation_finished
+	await get_tree().create_timer(0.5).timeout
+	
+	game_over.emit()
+	get_tree().change_scene_to_file(\"res://main.tscn\")
+	
+	
+
+	
+	
+"
 
 [sub_resource type="Animation" id="Animation_l4tlu"]
 length = 0.400003
@@ -43,7 +80,7 @@ _data = {
 
 [node name="GameOverScreen" type="CanvasLayer"]
 visible = false
-script = ExtResource("1_gt22q")
+script = SubResource("GDScript_w3hxg")
 
 [node name="Overlay" type="ColorRect" parent="."]
 anchors_preset = 15

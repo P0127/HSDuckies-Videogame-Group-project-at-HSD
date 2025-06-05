@@ -7,13 +7,11 @@ extends Node
 @onready var MapFloor = $Test_Tilemap/Boden
 @onready var MobSpawningPath = %MobSpawningPath
 
-#variables tied to showing the game over screen as overlay
 
 const MOB_LIMIT = 20 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#pass #replace with function if needed
 	# Connect the player's death signal to show game over
 	$Player.health_death.connect(_on_player_died)
 		
