@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://esi7qim0g042"]
+[gd_scene load_steps=12 format=3 uid="uid://esi7qim0g042"]
 
 [ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://Player/player.tscn" id="2_h2yge"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bxxshl650lvlw" path="res://Drops/drop_energydrink.tscn" id="7_kek77"]
 [ext_resource type="PackedScene" uid="uid://ls35oqi028hm" path="res://Drops/drop_mensaessen.tscn" id="8_4c57u"]
 [ext_resource type="PackedScene" uid="uid://b23fkwbnh2ijx" path="res://Map/test_tilemap.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://nurlt37qi2ul" path="res://game_over.tscn" id="10_4c57u"]
 
 [sub_resource type="Curve2D" id="Curve2D_kek77"]
 _data = {
@@ -58,6 +59,8 @@ position = Vector2(1064, 545)
 
 [node name="Drop_energydrink3" parent="." instance=ExtResource("7_kek77")]
 position = Vector2(592, 504)
+
+[node name="GameOver" parent="." instance=ExtResource("10_4c57u")]
 
 [connection signal="start_game" from="Hud" to="." method="new_game"]
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

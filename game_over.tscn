@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://nurlt37qi2ul"]
+
+[ext_resource type="Script" uid="uid://bdp0ve7hb1mb7" path="res://game_over.gd" id="1_yxx3c"]
+[ext_resource type="Texture2D" uid="uid://cwn7e60lwk240" path="res://hud/Hud_assets/menu_button.png" id="2_ccer4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5r80v"]
+atlas = ExtResource("2_ccer4")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5673d"]
+atlas = ExtResource("2_ccer4")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn282"]
+atlas = ExtResource("2_ccer4")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwf6q"]
+atlas = ExtResource("2_ccer4")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sx4vg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5r80v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5673d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn282")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwf6q")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 8.0
+}]
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_yxx3c")
+
+[node name="GameOverText" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -543.0
+offset_right = 543.0
+offset_bottom = 218.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 150
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Menu" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.329
+anchor_right = 0.5
+anchor_bottom = 0.329
+offset_left = -208.0
+offset_top = -64.32
+offset_right = 214.0
+offset_bottom = 69.68
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "Menu"
+flat = true
+
+[node name="AnimatedMenuButton" type="AnimatedSprite2D" parent="Menu"]
+position = Vector2(207, 66)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sx4vg")
+animation = &"pressed"
+
+[node name="Quit" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.471
+anchor_right = 0.498
+anchor_bottom = 0.471
+offset_left = -198.16
+offset_top = -69.68
+offset_right = 217.84
+offset_bottom = 79.32
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

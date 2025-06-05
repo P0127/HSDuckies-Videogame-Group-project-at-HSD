@@ -4,6 +4,21 @@
 [ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://fonts/Xolonium-Regular.ttf" id="2_l4tlu"]
 [ext_resource type="Texture2D" uid="uid://cwn7e60lwk240" path="res://hud/Hud_assets/menu_button.png" id="2_w3hxg"]
 
+[sub_resource type="Animation" id="Animation_l4tlu"]
+length = 0.400003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtonSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.300003),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+
 [sub_resource type="Animation" id="Animation_w3hxg"]
 resource_name = "pressed"
 length = 0.800003
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 0]
 }
 
-[sub_resource type="Animation" id="Animation_l4tlu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MenuButtonSpriteSheet:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fdghx"]
 _data = {
 &"RESET": SubResource("Animation_l4tlu"),
@@ -42,10 +42,10 @@ _data = {
 }
 
 [node name="GameOverScreen" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_gt22q")
 
 [node name="Overlay" type="ColorRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -89,6 +89,7 @@ theme_override_font_sizes/font_size = 40
 text = "Quit"
 
 [node name="MenuButtonAnimation" type="AnimationPlayer" parent="."]
+process_mode = 3
 libraries = {
 &"": SubResource("AnimationLibrary_fdghx")
 }

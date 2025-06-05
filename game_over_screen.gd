@@ -7,8 +7,10 @@ extends CanvasLayer
 signal game_over
 	
 func _ready() -> void:
-	$MenuButtonSpriteSheet	.frame = 0 
+	#$MenuButtonSpriteSheet	.frame = 0 
 	 #Show normal button frame
+	pass
+	
 	
 	
 # Closes the whole game

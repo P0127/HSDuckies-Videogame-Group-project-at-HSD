@@ -13,7 +13,9 @@ const MOB_LIMIT = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass #replace with function if needed
+	#pass #replace with function if needed
+	# Connect the player's death signal to show game over
+	$Player.health_death.connect(_on_player_died)
 		
 
 
@@ -73,6 +75,10 @@ func _on_mob_spawn_timer_timeout():
 	if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec to not spawn wayyyy too many mobs
 		MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.0025)
 		#print(MobSpawnTimer.get_wait_time()) #testing to make sure it works correctly
+
+func _on_player_died():
+	$GameOver.show()
+
 
 
 
