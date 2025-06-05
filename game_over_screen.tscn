@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://cltrc3111kplr"]
+
+[ext_resource type="Script" uid="uid://djjfsx40klqxv" path="res://game_over_screen.gd" id="1_gt22q"]
+
+[node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource("1_gt22q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.286275, 0.0196078, 0, 0.266667)
+
+[node name="GameOverText" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 743.0
+offset_top = 136.0
+offset_right = -743.0
+offset_bottom = -834.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 80
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.439
+anchor_top = 0.191
+anchor_right = 0.53
+anchor_bottom = 0.254
+offset_left = -12.88
+offset_top = 115.72
+offset_right = -108.6
+offset_bottom = 62.68
+scale = Vector2(3, 3)
+focus_mode = 0
+text = "Menu"
+
+[node name="QuitButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.435
+anchor_top = 0.335
+anchor_right = 0.553
+anchor_bottom = 0.394
+offset_left = 0.799927
+offset_top = 52.2
+offset_right = 0.23999
+offset_bottom = 51.48
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

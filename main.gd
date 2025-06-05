@@ -7,11 +7,15 @@ extends Node
 @onready var MapFloor = $Test_Tilemap/Boden
 @onready var MobSpawningPath = %MobSpawningPath
 
+var game_over_shown = false
+var GameOverScene = preload("res://game_over_screen.tscn")
+
 const MOB_LIMIT = 20 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass #replace with function if needed
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -70,3 +74,12 @@ func _on_mob_spawn_timer_timeout():
 	if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec to not spawn wayyyy too many mobs
 		MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.0025)
 		#print(MobSpawnTimer.get_wait_time()) #testing to make sure it works correctly
+
+
+#shows the game overscreen as overlay		
+func show_game_over() -> void:
+	var game_over_instance = GameOverScene.instance()
+	get_tree().current_scene.add_child(game_over_instance)
+
+
+		
