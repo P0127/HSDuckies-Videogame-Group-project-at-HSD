@@ -10,6 +10,7 @@ signal duck_collected_signal
 var timerSpeedUp = Timer.new()
 var timerFirerate = Timer.new()
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_child(timerSpeedUp)

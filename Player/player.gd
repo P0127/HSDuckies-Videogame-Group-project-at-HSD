@@ -23,6 +23,9 @@ var movement_timer : float = 0.0 #timer to count how long moving in a direction
 var weapon_direction_change_min_time : float = 0.1 #time how long is needed till weapon direction changes 
 
 
+
+
+
 #Called when the node enters the scene tree for the first time.
 func _ready():
 	#screen_size = get_viewport_rect().size
@@ -98,6 +101,7 @@ func take_damage(delta : float, damage_amount : float):
 	else:
 		health_death.emit()
 		print("DEATH")
+		
 
 
 #function that sets Sprite Animation in relation to the direction faced by the Player
@@ -164,3 +168,8 @@ func  _on_global_speedUp_timeout():
 func _on_pick_up_area_entered(area: Area2D) -> void:
 	if area.is_in_group("pickupable_player"):
 		area.pickup(self)
+
+
+
+
+ 
