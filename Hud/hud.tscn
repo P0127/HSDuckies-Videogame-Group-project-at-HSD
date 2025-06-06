@@ -84,7 +84,7 @@ icon_alignment = 1
 [node name="StartButtonAnimations" type="AnimatedSprite2D" parent="StartButton"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qv4qp")
-animation = &"pressed"
+animation = &"normal"
 centered = false
 
 [node name="Counter" type="Control" parent="."]

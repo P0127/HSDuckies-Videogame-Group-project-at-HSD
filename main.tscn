@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bxxshl650lvlw" path="res://Drops/drop_energydrink.tscn" id="7_kek77"]
 [ext_resource type="PackedScene" uid="uid://ls35oqi028hm" path="res://Drops/drop_mensaessen.tscn" id="8_4c57u"]
 [ext_resource type="PackedScene" uid="uid://b23fkwbnh2ijx" path="res://Map/test_tilemap.tscn" id="9_kek77"]
-[ext_resource type="PackedScene" uid="uid://nurlt37qi2ul" path="res://game_over.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" path="res://game_over.tscn" id="10_4c57u"]
 
 [sub_resource type="Curve2D" id="Curve2D_kek77"]
 _data = {
