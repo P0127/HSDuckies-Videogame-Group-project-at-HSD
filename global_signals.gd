@@ -7,9 +7,13 @@ extends Node#this script is for now only meant for GLOBAL SIGNALS
 
 signal duck_collected_signal
 
+var timerSpeedUp = Timer.new()
+var timerFirerate = Timer.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	add_child(timerSpeedUp)
+	add_child(timerFirerate)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

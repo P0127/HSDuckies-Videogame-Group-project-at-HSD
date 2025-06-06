@@ -35,6 +35,9 @@ func _ready():
 	
 	#adds this to the Player group to be called on globally for body (entered) checks
 	add_to_group("Player")
+	
+	#Global Timer timeouts to reset stats
+	GlobalSignals.timerSpeedUp.connect("timeout", _on_global_speedUp_timeout)
 
 # Function for start of game to move player to start position and show player
 func start(pos):
@@ -144,13 +147,20 @@ func heal(heal_amount : float):
 	else:
 		health = MAX_HEALTH
 
-func speed_up(speed_amount : int, speed_up : bool):
-	if speed_up:
-		if speed == STANDARD_SPEED:
-			speed += speed_amount
-	else:
-		speed = STANDARD_SPEED
+#function adds onto speed non collectively (chooses the highest boost)
+func speed_up(speed_amount : int):
+	if speed < STANDARD_SPEED + speed_amount:
+		speed = STANDARD_SPEED + speed_amount
 
+#changes firerate, parameter increases the rate of it being shot
+func increase_firerate(firerate_amount : float):
+	$"player weapon".boost_firerate_collected(firerate_amount)
+
+#resets speed once global timer on speedUp runs out; speed adds on timerwise
+func  _on_global_speedUp_timeout():
+	speed = STANDARD_SPEED
+
+#checks if touched body has a method called pickup to be called
 func _on_pick_up_area_entered(area: Area2D) -> void:
 	if area.is_in_group("pickupable_player"):
 		area.pickup(self)

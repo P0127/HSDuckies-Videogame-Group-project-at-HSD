@@ -1,10 +1,10 @@
 extends Area2D
 
+var effectAmount = 30
 
 func _ready():
 	pass 
 
 func pickup(player : Node2D):
-	print("MENSA METHOD")
-	player.heal(30.0)
+	player.heal(effectAmount)
 	queue_free()

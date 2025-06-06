@@ -1,5 +1,9 @@
 extends Area2D #player weapon
 
+const STANDARD_FIRERATE_WAITTIME : float = 0.30 #Waittime before it's shot again
+
+var firerate_waittime := STANDARD_FIRERATE_WAITTIME
+
 const BULLET = preload("res://Weapon/projectile.tscn")
 @onready var spawnpoint = $CharCenter/Weapon/BulletSpawnPoint
 #yes that var is needed and we cant just reference the BSP node since for some reason
@@ -9,6 +13,10 @@ const BULLET = preload("res://Weapon/projectile.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CharCenter/Weapon.animation = "sideways"
+	$"attack speed".wait_time = firerate_waittime
+	
+	#Global Timer timeouts to reset stats
+	GlobalSignals.timerFirerate.connect("timeout", _on_global_firerate_timeout)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,6 +52,9 @@ func _on_attack_speed_timeout():
 	shoot()
 
 #ticks up firerate on item pickup
-func boost_firerate_collected():
-	$"attack speed".wait_time = 0.30
-	
+func boost_firerate_collected(changerate : float):
+	$"attack speed".wait_time = (firerate_waittime / changerate)
+
+#resets on global effect timer timeout
+func _on_global_firerate_timeout():
+	$"attack speed".wait_time = STANDARD_FIRERATE_WAITTIME
