@@ -6,9 +6,6 @@ extends Node#this script is for now only meant for GLOBAL SIGNALS
 #yes only funcname in the brackets no funcname() or funcname(parameter)
 
 signal duck_collected_signal
-signal health_collected_signal
-signal boost_speed_collected_signal
-signal boost_firerate_collected_signal
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
