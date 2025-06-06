@@ -2,6 +2,7 @@ extends Area2D
 #has to be toplevel for it to move independently from parent node
 #else if we move another direction bullets will change direction/position with source
 
+
 var direction#saveslot for direction out projectile will fly
 @export var projectile_speed = 500
 var travelled_distance = 0 #saveslot for despawning bullets after a while

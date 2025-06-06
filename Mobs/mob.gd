@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var main = $"/root/Main"
 @onready var progressBar = $ProgressBar
 #@onready var spriteMob = $AnimatedMobSprite
+@onready var spriteDuckmask = $DuckmaskSprite
 @onready var mob_sprites = [  
 	$AnimatedMobSprite,
 	$AnimatedMobSprite2,
@@ -81,14 +82,19 @@ func _rotate_sprite():
 		match int(rad_to_deg((velocity.angle()))):
 			-90:
 				spriteMob.animation = "back"
+				spriteDuckmask.animation = "back"
 			45, 90, 135: 
 				spriteMob.animation = "front"
+				spriteDuckmask.animation = "front"
 			0, -45, 180, -135:
 				spriteMob.animation = "side"
+				spriteDuckmask.animation = "side"
 		#Flips Animation if walking to the side
 		spriteMob.flip_h = velocity.x < 0 * duck_status
+		spriteDuckmask.flip_h = velocity.x < 0 * duck_status
 	else:
 		spriteMob.animation = "front"
+		spriteDuckmask.animation = "front"
 
 #for use of NavigationAgent2D stuff we'll first need to define the map with connected nodes aka with
 #other 2D Nav nodes
@@ -135,6 +141,7 @@ func liberated():
 	$Time_to_live.start()
 	$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
 	$AwarenessRadius/AwarenessBox.apply_scale(Vector2(20.0, 20.0))
+	spriteDuckmask.set_deferred("visible", false)
 	progressBar.hide()
 	drop_item()
 
@@ -165,7 +172,9 @@ func _on_DetectRadius_body_exited(body : Node2D):
 func _on_hurt_player_area_body_entered(body : Node2D):
 	if body.is_in_group("Player"):
 		target_damage = body
+		spriteDuckmask.play()
 
 func _on_hurt_player_area_body_exited(body : Node2D):
 	if body.is_in_group("Player"):
 		target_damage = null
+		spriteDuckmask.pause()

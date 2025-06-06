@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var progressBar = $ProgressBar
 @onready var spriteMob = $AnimatedRangedMobSprite
 @onready var weapon = $mob_weapon
+@onready var spriteDuckmask = $DuckmaskSprite
 
 var drop_scene := preload("res://Drops/duck_collectable.tscn") #to Instantiate drop item later on
 var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate scene of mob running away upon defeat
@@ -58,14 +59,19 @@ func _rotate_sprite():
 		match int(rad_to_deg((velocity.angle()))):
 			-90:
 				spriteMob.animation = "back"
+				spriteDuckmask.animation = "back"
 			45, 90, 135: 
 				spriteMob.animation = "front"
+				spriteDuckmask.animation = "front"
 			0, -45, 180, -135:
 				spriteMob.animation = "side"
+				spriteDuckmask.animation = "side"
 		#Flips Animation if walking to the side
 		spriteMob.flip_h = velocity.x < 0 * duck_status
+		spriteDuckmask.flip_h = velocity.x < 0 * duck_status
 	else:
 		spriteMob.animation = "front"
+		spriteDuckmask.animation = "front"
 
 #function that manages the weapon rotation
 func _rotate_weapon():
@@ -74,8 +80,11 @@ func _rotate_weapon():
 	
 	if target_homing:
 		weapon.attack(true)
+		spriteDuckmask.speed_scale = 0.2
+		spriteDuckmask.play()
 	else:
 		weapon.attack(false)
+		spriteDuckmask.pause()
 
 
 #Subtracts Hitpoints from Mob
@@ -117,6 +126,7 @@ func liberated():
 	movement_speed = 300
 	$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
 	$AwarenessRadius/AwarenessBox.apply_scale(Vector2(2.0, 2.0))
+	spriteDuckmask.set_deferred("visible", false)
 	weapon.set_deferred("disabled", true)
 	weapon.hide()
 	progressBar.hide()
@@ -146,7 +156,10 @@ func _on_DetectRadius_body_exited(body : Node2D):
 func _on_hurt_player_area_body_entered(body : Node2D):
 	if body.is_in_group("Player"):
 		target_damage = body
+		spriteDuckmask.speed_scale = 1
+		spriteDuckmask.play()
 
 func _on_hurt_player_area_body_exited(body : Node2D):
 	if body.is_in_group("Player"):
 		target_damage = null
+		spriteDuckmask.pause()

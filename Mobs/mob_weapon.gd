@@ -1,6 +1,7 @@
 extends Area2D #Mob weapon
 #yes I know its weirdly big right now will look into it later with why that much scale is required??
 
+const STANDARD_FIRERATE_WAITTIME : float = 2 #Waittime in seconds before it's shot again
 
 const BULLET = preload("res://Mobs/mob_projectile.tscn")
 @onready var spawnpoint = $CharCenter/Weapon/BulletSpawnPoint
@@ -15,6 +16,7 @@ func _ready() -> void:
 	$CharCenter/Weapon.animation = "sideways"
 	#could add a check difficulty here and adjust stats for ranged mob
 	#shooting speed or projectile speed
+	$attack_speed.wait_time = STANDARD_FIRERATE_WAITTIME
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,3 +54,9 @@ func attack(status : bool):
 #shoots bullet everytime atk speed timer timesout
 func _on_attack_speed_timeout():
 	shoot()
+
+func change_firerate(firerate : float, change : bool):
+	if change:
+		$attack_speed.wait_time = firerate
+	else:
+		$attack_speed.wait_time = STANDARD_FIRERATE_WAITTIME

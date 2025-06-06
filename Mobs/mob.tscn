@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dkla36ebv0n0o"]
+[gd_scene load_steps=30 format=3 uid="uid://dkla36ebv0n0o"]
 
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://Mobs/mob.gd" id="1_nokgg"]
 [ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
@@ -14,8 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://djby5v37lnarv" path="res://Mobs/Mobs_assets/Student_lilac_front.png" id="12_s0j0i"]
 [ext_resource type="Texture2D" uid="uid://cybb5q47lxlr" path="res://Mobs/Mobs_assets/student_lilac_side.png" id="13_pduau"]
 [ext_resource type="Texture2D" uid="uid://cyhmiddjx18ej" path="res://Mobs/Mobs_assets/student_orange_back.png" id="14_anuj1"]
+[ext_resource type="Texture2D" uid="uid://hyud6sb2mn6p" path="res://Mobs/Mobs_assets/Duckmask_back_tail.png" id="14_jqjwq"]
 [ext_resource type="Texture2D" uid="uid://cd7pylurgpjft" path="res://Mobs/Mobs_assets/student_orange_front.png" id="15_2uhec"]
+[ext_resource type="Texture2D" uid="uid://d3ue0iltjutg0" path="res://Mobs/Mobs_assets/Duckmask_front_closed.png" id="15_s0j0i"]
 [ext_resource type="Texture2D" uid="uid://bj3ciyn0uv0a1" path="res://Mobs/Mobs_assets/student_orange_side.png" id="16_n3yji"]
+[ext_resource type="Texture2D" uid="uid://cnw5i0mmhwxee" path="res://Mobs/Mobs_assets/Duckmask_front_open.png" id="16_pduau"]
+[ext_resource type="Texture2D" uid="uid://dyvfhb37h0rv6" path="res://Mobs/Mobs_assets/Duckmask_side_closed.png" id="17_anuj1"]
+[ext_resource type="Texture2D" uid="uid://cyxl5cjn20eku" path="res://Mobs/Mobs_assets/Duckmask_side_open.png" id="18_2uhec"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
 radius = 230.169
@@ -134,8 +139,41 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3yji"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_jqjwq")
+}],
+"loop": true,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_s0j0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pduau")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_anuj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_2uhec")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}]
+
 [node name="Mob" type="CharacterBody2D"]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.28, 0.28)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_nokgg")
@@ -165,25 +203,25 @@ shape = SubResource("CircleShape2D_ubaqv")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AnimatedMobSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(33.3333, 26.6667)
+scale = Vector2(1.1263, 1.13932)
 sprite_frames = SubResource("SpriteFrames_b3mxk")
 animation = &"front"
 
 [node name="AnimatedMobSprite2" type="AnimatedSprite2D" parent="."]
-position = Vector2(-17, -30)
-scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_65cxp")
-animation = &"front"
+animation = &"side"
 
 [node name="AnimatedMobSprite3" type="AnimatedSprite2D" parent="."]
-position = Vector2(-17, -30)
-scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_du7bc")
 animation = &"front"
 
 [node name="AnimatedMobSprite4" type="AnimatedSprite2D" parent="."]
-position = Vector2(-17, -30)
-scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_ui2w4")
+animation = &"front"
+
+[node name="DuckmaskSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n3yji")
 animation = &"front"
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
