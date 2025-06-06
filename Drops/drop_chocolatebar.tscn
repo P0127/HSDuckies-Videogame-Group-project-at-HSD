@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://csysokjejtsbt"]
+[gd_scene load_steps=6 format=3 uid="uid://csysokjejtsbt"]
 
 [ext_resource type="Script" uid="uid://dvun4ru5bltos" path="res://Drops/drop_chocolatebar.gd" id="1_gs7gw"]
 [ext_resource type="Texture2D" uid="uid://cb2676g4mdjot" path="res://Drops/Drops_assets/chocolatebar.png" id="2_gvph5"]
+[ext_resource type="AudioStream" uid="uid://drus4bat4yxpn" path="res://assets/sound/665182__el_boss__item-or-material-pickup-pop-2-of-3.wav" id="3_gvph5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_etqx1"]
 animations = [{
@@ -35,5 +36,8 @@ animation = &"chocolatebar"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_etqx1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gvph5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
