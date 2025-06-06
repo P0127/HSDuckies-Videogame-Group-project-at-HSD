@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bp8gs76r0swmn"]
+[gd_scene load_steps=12 format=3 uid="uid://bp8gs76r0swmn"]
 
 [ext_resource type="Script" uid="uid://dw6uqc1wm6rho" path="res://hud/hud.gd" id="1_37p78"]
 [ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://fonts/Xolonium-Regular.ttf" id="2_64ctp"]
 [ext_resource type="FontFile" uid="uid://dekqnr7q8ahcs" path="res://fonts/font_counter_digits.png" id="3_318vg"]
 [ext_resource type="Texture2D" uid="uid://bwtxhwe4kvqde" path="res://hud/Hud_assets/start_button_spritesheet.png" id="3_svhta"]
 [ext_resource type="FontFile" uid="uid://dmoqmmrb2ndjb" path="res://fonts/font_counter_letters.ttf" id="3_w8tcp"]
+[ext_resource type="AudioStream" uid="uid://cknc7stdj7q0u" path="res://assets/sound/515408__tabbygus__duck-quack-sound-effect-hd.mp3" id="6_fjv1a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svhta"]
 atlas = ExtResource("3_svhta")
@@ -112,5 +113,8 @@ offset_bottom = 40.0
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_318vg")
 theme_override_font_sizes/font_size = 40
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fjv1a")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

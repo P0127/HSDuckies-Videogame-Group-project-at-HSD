@@ -5,6 +5,8 @@ var ducks_collected = 0
 @onready var start_button_animation = $StartButton/StartButtonAnimations
 @onready var counter_letters = $"Counter/Duck counter letters"
 @onready var counter_numbers = $"Counter/Duck counter digits"
+@onready var button_sound_player = $AudioStreamPlayer
+
 
 # Notifies `Main` node that the button has been pressed
 signal start_game
@@ -26,6 +28,10 @@ func _process(delta: float) -> void:
 func _on_start_button_pressed():
 	# plays pressed animation
 	start_button_animation.play("pressed")
+	
+	# plays button sound when pressed 
+	button_sound_player.play()
+
 	
 	#delays hiding the button until animation finishes
 	await start_button_animation.animation_finished
