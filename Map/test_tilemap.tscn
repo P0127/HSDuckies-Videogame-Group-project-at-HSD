@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://desp1lnqewgwj" path="res://Map/Map_Tilemap/Sprites/boden2.png" id="1_s4fl3"]
 [ext_resource type="Texture2D" uid="uid://bxa2m2rh5x51u" path="res://Map/Map_Tilemap/TilemapTest.png" id="1_x86xa"]
 [ext_resource type="Texture2D" uid="uid://b3killda3tesl" path="res://Map/Map_Tilemap/Sprites/wand-im-hoersaal.png" id="2_5p6wu"]
-[ext_resource type="Script" uid="uid://3n5tsyk7y2t8" path="res://Map/boden.gd" id="2_mxpbd"]
+[ext_resource type="Script" path="res://Map/boden.gd" id="2_mxpbd"]
 [ext_resource type="Texture2D" uid="uid://cn31g8xxwo0k0" path="res://Map/Map_Tilemap/TilemapBearbeitet5.png" id="3_1yxgl"]
 [ext_resource type="Texture2D" uid="uid://0vh7qdqgcsfy" path="res://Map/Map_Tilemap/Sprites/theke.png" id="3_3un5j"]
 [ext_resource type="Texture2D" uid="uid://busmcqa5rywm6" path="res://Map/Map_Tilemap/TilemapBearbeitet.png" id="7_g8oif"]
 [ext_resource type="Texture2D" uid="uid://cn5r51qbiy1gh" path="res://Map/Map_Tilemap/Sprites/dekotiles.png" id="8_np6tf"]
 [ext_resource type="Texture2D" uid="uid://pe6lbg71ni6u" path="res://Map/Map_Tilemap/Sprites/wand1.png" id="9_8qka3"]
-[ext_resource type="Script" uid="uid://coglm1jsjk5g2" path="res://Map/fade_on_roof.gd" id="10_srcvq"]
+[ext_resource type="Script" path="res://Map/fade_on_roof.gd" id="10_srcvq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ctltw"]
 texture = ExtResource("1_s4fl3")

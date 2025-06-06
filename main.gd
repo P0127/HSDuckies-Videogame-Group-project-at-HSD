@@ -11,7 +11,10 @@ const MOB_LIMIT = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass #replace with function if needed
+	#pass #replace with function if needed
+	var trashcan = preload("res://Destroyable/destroyable_trashcan.tscn").instantiate()
+	trashcan.global_position = Vector2(2000,2400)
+	add_child(trashcan)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

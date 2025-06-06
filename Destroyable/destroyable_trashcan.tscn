@@ -1,20 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2qfans1eui5b"]
 
 [ext_resource type="Texture2D" uid="uid://dva7sba2auobc" path="res://Destroyable/Destroyable_assets/Trashcan.png" id="1_i85ji"]
-[ext_resource type="Script" uid="uid://5jdnct24n3xf" path="res://Destroyable/destroyable_trashcan.gd" id="1_prvvt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i85ji"]
-size = Vector2(24, 31)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i85ji"]
 
-[node name="Destroyable_Trashcan" type="Area2D" groups=["destroyable_player"]]
-collision_layer = 2
-script = ExtResource("1_prvvt")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prvvt"]
+size = Vector2(73, 92)
+
+[node name="destroyable_trashcan" type="StaticBody2D"]
+collision_layer = 18
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.90735e-06, -9.53674e-07)
-scale = Vector2(0.590909, 0.5)
+material = SubResource("CanvasItemMaterial_i85ji")
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(1.63636, 1.45968)
 texture = ExtResource("1_i85ji")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_i85ji")
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_prvvt")
