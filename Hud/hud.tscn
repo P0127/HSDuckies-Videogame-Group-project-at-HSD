@@ -1,11 +1,89 @@
-[gd_scene load_steps=12 format=3 uid="uid://bp8gs76r0swmn"]
+[gd_scene load_steps=21 format=3 uid="uid://bp8gs76r0swmn"]
 
-[ext_resource type="Script" uid="uid://dw6uqc1wm6rho" path="res://Hud/hud.gd" id="1_37p78"]
-[ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://Fonts/Xolonium-Regular.ttf" id="2_64ctp"]
-[ext_resource type="FontFile" uid="uid://dekqnr7q8ahcs" path="res://Fonts/font_counter_digits.png" id="3_318vg"]
-[ext_resource type="Texture2D" uid="uid://bwtxhwe4kvqde" path="res://Hud/Hud_assets/start_button_spritesheet.png" id="3_svhta"]
-[ext_resource type="FontFile" uid="uid://dmoqmmrb2ndjb" path="res://Fonts/font_counter_letters.ttf" id="3_w8tcp"]
+[ext_resource type="Script" uid="uid://dw6uqc1wm6rho" path="res://hud/hud.gd" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://ctsqrawq335qq" path="res://hud/Hud_assets/hsd_gebaude.png" id="2_0ivg5"]
+[ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://fonts/Xolonium-Regular.ttf" id="2_64ctp"]
+[ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://Drops/Drops_assets/Ente.png" id="3_1kkc0"]
+[ext_resource type="FontFile" uid="uid://dekqnr7q8ahcs" path="res://fonts/font_counter_digits.png" id="3_318vg"]
+[ext_resource type="Texture2D" uid="uid://bwtxhwe4kvqde" path="res://hud/Hud_assets/start_button_spritesheet.png" id="3_svhta"]
+[ext_resource type="FontFile" uid="uid://dmoqmmrb2ndjb" path="res://fonts/font_counter_letters.ttf" id="3_w8tcp"]
+[ext_resource type="Texture2D" uid="uid://wdytae5hsfg1" path="res://hud/Hud_assets/shine_scaled.png" id="5_qv4qp"]
 [ext_resource type="AudioStream" uid="uid://cknc7stdj7q0u" path="res://assets/sound/515408__tabbygus__duck-quack-sound-effect-hd.mp3" id="6_fjv1a"]
+
+[sub_resource type="Animation" id="Animation_qv4qp"]
+resource_name = "duckie"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4333, 0.68),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.226893, 0.0, 0.216421]
+}
+
+[sub_resource type="Animation" id="Animation_sh35x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gms7k"]
+_data = {
+&"RESET": SubResource("Animation_sh35x"),
+&"duckie": SubResource("Animation_qv4qp")
+}
+
+[sub_resource type="Animation" id="Animation_gms7k"]
+resource_name = "bling"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1.03),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.5, 0.5), Vector2(0.2, 0.2), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_hwufu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mq7b8"]
+_data = {
+&"RESET": SubResource("Animation_hwufu"),
+&"bling": SubResource("Animation_gms7k")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svhta"]
 atlas = ExtResource("3_svhta")
@@ -51,18 +129,56 @@ animations = [{
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_37p78")
 
+[node name="background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -314.0
+offset_top = -255.0
+offset_right = 309.0
+offset_bottom = 639.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+texture = ExtResource("2_0ivg5")
+expand_mode = 3
+
+[node name="duck" type="Sprite2D" parent="."]
+position = Vector2(1518, 828)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_1kkc0")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="duck"]
+libraries = {
+&"": SubResource("AnimationLibrary_gms7k")
+}
+
 [node name="Title Text" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -372.0
-offset_top = 50.0
+offset_top = 277.0
 offset_right = 372.0
-offset_bottom = 128.0
+offset_bottom = 355.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.641279, 0.204082, 1)
+theme_override_colors/font_outline_color = Color(0.749308, 0.455625, 1.92523e-07, 1)
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_64ctp")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 100
 text = "Duck Duck Düsseldorf"
+
+[node name="ShineScaled" type="Sprite2D" parent="."]
+position = Vector2(381, 307)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_qv4qp")
+
+[node name="bling" type="AnimationPlayer" parent="ShineScaled"]
+libraries = {
+&"": SubResource("AnimationLibrary_mq7b8")
+}
 
 [node name="StartButton" type="Button" parent="."]
 texture_filter = 1
