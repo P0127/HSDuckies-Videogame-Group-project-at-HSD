@@ -3,7 +3,6 @@ extends CharacterBody2D
 ## SIGNALS
 
 ## SCENES (multiple usage)
-@onready var main = $"/root/Main"
 @onready var progressBar = $ProgressBar
 #@onready var spriteMob = $AnimatedMobSprite
 @onready var spriteDuckmask = $DuckmaskSprite
@@ -127,10 +126,7 @@ func take_damage():
 
 #Calls on the preloaded duck drop scene to instantiate it once
 func drop_item():
-	var drop = drop_scene.instantiate()
-	drop.position = position
-	#will run after physics proccessees, lessens errors (deferred)
-	main.call_deferred("add_child", drop)
+	GlobalSignals.drop_duck.emit(global_position)
 
 #function to spawn the running away scene
 #func run_away():
@@ -150,6 +146,7 @@ func liberated():
 	spriteDuckmask.set_deferred("visible", false)
 	$FeatherExplosion.set_deferred("emitting", "true")
 	$FeatherExplosion2.set_deferred("emitting", "true")
+	$SweatParticles.set_deferred("emitting", "true")
 	drop_item()
 
 func _on_time_to_live_timeout():

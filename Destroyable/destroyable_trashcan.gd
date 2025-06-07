@@ -1,15 +1,29 @@
 extends StaticBody2D
 
-var hitpoints = 2 #hits required to destroy and spawn item
+var hitpoints = 3 #hits required to destroy and spawn item
 
 func _ready():
 	pass 
 
 func take_damage():
-	print("ouch")
 	hitpoints -= 1
-	if hitpoints == 0:
-		destroy()
+	
+	match (hitpoints):
+		2: 
+			$Sprite2D/AnimationPlayer.stop()
+			$Sprite2D/AnimationPlayer.play("hit")
+			$HitParticle_1.set_deferred("emitting", true)
+		1:
+			$Sprite2D/AnimationPlayer.stop()
+			$Sprite2D/AnimationPlayer.play("hit")
+			$HitParticle_2.set_deferred("emitting", true)
+		0:
+			$Sprite2D/AnimationPlayer.stop()
+			$Sprite2D/AnimationPlayer.play("destroyed")
+			$CollisionShape2D.set_deferred("disabled", true)
+			GlobalSignals.drop_item.emit(global_position)
+
+
 
 func destroy():
 	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cvfpqq8on20cs"]
+[gd_scene load_steps=27 format=3 uid="uid://cvfpqq8on20cs"]
 
 [ext_resource type="Texture2D" uid="uid://b4cce8rcc7v0f" path="res://Mobs/Mobs_assets/student_turquoise_back.png" id="1_63mun"]
 [ext_resource type="Script" uid="uid://cmfxjulsogclu" path="res://Mobs/ranged_mob.gd" id="1_j2bdq"]
@@ -93,6 +93,17 @@ point_count = 3
 offsets = PackedFloat32Array(0, 0.726667, 1)
 colors = PackedColorArray(0.403922, 0.117647, 0.290196, 1, 0.403922, 0.117647, 0.290196, 1, 0.4, 0.116, 0.2864, 0)
 
+[sub_resource type="Curve" id="Curve_dvy3o"]
+_data = [Vector2(0.00568181, 0), 0.0, 0.0, 0, 0, Vector2(0.392045, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_un4sm"]
+offsets = PackedFloat32Array(0, 0.813333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_dxs1v"]
+colors = PackedColorArray(0.490196, 0.796078, 1, 1, 0.2856, 0.61824, 0.84, 1)
+
 [sub_resource type="Gradient" id="Gradient_dvy3o"]
 offsets = PackedFloat32Array(0, 0.84, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
@@ -136,20 +147,21 @@ animation = &"front"
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="OuchParticles" type="CPUParticles2D" parent="."]
-position = Vector2(139.286, -200)
+position = Vector2(140, -200)
 emitting = false
 amount = 6
 lifetime = 0.5
 one_shot = true
-speed_scale = 2.0
 explosiveness = 0.8
+lifetime_randomness = 0.2
+local_coords = true
 direction = Vector2(10, -10)
 spread = 30.0
 gravity = Vector2(0, 20)
-initial_velocity_min = 250.0
-initial_velocity_max = 300.0
-scale_amount_min = 5.0
-scale_amount_max = 7.0
+initial_velocity_min = 200.0
+initial_velocity_max = 280.0
+scale_amount_min = 25.0
+scale_amount_max = 27.0
 scale_amount_curve = SubResource("Curve_ino8k")
 color_ramp = SubResource("Gradient_x10ou")
 
@@ -172,6 +184,24 @@ texture_progress = ExtResource("6_itm1l")
 
 [node name="mob_weapon" parent="." instance=ExtResource("8_m8u27")]
 scale = Vector2(13, 13)
+
+[node name="SweatParticles" type="CPUParticles2D" parent="."]
+position = Vector2(110.714, -150)
+emitting = false
+lifetime = 0.8
+explosiveness = 0.8
+lifetime_randomness = 0.3
+local_coords = true
+direction = Vector2(1, -1)
+spread = 20.0
+gravity = Vector2(0, 350)
+initial_velocity_min = 230.0
+initial_velocity_max = 320.0
+scale_amount_min = 23.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_dvy3o")
+color_ramp = SubResource("Gradient_un4sm")
+color_initial_ramp = SubResource("Gradient_dxs1v")
 
 [node name="FeatherExplosion" type="CPUParticles2D" parent="."]
 emitting = false

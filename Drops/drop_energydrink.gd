@@ -7,6 +7,7 @@ var effectLength = 3
 func _ready():
 	$AnimatedSprite2D.play()
 	$CPUParticles2D.set_deferred("emitting", true)
+	
 
 func pickup(player : Node2D):	
 	#Calls Player Method to speed up
@@ -23,4 +24,5 @@ func pickup(player : Node2D):
 	$AnimatedSprite2D/AnimationPlayer.play("collected")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	queue_free()
+	if anim_name == "collected":
+		queue_free()

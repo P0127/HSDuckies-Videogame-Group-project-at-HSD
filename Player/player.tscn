@@ -344,16 +344,18 @@ shape = SubResource("CircleShape2D_i3pqv")
 [node name="OuchParticles" type="CPUParticles2D" parent="."]
 position = Vector2(140, -200)
 emitting = false
-amount = 6
+amount = 4
 lifetime = 0.5
 one_shot = true
+lifetime_randomness = 0.2
+local_coords = true
 direction = Vector2(10, -10)
 spread = 30.0
 gravity = Vector2(0, 20)
-initial_velocity_min = 250.0
-initial_velocity_max = 300.0
-scale_amount_min = 5.0
-scale_amount_max = 7.0
+initial_velocity_min = 200.0
+initial_velocity_max = 250.0
+scale_amount_min = 25.0
+scale_amount_max = 27.0
 scale_amount_curve = SubResource("Curve_5htga")
 color_ramp = SubResource("Gradient_p5o4e")
 

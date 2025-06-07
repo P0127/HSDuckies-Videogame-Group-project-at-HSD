@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dkla36ebv0n0o"]
+[gd_scene load_steps=38 format=3 uid="uid://dkla36ebv0n0o"]
 
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://Mobs/mob.gd" id="1_nokgg"]
 [ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
@@ -184,6 +184,17 @@ height = 550.0
 radius = 200.0
 height = 535.714
 
+[sub_resource type="Curve" id="Curve_anuj1"]
+_data = [Vector2(0.00568181, 0), 0.0, 0.0, 0, 0, Vector2(0.392045, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_pduau"]
+offsets = PackedFloat32Array(0, 0.813333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_2uhec"]
+colors = PackedColorArray(0.490196, 0.796078, 1, 1, 0.2856, 0.61824, 0.84, 1)
+
 [sub_resource type="Gradient" id="Gradient_s0j0i"]
 offsets = PackedFloat32Array(0, 0.84, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
@@ -230,20 +241,21 @@ sprite_frames = SubResource("SpriteFrames_n3yji")
 animation = &"front"
 
 [node name="OuchParticles" type="CPUParticles2D" parent="."]
-position = Vector2(140, -200)
+position = Vector2(139.286, -200)
 emitting = false
 amount = 6
 lifetime = 0.5
 one_shot = true
-speed_scale = 2.0
 explosiveness = 0.8
+lifetime_randomness = 0.2
+local_coords = true
 direction = Vector2(10, -10)
 spread = 30.0
 gravity = Vector2(0, 20)
-initial_velocity_min = 250.0
-initial_velocity_max = 300.0
-scale_amount_min = 5.0
-scale_amount_max = 7.0
+initial_velocity_min = 200.0
+initial_velocity_max = 280.0
+scale_amount_min = 25.0
+scale_amount_max = 27.0
 scale_amount_curve = SubResource("Curve_pduau")
 color_ramp = SubResource("Gradient_anuj1")
 
@@ -280,6 +292,24 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="Time_to_live" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="SweatParticles" type="CPUParticles2D" parent="."]
+position = Vector2(110.714, -150)
+emitting = false
+lifetime = 0.8
+explosiveness = 0.8
+lifetime_randomness = 0.3
+local_coords = true
+direction = Vector2(1, -1)
+spread = 20.0
+gravity = Vector2(0, 350)
+initial_velocity_min = 230.0
+initial_velocity_max = 320.0
+scale_amount_min = 23.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_anuj1")
+color_ramp = SubResource("Gradient_pduau")
+color_initial_ramp = SubResource("Gradient_2uhec")
 
 [node name="FeatherExplosion" type="CPUParticles2D" parent="."]
 emitting = false

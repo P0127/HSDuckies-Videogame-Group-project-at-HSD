@@ -6,6 +6,8 @@ extends Node#this script is for now only meant for GLOBAL SIGNALS
 #yes only funcname in the brackets no funcname() or funcname(parameter)
 
 signal duck_collected_signal
+signal drop_duck
+signal drop_item
 
 var timerSpeedUp = Timer.new()
 var timerFirerate = Timer.new()

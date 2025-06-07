@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 GlobalSignals="*res://global_signals.gd"
+ItemManager="*res://item_manager.gd"
 
 [display]
 

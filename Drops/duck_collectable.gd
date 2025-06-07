@@ -5,7 +5,6 @@ var globalPos
 func _ready():
 	# Starts Animation once
 	$DuckPath/DuckPathFollow/AnimatedSprite2D.play("flapping")
-	
 
 
 func _physics_process(delta):

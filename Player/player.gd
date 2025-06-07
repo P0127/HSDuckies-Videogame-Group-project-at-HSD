@@ -160,6 +160,9 @@ func _die():
 	$HurtBox/CollisionShape2D.set_deferred("disabled", true)
 	$PickUp/CollisionShape2D.set_deferred("disabled", true)
 	$PlayerCollisionShape.set_deferred("disabled", true)
+	$OuchParticles.set_deferred("visible", false)
+	#no movement allowed
+	speed = 0
 	
 	$AnimatedPlayerSprite/AnimationPlayer.play("scale")
 
