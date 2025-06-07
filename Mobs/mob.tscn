@@ -27,12 +27,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
 radius = 230.169
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xi5bs"]
-radius = 216.667
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ubaqv"]
-radius = 206.774
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3mxk"]
 animations = [{
 "frames": [{
@@ -174,6 +168,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pduau"]
+radius = 207.143
+height = 550.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_anuj1"]
+radius = 200.0
+height = 535.714
+
 [sub_resource type="Gradient" id="Gradient_s0j0i"]
 offsets = PackedFloat32Array(0, 0.84, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
@@ -196,17 +198,6 @@ collision_layer = 0
 scale = Vector2(12, 12)
 shape = SubResource("CircleShape2D_nokgg")
 debug_color = Color(0.8, 0.956863, 1, 0.176471)
-
-[node name="HurtPlayerArea" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="HurtBox" type="CollisionShape2D" parent="HurtPlayerArea"]
-shape = SubResource("CircleShape2D_xi5bs")
-debug_color = Color(0.971984, 0.0381848, 3.85046e-07, 0.42)
-
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ubaqv")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AnimatedMobSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(33.3333, 26.6667)
@@ -246,6 +237,19 @@ rounded = true
 texture_under = ExtResource("2_b3mxk")
 texture_over = ExtResource("3_1qmh0")
 texture_progress = ExtResource("4_gfurk")
+
+[node name="HurtPlayerArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="HurtBox" type="CollisionShape2D" parent="HurtPlayerArea"]
+position = Vector2(0, 28.5714)
+shape = SubResource("CapsuleShape2D_pduau")
+debug_color = Color(0.971984, 0.0381848, 3.85046e-07, 0.42)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 28.5714)
+shape = SubResource("CapsuleShape2D_anuj1")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Time_to_live" type="Timer" parent="."]
 wait_time = 3.0

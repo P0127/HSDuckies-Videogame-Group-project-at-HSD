@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvpeo0ew5bwc6"]
+[gd_scene load_steps=6 format=3 uid="uid://bvpeo0ew5bwc6"]
 
 [ext_resource type="Script" uid="uid://cndknxyhfvd7y" path="res://Mobs/mob_projectile.gd" id="1_appwa"]
 [ext_resource type="Texture2D" uid="uid://dqf0qqlbpd0q0" path="res://Weapon/Weapon_assets/waterdrop.png" id="2_vcqlq"]
@@ -6,21 +6,51 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qxf0c"]
 radius = 28.0179
 
+[sub_resource type="Curve" id="Curve_1hnwo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.715909, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_2rib1"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0.537255, 0.615686, 1, 0, 0.682353, 0.67451, 1, 0, 0.764706, 0.682353, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 5
+
 [node name="Mob-Projectile" type="Area2D"]
 top_level = true
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.6, 0.6)
 collision_layer = 0
 collision_mask = 17
 script = ExtResource("1_appwa")
 
 [node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 0, 1)
+modulate = Color(0, 1, 0.683333, 1)
 light_mask = 0
 visibility_layer = 33
 rotation = 4.71239
 texture = ExtResource("2_vcqlq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_qxf0c")
+
+[node name="Particles_Hit" type="CPUParticles2D" parent="."]
+position = Vector2(23.3333, 0)
+emitting = false
+amount = 40
+lifetime = 1.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+direction = Vector2(-1, 0)
+spread = 80.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_amount_min = 3.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_1hnwo")
+color_initial_ramp = SubResource("Gradient_2rib1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

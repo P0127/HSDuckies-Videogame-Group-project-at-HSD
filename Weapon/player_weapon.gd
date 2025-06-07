@@ -34,6 +34,8 @@ func _physics_process(delta: float) -> void:
 			$CharCenter/Weapon.flip_v = true
 		_:
 			$CharCenter/Weapon.flip_v = false
+	
+	_spawnpoint_correction()
 
 func shoot():
 	if BULLET.can_instantiate():
@@ -45,7 +47,16 @@ func shoot():
 		#add new bullets as child nodes of the spawnpoint
 		spawnpoint.add_child(new_bullet)
 
-
+#Spawnpoint does not flip together with weapon
+func _spawnpoint_correction():
+	match int(rotation_degrees):
+		90, -90:
+			$CharCenter/Weapon/BulletSpawnPoint.position = Vector2(50,0)
+		-135, 180, 135:
+			$CharCenter/Weapon/BulletSpawnPoint.position = Vector2(50, 18)
+		_:
+			$CharCenter/Weapon/BulletSpawnPoint.position = Vector2(50, -18)
+			
 
 #shoots bullet everytime atk speed timer timesout
 func _on_attack_speed_timeout():

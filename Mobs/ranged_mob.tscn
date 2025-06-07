@@ -20,10 +20,10 @@
 radius = 3000.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8iikj"]
-radius = 267.952
+radius = 257.242
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w5iie"]
-radius = 206.774
+radius = 250.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tnaq1"]
 animations = [{
@@ -106,10 +106,12 @@ shape = SubResource("CircleShape2D_mno16")
 collision_layer = 0
 
 [node name="HurtBox" type="CollisionShape2D" parent="HurtPlayerArea"]
+position = Vector2(17.8571, 25)
 shape = SubResource("CircleShape2D_8iikj")
 debug_color = Color(0.971984, 0.0381848, 3.85046e-07, 0.42)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(17.8571, 25)
 shape = SubResource("CircleShape2D_w5iie")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 

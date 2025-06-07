@@ -1,41 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://csysokjejtsbt"]
+[gd_scene load_steps=10 format=3 uid="uid://csysokjejtsbt"]
 
 [ext_resource type="Script" uid="uid://dvun4ru5bltos" path="res://Drops/drop_chocolatebar.gd" id="1_gs7gw"]
 [ext_resource type="Texture2D" uid="uid://cb2676g4mdjot" path="res://Drops/Drops_assets/chocolatebar.png" id="2_gvph5"]
 [ext_resource type="AudioStream" uid="uid://drus4bat4yxpn" path="res://assets/sound/665182__el_boss__item-or-material-pickup-pop-2-of-3.wav" id="3_gvph5"]
+[ext_resource type="Texture2D" uid="uid://bt4jcp5xx35nc" path="res://Drops/Drops_assets/chocolatebar_2.png" id="3_vh5hm"]
+[ext_resource type="Texture2D" uid="uid://nop8mj3yrdem" path="res://Drops/Drops_assets/chocolatebar_3.png" id="4_bxp7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etqx1"]
+size = Vector2(67.5, 113)
+
+[sub_resource type="Curve" id="Curve_vh5hm"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, -3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_bxp7i"]
+offsets = PackedFloat32Array(0, 0.735849, 1)
+colors = PackedColorArray(0.0392157, 0, 0.345098, 1, 0.0627451, 0, 0.580392, 1, 0.0579999, 0, 0.58, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_etqx1"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_gvph5")
+"duration": 5.0,
+"texture": ExtResource("3_vh5hm")
 }, {
-"duration": 1.0,
-"texture": null
+"duration": 5.0,
+"texture": ExtResource("4_bxp7i")
+}, {
+"duration": 5.0,
+"texture": ExtResource("3_vh5hm")
+}, {
+"duration": 5.0,
+"texture": ExtResource("2_gvph5")
 }],
 "loop": true,
 "name": &"chocolatebar",
 "speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_etqx1"]
-size = Vector2(67.5, 113)
 
 [node name="drop_chocolatebar" type="Area2D" groups=["pickupable_player"]]
 collision_layer = 4
 script = ExtResource("1_gs7gw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_etqx1")
-animation = &"chocolatebar"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_etqx1")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 60
+lifetime = 4.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+linear_accel_min = 3.0
+linear_accel_max = 4.0
+linear_accel_curve = SubResource("Curve_vh5hm")
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_bxp7i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_etqx1")
+animation = &"chocolatebar"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gvph5")
