@@ -138,6 +138,7 @@ func liberated():
 	weapon.hide()
 	progressBar.hide()
 	drop_item()
+	GlobalSignals.reduce_mob_counter.emit()
 
 
 #temporarily added for mobs to despawn upon leaving players screen... will prob remove later or

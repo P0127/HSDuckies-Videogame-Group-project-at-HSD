@@ -151,6 +151,7 @@ func liberated():
 	$FeatherExplosion.set_deferred("emitting", "true")
 	$FeatherExplosion2.set_deferred("emitting", "true")
 	drop_item()
+	GlobalSignals.reduce_mob_counter.emit()
 
 func _on_time_to_live_timeout():
 	#await $FeatherExplosion.finished

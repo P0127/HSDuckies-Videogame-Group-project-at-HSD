@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2qfans1eui5b"]
+[gd_scene load_steps=5 format=3 uid="uid://b2qfans1eui5b"]
 
 [ext_resource type="Texture2D" uid="uid://dva7sba2auobc" path="res://Destroyable/Destroyable_assets/Trashcan.png" id="1_i85ji"]
+[ext_resource type="Script" uid="uid://5jdnct24n3xf" path="res://Destroyable/destroyable_trashcan.gd" id="1_prvvt"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i85ji"]
 
@@ -10,6 +11,7 @@ size = Vector2(73, 92)
 [node name="destroyable_trashcan" type="StaticBody2D"]
 collision_layer = 18
 collision_mask = 0
+script = ExtResource("1_prvvt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_i85ji")

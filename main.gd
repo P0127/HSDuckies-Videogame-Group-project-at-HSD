@@ -6,9 +6,11 @@ extends Node
 @onready var MobSpawnTimer = $MobSpawnTimer
 @onready var MapFloor = $Test_Tilemap/Boden
 @onready var MobSpawningPath = %MobSpawningPath
+@onready var Map = $Test_Tilemap
 
 
-const MOB_LIMIT = 20 
+const MOB_LIMIT = 5 #MOB LIMIT
+var current_mob_amount = 0 #tracks how many mobs are currently spawned
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +21,7 @@ func _ready():
 	add_child(trashcan)
 	# Connect the player's death signal to show game over
 	$Player.health_death.connect(_on_player_died)
+	GlobalSignals.reduce_mob_counter.connect(reduce_mob_counter)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,29 +50,34 @@ func new_game():
 #if you spawn multiple mobs at once they will all use same model
 func spawn_mob():
 	var which_mob = randf()
-	if (which_mob > 0.2): #80% chance for meelee mob
-		var new_mob = preload("res://Mobs/mob.tscn").instantiate()
-		MobSpawningPath.progress_ratio = randf() #produces rdm decimal number between 0 & 1
-		#if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position / 3.33)) == 4 and MapFloor.local_to_map(MobSpawningPath.global_position) not in $Test_Tilemap/Räume.get_used_cells()):
-		if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position / 3.33)) == 4):
-			new_mob.global_position = MobSpawningPath.global_position
-			add_child(new_mob)
-		else:
-			#below line from testing
-			print("meelee")
-			print($Test_Tilemap/Boden.get_cell_source_id($Test_Tilemap/Boden.local_to_map(MobSpawningPath.global_position)))
-			print(MapFloor.local_to_map(MobSpawningPath.global_position))
-			spawn_mob()
-	else: #20% chance for ranged mob
-		var new_mob = preload("res://Mobs/ranged_mob.tscn").instantiate()
-		MobSpawningPath.progress_ratio = randf() #produces rdm decimal number between 0 & 1
-		if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position / 3.33)) == 4):
-			new_mob.global_position = MobSpawningPath.global_position
-			add_child(new_mob)
-		else:
-			spawn_mob()
-			print("ranged:")
-			print(MapFloor.get_cell_source_id(MobSpawningPath.global_position)) #testing
+	if(current_mob_amount <= MOB_LIMIT):
+		if (which_mob > 0.2): #80% chance for meelee mob
+			var new_mob = preload("res://Mobs/mob.tscn").instantiate()
+			MobSpawningPath.progress_ratio = randf() #produces rdm decimal number between 0 & 1
+			#if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position / 3.33)) == 4 and MapFloor.local_to_map(MobSpawningPath.global_position) not in $Test_Tilemap/Räume.get_used_cells()):
+			#if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position / 3.33)) == 4):
+			if(Map.spawncheck(MobSpawningPath.global_position / 3.33)):
+				new_mob.global_position = MobSpawningPath.global_position
+				add_child(new_mob)
+				current_mob_amount += 1
+			else:
+				#below line from testing
+				print("meelee")
+				print($Test_Tilemap/Boden.get_cell_source_id($Test_Tilemap/Boden.local_to_map(MobSpawningPath.global_position)))
+				print(MapFloor.local_to_map(MobSpawningPath.global_position))
+				spawn_mob()
+		else: #20% chance for ranged mob
+			var new_mob = preload("res://Mobs/ranged_mob.tscn").instantiate()
+			MobSpawningPath.progress_ratio = randf() #produces rdm decimal number between 0 & 1
+			#if(MapFloor.get_cell_source_id(MapFloor.local_to_map(MobSpawningPath.global_position / 3.33)) == 4):
+			if(Map.spawncheck(MobSpawningPath.global_position / 3.33)):
+				new_mob.global_position = MobSpawningPath.global_position
+				add_child(new_mob)
+				current_mob_amount += 1
+			else:
+				spawn_mob()
+				print("ranged:")
+				print(MapFloor.get_cell_source_id(MobSpawningPath.global_position)) #testing
 
 
 func _on_mob_spawn_timer_timeout():
@@ -82,8 +90,11 @@ func _on_player_died():
 	$GameOver.show()
 
 
+#big range around player used for despawning
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("all_mobs"):
+		body.queue_free()
+		current_mob_amount -= 1
 
-
-
-
-		
+func reduce_mob_counter():
+	current_mob_amount -= 1
