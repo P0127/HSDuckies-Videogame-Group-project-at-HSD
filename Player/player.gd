@@ -9,7 +9,7 @@ signal health_death #Custom Signal; Death / Game_over due to health depletion
 @onready var spritePlayer = $AnimatedPlayerSprite
 
 ## STATS
-const MAX_HEALTH : float = 100.0 #Set Health Amount
+const MAX_HEALTH : float = 10.0 #Set Health Amount
 const STANDARD_SPEED = 250 #original Speed (backup for speedchanges via pickups)
 var health = MAX_HEALTH #Player health current
 var speed = STANDARD_SPEED #player movement speed in pixels/sec
@@ -100,8 +100,7 @@ func take_damage(delta : float, damage_amount : float):
 		health -= damage_amount * delta
 		$OuchParticles.emitting = true
 	else:
-		health_death.emit()
-		print("DEATH")
+		_die()
 
 
 #function that sets Sprite Animation in relation to the direction faced by the Player
@@ -156,6 +155,15 @@ func speed_up(speed_amount : int):
 	if speed < STANDARD_SPEED + speed_amount:
 		speed = STANDARD_SPEED + speed_amount
 
+
+func _die():
+	$HurtBox/CollisionShape2D.set_deferred("disabled", true)
+	$PickUp/CollisionShape2D.set_deferred("disabled", true)
+	$PlayerCollisionShape.set_deferred("disabled", true)
+	
+	$AnimatedPlayerSprite/AnimationPlayer.play("scale")
+
+
 #changes firerate, parameter increases the rate of it being shot
 func increase_firerate(firerate_amount : float):
 	$"player weapon".boost_firerate_collected(firerate_amount)
@@ -169,7 +177,5 @@ func _on_pick_up_area_entered(area: Area2D) -> void:
 	if area.is_in_group("pickupable_player"):
 		area.pickup(self)
 
-
-
-
- 
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	health_death.emit()

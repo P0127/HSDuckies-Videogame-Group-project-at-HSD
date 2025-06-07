@@ -7,11 +7,8 @@ var ducks_collected = 0
 @onready var counter_numbers = $"Counter/Duck counter digits"
 @onready var button_sound_player = $AudioStreamPlayer
 
-
 # Notifies `Main` node that the button has been pressed
 signal start_game
-
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

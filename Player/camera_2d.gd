@@ -15,8 +15,12 @@ const ZOOM_DEFAULT : Vector2 = Vector2(0.6 ,0.6)
 #Tween: Animation between Actions, makes Camera movement smooth
 #var tween : Tween = null
 
-func _process(_delta) -> void:
+func _ready():
 	zoom = ZOOM_DEFAULT
+
+func _process(_delta) -> void:
+	pass
+	#zoom = ZOOM_DEFAULT
 	##ZOOM IN: Checks if default position comes first, else zooms fully in
 	#if Input.is_action_just_released('zoom_in'):
 		#if get_zoom() < ZOOM_DEFAULT:
