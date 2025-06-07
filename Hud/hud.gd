@@ -6,6 +6,11 @@ var ducks_collected = 0
 @onready var counter_letters = $"Counter/Duck counter letters"
 @onready var counter_numbers = $"Counter/Duck counter digits"
 @onready var button_sound_player = $AudioStreamPlayer
+@onready var background_pic = $background
+@onready var duck = $duck
+@onready var duck_anim = $duck/AnimationPlayer
+@onready var shine = $ShineScaled
+@onready var shine_anim = $ShineScaled/bling
 
 # Notifies `Main` node that the button has been pressed
 signal start_game
@@ -13,6 +18,9 @@ signal start_game
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalSignals.duck_collected_signal.connect(duck_collected_func)
+	duck_anim.play("duckie")
+	shine_anim.play("bling")
+	
 	#made names longer for claritys
 	
 
@@ -36,6 +44,9 @@ func _on_start_button_pressed():
 	
 	start_button.hide()
 	$"Title Text".hide()
+	background_pic.hide()
+	duck.hide()
+	shine.hide()
 	start_game.emit()
 
 func duck_collected_func():
