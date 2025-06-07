@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dkla36ebv0n0o"]
+[gd_scene load_steps=33 format=3 uid="uid://dkla36ebv0n0o"]
 
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://Mobs/mob.gd" id="1_nokgg"]
 [ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://cnw5i0mmhwxee" path="res://Mobs/Mobs_assets/Duckmask_front_open.png" id="16_pduau"]
 [ext_resource type="Texture2D" uid="uid://dyvfhb37h0rv6" path="res://Mobs/Mobs_assets/Duckmask_side_closed.png" id="17_anuj1"]
 [ext_resource type="Texture2D" uid="uid://cyxl5cjn20eku" path="res://Mobs/Mobs_assets/Duckmask_side_open.png" id="18_2uhec"]
+[ext_resource type="Texture2D" uid="uid://bq341a6hant6e" path="res://assets/effects/feather_1.png" id="22_s0j0i"]
+[ext_resource type="Texture2D" uid="uid://bdi06crlaffq3" path="res://assets/effects/feather_2.png" id="23_pduau"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
 radius = 230.169
@@ -172,6 +174,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_s0j0i"]
+offsets = PackedFloat32Array(0, 0.84, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Mob" type="CharacterBody2D"]
 scale = Vector2(0.28, 0.28)
 collision_layer = 2
@@ -244,6 +250,44 @@ texture_progress = ExtResource("4_gfurk")
 [node name="Time_to_live" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="FeatherExplosion" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 5
+texture = ExtResource("22_s0j0i")
+lifetime = 3.0
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 30)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_min = 5.0
+angular_velocity_max = 90.0
+angle_max = 360.0
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_s0j0i")
+
+[node name="FeatherExplosion2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 3
+texture = ExtResource("23_pduau")
+lifetime = 3.0
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 30)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_min = 5.0
+angular_velocity_max = 90.0
+angle_max = 360.0
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_s0j0i")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_DetectRadius_body_entered"]

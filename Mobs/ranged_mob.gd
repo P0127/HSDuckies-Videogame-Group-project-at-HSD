@@ -124,9 +124,13 @@ func drop_item():
 func liberated():
 	duck_status = -1 #becomes a student, runs away from Player
 	movement_speed = 300
+	
+	#No Hitbox, no Awareness/targeting, Duckmask falls off
 	$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
 	$AwarenessRadius/AwarenessBox.apply_scale(Vector2(2.0, 2.0))
 	spriteDuckmask.set_deferred("visible", false)
+	$FeatherExplosion.set_deferred("emitting", "true")
+	$FeatherExplosion2.set_deferred("emitting", "true")
 	weapon.set_deferred("disabled", true)
 	weapon.hide()
 	progressBar.hide()
@@ -137,6 +141,7 @@ func liberated():
 #try to find a way to increase range in order to avoid player just despawning everything with
 #edge of screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	await $FeatherExplosion.finished
 	queue_free()
 
 #the two following functions go into effect whenever any body enters our mobs AwarenessRadius
