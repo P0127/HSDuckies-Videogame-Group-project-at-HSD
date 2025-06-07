@@ -6,6 +6,7 @@ var effectAmount = 30
 
 func _ready():
 	$AnimatedSprite2D.play()
+	$CPUParticles2D.set_deferred("emitting", true)
 
 func pickup(player : Node2D):
 	player.heal(effectAmount)
@@ -14,14 +15,8 @@ func pickup(player : Node2D):
 	if sound:
 		sound.play()
 	
-	$AnimatedSprite2D.set_deferred("visible", false)
 	$CollisionShape2D.set_deferred("disabled", true)
-	$CPUParticles2D.set_deferred("emitting", false)
-	
-	# wait until sound is finished 
-	if sound:
-		await sound.finished
-	# wait until particles have particled
-	await $CPUParticles2D.finished
-	
+	$AnimatedSprite2D/AnimationPlayer.play("collected")
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	queue_free()

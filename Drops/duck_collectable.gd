@@ -1,5 +1,7 @@
 extends Area2D
 
+var globalPos
+
 func _ready():
 	# Starts Animation once
 	$DuckPath/DuckPathFollow/AnimatedSprite2D.play("flapping")
@@ -9,7 +11,10 @@ func _ready():
 func _physics_process(delta):
 	if ($DuckPath/DuckPathFollow.progress_ratio != 1):
 		$DuckPath/DuckPathFollow.progress_ratio += 0.015
-		$CollisionShape2D.global_position = $DuckPath/DuckPathFollow/AnimatedSprite2D.global_position
+		globalPos = $DuckPath/DuckPathFollow/AnimatedSprite2D.global_position
+		$CollisionShape2D.global_position = globalPos
+		$FeatherExplosion.global_position = globalPos
+		$FeatherExplosion2.global_position = globalPos
 	else:
 		# Ends Animation once path has finnished
 		$DuckPath/DuckPathFollow/AnimatedSprite2D.animation = "default"
@@ -18,4 +23,8 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	GlobalSignals.duck_collected_signal.emit()#using a global script to get the signal
 	#to the hud without requiring it to be a child/parent node 
+	$DuckPath/DuckPathFollow/AnimatedSprite2D/AnimationPlayer.play("collected")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	queue_free()

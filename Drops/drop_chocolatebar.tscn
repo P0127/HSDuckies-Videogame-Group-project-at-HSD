@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://csysokjejtsbt"]
+[gd_scene load_steps=15 format=3 uid="uid://csysokjejtsbt"]
 
 [ext_resource type="Script" uid="uid://dvun4ru5bltos" path="res://Drops/drop_chocolatebar.gd" id="1_gs7gw"]
 [ext_resource type="Texture2D" uid="uid://cb2676g4mdjot" path="res://Drops/Drops_assets/chocolatebar.png" id="2_gvph5"]
@@ -38,6 +38,99 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_vwhym"]
+resource_name = "collected"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollectedParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 36.7584),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ixd7e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollectedParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0oxh6"]
+_data = {
+&"RESET": SubResource("Animation_ixd7e"),
+&"collected": SubResource("Animation_vwhym")
+}
+
+[sub_resource type="Curve" id="Curve_bxp7i"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, -3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_gt8ep"]
+offsets = PackedFloat32Array(0, 0.735849, 1)
+colors = PackedColorArray(0.0392157, 0, 0.345098, 1, 0.0627451, 0, 0.580392, 1, 0.0579999, 0, 0.58, 0)
+
 [node name="drop_chocolatebar" type="Area2D" groups=["pickupable_player"]]
 collision_layer = 4
 script = ExtResource("1_gs7gw")
@@ -65,7 +158,32 @@ position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_etqx1")
 animation = &"chocolatebar"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_0oxh6")
+}
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gvph5")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="CollectedParticles" type="CPUParticles2D" parent="."]
+position = Vector2(2, 12)
+scale = Vector2(20, 20)
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 0.7
+lifetime_randomness = 0.3
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+linear_accel_min = 20.0
+linear_accel_max = 25.0
+linear_accel_curve = SubResource("Curve_bxp7i")
+scale_amount_min = 5.0
+scale_amount_max = 7.0
+color_ramp = SubResource("Gradient_gt8ep")
+
+[connection signal="animation_finished" from="AnimatedSprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

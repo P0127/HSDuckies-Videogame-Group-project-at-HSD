@@ -14,9 +14,14 @@ const MOB_LIMIT = 20
 func _ready():
 	#pass #replace with function if needed
 	$Hud.start_game.connect(new_game)
+	
+	#to prevent the panning over
+	$Player.start($StartPosition.position)
+	
 	var trashcan = preload("res://Destroyable/destroyable_trashcan.tscn").instantiate()
 	trashcan.global_position = Vector2(2000,2400)
 	add_child(trashcan)
+	
 	# Connect the player's death signal to show game over
 	$Player.health_death.connect(_on_player_died)
 
@@ -26,6 +31,7 @@ func _process(delta: float) -> void:
 	pass
 
 func new_game():
+	#needed in case new game is started after game over
 	$Player.start($StartPosition.position)
 	#moves player to starting position & removed hide()
 	spawn_mob()

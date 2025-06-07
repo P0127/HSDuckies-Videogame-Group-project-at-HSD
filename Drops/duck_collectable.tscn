@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://djr2ebk8jm13r"]
+[gd_scene load_steps=14 format=3 uid="uid://djr2ebk8jm13r"]
 
 [ext_resource type="Script" uid="uid://bh4d7allge8nj" path="res://Drops/duck_collectable.gd" id="1_npn1j"]
 [ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://Drops/Drops_assets/Ente.png" id="2_nj65u"]
 [ext_resource type="Texture2D" uid="uid://dpfcf728xfwsl" path="res://Drops/Drops_assets/EnteA1.2.png" id="3_5fan6"]
 [ext_resource type="Texture2D" uid="uid://cslr4g6svm0uv" path="res://Drops/Drops_assets/EnteA1.png" id="4_g1qbf"]
+[ext_resource type="Texture2D" uid="uid://bq341a6hant6e" path="res://assets/effects/feather_1.png" id="5_j5py5"]
+[ext_resource type="Texture2D" uid="uid://bdi06crlaffq3" path="res://assets/effects/feather_2.png" id="6_ua53g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oatfm"]
 radius = 280.178
@@ -36,6 +38,95 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Animation" id="Animation_25qkw"]
+resource_name = "collected"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(0.210224, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../FeatherExplosion:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../FeatherExplosion2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_mt77r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../FeatherExplosion:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../FeatherExplosion2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h3n7x"]
+_data = {
+&"RESET": SubResource("Animation_mt77r"),
+&"collected": SubResource("Animation_25qkw")
+}
+
+[sub_resource type="Gradient" id="Gradient_hlqqf"]
+offsets = PackedFloat32Array(0, 0.84, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Duck_Collectable" type="Area2D"]
 scale = Vector2(0.2, 0.2)
 collision_layer = 4
@@ -55,5 +146,54 @@ loop = false
 sprite_frames = SubResource("SpriteFrames_g1qbf")
 animation = &"flapping"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DuckPath/DuckPathFollow/AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_h3n7x")
+}
+
+[node name="FeatherExplosion" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 2
+texture = ExtResource("5_j5py5")
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 30)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_min = 5.0
+angular_velocity_max = 90.0
+angle_max = 360.0
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_hlqqf")
+
+[node name="FeatherExplosion2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1
+texture = ExtResource("6_ua53g")
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 30)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_min = 5.0
+angular_velocity_max = 90.0
+angle_max = 360.0
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_hlqqf")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="animation_finished" from="DuckPath/DuckPathFollow/AnimatedSprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
