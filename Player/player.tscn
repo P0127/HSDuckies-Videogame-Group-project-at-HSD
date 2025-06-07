@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c135wng7wv7tp"]
+[gd_scene load_steps=19 format=3 uid="uid://c135wng7wv7tp"]
 
 [ext_resource type="Script" uid="uid://b6ykbxg8byxue" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://cqxxf6tj5g1qs" path="res://Player/camera_2d.gd" id="2_hqtel"]
@@ -21,6 +21,14 @@ radius = 241.015
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 456.039
+
+[sub_resource type="Curve" id="Curve_5htga"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.846591, 0.898876), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_p5o4e"]
+offsets = PackedFloat32Array(0, 0.726667, 1)
+colors = PackedColorArray(0.403922, 0.117647, 0.290196, 1, 0.403922, 0.117647, 0.290196, 1, 0.4, 0.116, 0.2864, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sweqy"]
 animations = [{
@@ -97,6 +105,22 @@ debug_color = Color(0.981976, 0.133144, 7.70092e-07, 0.42)
 position = Vector2(0, 32)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_i3pqv")
+
+[node name="OuchParticles" type="CPUParticles2D" parent="."]
+position = Vector2(140, -200)
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+direction = Vector2(10, -10)
+spread = 30.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 250.0
+initial_velocity_max = 300.0
+scale_amount_min = 5.0
+scale_amount_max = 7.0
+scale_amount_curve = SubResource("Curve_5htga")
+color_ramp = SubResource("Gradient_p5o4e")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 5

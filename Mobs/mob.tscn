@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dkla36ebv0n0o"]
+[gd_scene load_steps=35 format=3 uid="uid://dkla36ebv0n0o"]
 
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://Mobs/mob.gd" id="1_nokgg"]
 [ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
@@ -168,6 +168,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_pduau"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.846591, 0.898876), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_anuj1"]
+offsets = PackedFloat32Array(0, 0.726667, 1)
+colors = PackedColorArray(0.403922, 0.117647, 0.290196, 1, 0.403922, 0.117647, 0.290196, 1, 0.4, 0.116, 0.2864, 0)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pduau"]
 radius = 207.143
 height = 550.0
@@ -220,6 +228,24 @@ animation = &"front"
 [node name="DuckmaskSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n3yji")
 animation = &"front"
+
+[node name="OuchParticles" type="CPUParticles2D" parent="."]
+position = Vector2(140, -200)
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.8
+direction = Vector2(10, -10)
+spread = 30.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 250.0
+initial_velocity_max = 300.0
+scale_amount_min = 5.0
+scale_amount_max = 7.0
+scale_amount_curve = SubResource("Curve_pduau")
+color_ramp = SubResource("Gradient_anuj1")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 5

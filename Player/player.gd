@@ -98,10 +98,10 @@ func take_damage(delta : float, damage_amount : float):
 	if health > 0.0:
 		#Why Delta? Else we'd loose health per Frame, not per Second!
 		health -= damage_amount * delta
+		$OuchParticles.emitting = true
 	else:
 		health_death.emit()
 		print("DEATH")
-		
 
 
 #function that sets Sprite Animation in relation to the direction faced by the Player

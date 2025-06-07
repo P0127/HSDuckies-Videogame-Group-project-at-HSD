@@ -102,10 +102,14 @@ func _rotate_sprite():
 
 #Subtracts Hitpoints from Mob
 func take_damage():
-	progressBar.show()
-	health -= 1
+	if health > 0:
+		health -= 1
+		progressBar.show()
+		$OuchParticles.set_deferred("emitting", true)
 	if health == 0:
 		#_die()
+		health = -1
+		progressBar.hide()
 		liberated()
 
 #When Mob gets killed, Animations get stopped
@@ -146,20 +150,19 @@ func liberated():
 	spriteDuckmask.set_deferred("visible", false)
 	$FeatherExplosion.set_deferred("emitting", "true")
 	$FeatherExplosion2.set_deferred("emitting", "true")
-	progressBar.hide()
 	drop_item()
 
 func _on_time_to_live_timeout():
-	await $FeatherExplosion.finished
+	#await $FeatherExplosion.finished
 	queue_free()
 
 
 #temporarily added for mobs to despawn upon leaving players screen... will prob remove later or
 #try to find a way to increase range in order to avoid player just despawning everything with
 #edge of screen
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	await $FeatherExplosion.finished
-	queue_free()
+#func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	##await $FeatherExplosion.finished
+	#queue_free()
 
 #the two following functions go into effect whenever any body enters our mobs AwarenessRadius
 #if the body is a player we set it as current target/if player body leaves AwarenessRadius we 

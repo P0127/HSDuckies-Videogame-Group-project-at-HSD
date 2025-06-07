@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cvfpqq8on20cs"]
+[gd_scene load_steps=24 format=3 uid="uid://cvfpqq8on20cs"]
 
 [ext_resource type="Texture2D" uid="uid://b4cce8rcc7v0f" path="res://Mobs/Mobs_assets/student_turquoise_back.png" id="1_63mun"]
 [ext_resource type="Script" uid="uid://cmfxjulsogclu" path="res://Mobs/ranged_mob.gd" id="1_j2bdq"]
@@ -85,6 +85,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_ino8k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.846591, 0.898876), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_x10ou"]
+offsets = PackedFloat32Array(0, 0.726667, 1)
+colors = PackedColorArray(0.403922, 0.117647, 0.290196, 1, 0.403922, 0.117647, 0.290196, 1, 0.4, 0.116, 0.2864, 0)
+
 [sub_resource type="Gradient" id="Gradient_dvy3o"]
 offsets = PackedFloat32Array(0, 0.84, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
@@ -126,6 +134,24 @@ animation = &"front"
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="OuchParticles" type="CPUParticles2D" parent="."]
+position = Vector2(139.286, -200)
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.8
+direction = Vector2(10, -10)
+spread = 30.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 250.0
+initial_velocity_max = 300.0
+scale_amount_min = 5.0
+scale_amount_max = 7.0
+scale_amount_curve = SubResource("Curve_ino8k")
+color_ramp = SubResource("Gradient_x10ou")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 5

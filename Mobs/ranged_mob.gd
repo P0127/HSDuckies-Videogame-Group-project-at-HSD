@@ -89,11 +89,14 @@ func _rotate_weapon():
 
 #Subtracts Hitpoints from Mob
 func take_damage():
-	health -= 1
-	progressBar.show()
-	progressBar.value = health
+	if health > 0:
+		health -= 1
+		progressBar.show()
+		$OuchParticles.set_deferred("emitting", true)
 	if health == 0:
-		#die()
+		#_die()
+		health = -1
+		progressBar.hide()
 		liberated()
 
 #When Mob gets killed, Animations get stopped
@@ -141,7 +144,7 @@ func liberated():
 #try to find a way to increase range in order to avoid player just despawning everything with
 #edge of screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	await $FeatherExplosion.finished
+	#await $FeatherExplosion.finished
 	queue_free()
 
 #the two following functions go into effect whenever any body enters our mobs AwarenessRadius
