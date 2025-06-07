@@ -216,6 +216,7 @@ layout_mode = 0
 offset_right = 200.0
 offset_bottom = 26.0
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.498039, 0, 1)
 theme_override_fonts/font = ExtResource("3_w8tcp")
 theme_override_font_sizes/font_size = 32
 
