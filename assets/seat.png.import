@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw4afi77kbi7"
-path="res://.godot/imported/font_item_zahler.png-0a2970625b88885f74d4256e233d0c7b.ctex"
+uid="uid://ckd201my3sc1p"
+path="res://.godot/imported/seat.png-7aa20ad6bc9c4442560d0ff346f36f41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fonts/font_item_zahler.png"
-dest_files=["res://.godot/imported/font_item_zahler.png-0a2970625b88885f74d4256e233d0c7b.ctex"]
+source_file="res://assets/seat.png"
+dest_files=["res://.godot/imported/seat.png-7aa20ad6bc9c4442560d0ff346f36f41.ctex"]
 
 [params]
 
