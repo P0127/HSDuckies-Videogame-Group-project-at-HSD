@@ -36,7 +36,8 @@ func _lifetime_end():
 
 
 func _on_body_entered(body):
-	if body.has_method("take_damage"):
-		body.take_damage(1, damage_rate)   # delta = 1 to circumvent frame calculation, this is 1-hit damage
+	if(body is not StaticBody2D): #without this we crash when mobs shoot a destroyable object due to single param take_dmg method
+		if body.has_method("take_damage"):
+			body.take_damage(1, damage_rate)   # delta = 1 to circumvent frame calculation, this is 1-hit damage
 	hit_effect.spread = 80
 	_lifetime_end()

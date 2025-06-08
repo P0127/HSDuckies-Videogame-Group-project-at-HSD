@@ -6,14 +6,18 @@ extends CharacterBody2D
 @onready var spriteMob = $AnimatedRangedMobSprite
 @onready var weapon = $mob_weapon
 @onready var spriteDuckmask = $DuckmaskSprite
+@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+
 
 var drop_scene := preload("res://Drops/duck_collectable.tscn") #to Instantiate drop item later on
 var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate scene of mob running away upon defeat
 
 ## STATS
-var health = 3 #Hits required to kill
-var movement_speed = 100 #+ 10 * PlayerLevel 
-var damage_rate : float = 3.0 #damage done to Player by touching
+var mob_level : int = 1 #Level for scaling
+var health : int = 2 + (mob_level / 3) #Hits required to kill
+var movement_speed = 100 + 10 * mob_level 
+var damage_rate : float = 3.0 + (mob_level / 2) #damage done to Player by touching
+
 
 ## TARGETS
 var target_damage : Node2D #saveslot for Player on body entered
@@ -26,6 +30,7 @@ func _ready():
 	progressBar.max_value = health
 	progressBar.value = health
 	progressBar.hide()
+	GlobalSignals.mob_level_up.connect(increment_mobLvl)
 
 func _process(delta: float):
 	progressBar.value = health
@@ -36,7 +41,21 @@ func _physics_process(delta : float):
 	velocity = Vector2.ZERO
 	#target_homing is the Player Node (checked in Signals) and calls on Player Position
 	if target_homing:
-		velocity = global_position.direction_to(target_homing.global_position) * movement_speed * duck_status
+		var target_location = target_homing.global_position
+		navigation_agent_2d.target_position = target_location
+		
+		var current_agent_position = self.global_position
+		var next_path_position = navigation_agent_2d.get_next_path_position()
+		var new_velocity = current_agent_position.direction_to(next_path_position) * movement_speed * duck_status
+		
+		#if navigation_agent_2d.is_navigation_finished():
+		#	return #could add some kinda meelee hit animation 
+		
+		if navigation_agent_2d.avoidance_enabled:
+			navigation_agent_2d.set_velocity(new_velocity)
+		else:
+			_on_navigation_agent_2d_velocity_computed(new_velocity)
+		
 		move_and_slide()
 		
 	## SPRITE ORIENTATION
@@ -141,12 +160,6 @@ func liberated():
 	GlobalSignals.reduce_mob_counter.emit()
 
 
-#temporarily added for mobs to despawn upon leaving players screen... will prob remove later or
-#try to find a way to increase range in order to avoid player just despawning everything with
-#edge of screen
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	#await $FeatherExplosion.finished
-	queue_free()
 
 #the two following functions go into effect whenever any body enters our mobs AwarenessRadius
 #if the body is a player we set it as current target/if player body leaves AwarenessRadius we 
@@ -172,3 +185,9 @@ func _on_hurt_player_area_body_exited(body : Node2D):
 	if body.is_in_group("Player"):
 		target_damage = null
 		spriteDuckmask.pause()
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
+
+func increment_mobLvl():
+	mob_level += 1

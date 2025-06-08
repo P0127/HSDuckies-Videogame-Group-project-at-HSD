@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bdi06crlaffq3" path="res://assets/effects/feather_2.png" id="15_x10ou"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mno16"]
-radius = 3000.0
+radius = 6835.72
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8iikj"]
 radius = 257.242
@@ -104,6 +104,10 @@ collision_mask = 17
 script = ExtResource("1_j2bdq")
 metadata/_edit_group_ = true
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 100.0
+target_desired_distance = 100.0
+
 [node name="AwarenessRadius" type="Area2D" parent="."]
 
 [node name="AwarenessBox" type="CollisionShape2D" parent="AwarenessRadius"]
@@ -131,8 +135,6 @@ sprite_frames = SubResource("SpriteFrames_un4sm")
 animation = &"front"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="OuchParticles" type="CPUParticles2D" parent="."]
 position = Vector2(139.286, -200)
@@ -210,6 +212,7 @@ angle_max = 360.0
 scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_dvy3o")
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="AwarenessRadius" to="." method="_on_DetectRadius_body_exited"]
 [connection signal="body_entered" from="HurtPlayerArea" to="." method="_on_hurt_player_area_body_entered"]

@@ -15,37 +15,20 @@ func _tile_data_runtime_update(coords: Vector2i, tile_data: TileData):
 		tile_data.set_navigation_polygon(0, null)
 
 
-
-
-#suffering
+#boolean method to check if a position is valid for a mob spawn location
+#currently mobs still sometimes spawn in walls?
 func spawncheck(coords: Vector2):
 	
 	#check if cell exists
 	if (get_cell_source_id(local_to_map(coords)) == -1):
 		return false
 	
-	#check if 
-	#if (raeume.get_cell_source_id(local_to_map(coords)) != -1) or (deko.get_cell_source_id(local_to_map(coords)) != -1):
-		#return false
-	#
-	#
-	#var cellCoords = local_to_map(coords)
-	#var tiledata = $".".get_cell_tile_data(cellCoords)
-	#
-	#if(tiledata == null):
-		#return false
-	#
-	#var tile_setvar = tile_set
-	#
-	#var source_idvar = $".".get_source_id()
-	#var tile_atlCoVar = tiledata.get_atlas_coords() #idk if this works
-	#
-	#var tile_set_source = tile_set.get_source(source_idvar)
-	#var navlay = tile_set_source.get_tile_navigation_layers(tile_atlCoVar)
-	#
-	#if(navlay == 1):
-		#return true
-	#else:
-		#return false
-	#
-	return true
+	var tiledata = get_cell_tile_data(local_to_map(to_local(coords)))
+	if (tiledata == null):
+		return false
+	
+	var checklayer1 = tiledata.get_navigation_polygon(0)
+	if(checklayer1 != null):
+		return true
+	else:
+		return false
