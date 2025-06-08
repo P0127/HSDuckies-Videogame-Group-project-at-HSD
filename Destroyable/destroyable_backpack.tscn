@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dxr5tal3pik4a"]
 
-[ext_resource type="Script" uid="uid://5jdnct24n3xf" path="res://Destroyable/destroyable.gd" id="1_nxqqf"]
+[ext_resource type="Script" uid="uid://csv12hipm7b21" path="res://Destroyable/destroyable_backpack.gd" id="1_nxqqf"]
 [ext_resource type="Texture2D" uid="uid://bs26he6kqdvfc" path="res://Destroyable/Destroyable_assets/Backpack_new.png" id="2_nxqqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prvvt"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://b2qfans1eui5b"]
 
-[ext_resource type="Script" uid="uid://5jdnct24n3xf" path="res://Destroyable/destroyable.gd" id="1_prvvt"]
+[ext_resource type="Script" uid="uid://5jdnct24n3xf" path="res://Destroyable/destroyable_trashcan.gd" id="1_prvvt"]
 [ext_resource type="Texture2D" uid="uid://dj7qhfx83lbwe" path="res://Destroyable/Destroyable_assets/Trashcan_Paper.png" id="2_prvvt"]
 [ext_resource type="Texture2D" uid="uid://daw1nndmvhk6b" path="res://assets/effects/Trashcan_paper.png" id="3_6d4bh"]
 

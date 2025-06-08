@@ -1,5 +1,7 @@
 extends Node
 
+var dropChance : float
+
 #Knows all dropable items
 var ducks := preload("res://Drops/duck_collectable.tscn")
 var chocobar := preload("res://Drops/drop_chocolatebar.tscn")
@@ -28,4 +30,15 @@ func _drop_duck(mob_global_position : Vector2):
 	_drop(mob_global_position, ducks)
 
 func _drop_item(spawn_global_position : Vector2):
-	_drop(spawn_global_position, drops[randi() % drops.size()])
+	#Only has a chance to drop an item
+	#Has a small chance to drop a duck
+	randomize()
+	dropChance = randf() #Float between 0.0 and 1.0, respective to out chances
+	
+	#60% Chance do drop item, 1% Chance to drop Duck, 39% nothing
+	if dropChance <= 0.6:
+		_drop(spawn_global_position, drops[randi() % drops.size()])
+	elif dropChance <= 0.65:
+		_drop(spawn_global_position, ducks)
+	else:
+		pass 

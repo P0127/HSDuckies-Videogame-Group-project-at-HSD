@@ -18,10 +18,6 @@ func _ready():
 	#to prevent the panning over
 	$Player.start($StartPosition.position)
 	
-	var trashcan = preload("res://Destroyable/destroyable_trashcan.tscn").instantiate()
-	trashcan.global_position = Vector2(2000,2400)
-	add_child(trashcan)
-	
 	# Connect the player's death signal to show game over
 	$Player.health_death.connect(_on_player_died)
 
