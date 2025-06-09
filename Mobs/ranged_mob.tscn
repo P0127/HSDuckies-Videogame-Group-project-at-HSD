@@ -105,8 +105,9 @@ script = ExtResource("1_j2bdq")
 metadata/_edit_group_ = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 100.0
-target_desired_distance = 100.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 1, 0.0431373, 1)
 
 [node name="AwarenessRadius" type="Area2D" parent="."]
 
@@ -212,9 +213,14 @@ angle_max = 360.0
 scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_dvy3o")
 
+[node name="Time_to_live" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="AwarenessRadius" to="." method="_on_DetectRadius_body_exited"]
 [connection signal="body_entered" from="HurtPlayerArea" to="." method="_on_hurt_player_area_body_entered"]
 [connection signal="body_exited" from="HurtPlayerArea" to="." method="_on_hurt_player_area_body_exited"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Time_to_live" to="." method="_on_time_to_live_timeout"]

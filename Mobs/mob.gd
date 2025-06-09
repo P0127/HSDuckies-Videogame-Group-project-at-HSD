@@ -24,7 +24,7 @@ var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate sc
 var mob_level = 1 #Level for scaling
 var health : int = 3 + (mob_level / 2) #Hits required to kill
 var movement_speed = 75 + 10 * mob_level 
-var damage_rate : float = 10.0 + 2 * mob_level #damage done to Player
+var damage_rate : float = 5.0 + 2 * mob_level #damage done to Player
 
 
 ## TARGETS
@@ -38,6 +38,8 @@ func _ready():
 	for sprite in mob_sprites:
 		sprite.visible = false  #Hide every mob sprite in the list – so that none are visible at the beginning
 		sprite.stop() #Stops all animations
+	
+	GlobalSignals.mob_level_up.connect(increment_mobLvl)
 
 	var random_index = randi() % mob_sprites.size()
 	#Generates a random number between 0 and (number of mob sprites - 1)
@@ -56,7 +58,7 @@ func _ready():
 	progressBar.value = health
 	progressBar.hide()
 	
-	GlobalSignals.mob_level_up.connect(increment_mobLvl)
+	
 
 func _process(delta: float):
 	progressBar.value = health

@@ -441,6 +441,7 @@ scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_lfmf2")
 
 [node name="Despawn-range" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Despawn-range"]
 shape = SubResource("CircleShape2D_dkpta")

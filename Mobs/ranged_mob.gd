@@ -146,6 +146,7 @@ func drop_item():
 func liberated():
 	duck_status = -1 #becomes a student, runs away from Player
 	movement_speed = 300
+	$Time_to_live.start()
 	
 	#No Hitbox, no Awareness/targeting, Duckmask falls off
 	$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
@@ -155,11 +156,14 @@ func liberated():
 	$FeatherExplosion2.set_deferred("emitting", "true")
 	weapon.set_deferred("disabled", true)
 	weapon.hide()
+	weapon.swap_fire_status()
 	progressBar.hide()
 	drop_item()
 	GlobalSignals.reduce_mob_counter.emit()
 
-
+func _on_time_to_live_timeout() -> void:
+	#await $FeatherExplosion.finished
+	queue_free()
 
 #the two following functions go into effect whenever any body enters our mobs AwarenessRadius
 #if the body is a player we set it as current target/if player body leaves AwarenessRadius we 

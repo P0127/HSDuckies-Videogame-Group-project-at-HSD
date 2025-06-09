@@ -11,6 +11,8 @@ const BULLET = preload("res://Mobs/mob_projectile.tscn")
 @onready var bulletspawnpoint = $"/root/Main"
 #bullets will now be spawned as a child of main, that way they dont despawn alongside the ranged mob upon defeat
 
+var fire_status = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CharCenter/Weapon.animation = "sideways"
@@ -53,10 +55,14 @@ func attack(status : bool):
 
 #shoots bullet everytime atk speed timer timesout
 func _on_attack_speed_timeout():
-	shoot()
+	if(fire_status):
+		shoot()
 
 func change_firerate(firerate : float, change : bool):
 	if change:
 		$attack_speed.wait_time = firerate
 	else:
 		$attack_speed.wait_time = STANDARD_FIRERATE_WAITTIME
+
+func swap_fire_status():
+	fire_status = !fire_status

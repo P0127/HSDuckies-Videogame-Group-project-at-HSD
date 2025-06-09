@@ -16,7 +16,6 @@ func _tile_data_runtime_update(coords: Vector2i, tile_data: TileData):
 
 
 #boolean method to check if a position is valid for a mob spawn location
-#currently mobs still sometimes spawn in walls?
 func spawncheck(coords: Vector2):
 	
 	#check if cell exists
