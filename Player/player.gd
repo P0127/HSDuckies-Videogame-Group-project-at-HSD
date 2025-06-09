@@ -182,3 +182,11 @@ func _on_pick_up_area_entered(area: Area2D) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	health_death.emit()
+
+
+#big range around player used for despawning mobs if too far away
+#to keep mob counter in control
+func _on_despawnrange_body_exited(body: Node2D) -> void:
+	if body.is_in_group("all_mobs"):
+		body.queue_free()
+		GlobalSignals.reduce_mob_counter.emit()

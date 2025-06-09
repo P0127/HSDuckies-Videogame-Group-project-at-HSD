@@ -1,9 +1,9 @@
 [gd_scene load_steps=38 format=3 uid="uid://dkla36ebv0n0o"]
 
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://Mobs/mob.gd" id="1_nokgg"]
-[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
-[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://Hud/Hud_assets/healthbar_progress_player_v01_over.png" id="3_1qmh0"]
-[ext_resource type="Texture2D" uid="uid://dua0vsfn1mf8x" path="res://Hud/Hud_assets/healthbar_progress_player_v02_under.png" id="4_gfurk"]
+[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
+[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://hud/Hud_assets/healthbar_progress_player_v01_over.png" id="3_1qmh0"]
+[ext_resource type="Texture2D" uid="uid://dua0vsfn1mf8x" path="res://hud/Hud_assets/healthbar_progress_player_v02_under.png" id="4_gfurk"]
 [ext_resource type="Texture2D" uid="uid://1s4binyeljpr" path="res://Mobs/Mobs_assets/student_grayblue_front_active.png" id="5_b3mxk"]
 [ext_resource type="Texture2D" uid="uid://dfxhn4xxwifem" path="res://Mobs/Mobs_assets/student_grayblue.png" id="5_kbsid"]
 [ext_resource type="Texture2D" uid="uid://bkvhqe2sg6tny" path="res://Mobs/Mobs_assets/student_grayblue__active_sideview.png" id="7_di24j"]
@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bdi06crlaffq3" path="res://assets/effects/feather_2.png" id="23_pduau"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
-radius = 230.169
+radius = 570.538
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3mxk"]
 animations = [{
@@ -199,16 +199,18 @@ colors = PackedColorArray(0.490196, 0.796078, 1, 1, 0.2856, 0.61824, 0.84, 1)
 offsets = PackedFloat32Array(0, 0.84, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Mob" type="CharacterBody2D"]
+[node name="Mob" type="CharacterBody2D" groups=["all_mobs"]]
 scale = Vector2(0.28, 0.28)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_nokgg")
 metadata/_edit_group_ = true
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 100.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="AwarenessRadius" type="Area2D" parent="."]
 collision_layer = 0
@@ -349,9 +351,12 @@ angle_max = 360.0
 scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_s0j0i")
 
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="AwarenessRadius" to="." method="_on_DetectRadius_body_exited"]
 [connection signal="body_entered" from="HurtPlayerArea" to="." method="_on_hurt_player_area_body_entered"]
 [connection signal="body_exited" from="HurtPlayerArea" to="." method="_on_hurt_player_area_body_exited"]
 [connection signal="timeout" from="Time_to_live" to="." method="_on_time_to_live_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -8,6 +8,8 @@ extends Node#this script is for now only meant for GLOBAL SIGNALS
 signal duck_collected_signal
 signal drop_duck
 signal drop_item
+signal reduce_mob_counter
+signal mob_level_up
 
 var timerSpeedUp = Timer.new()
 var timerFirerate = Timer.new()
