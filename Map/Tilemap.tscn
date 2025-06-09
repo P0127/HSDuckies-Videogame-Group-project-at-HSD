@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://b23fkwbnh2ijx"]
+[gd_scene load_steps=45 format=4 uid="uid://b23fkwbnh2ijx"]
 
 [ext_resource type="Texture2D" uid="uid://dn72um2e3jiqf" path="res://Map/Map_Tilemap/TilemapBearbeitet6.png" id="1_4gmdh"]
 [ext_resource type="Script" uid="uid://drr515vuup1mu" path="res://Map/test_tilemap.gd" id="1_ctltw"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://busmcqa5rywm6" path="res://Map/Map_Tilemap/TilemapBearbeitet.png" id="7_g8oif"]
 [ext_resource type="Texture2D" uid="uid://cn5r51qbiy1gh" path="res://Map/Map_Tilemap/Sprites/dekotiles.png" id="8_np6tf"]
 [ext_resource type="Texture2D" uid="uid://pe6lbg71ni6u" path="res://Map/Map_Tilemap/Sprites/wand1.png" id="9_8qka3"]
-[ext_resource type="Script" path="res://Map/fade_on_roof.gd" id="10_srcvq"]
+[ext_resource type="Script" uid="uid://coglm1jsjk5g2" path="res://Map/fade_on_roof.gd" id="10_srcvq"]
 [ext_resource type="PackedScene" uid="uid://dxr5tal3pik4a" path="res://Destroyable/destroyable_backpack.tscn" id="11_rrev1"]
 [ext_resource type="PackedScene" uid="uid://b2qfans1eui5b" path="res://Destroyable/destroyable_trashcan.tscn" id="12_uaiai"]
 
