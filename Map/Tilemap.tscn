@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b2qfans1eui5b" path="res://Destroyable/destroyable_trashcan.tscn" id="12_uaiai"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ctltw"]
+resource_name = "no_spawn"
 texture = ExtResource("1_s4fl3")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0
@@ -29,6 +30,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-20, -20, 20, -20, 20, 
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_np6tf"]
+resource_name = "spawn"
 texture = ExtResource("1_p72bj")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0

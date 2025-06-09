@@ -1,8 +1,10 @@
 extends Area2D #player weapon
 
-const STANDARD_FIRERATE_WAITTIME : float = 0.30 #Waittime before it's shot again
-
-var firerate_waittime := STANDARD_FIRERATE_WAITTIME
+var standard_firerate_waittime : float = 0.50 #Waittime before it's shot again, the lower the better
+var firerate_waittime := standard_firerate_waittime
+const FIRERATE_WATTIME_ON_LEVELUP : float = 0.1
+var bullet_size : float = 1 #Standard scaling at the start
+const BULLET_SIZE_ON_LEVELUP : float = 0.2 #How much size increase on levelUp
 
 const BULLET = preload("res://Weapon/projectile.tscn")
 @onready var spawnpoint = $CharCenter/Weapon/BulletSpawnPoint
@@ -17,6 +19,7 @@ func _ready() -> void:
 	
 	#Global Timer timeouts to reset stats
 	GlobalSignals.timerFirerate.connect("timeout", _on_global_firerate_timeout)
+	GlobalSignals.duck_collected_signal.connect(_levelUp)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,6 +46,7 @@ func shoot():
 		#use global_position cuz position is relative to parent node
 		new_bullet.global_position = spawnpoint.global_position
 		new_bullet.global_rotation = spawnpoint.global_rotation
+		new_bullet.apply_scale(Vector2(bullet_size, bullet_size))
 		
 		#add new bullets as child nodes of the spawnpoint
 		spawnpoint.add_child(new_bullet)
@@ -68,4 +72,9 @@ func boost_firerate_collected(changerate : float):
 
 #resets on global effect timer timeout
 func _on_global_firerate_timeout():
-	$"attack speed".wait_time = STANDARD_FIRERATE_WAITTIME
+	$"attack speed".wait_time = standard_firerate_waittime
+
+func _levelUp (ducks_collected : int):
+	standard_firerate_waittime += FIRERATE_WATTIME_ON_LEVELUP #adds 0.1 at a time
+	$"attack speed".wait_time += FIRERATE_WATTIME_ON_LEVELUP #else only adds to current firerate once boost runs out
+	bullet_size += BULLET_SIZE_ON_LEVELUP #Bullets get larger

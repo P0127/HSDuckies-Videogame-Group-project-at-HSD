@@ -9,10 +9,12 @@ signal health_death #Custom Signal; Death / Game_over due to health depletion
 @onready var spritePlayer = $AnimatedPlayerSprite
 
 ## STATS
-const MAX_HEALTH : float = 10.0 #Set Health Amount
+var max_health : float = 50.0  #Set Health Amount, not const as it scales with player level
 const STANDARD_SPEED = 250 #original Speed (backup for speedchanges via pickups)
-var health = MAX_HEALTH #Player health current
+var health = max_health #Player health current
 var speed = STANDARD_SPEED #player movement speed in pixels/sec
+var level := 1
+const HEALTH_ON_LEVELUP = 10
 
 ## ORIENTATION
 var current_direction = Vector2.ZERO #Direction Player is moving in
@@ -41,6 +43,8 @@ func _ready():
 	
 	#Global Timer timeouts to reset stats
 	GlobalSignals.timerSpeedUp.connect("timeout", _on_global_speedUp_timeout)
+	#To Level Up (triggered by HUD counter)
+	GlobalSignals.duck_collected_levelUp.connect(_levelUp)
 
 # Function for start of game to move player to start position and show player
 func start(pos):
@@ -103,6 +107,16 @@ func take_damage(delta : float, damage_amount : float):
 		_die()
 
 
+func _levelUp (ducks_collected : int):
+	level += 1
+	max_health += HEALTH_ON_LEVELUP #Adds Health per level
+	heal(HEALTH_ON_LEVELUP * 1.5) # heals you a bit more than the max health you gain
+	
+	# Might add another weapon later
+	
+	$LevelUp.set_deferred("emitting", true)
+
+
 #function that sets Sprite Animation in relation to the direction faced by the Player
 func _rotate_sprite(movement_timer : float):
 	if velocity != Vector2.ZERO:
@@ -145,10 +159,10 @@ func _rotate_weapon(direction_player : Vector2):
 
 #functions used for pickups 
 func heal(heal_amount : float):
-	if (health + heal_amount) < MAX_HEALTH:
+	if (health + heal_amount) < max_health:
 		health += heal_amount
 	else:
-		health = MAX_HEALTH
+		health = max_health
 
 #function adds onto speed non collectively (chooses the highest boost)
 func speed_up(speed_amount : int):

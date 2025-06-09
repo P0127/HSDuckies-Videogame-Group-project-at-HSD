@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://djr2ebk8jm13r"]
+[gd_scene load_steps=15 format=3 uid="uid://djr2ebk8jm13r"]
 
 [ext_resource type="Script" uid="uid://bh4d7allge8nj" path="res://Drops/duck_collectable.gd" id="1_npn1j"]
 [ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://Drops/Drops_assets/Ente.png" id="2_nj65u"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cslr4g6svm0uv" path="res://Drops/Drops_assets/EnteA1.png" id="4_g1qbf"]
 [ext_resource type="Texture2D" uid="uid://bq341a6hant6e" path="res://assets/effects/feather_1.png" id="5_j5py5"]
 [ext_resource type="Texture2D" uid="uid://bdi06crlaffq3" path="res://assets/effects/feather_2.png" id="6_ua53g"]
+[ext_resource type="AudioStream" uid="uid://cknc7stdj7q0u" path="res://assets/sound/515408__tabbygus__duck-quack-sound-effect-hd.mp3" id="7_ua53g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oatfm"]
 radius = 280.178
@@ -192,6 +193,11 @@ angular_velocity_max = 90.0
 angle_max = 360.0
 scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_hlqqf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ua53g")
+volume_db = -20.0
+pitch_scale = 0.8
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -210,6 +210,7 @@ autoplay = "drop"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_0oxh6")
+volume_db = -20.0
 
 [node name="CollectedParticles" type="CPUParticles2D" parent="."]
 position = Vector2(2, 12)

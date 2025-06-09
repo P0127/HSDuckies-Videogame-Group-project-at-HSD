@@ -1,10 +1,16 @@
 extends Area2D
 
+@onready var sound := $AudioStreamPlayer
+
 var globalPos
+var pitch : float #different for each duck to get variety
 
 func _ready():
 	# Starts Animation once
 	$DuckPath/DuckPathFollow/AnimatedSprite2D.play("flapping")
+	randomize()
+	pitch = randf_range(1.1, 1.6)
+	sound.pitch_scale = pitch
 
 
 func _physics_process(delta):
@@ -22,6 +28,9 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	GlobalSignals.duck_collected_signal.emit()#using a global script to get the signal
 	#to the hud without requiring it to be a child/parent node 
+	if sound:
+		sound.play()
+		
 	$DuckPath/DuckPathFollow/AnimatedSprite2D/AnimationPlayer.play("collected")
 
 

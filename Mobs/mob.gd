@@ -56,8 +56,6 @@ func _ready():
 	progressBar.max_value = health
 	progressBar.value = health
 	progressBar.hide()
-	
-	
 
 func _process(delta: float):
 	progressBar.value = health
@@ -214,3 +212,4 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 
 func increment_mobLvl():
 	mob_level += 1
+	$LevelUp.set_deferred("emitting", true)

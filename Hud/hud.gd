@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var ducks_collected = 0
+var ducks_collected : int = 0
 @onready var start_button = $StartButton
 @onready var start_button_animation = $StartButton/StartButtonAnimations
 @onready var counter_letters = $"Counter/Duck counter letters"
@@ -53,5 +53,9 @@ func duck_collected_func():
 	ducks_collected += 1
 	counter_letters.text = "Ducks: " 
 	counter_numbers.text = str(ducks_collected)
+	# certain number of ducks get collected, player levels up
+	#Improper space for the levelUp requirement, but it is what it is
+	if ducks_collected % 10 == 0:
+		GlobalSignals.duck_collected_levelUp.emit(ducks_collected)
 	#devided into two labels so that the use of the custom font for numbers only 
 	#would be possible
