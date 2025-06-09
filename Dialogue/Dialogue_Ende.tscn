@@ -1,28 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://cttwy28pac8t1"]
+[gd_scene load_steps=8 format=3 uid="uid://cttwy28pac8t1"]
 
 [ext_resource type="Script" uid="uid://bl0uih77m0qs2" path="res://Dialogue/dialogue_ende.gd" id="1_nrco7"]
 [ext_resource type="Texture2D" uid="uid://dhxq32a8tjdw4" path="res://CutScene/CutScene_assets/BackgroundCutScene.png" id="2_nrco7"]
 [ext_resource type="Texture2D" uid="uid://i3ts8lgnrpty" path="res://Characters/Character_assets/DahmSpeaking1.png" id="3_nrco7"]
 [ext_resource type="Texture2D" uid="uid://b3xpqb5pi57d0" path="res://Characters/Character_assets/DahmSpeaking2.png" id="4_esyp7"]
 [ext_resource type="Texture2D" uid="uid://b1mwggjucdsbw" path="res://Dialogue/textbox.png" id="5_esyp7"]
+[ext_resource type="AudioStream" uid="uid://scl4qsinywka" path="res://Dialogue/keyboard-typing-5997.mp3" id="6_esyp7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_haow2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_nrco7")
-}],
-"loop": true,
-"name": &"1)",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("4_esyp7")
 }],
 "loop": true,
-"name": &"2)",
-"speed": 5.0
+"name": &"default",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nrco7")
+}],
+"loop": true,
+"name": &"open",
+"speed": 8.0
 }]
 
 [node name="dialogue_Ende" type="Node2D"]
@@ -42,7 +43,6 @@ texture = ExtResource("2_nrco7")
 position = Vector2(175, 932)
 scale = Vector2(0.767767, 0.771467)
 sprite_frames = SubResource("SpriteFrames_haow2")
-animation = &"1)"
 
 [node name="textbox" type="NinePatchRect" parent="."]
 offset_left = 347.0
@@ -80,5 +80,8 @@ offset_top = 0.0889969
 offset_right = 1461.02
 offset_bottom = 73.089
 theme_override_colors/font_shadow_color = Color(0.114897, 0.114897, 0.114897, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
+
+[node name="typing_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_esyp7")

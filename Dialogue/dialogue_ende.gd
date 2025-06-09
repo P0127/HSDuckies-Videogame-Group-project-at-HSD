@@ -2,22 +2,32 @@ extends Node2D
 
 @export var d_file: String  # Path to JSON dialogue file
 
-var dialogue = []                # Loaded dialogue lines
-var current_dialogue_id = -1     # Current dialogue index
-var d_active = false             # Is dialogue active?
+
+# Node references
+@onready var textbox = $textbox
+@onready var textbox_name = $textbox/name
+@onready var textbox_text = $textbox/text
+@onready var typing_sound = $typing_sound
+@onready var Herr_Dahm = $"Herr Dahm"
+var dialogue = []   # Loaded dialogue lines
+var current_dialogue_id = -1   # Current dialogue index
+var d_active = false  
 
 # Typewriter effect variables
 var typing = false
 var char_index = 0
-var typing_speed = 0.03          # Seconds per character
-var typing_timer = 0.0
+var typing_speed = 0.05  # Seconds per character
+var typing_timer = 0.0   # Timer for typewriter delay
 
 
 func _ready():
+	
 	if d_active:
 		return  # Skip if dialogue already started
 	d_active = true
-	$textbox.visible = true  # Show textbox
+	textbox.visible = true  # Show textbox
+	Herr_Dahm.play("open")
+	Herr_Dahm.pause()
 	start()
 
 
@@ -40,11 +50,12 @@ func _input(event):
 		return
 	if event.is_action_pressed("ui_accept"):
 		if typing:
-			# If typing, show full text immediately
-			$textbox/text.visible_characters = $textbox/text.text.length()
+			# If typing, immediately show full text and stop sound
+			textbox_text.visible_characters = textbox_text.text.length()
 			typing = false
+			typing_sound.stop()
 		else:
-			# Go to next dialogue line
+			# Move to next dialogue line
 			next_script()
 
 
@@ -54,11 +65,38 @@ func next_script():
 	# End of dialogue
 	if current_dialogue_id >= len(dialogue):
 		d_active = false
-		$textbox.visible = false
+		textbox.visible = false
 		return
 
 	# Set name and text from JSON
-	$textbox/name.text = dialogue[current_dialogue_id]['name']
-	$textbox/text.text = dialogue[current_dialogue_id]['text']
+	textbox_name.text = dialogue[current_dialogue_id]['name']
+	textbox_text.text = dialogue[current_dialogue_id]['text']
 
-	
+	# Prepare typewriter effect
+	char_index = 0
+	typing_timer = 0.0
+	textbox_text.visible_characters = 0
+	typing = true
+
+
+func _process(delta):
+	if typing: #only if it's typing
+		# Animation where mouth open
+		Herr_Dahm.play("open")
+		
+		char_index += 1
+		textbox_text.visible_characters = char_index 
+
+			# Play sound for non-whitespace characters
+		if char_index <= textbox_text.text.length():
+				
+			if not typing_sound.playing:
+				typing_sound.play()
+
+			# If line is fully shown, stop typing and sound
+			if char_index >= textbox_text.text.length():
+				typing = false
+				typing_sound.stop()
+				
+	else :
+					Herr_Dahm.play("default")  
