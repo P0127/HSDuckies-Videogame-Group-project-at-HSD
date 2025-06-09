@@ -80,11 +80,12 @@ func spawn_mob():
 func _on_mob_spawn_timer_timeout():
 	spawn_mob()
 	if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec 
-		MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.0025)
+		MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
 		
-		#every two minutes level up mobs once
-		#fmod and not % to get more accurate result
-		if(fmod(MobSpawnTimer.get_wait_time(), 120) == 0): 
+		#every time MobSpawnTimer is dividable by 0.5 increase lvl
+		#currently that would be 135 seconds
+		#fmod and not % since % only works for int
+		if(fmod(MobSpawnTimer.get_wait_time(), 0.5) == 0): 
 			GlobalSignals.mob_level_up.emit()
 
 func _on_player_died():

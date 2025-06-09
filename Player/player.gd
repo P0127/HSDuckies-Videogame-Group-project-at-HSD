@@ -12,6 +12,7 @@ var health = max_health #Player health current
 var speed = STANDARD_SPEED #player movement speed in pixels/sec
 var level := 1
 const HEALTH_ON_LEVELUP = 10
+@export var godmode = false #for testing mob stuff
 
 ## ORIENTATION
 var current_direction = Vector2.ZERO #Direction Player is moving in
@@ -96,12 +97,13 @@ func _movement(delta : float):
 
 #function that proccesses damage taken to the Player
 func take_damage(delta : float, damage_amount : float):
-	if health > 0.0:
-		#Why Delta? Else we'd loose health per Frame, not per Second!
-		health -= damage_amount * delta
-		$OuchParticles.emitting = true
-	else:
-		_die()
+	if(!godmode): # for testing mob stuff
+		if health > 0.0:
+			#Why Delta? Else we'd loose health per Frame, not per Second!
+			health -= damage_amount * delta
+			$OuchParticles.emitting = true
+		else:
+			_die()
 
 
 func _levelUp (ducks_collected : int):
