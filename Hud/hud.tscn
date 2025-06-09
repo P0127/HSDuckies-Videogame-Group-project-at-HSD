@@ -10,6 +10,21 @@
 [ext_resource type="Texture2D" uid="uid://wdytae5hsfg1" path="res://hud/Hud_assets/shine_scaled.png" id="5_qv4qp"]
 [ext_resource type="AudioStream" uid="uid://cknc7stdj7q0u" path="res://assets/sound/515408__tabbygus__duck-quack-sound-effect-hd.mp3" id="6_fjv1a"]
 
+[sub_resource type="Animation" id="Animation_sh35x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_qv4qp"]
 resource_name = "duckie"
 loop_mode = 1
@@ -26,25 +41,25 @@ tracks/0/keys = {
 "values": [0.0, -0.226893, 0.0, 0.216421]
 }
 
-[sub_resource type="Animation" id="Animation_sh35x"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gms7k"]
+_data = {
+&"RESET": SubResource("Animation_sh35x"),
+&"duckie": SubResource("Animation_qv4qp")
+}
+
+[sub_resource type="Animation" id="Animation_hwufu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gms7k"]
-_data = {
-&"RESET": SubResource("Animation_sh35x"),
-&"duckie": SubResource("Animation_qv4qp")
+"values": [Vector2(0.2, 0.2)]
 }
 
 [sub_resource type="Animation" id="Animation_gms7k"]
@@ -62,21 +77,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0.2, 0.2), Vector2(0.5, 0.5), Vector2(0.2, 0.2), Vector2(0.2, 0.2)]
-}
-
-[sub_resource type="Animation" id="Animation_hwufu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.2, 0.2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mq7b8"]
