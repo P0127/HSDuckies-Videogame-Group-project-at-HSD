@@ -28,7 +28,7 @@ animations = [{
 
 [node name="dialogue_Ende" type="Node2D"]
 script = ExtResource("1_nrco7")
-d_file = "res://Dialogue/Dialogue_Dahm.json"
+d_file = "res://CutScene/Dialogue/Dialogue_Dahm.json"
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 1916.0

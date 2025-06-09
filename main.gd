@@ -15,14 +15,15 @@ var current_mob_amount = 0 #tracks how many mobs are currently spawned
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#pass #replace with function if needed
-	$Hud.start_game.connect(new_game)
+	GlobalSignals.start_game.connect(new_game)
 	
 	#to prevent the panning over
 	$Player.start($StartPosition.position)
 	
 	# Connect the player's death signal to show game over
-	$Player.health_death.connect(_on_player_died)
+	GlobalSignals.game_over.connect(_on_player_died)
 	GlobalSignals.reduce_mob_counter.connect(reduce_mob_counter)
+	GlobalSignals.game_won.connect(_end_cutscene)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -88,6 +89,9 @@ func _on_mob_spawn_timer_timeout():
 
 func _on_player_died():
 	$GameOver.show()
+
+func _end_cutscene():
+	pass
 
 
 func reduce_mob_counter():

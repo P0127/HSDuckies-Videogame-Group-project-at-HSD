@@ -12,9 +12,6 @@ var ducks_collected : int = 0
 @onready var shine = $ShineScaled
 @onready var shine_anim = $ShineScaled/bling
 
-# Notifies `Main` node that the button has been pressed
-signal start_game
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalSignals.duck_collected_signal.connect(duck_collected_func)
@@ -47,7 +44,7 @@ func _on_start_button_pressed():
 	background_pic.hide()
 	duck.hide()
 	shine.hide()
-	start_game.emit()
+	GlobalSignals.start_game.emit()
 
 func duck_collected_func():
 	ducks_collected += 1
@@ -55,6 +52,10 @@ func duck_collected_func():
 	counter_numbers.text = str(ducks_collected)
 	# certain number of ducks get collected, player levels up
 	#Improper space for the levelUp requirement, but it is what it is
+	
+	if ducks_collected == 35:
+		GlobalSignals.game_won.emit()
+	
 	if ducks_collected % 10 == 0:
 		GlobalSignals.duck_collected_levelUp.emit(ducks_collected)
 	#devided into two labels so that the use of the custom font for numbers only 

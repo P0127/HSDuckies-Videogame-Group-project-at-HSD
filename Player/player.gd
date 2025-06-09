@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-## SIGNALS
-signal health_death #Custom Signal; Death / Game_over due to health depletion
-
 ## SCENES (multiple usage)
 @onready var progressBar = $ProgressBar
 @onready var weapon = $"player weapon"
@@ -195,7 +192,7 @@ func _on_pick_up_area_entered(area: Area2D) -> void:
 		area.pickup(self)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	health_death.emit()
+	GlobalSignals.game_over.emit()
 
 
 #big range around player used for despawning mobs if too far away

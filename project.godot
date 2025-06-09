@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 GlobalSignals="*res://global_signals.gd"
 ItemManager="*res://item_manager.gd"
+SceneManager="*res://scene_manager.gd"
 
 [display]
 
