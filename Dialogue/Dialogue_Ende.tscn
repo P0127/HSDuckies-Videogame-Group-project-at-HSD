@@ -43,6 +43,7 @@ texture = ExtResource("2_nrco7")
 position = Vector2(175, 932)
 scale = Vector2(0.767767, 0.771467)
 sprite_frames = SubResource("SpriteFrames_haow2")
+animation = &"open"
 
 [node name="textbox" type="NinePatchRect" parent="."]
 offset_left = 347.0
@@ -85,3 +86,8 @@ bbcode_enabled = true
 
 [node name="typing_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_esyp7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.055
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
