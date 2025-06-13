@@ -9,6 +9,7 @@ extends Node2D
 @onready var textbox_text = $textbox/text
 @onready var typing_sound = $typing_sound
 @onready var Herr_Dahm = $"Herr Dahm"
+@onready var timer = $Timer
 var dialogue = []   # Loaded dialogue lines
 var current_dialogue_id = -1   # Current dialogue index
 var d_active = false  
@@ -16,8 +17,6 @@ var d_active = false
 # Typewriter effect variables
 var typing = false
 var char_index = 0
-var typing_speed = 0.05  # Seconds per character
-var typing_timer = 0.0   # Timer for typewriter delay
 
 
 func _ready():
@@ -30,8 +29,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		return  # Skip if dialogue already started
 	d_active = true
 	textbox.visible = true  # Show textbox
-	Herr_Dahm.play("open")
-	Herr_Dahm.pause()
+	
 	start()
 
 func start():
@@ -77,29 +75,32 @@ func next_script():
 
 	# Prepare typewriter effect
 	char_index = 0
-	typing_timer = 0.0
 	textbox_text.visible_characters = 0
 	typing = true
+	timer.start()
+	Herr_Dahm.play("open")
 
 
-func _process(delta):
-	if typing: #only if it's typing
-		# Animation where mouth open
+
+
+
+func _on_timer_timeout() -> void:
+	if not typing: # if it´s not typing then stop the timer 
 		Herr_Dahm.play("open")
-		
-		char_index += 1
-		textbox_text.visible_characters = char_index 
+		timer.stop()
+		return
 
-			# Play sound for non-whitespace characters
-		if char_index <= textbox_text.text.length():
-				
-			if not typing_sound.playing:
+	char_index += 1 #else add a character every 0.05 seconds
+	textbox_text.visible_characters = char_index # update 
+
+	if char_index <= textbox_text.text.length(): 
+		# if there are still characters left play sound 
+		if not typing_sound.playing:
 				typing_sound.play()
-
-			# If line is fully shown, stop typing and sound
-			if char_index >= textbox_text.text.length():
-				typing = false
-				typing_sound.stop()
-				
-	else :
-					Herr_Dahm.play("default")  
+		#stop sound and typing when ther are no characters left
+	if char_index >= textbox_text.text.length():
+		typing = false
+		timer.stop()
+		typing_sound.stop()
+		Herr_Dahm.play("default")
+	

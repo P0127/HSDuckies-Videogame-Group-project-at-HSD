@@ -79,6 +79,7 @@ texture = ExtResource("2_nrco7")
 position = Vector2(175, 932)
 scale = Vector2(0.767767, 0.771467)
 sprite_frames = SubResource("SpriteFrames_haow2")
+animation = &"open"
 
 [node name="textbox" type="NinePatchRect" parent="."]
 offset_left = 347.0
@@ -135,3 +136,7 @@ libraries = {
 }
 
 [connection signal="animation_finished" from="fade_in/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.055
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
