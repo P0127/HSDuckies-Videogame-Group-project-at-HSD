@@ -13,6 +13,9 @@ config_version=5
 config/name="Duck-Duck-Düsseldorf"
 run/main_scene="uid://bpiuwyqnm0c2n"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0.09, 0.0555, 0, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://cslr4g6svm0uv"
 config/icon="uid://blo0wpyfk7dww"
 
 [autoload]
