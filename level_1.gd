@@ -1,9 +1,9 @@
-extends Node
+extends Node2D
 
 @export var Mob: PackedScene
 @export var RangedMob : PackedScene #testing
 
-@onready var MobSpawnTimer = $MobSpawnTimer
+@onready var MobSpawnTimer = %MobSpawnTimer
 @onready var MapFloor = $Test_Tilemap/Boden
 @onready var MobSpawningPath = %MobSpawningPath
 @onready var Map = $Test_Tilemap
@@ -19,7 +19,7 @@ func _ready():
 	$Player.start($StartPosition.position)
 	
 	spawn_mob()
-	$MobSpawnTimer.start()
+	MobSpawnTimer.start()
 	#$Player/Path2D.
 	
 	# Connect the player's death signal to show game over
@@ -42,7 +42,6 @@ func _ready():
 func spawn_mob():
 	if(current_mob_amount <= MOB_LIMIT):
 		var which_mob = randf()
-		
 		if (which_mob > 0.2): #80% chance for meelee mob 
 			var new_mob = load("res://Mobs/mob.tscn").instantiate()
 			MobSpawningPath.progress_ratio = randf() #produces rdm decimal number between 0 & 1
