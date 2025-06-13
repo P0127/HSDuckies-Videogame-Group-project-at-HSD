@@ -21,7 +21,11 @@ var typing_timer = 0.0   # Timer for typewriter delay
 
 
 func _ready():
-	
+	#starts scene with a black fade in
+	$fade_in/AnimationPlayer.play("fade_in")
+
+#starts dialogue after the fade in is done
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if d_active:
 		return  # Skip if dialogue already started
 	d_active = true
@@ -29,7 +33,6 @@ func _ready():
 	Herr_Dahm.play("open")
 	Herr_Dahm.pause()
 	start()
-
 
 func start():
 	dialogue = load_dialogue()

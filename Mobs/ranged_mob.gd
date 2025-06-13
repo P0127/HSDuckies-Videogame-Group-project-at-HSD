@@ -15,7 +15,7 @@ var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate sc
 var mob_level : int = 1 #Level for scaling
 var health : int = 2 + (mob_level / 3) #Hits required to kill
 var movement_speed = 100 + 10 * mob_level 
-var damage_rate : float = 3.0 + (mob_level / 2) #damage done to Player by touching
+var damage_rate : float = 3.0 + (float(mob_level) / 2) #damage done to Player by touching
 
 
 ## TARGETS
@@ -31,6 +31,7 @@ func _ready():
 	progressBar.hide()
 	GlobalSignals.mob_level_up.connect(increment_mobLvl)
 
+@warning_ignore("unused_parameter")
 func _process(delta: float):
 	progressBar.value = health
 

@@ -4,12 +4,10 @@ extends Area2D #Mob weapon
 const STANDARD_FIRERATE_WAITTIME : float = 2 #Waittime in seconds before it's shot again
 
 const BULLET = preload("res://Mobs/mob_projectile.tscn")
+
+#Every weapon needs to know to which mob it belongs and uses this to spawn the bullets
+@export var mob : CharacterBody2D
 @onready var spawnpoint = $CharCenter/Weapon/BulletSpawnPoint
-#yes that var is needed and we cant just reference the BSP node since for some reason
-#that creates an error and will act like it doesnt have a position for us to 
-#reference even though it very much does
-@onready var bulletspawnpoint = $"/root/Main"
-#bullets will now be spawned as a child of main, that way they dont despawn alongside the ranged mob upon defeat
 
 var fire_status = true
 
@@ -22,6 +20,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	#will prob remove this later and make it invisble or sth
 	#however might be a problem for visibility so we'll see
@@ -48,7 +47,7 @@ func shoot():
 		new_bullet.global_rotation = spawnpoint.global_rotation
 		
 		#add new bullets as child nodes of the spawnpoint
-		bulletspawnpoint.add_child(new_bullet)
+		mob.add_child(new_bullet)
 
 func attack(status : bool):
 	$attack_speed.set_paused(!status)

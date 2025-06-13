@@ -10,19 +10,19 @@ config_version=5
 
 [application]
 
-config/name="IP1-Godot"
-run/main_scene="uid://esi7qim0g042"
+config/name="Duck-Duck-Düsseldorf"
+run/main_scene="uid://bpiuwyqnm0c2n"
 config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="uid://blo0wpyfk7dww"
 
 [autoload]
 
 GlobalSignals="*res://global_signals.gd"
 ItemManager="*res://item_manager.gd"
-SceneManager="*res://scene_manager.gd"
 
 [display]
 
-window/size/viewport_width=1920
+window/size/viewport_width=1980
 window/size/viewport_height=1080
 window/size/mode=3
 

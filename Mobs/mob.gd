@@ -57,6 +57,7 @@ func _ready():
 	progressBar.value = health
 	progressBar.hide()
 
+@warning_ignore("unused_parameter")
 func _process(delta: float):
 	progressBar.value = health
 

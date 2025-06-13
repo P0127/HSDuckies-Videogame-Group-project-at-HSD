@@ -11,8 +11,6 @@ var mensafood := preload("res://Drops/drop_chocolatebar.tscn")
 #DropVariants
 var drops = [chocobar, energydrink, mensafood]
 
-@onready var main = $"/root/Main"
-
 func _ready():
 	#Gets emitted in scenes where drops are needed 
 	#Get global_position argument given with
@@ -23,8 +21,10 @@ func _ready():
 func _drop(spawn_global_position : Vector2, drop_scene : PackedScene):
 	var drop = drop_scene.instantiate()
 	drop.global_position = spawn_global_position
+	
+	#spawns into the current running scene, set via global scene controller
 	#will run after physics proccessees, lessens errors (deferred)
-	main.call_deferred("add_child", drop)
+	GlobalSignals.scene_controller.current_scene.call_deferred("add_child", drop)
 
 func _drop_duck(mob_global_position : Vector2):
 	_drop(mob_global_position, ducks)

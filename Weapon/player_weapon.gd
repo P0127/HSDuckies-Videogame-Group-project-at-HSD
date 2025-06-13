@@ -23,6 +23,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	#Switches Animations depending on the rotation
 	match int(rotation_degrees):
@@ -74,7 +75,7 @@ func boost_firerate_collected(changerate : float):
 func _on_global_firerate_timeout():
 	$"attack speed".wait_time = standard_firerate_waittime
 
-func _levelUp (ducks_collected : int):
+func _levelUp ():
 	standard_firerate_waittime += FIRERATE_WATTIME_ON_LEVELUP #adds 0.1 at a time
 	$"attack speed".wait_time += FIRERATE_WATTIME_ON_LEVELUP #else only adds to current firerate once boost runs out
 	bullet_size += BULLET_SIZE_ON_LEVELUP #Bullets get larger

@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 		if dach.modulate.a <= 0.0:
 			fading_out = false
 
+@warning_ignore("unused_parameter")
 func _check_fade(body: CharacterBody2D, entered: bool) -> void:
 	if entered:
 		fading_in = false

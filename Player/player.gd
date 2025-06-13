@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var spritePlayer = $AnimatedPlayerSprite
 
 ## STATS
-var max_health : float = 50.0  #Set Health Amount, not const as it scales with player level
+var max_health : float = 10.0  #Set Health Amount, not const as it scales with player level
 const STANDARD_SPEED = 250 #original Speed (backup for speedchanges via pickups)
 var health = max_health #Player health current
 var speed = STANDARD_SPEED #player movement speed in pixels/sec
@@ -23,9 +23,7 @@ var movement_timer : float = 0.0 #timer to count how long moving in a direction
 var weapon_direction_change_min_time : float = 0.1 #time how long is needed till weapon direction changes 
 
 
-
-
-
+## FUNCTIONS PRESET
 #Called when the node enters the scene tree for the first time.
 func _ready():
 	#screen_size = get_viewport_rect().size
@@ -43,6 +41,7 @@ func _ready():
 	GlobalSignals.timerSpeedUp.connect("timeout", _on_global_speedUp_timeout)
 	#To Level Up (triggered by HUD counter)
 	GlobalSignals.duck_collected_levelUp.connect(_levelUp)
+	GlobalSignals.game_won.connect(_on_game_won)
 
 # Function for start of game to move player to start position and show player
 func start(pos):
@@ -53,8 +52,8 @@ func start(pos):
 	$PlayerCollisionShape.disabled = false
 
 #Called as often as possible. For effects and independent proccesses
+@warning_ignore("unused_parameter")
 func _process(delta : float):
-	
 	progressBar.value = health #Updates progress bar
 
 #Called every frame. 'delta' is the elapsed time since the previous frame. Keeps Framerate
@@ -76,6 +75,7 @@ func _physics_process(delta : float):
 	move_and_collide(velocity * delta) #check for collisions with walls
 
 
+## PHYSICS FUNCTIONS (DELTA)
 # Function that processes Player's movement
 func _movement(delta : float):
 	#checks input and adjusts walking direction accordingly
@@ -106,16 +106,7 @@ func take_damage(delta : float, damage_amount : float):
 			_die()
 
 
-func _levelUp (ducks_collected : int):
-	level += 1
-	max_health += HEALTH_ON_LEVELUP #Adds Health per level
-	heal(HEALTH_ON_LEVELUP * 1.5) # heals you a bit more than the max health you gain
-	
-	# Might add another weapon later
-	
-	$LevelUp.set_deferred("emitting", true)
-
-
+## FUNCTIONS ANIMATIONS
 #function that sets Sprite Animation in relation to the direction faced by the Player
 func _rotate_sprite(movement_timer : float):
 	if velocity != Vector2.ZERO:
@@ -156,6 +147,16 @@ func _rotate_weapon(direction_player : Vector2):
 			weapon.position.x = 0
 
 
+## FUNCTIONS STATS
+func _levelUp ():
+	level += 1
+	max_health += HEALTH_ON_LEVELUP #Adds Health per level
+	heal(HEALTH_ON_LEVELUP * 1.5) # heals you a bit more than the max health you gain
+	
+	# Might add another weapon later
+	
+	$LevelUp.set_deferred("emitting", true)
+
 #functions used for pickups 
 func heal(heal_amount : float):
 	if (health + heal_amount) < max_health:
@@ -168,6 +169,14 @@ func speed_up(speed_amount : int):
 	if speed < STANDARD_SPEED + speed_amount:
 		speed = STANDARD_SPEED + speed_amount
 
+#resets speed once global timer on speedUp runs out; speed adds on timerwise
+func  _on_global_speedUp_timeout():
+	speed = STANDARD_SPEED
+
+#changes firerate, parameter increases the rate of it being shot
+func increase_firerate(firerate_amount : float):
+	$"player weapon".boost_firerate_collected(firerate_amount)
+
 
 func _die():
 	$HurtBox/CollisionShape2D.set_deferred("disabled", true)
@@ -179,23 +188,28 @@ func _die():
 	
 	$AnimatedPlayerSprite/AnimationPlayer.play("scale")
 
+func _on_game_won():
+	$HurtBox/CollisionShape2D.set_deferred("disabled", true)
+	$PickUp/CollisionShape2D.set_deferred("disabled", true)
+	$PlayerCollisionShape.set_deferred("disabled", true)
+	$OuchParticles.set_deferred("visible", false)
+	#no movement allowed
+	speed = 0
+	
+	$AnimatedPlayerSprite/AnimationPlayer.play("game_won")
 
-#changes firerate, parameter increases the rate of it being shot
-func increase_firerate(firerate_amount : float):
-	$"player weapon".boost_firerate_collected(firerate_amount)
-
-#resets speed once global timer on speedUp runs out; speed adds on timerwise
-func  _on_global_speedUp_timeout():
-	speed = STANDARD_SPEED
+## FUNCTIONS SIGNALS
+@warning_ignore("unused_parameter")
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "scale":
+		GlobalSignals.game_over.emit()
+	elif anim_name == "game_won":
+		GlobalSignals.duck_counter._game_won()
 
 #checks if touched body has a method called pickup to be called
 func _on_pick_up_area_entered(area: Area2D) -> void:
 	if area.is_in_group("pickupable_player"):
 		area.pickup(self)
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	GlobalSignals.game_over.emit()
-
 
 #big range around player used for despawning mobs if too far away
 #to keep mob counter in control

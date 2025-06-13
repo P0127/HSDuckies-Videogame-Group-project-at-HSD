@@ -12,7 +12,7 @@ func _ready():
 	pitch = randf_range(1.1, 1.6)
 	sound.pitch_scale = pitch
 
-
+@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	if ($DuckPath/DuckPathFollow.progress_ratio != 1):
 		$DuckPath/DuckPathFollow.progress_ratio += 0.015
@@ -24,7 +24,7 @@ func _physics_process(delta):
 		# Ends Animation once path has finnished
 		$DuckPath/DuckPathFollow/AnimatedSprite2D.animation = "default"
 
-
+@warning_ignore("unused_parameter")
 func _on_body_entered(body):
 	GlobalSignals.duck_collected_signal.emit()#using a global script to get the signal
 	#to the hud without requiring it to be a child/parent node 
@@ -33,6 +33,6 @@ func _on_body_entered(body):
 		
 	$DuckPath/DuckPathFollow/AnimatedSprite2D/AnimationPlayer.play("collected")
 
-
+@warning_ignore("unused_parameter")
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	queue_free()

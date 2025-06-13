@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://esi7qim0g042"]
+
+[ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://level_1.gd" id="1_5hph3"]
+[ext_resource type="PackedScene" uid="uid://dkla36ebv0n0o" path="res://Mobs/mob.tscn" id="2_j7kpp"]
+[ext_resource type="PackedScene" uid="uid://cvfpqq8on20cs" path="res://Mobs/ranged_mob.tscn" id="3_bjebc"]
+[ext_resource type="PackedScene" uid="uid://b23fkwbnh2ijx" path="res://Map/Tilemap.tscn" id="4_5rr72"]
+[ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://Player/player.tscn" id="5_gyffv"]
+[ext_resource type="AudioStream" uid="uid://bytus7rudnd6g" path="res://assets/sound/darkwing_autist.ogg" id="6_1pe0h"]
+
+[sub_resource type="Curve2D" id="Curve2D_kek77"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1511, -897.001, 0, 0, 0, 0, 1393, -901.001, 0, 0, 0, 0, 1393, 872.001, 0, 0, 0, 0, -1508, 872.001, 0, 0, 0, 0, -1508, -893.001)
+}
+point_count = 5
+
+[node name="Level_1_Foyer" type="Node2D"]
+script = ExtResource("1_5hph3")
+Mob = ExtResource("2_j7kpp")
+RangedMob = ExtResource("3_bjebc")
+
+[node name="Test_Tilemap" parent="." instance=ExtResource("4_5rr72")]
+z_index = -1
+scale = Vector2(4, 4)
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(955, 5065)
+
+[node name="Player" parent="." instance=ExtResource("5_gyffv")]
+
+[node name="Path2D" type="Path2D" parent="Player"]
+scale = Vector2(3.33, 3.33)
+curve = SubResource("Curve2D_kek77")
+
+[node name="MobSpawningPath" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-1511, -897.001)
+rotation = -0.00137741
+
+[node name="MobSpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1pe0h")
+volume_db = -15.0
+autoplay = true
