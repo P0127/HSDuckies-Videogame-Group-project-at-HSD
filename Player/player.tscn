@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b6ykbxg8byxue" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://cqxxf6tj5g1qs" path="res://Player/camera_2d.gd" id="2_hqtel"]
-[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="3_ivps1"]
-[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://Hud/Hud_assets/healthbar_progress_player_v01_over.png" id="4_urp6f"]
-[ext_resource type="Texture2D" uid="uid://dg1i5oinsggsi" path="res://Hud/Hud_assets/healthbar_progress_player_v01_under.png" id="5_bwjto"]
+[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://hud/Hud_assets/healthbar_progress_player_v03_under.png" id="3_ivps1"]
+[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://hud/Hud_assets/healthbar_progress_player_v01_over.png" id="4_urp6f"]
+[ext_resource type="Texture2D" uid="uid://dg1i5oinsggsi" path="res://hud/Hud_assets/healthbar_progress_player_v01_under.png" id="5_bwjto"]
 [ext_resource type="PackedScene" uid="uid://d0dp7ykne4ajl" path="res://Weapon/player_weapon.tscn" id="5_sweqy"]
 [ext_resource type="Texture2D" uid="uid://oprv8vc258ex" path="res://Player/Player_assets/player1_front2.png" id="6_b26j0"]
 [ext_resource type="Texture2D" uid="uid://dlq5wm4l1o187" path="res://Player/Player_assets/player1_front3.png" id="8_n7ghd"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://Drops/Drops_assets/Ente.png" id="13_dkpta"]
 [ext_resource type="Texture2D" uid="uid://bq341a6hant6e" path="res://assets/effects/feather_1.png" id="13_gu6f8"]
 [ext_resource type="Texture2D" uid="uid://bdi06crlaffq3" path="res://assets/effects/feather_2.png" id="14_dkpta"]
-[ext_resource type="Texture2D" uid="uid://bpvhtvem2xapy" path="res://Hud/shine_scaled.png" id="16_lfmf2"]
+[ext_resource type="Texture2D" uid="uid://bpvhtvem2xapy" path="res://hud/shine_scaled.png" id="16_lfmf2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dw050"]
 radius = 306.685
@@ -242,6 +242,94 @@ tracks/12/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_pisgm"]
+resource_name = "game_won"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [&"walk_front", &"walk_side", &"walk_back", &"walk_side", &"walk_front"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath(".:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../GameWon!:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../PlayerCamera:zoom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(2.37841, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(1.5, 1.5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../player weapon:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../ProgressBar:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_dkpta"]
 resource_name = "scale"
 length = 3.0
@@ -352,94 +440,6 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(2.37841, 1),
 "update": 0,
 "values": [Vector2(0.6, 0.6), Vector2(1.5, 1.5)]
-}
-
-[sub_resource type="Animation" id="Animation_pisgm"]
-resource_name = "game_won"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [&"walk_front", &"walk_side", &"walk_back", &"walk_side", &"walk_front"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath(".:speed_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath(".:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../GameWon!:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.333333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../PlayerCamera:zoom")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(2.37841, 1),
-"update": 0,
-"values": [Vector2(0.6, 0.6), Vector2(1.5, 1.5)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../player weapon:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../ProgressBar:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pisgm"]
