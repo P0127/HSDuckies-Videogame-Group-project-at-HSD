@@ -10,11 +10,15 @@ extends CanvasLayer
 @onready var shine = $ShineScaled
 @onready var shine_anim = $ShineScaled/bling
 
+
 ## FUNCTIONS 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	duck_anim.play("duckie")
 	shine_anim.play("bling")
+
+	# Signal verbinden
+	#dialogue_node.connect("dialog_finished", Callable(self, "_on_dialog_finished"))  
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
@@ -29,6 +33,9 @@ func _on_start_button_pressed():
 	button_sound_player.play()
 	
 	#Once Signal is finnished, start_game!
+	
+	# Start the dialog with the path to your JSON file
+	#dialogue_node.start("res://Dialogue_cutscenes/dialog_anfang.json")  
 
 func _on_start_button_animations_animation_finished() -> void:
 	#signals the scene controller to switch to main game and to ingame hud

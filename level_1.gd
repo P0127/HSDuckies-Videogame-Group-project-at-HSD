@@ -12,8 +12,14 @@ extends Node2D
 const MOB_LIMIT = 20 #MOB LIMIT
 var current_mob_amount = 0 #tracks how many mobs are currently spawned
 
+# Referenz auf den Dialog
+var dialogue_begin_instance = null
+var dialog_after_pickup_triggered = false		# Flag, um Dialog nur einmal zu starten
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	dialogue_begin_instance = $Dialogue_begin
 	#to prevent the panning over
 	#moves player to starting position & removed hide()
 	$Player.start($StartPosition.position)
@@ -24,6 +30,23 @@ func _ready():
 	
 	# Connect the player's death signal to show game over
 	GlobalSignals.reduce_mob_counter.connect(reduce_mob_counter)
+	
+	# Connect signals from the dialogue instance to local callback functions
+	dialogue_begin_instance.connect("dialog_started", Callable(self, "_on_dialog_started"))
+	dialogue_begin_instance.connect("dialog_finished", Callable(self, "_on_dialog_finished"))
+	
+	# Start the dialogue with the specified JSON dialogue file
+	dialogue_begin_instance.start("res://Dialogue_cutscenes/dialog_anfang.json")
+
+# Callback when dialogue starts
+func _on_dialog_started():
+	# Turn off player collision so the player can’t move during dialogue
+	$Player.set_collision_enabled(false)
+
+# Callback when dialogue finishes
+func _on_dialog_finished():
+	# Enable player collision again when the dialogue is finished so the player can move
+	$Player.set_collision_enabled(true)
 
 #Spawns Mobs if Left Mouse Button is clicked at Mouse position
 #For Testing

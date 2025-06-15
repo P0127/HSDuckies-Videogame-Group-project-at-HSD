@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dmoqmmrb2ndjb"
-path="res://.godot/imported/font_counter_letters.ttf-c432bfef1b1affc1264e1279eef86d65.fontdata"
+path="res://.godot/imported/font_counter_letters.ttf-cd1ea27e27750bbb28d937cf5e94c5f7.fontdata"
 
 [deps]
 
-source_file="res://Fonts/font_counter_letters.ttf"
-dest_files=["res://.godot/imported/font_counter_letters.ttf-c432bfef1b1affc1264e1279eef86d65.fontdata"]
+source_file="res://Dialogue_cutscenes/font_counter_letters.ttf"
+dest_files=["res://.godot/imported/font_counter_letters.ttf-cd1ea27e27750bbb28d937cf5e94c5f7.fontdata"]
 
 [params]
 
