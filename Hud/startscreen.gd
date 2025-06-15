@@ -1,14 +1,16 @@
 extends CanvasLayer
 
 ## NODE NAMES
-@onready var start_button = $StartButton
-@onready var start_button_animation = $StartButton/StartButtonAnimations
+@onready var start_button = $ControlStartButton/StartButton
+@onready var start_button_animation = $ControlStartButton/StartButton/StartButtonAnimations
 @onready var button_sound_player = $AudioStreamPlayer
-@onready var background_pic = $background
-@onready var duck = $duck
-@onready var duck_anim = $duck/AnimationPlayer
-@onready var shine = $ShineScaled
-@onready var shine_anim = $ShineScaled/bling
+@onready var background_pic = $ControlBG
+@onready var duck = $ControlDuck/duck
+@onready var duck_anim = $ControlDuck/duck/AnimationPlayer
+@onready var shine = $VBoxContainer/ShineScaled
+@onready var shine_anim = $"ContainerTitle+Bling/ShineScaled/bling"
+
+
 
 ## FUNCTIONS 
 # Called when the node enters the scene tree for the first time.
