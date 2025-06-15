@@ -13,6 +13,7 @@ extends Node2D
 var dialogue = []   # Loaded dialogue lines
 var current_dialogue_id = -1   # Current dialogue index
 var d_active = false  
+var dialogue_done := false # Deactivates input event upon dialogue end
 
 # Typewriter effect variables
 var typing = false
@@ -25,12 +26,18 @@ func _ready():
 
 #starts dialogue after the fade in is done
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if d_active:
-		return  # Skip if dialogue already started
-	d_active = true
-	textbox.visible = true  # Show textbox
-	
-	start()
+	match anim_name:
+		#At the start
+		"fade_in":
+			if d_active:
+				return  # Skip if dialogue already started
+			d_active = true
+			textbox.visible = true  # Show textbox
+			
+			start()
+		#Triggered at Dialogue end, after fade to black; switches to main menue
+		"RESET":
+			GlobalSignals.scene_controller.change_gui_scene("res://Hud/startscreen.tscn")
 
 func start():
 	dialogue = load_dialogue()
@@ -49,25 +56,31 @@ func load_dialogue():
 func _input(event):
 	if not d_active:
 		return
-	if event.is_action_pressed("ui_accept"):
-		if typing:
-			# If typing, immediately show full text and stop sound
-			textbox_text.visible_characters = textbox_text.text.length()
-			typing = false
-			typing_sound.stop()
-		else:
-			# Move to next dialogue line
-			next_script()
+	if not dialogue_done:
+		if event.is_action_pressed("ui_accept"):
+			if typing:
+				# If typing, immediately show full text and stop sound
+				textbox_text.visible_characters = textbox_text.text.length()
+				typing = false
+				typing_sound.stop()
+			else:
+				# Move to next dialogue line
+				next_script()
+	else:
+		#Triggers Duck spawning
+		$DuckParticles.set_deferred("emitting", true)
+		$DuckParticles_flipped.set_deferred("emitting", true)
 
 
 func next_script():
 	current_dialogue_id += 1
 
 	# End of dialogue
-	if current_dialogue_id >= len(dialogue):
-		d_active = false
-		textbox.visible = false
-		return
+	if current_dialogue_id == len(dialogue) - 1:
+		#d_active = false
+		#textbox.visible = false
+		#ends input event and emits ducks during last line read before returning to home screen
+		dialogue_done = true
 
 	# Set name and text from JSON
 	textbox_name.text = dialogue[current_dialogue_id]['name']
@@ -104,3 +117,7 @@ func _on_timer_timeout() -> void:
 		typing_sound.stop()
 		Herr_Dahm.play("default")
 	
+
+
+func _on_duck_particles_flipped_finished() -> void:
+	$fade_in/AnimationPlayer.play("RESET")
