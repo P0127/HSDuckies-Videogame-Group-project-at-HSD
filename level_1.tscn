@@ -23,7 +23,7 @@ z_index = -1
 scale = Vector2(4, 4)
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(1860, 2666)
+position = Vector2(1355, 1328)
 
 [node name="Player" parent="." instance=ExtResource("5_gyffv")]
 
@@ -37,7 +37,7 @@ rotation = 0.00108264
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 6.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_1pe0h")

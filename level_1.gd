@@ -7,7 +7,6 @@ extends Node2D
 @onready var MapSpawningFloor = $Test_Tilemap/MobSpawnableTiles
 @onready var MobSpawningPath = %MobSpawningPath
 @onready var Map = $Test_Tilemap
-@onready var player_camera: Camera2D = $Player/PlayerCamera
 
 
 const MOB_LIMIT = 20 #MOB LIMIT
@@ -26,18 +25,19 @@ func _ready():
 	# Connect the player's death signal to show game over
 	GlobalSignals.reduce_mob_counter.connect(reduce_mob_counter)
 	
-	#$Player/Path2D.curve = null
-	#$Player/Path2D.curve = Curve2D.new()
+	update_curve_to_screen_edges()
+	#couldnt find a better way of getting the Path2D to our screen edges so this will do for now
+	#will prob look more into it after TDOT
 
 
 #Spawns Mobs if Left Mouse Button is clicked at Mouse position
 #For Testing
 #func _input(event):
 	#if event.is_action_pressed("click"):
-		##if Mob.can_instantiate():
-			##var new_Mob = Mob.instantiate()
-			##new_Mob.position = $Player.position + get_viewport().get_mouse_position() - Vector2($StartPosition.position) * 0.8 - Vector2(260,230)
-			##add_child(new_Mob)
+		#if Mob.can_instantiate():
+			#var new_Mob = Mob.instantiate()
+			#new_Mob.position = $Player.position + get_viewport().get_mouse_position() - Vector2($StartPosition.position) * 0.8 - Vector2(260,230)
+			#add_child(new_Mob)
 		#if RangedMob.can_instantiate():
 			#var new_Mob = RangedMob.instantiate()
 			#new_Mob.position = $Player.position + get_viewport().get_mouse_position() - Vector2($StartPosition.position) * 0.8 - Vector2(260,230)
@@ -86,24 +86,19 @@ func reduce_mob_counter():
 	current_mob_amount -= 1
 
 
-func _process(delta: float) -> void:
-	if player_camera:
-		update_curve_to_screen_edges()
-
 func update_curve_to_screen_edges():
-	var viewport_size = get_viewport_rect().size
-	var cam_position = player_camera.global_position
-	print("VIEWPORT SIZE X = ", viewport_size.x)
-	print("VIEWPORT SIZE Y = ", viewport_size.y)
+	var viewport_size = get_viewport_rect().size * 5.5
+	#print("VIEWPORT SIZE X = ", viewport_size.x)
+	#print("VIEWPORT SIZE Y = ", viewport_size.y)
 	
 	$Player/Path2D.curve.clear_points()
 	
 	#v2
-	var curve_points = [
-		Vector2(-viewport_size.x/2, -viewport_size.y/2)* 5.5, #top left
-		Vector2(viewport_size.x/2, -viewport_size.y/2)* 5.5,  #top right
-		Vector2(viewport_size.x/2, viewport_size.y/2)* 5.5,   #bot right
-		Vector2(-viewport_size.x/2, viewport_size.y/2) * 5.5  #bot left
+	var curve_points = [ #since coords are relativ from Path2D this works
+		Vector2(-viewport_size.x/2, -viewport_size.y/2), #top left
+		Vector2(viewport_size.x/2, -viewport_size.y/2),  #top right
+		Vector2(viewport_size.x/2, viewport_size.y/2),   #bot right
+		Vector2(-viewport_size.x/2, viewport_size.y/2)   #bot left
 	]
 	for point in curve_points:
 		$Player/Path2D.curve.add_point(point)

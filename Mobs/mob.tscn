@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://bpvhtvem2xapy" path="res://hud/shine_scaled.png" id="24_anuj1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
-radius = 570.538
+radius = 835.134
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3mxk"]
 animations = [{
