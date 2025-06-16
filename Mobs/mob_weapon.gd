@@ -1,7 +1,7 @@
 extends Area2D #Mob weapon
 #yes I know its weirdly big right now will look into it later with why that much scale is required??
 
-const STANDARD_FIRERATE_WAITTIME : float = 2 #Waittime in seconds before it's shot again
+const STANDARD_FIRERATE_WAITTIME : float = 3 #Waittime in seconds before it's shot again
 
 const BULLET = preload("res://Mobs/mob_projectile.tscn")
 

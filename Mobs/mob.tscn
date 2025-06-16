@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://bpvhtvem2xapy" path="res://hud/shine_scaled.png" id="24_anuj1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
-radius = 570.538
+radius = 835.134
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3mxk"]
 animations = [{
@@ -217,6 +217,7 @@ metadata/_edit_group_ = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 100.0
+navigation_layers = 2
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="AwarenessRadius" type="Area2D" parent="."]

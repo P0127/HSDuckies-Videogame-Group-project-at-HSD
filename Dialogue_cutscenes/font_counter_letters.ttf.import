@@ -9,7 +9,6 @@ path="res://.godot/imported/font_counter_letters.ttf-cd1ea27e27750bbb28d937cf5e9
 
 source_file="res://Dialogue_cutscenes/font_counter_letters.ttf"
 dest_files=["res://.godot/imported/font_counter_letters.ttf-cd1ea27e27750bbb28d937cf5e94c5f7.fontdata"]
-
 [params]
 
 Rendering=null
