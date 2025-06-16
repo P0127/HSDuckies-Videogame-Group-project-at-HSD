@@ -3,8 +3,8 @@ extends CanvasLayer
 #handles HUD ingame
 
 ## VARIABLES
-@onready var counter_letters = $"Counter/Duck counter letters"
-@onready var counter_numbers = $"Counter/Duck counter digits"
+@onready var counter_letters = $"HBoxContainer/Counter/Duck counter letters"
+@onready var counter_numbers = $"HBoxContainer/Counter/Duck counter digits"
 
 ## FUNCTIONS
 func _ready() -> void:

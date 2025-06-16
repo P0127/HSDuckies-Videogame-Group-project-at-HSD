@@ -25,9 +25,10 @@ ItemManager="*res://item_manager.gd"
 
 [display]
 
-window/size/viewport_width=1980
-window/size/viewport_height=1080
-window/size/mode=3
+window/size/viewport_width=800
+window/size/viewport_height=600
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [global_group]
 
