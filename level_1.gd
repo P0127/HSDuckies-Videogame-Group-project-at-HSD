@@ -87,6 +87,7 @@ func _on_mob_spawn_timer_timeout():
 func reduce_mob_counter():
 	current_mob_amount -= 1
 
+@warning_ignore("unused_parameter")
 func _pause_level_on_dialogue_start(dialogueFile : String = ""):
 	get_tree().paused = true
 

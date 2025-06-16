@@ -7,7 +7,6 @@ extends CanvasLayer
 @onready var background_pic = $ControlBG
 @onready var duck = $ControlDuck/duck
 @onready var duck_anim = $ControlDuck/duck/AnimationPlayer
-@onready var shine = $VBoxContainer/ShineScaled
 @onready var shine_anim = $"ContainerTitle+Bling/ShineScaled/bling"
 
 
