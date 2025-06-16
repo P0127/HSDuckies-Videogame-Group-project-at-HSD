@@ -9,6 +9,8 @@ extends CanvasLayer
 ## FUNCTIONS
 func _ready() -> void:
 	GlobalSignals.duck_collected_signal.connect(duck_collected_func)
+	#on Default, only visible when paused (processed by Dialogue begin)
+	$Dialogue_begin.visible = false
 
 #Adds Duck Counter in Bottom screen, which counts up on duck collected
 func duck_collected_func():

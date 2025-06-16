@@ -10,14 +10,21 @@ extends Node#this script is for now only meant for GLOBAL SIGNALS
 signal game_over
 signal game_won
 
+#Tracking Duck Counter
 signal duck_collected_signal
 signal duck_collected_levelUp
 
+#For spawning Items
 signal drop_duck
 signal drop_item
 
+#Mob Level and spawn limitation
 signal reduce_mob_counter
 signal mob_level_up
+
+#Dialogues that pause the game
+signal dialogue_finished
+signal dialogue_start
 @warning_ignore_restore("unused_signal")
 
 ## VARIABLES
@@ -30,7 +37,6 @@ var timerFirerate = Timer.new()
 var scene_controller : Scene_Controller
 #Global access to Duck Counter (how many have been collected), as it has to be scene independent
 var duck_counter : Level_Manager
-
 
 ## FUNCTIONS
 # Called when the node enters the scene tree for the first time.

@@ -19,7 +19,11 @@ func duck_collected_counter(amount: int = 1):
 	ducks_collected += amount
 	
 	if ducks_collected == ducks_required_gameWon:
+		GlobalSignals.dialogue_start.emit("res://Dialogue_cutscenes/ZwischenDialog_3.json")
 		GlobalSignals.game_won.emit()
+	
+	if ducks_collected == ducks_required_gameWon / 2:
+		GlobalSignals.dialogue_start.emit("res://Dialogue_cutscenes/ZwischenDialog_2.json")
 	
 	if ducks_collected % ducks_required_levelUp == 0:
 		duck_collected_levelUp()

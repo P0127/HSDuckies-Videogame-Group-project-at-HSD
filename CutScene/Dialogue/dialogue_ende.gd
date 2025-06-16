@@ -56,6 +56,11 @@ func load_dialogue():
 func _input(event):
 	if not d_active:
 		return
+	if event.is_action_pressed("skip_cutscene"):
+		$fade_in/AnimationPlayer.play("RESET")
+		dialogue_done = true
+		set_process_input(false)
+		return
 	if not dialogue_done:
 		if event.is_action_pressed("ui_accept"):
 			if typing:
@@ -70,6 +75,7 @@ func _input(event):
 		#Triggers Duck spawning
 		$DuckParticles.set_deferred("emitting", true)
 		$DuckParticles_flipped.set_deferred("emitting", true)
+		set_process_input(false)
 
 
 func next_script():
@@ -116,7 +122,6 @@ func _on_timer_timeout() -> void:
 		timer.stop()
 		typing_sound.stop()
 		Herr_Dahm.play("default")
-	
 
 
 func _on_duck_particles_flipped_finished() -> void:

@@ -22,6 +22,9 @@ var last_direction_faced = Vector2.RIGHT #saveslot for the last direction faced 
 var movement_timer : float = 0.0 #timer to count how long moving in a direction
 var weapon_direction_change_min_time : float = 0.1 #time how long is needed till weapon direction changes 
 
+## FLAGS
+var dialogue_start_triggered = true
+var dialogue_pickup_triggered = false
 
 ## FUNCTIONS PRESET
 #Called when the node enters the scene tree for the first time.
@@ -50,11 +53,17 @@ func start(pos):
 	#starts the animation
 	spritePlayer.play()
 	$PlayerCollisionShape.disabled = false
+	dialogue_start_triggered = false
 
 #Called as often as possible. For effects and independent proccesses
 @warning_ignore("unused_parameter")
 func _process(delta : float):
 	progressBar.value = health #Updates progress bar
+	if !dialogue_start_triggered:
+		# Start the dialogue with the specified JSON dialogue file
+		GlobalSignals.dialogue_start.emit("res://Dialogue_cutscenes/dialog_anfang.json")
+		dialogue_start_triggered = true
+		$PlayerCamera.position_smoothing_enabled = true
 
 #Called every frame. 'delta' is the elapsed time since the previous frame. Keeps Framerate
 func _physics_process(delta : float):
@@ -209,6 +218,12 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 #checks if touched body has a method called pickup to be called
 func _on_pick_up_area_entered(area: Area2D) -> void:
 	if area.is_in_group("pickupable_player"):
+		if !dialogue_pickup_triggered:
+			dialogue_pickup_triggered = true
+			# Set the dialogue file and start the dialogue
+			GlobalSignals.dialogue_start.emit("res://Dialogue_cutscenes/ZwischenDialog_1.json")
+		else:
+			print("DEBUG: PickUp Dialogue not triggered")
 		area.pickup(self)
 
 #big range around player used for despawning mobs if too far away

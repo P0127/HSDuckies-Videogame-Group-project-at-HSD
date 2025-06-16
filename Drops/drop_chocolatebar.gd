@@ -23,29 +23,6 @@ func pickup(player : Node2D):
 	
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D/AnimationPlayer.play("collected")
-	
-	# Get reference to the global scene controller
-	var scene_controller = GlobalSignals.scene_controller
-	
-	# Check if the scene controller and current scene are valid
-	if scene_controller and scene_controller.current_scene:
-		var current_scene = scene_controller.current_scene
-	
-		# Trigger the dialog only if it hasn't been triggered yet
-		if not current_scene.dialog_after_pickup_triggered:
-			current_scene.dialog_after_pickup_triggered = true
-		
-		# Check if the node "Dialogue_begin" exists in the scene
-		if current_scene.has_node("Dialogue_begin"):
-			var dialogue = current_scene.get_node("Dialogue_begin")
-			
-			# Set the dialogue file and start the dialogue
-			dialogue.d_file = "res://Dialogue_cutscenes/ZwischenDialog_1.json"
-			dialogue.start()
-		else:
-			print("DEBUG: Dialogue_begin Node nicht gefunden in current_scene")
-	else:
-		print("DEBUG: Scene_Controller oder current_scene nicht verfügbar")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name != "drop":

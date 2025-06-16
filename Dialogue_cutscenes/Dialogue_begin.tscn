@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://crnhw3bvk4u0"]
+[gd_scene load_steps=6 format=3 uid="uid://crnhw3bvk4u0"]
 
 [ext_resource type="Script" uid="uid://bc3tvdlsid1pr" path="res://Dialogue_cutscenes/Dialogue_begin.gd" id="1_1t5kr"]
 [ext_resource type="Texture2D" uid="uid://b1mwggjucdsbw" path="res://Dialogue_cutscenes/textbox.png" id="2_04duq"]
 [ext_resource type="Texture2D" uid="uid://i3ts8lgnrpty" path="res://Dialogue_cutscenes/DahmSpeaking1.png" id="3_iloir"]
-[ext_resource type="FontFile" uid="uid://dmoqmmrb2ndjb" path="res://Dialogue_cutscenes/font_counter_letters.ttf" id="4_1t5kr"]
+[ext_resource type="AudioStream" uid="uid://scl4qsinywka" path="res://CutScene/Dialogue/keyboard-typing-5997.mp3" id="4_1t5kr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_haow2"]
 animations = [{
@@ -30,13 +30,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_haow2"]
-
-[node name="Dialogue_begin" type="Node2D"]
-position = Vector2(493, 1542)
-scale = Vector2(1.35643, 1.24)
+[node name="Dialogue_begin" type="CanvasLayer"]
+process_mode = 2
 script = ExtResource("1_1t5kr")
-d_file = "res://Dialogue_begin/dialog_anfang.json"
 
 [node name="Overlay" type="ColorRect" parent="."]
 z_index = 200
@@ -52,69 +48,67 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.592157)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 493.0
-offset_top = 1542.0
-offset_right = 493.0
-offset_bottom = 1542.0
-scale = Vector2(1.35643, 1.24)
-metadata/_edit_use_anchors_ = true
+offset_right = 1980.0
+offset_bottom = 1080.0
 
-[node name="dialoguebox" type="NinePatchRect" parent="CanvasLayer/Control"]
+[node name="dialoguebox" type="NinePatchRect" parent="Control"]
 z_index = 200
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -150.0
-offset_right = 1596.0
-offset_bottom = 150.0
+offset_left = 320.0
+offset_top = -270.0
+offset_right = -50.0
+offset_bottom = -50.0
 texture = ExtResource("2_04duq")
-patch_margin_left = 22
-patch_margin_right = 24
-metadata/_edit_use_anchors_ = true
+patch_margin_left = 90
+patch_margin_right = 88
 
-[node name="Herr Dahm" type="AnimatedSprite2D" parent="CanvasLayer/Control/dialoguebox"]
-position = Vector2(-190.092, 190.369)
-scale = Vector2(0.853484, 0.846582)
+[node name="Herr Dahm" type="AnimatedSprite2D" parent="Control/dialoguebox"]
+position = Vector2(-164, 117)
+scale = Vector2(0.724659, 0.718798)
 sprite_frames = SubResource("SpriteFrames_haow2")
 animation = &"1)"
 
-[node name="name" type="Label" parent="CanvasLayer/Control/dialoguebox"]
+[node name="name" type="Label" parent="Control/dialoguebox"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0184812
-anchor_top = 0.11324
+anchor_left = 0.026
+anchor_top = 0.174
 anchor_right = 0.026
-anchor_bottom = 0.149907
-offset_left = 0.503998
-offset_top = 0.027998
-offset_right = 399.504
-offset_bottom = 55.028
-theme_override_fonts/font = ExtResource("4_1t5kr")
-theme_override_font_sizes/font_size = 20
-text = "name"
-label_settings = SubResource("LabelSettings_haow2")
-clip_text = true
-metadata/_edit_use_anchors_ = true
+anchor_bottom = 0.174
+offset_left = 4.67401
+offset_top = 3.98197
+offset_right = 444.674
+offset_bottom = 69.982
+theme_override_colors/font_shadow_color = Color(0.154876, 0.154876, 0.154876, 1)
+theme_override_font_sizes/font_size = 28
+ellipsis_char = ""
 
-[node name="chat" type="Label" parent="CanvasLayer/Control/dialoguebox"]
+[node name="chat" type="RichTextLabel" parent="Control/dialoguebox"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0289975
-anchor_top = 0.443413
-anchor_right = 0.0289975
-anchor_bottom = 0.683413
-offset_left = -0.284
-offset_top = -0.0240021
-offset_right = 1514.72
-offset_bottom = 72.976
-theme_override_fonts/font = ExtResource("4_1t5kr")
-theme_override_font_sizes/font_size = 31
-text = "chat"
-metadata/_edit_use_anchors_ = true
+anchor_left = 0.029
+anchor_top = 0.473
+anchor_right = 0.029
+anchor_bottom = 0.473
+offset_left = 4.31
+offset_top = -0.0599976
+offset_right = 1461.31
+offset_bottom = 88.94
+theme_override_colors/font_shadow_color = Color(0.114897, 0.114897, 0.114897, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.055
+
+[node name="typing_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_1t5kr")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

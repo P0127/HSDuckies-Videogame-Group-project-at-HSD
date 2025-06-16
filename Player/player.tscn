@@ -464,7 +464,6 @@ script = ExtResource("1_onrkg")
 metadata/_edit_group_ = true
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 script = ExtResource("2_hqtel")
 
