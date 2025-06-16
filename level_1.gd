@@ -117,4 +117,3 @@ func update_curve_to_screen_edges():
 		$Player/Path2D.curve.add_point(point)
 	
 	$Player/Path2D.curve.add_point(curve_points[0]) #finish loop
-
