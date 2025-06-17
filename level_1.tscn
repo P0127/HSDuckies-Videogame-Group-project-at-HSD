@@ -38,7 +38,7 @@ rotation = 0.00108264
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 4.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_1pe0h")

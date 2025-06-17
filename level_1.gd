@@ -78,8 +78,8 @@ func spawn_mob(maxAttempts : int):
 
 
 func _on_mob_spawn_timer_timeout():
-	spawn_mob(5)
-	if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec 
+	spawn_mob(7)
+	if(MobSpawnTimer.get_wait_time() > 1.5): #only reduces timer if longer than 1.5sec 
 		MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
 		
 		#every time MobSpawnTimer is dividable by 0.5 increase lvl
