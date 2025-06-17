@@ -6,8 +6,6 @@ class_name Scene_Controller extends Node
 #Our control nodes in our scene_controller Nodes for both HUD and game scenes
 @export var world2D : Node2D
 @export var gui : Control
-# Tracks if the dialog after item pickup has been triggered
-var dialog_after_pickup_triggered: bool = false
 
 #Currently playing/needed scenes
 var current_scene

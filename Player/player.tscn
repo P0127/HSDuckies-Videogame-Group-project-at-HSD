@@ -461,7 +461,6 @@ scale = Vector2(0.3, 0.3)
 collision_mask = 20
 collision_priority = 2.0
 script = ExtResource("1_onrkg")
-godmode = true
 metadata/_edit_group_ = true
 
 [node name="PlayerCamera" type="Camera2D" parent="."]

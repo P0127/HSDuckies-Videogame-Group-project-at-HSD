@@ -6,7 +6,6 @@
 [ext_resource type="FontFile" uid="uid://dekqnr7q8ahcs" path="res://Fonts/font_counter_digits.png" id="8_7am0o"]
 
 [node name="Ingame_GUI" type="CanvasLayer"]
-follow_viewport_enabled = true
 script = ExtResource("1_mroh3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
