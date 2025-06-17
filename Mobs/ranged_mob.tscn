@@ -112,11 +112,15 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 scale = Vector2(0.28, 0.28)
 collision_layer = 2
 collision_mask = 17
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_j2bdq")
 metadata/_edit_group_ = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 2
+debug_enabled = true
+debug_use_custom = true
 debug_path_custom_color = Color(1, 1, 0.0431373, 1)
 
 [node name="AwarenessRadius" type="Area2D" parent="."]
