@@ -2,8 +2,8 @@ class_name Level_Manager extends Node2D
 
 ## VARIABLES
 var ducks_collected : int = 0 #How many ducks the Player CURRENTLY has collected
-var ducks_required_levelUp : int = 10 #How many needed for Player level up
-var ducks_required_gameWon : int = 35 #How many needed for Game won
+var ducks_required_levelUp : int = 5 #How many needed for Player level up
+var ducks_required_gameWon : int = 17 #How many needed for Game won
 
 ## FUNCTIONS 
 func _ready():

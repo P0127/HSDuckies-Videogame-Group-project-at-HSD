@@ -454,7 +454,7 @@ offsets = PackedFloat32Array(0, 0.84, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dkpta"]
-radius = 7677.02
+radius = 4750.27
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.3, 0.3)
@@ -631,7 +631,6 @@ color_ramp = SubResource("Gradient_pisgm")
 color_initial_ramp = SubResource("Gradient_b1ygp")
 
 [node name="Despawn-range" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Despawn-range"]
 shape = SubResource("CircleShape2D_dkpta")

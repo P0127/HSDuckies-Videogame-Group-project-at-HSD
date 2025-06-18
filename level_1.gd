@@ -9,7 +9,7 @@ extends Node2D
 @onready var Map = $Test_Tilemap
 
 
-const MOB_LIMIT = 20 #MOB LIMIT
+const MOB_LIMIT = 10 #MOB LIMIT
 var current_mob_amount = 0 #tracks how many mobs are currently spawned
 
 # Referenz auf den Dialogue
@@ -78,7 +78,7 @@ func spawn_mob(maxAttempts : int):
 
 
 func _on_mob_spawn_timer_timeout():
-	spawn_mob(7)
+	spawn_mob(4)
 	if(MobSpawnTimer.get_wait_time() > 1.5): #only reduces timer if longer than 1.5sec 
 		MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
 		
