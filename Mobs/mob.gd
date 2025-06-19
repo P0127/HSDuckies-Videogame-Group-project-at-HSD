@@ -20,10 +20,10 @@ var drop_scene := preload("res://Drops/duck_collectable.tscn") #to Instantiate d
 var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate scene of mob running away upon defeat
 
 ## STATS 
-static var currentMobLevel = 1
-var health : int = 2 + currentMobLevel #Hits required to kill
-var movement_speed = 65 + currentMobLevel * 10
-var damage_rate : float = 2.5 + currentMobLevel * 2.5  #damage done to Player
+static var moblvl = 1
+var health : int = 2 + moblvl #Hits required to kill
+var movement_speed = 65 + moblvl * 10 
+var damage_rate : float = 2.5 + moblvl * 2.5  #damage done to Player
 
 ## TARGETS
 var target_damage : Node2D #saveslot for Player on body entered
@@ -35,7 +35,7 @@ var duck_status : int = 1 #modifier for running direction, dependant on wether i
 
 func _ready():
 	randomize()
-	currentMobLevel = PlayerChracter.level
+	GlobalSignals.duck_collected_levelUp.connect(_levelUp)
 	
 	for sprite in mob_sprites:
 		sprite.visible = false  #Hide every mob sprite in the list – so that none are visible at the beginning
@@ -185,3 +185,6 @@ func _on_hurt_player_area_body_exited(body : Node2D):
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
+
+static func _levelUp():
+	moblvl += 1

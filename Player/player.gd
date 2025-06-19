@@ -1,4 +1,4 @@
-class_name PlayerChracter extends CharacterBody2D
+extends CharacterBody2D
 
 ## SCENES (multiple usage)
 @onready var progressBar = $ProgressBar
@@ -10,7 +10,7 @@ var max_health : float = 10.0  #Set Health Amount, not const as it scales with p
 const STANDARD_SPEED = 250 #original Speed (backup for speedchanges via pickups)
 var health = max_health #Player health current
 var speed = STANDARD_SPEED #player movement speed in pixels/sec
-static var level := 1
+var level := 1
 const HEALTH_ON_LEVELUP = 10
 @export var godmode = false #for testing mob stuff
 

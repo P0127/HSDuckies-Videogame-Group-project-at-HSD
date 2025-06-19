@@ -8,12 +8,12 @@ var direction#saveslot for direction out projectile will fly
 @export var projectile_speed = 200
 var travelled_distance = 0 #saveslot for despawning bullets after a while
 const MAX_RANGE = 1250 #max distance a bullet should live
-var damage_rate : float = 2.0  + bulletLevel #health amount / 10 the bullets damage
-static var bulletLevel  : float = PlayerChracter.level * 0.5
+var damage_rate : float = 2.0  + (bulletLevel * 0.5) #health amount / 10 the bullets damage
+static var bulletLevel = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	GlobalSignals.duck_collected_levelUp.connect(_levelUp)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,3 +42,6 @@ func _on_body_entered(body):
 			body.take_damage(1, damage_rate)   # delta = 1 to circumvent frame calculation, this is 1-hit damage
 	hit_effect.spread = 80
 	_lifetime_end()
+
+static func _levelUp():
+	bulletLevel += 1

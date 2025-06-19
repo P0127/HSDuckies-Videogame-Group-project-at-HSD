@@ -12,9 +12,9 @@ var drop_scene := preload("res://Drops/duck_collectable.tscn") #to Instantiate d
 var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate scene of mob running away upon defeat
 
 ## STATS
-static var currentMobLevel = 1
-var health : int = 2 + currentMobLevel/2  #Hits required to kill
-var movement_speed = 100 + currentMobLevel * 15
+static var moblvl = 1
+var health : int = 2 + moblvl/2  #Hits required to kill
+var movement_speed = 100 + moblvl * 15
 var damage_rate : float = 3.0  #damage done to Player by touching
 
 
@@ -27,7 +27,7 @@ var duck_status : int = 1 #modifier for running direction, dependant on wether i
 
 
 func _ready():
-	currentMobLevel = PlayerChracter.level
+	GlobalSignals.duck_collected_levelUp.connect(_levelUp)
 	#We only have to change one Variable, Progress Bar adjusts automaticly
 	progressBar.max_value = health
 	progressBar.value = health
@@ -176,3 +176,6 @@ func _on_hurt_player_area_body_exited(body : Node2D):
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
+
+static func _levelUp():
+	moblvl += 1
