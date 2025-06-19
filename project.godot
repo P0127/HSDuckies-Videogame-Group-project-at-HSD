@@ -36,6 +36,7 @@ window/stretch/aspect="expand"
 pickupable_player=""
 destroyable_player=""
 all_mobs="all mob types together in a group for spawning/despawning"
+Player=""
 
 [input]
 

@@ -51,7 +51,7 @@ func _ready():
 
 #if you spawn multiple mobs at once they will all use same model
 func spawn_mob(maxAttempts : int):
-	if(current_mob_amount <= MOB_LIMIT):
+	if(current_mob_amount < MOB_LIMIT):
 		var which_mob = randf()
 		if (which_mob > 0.2): #80% chance for meelee mob 
 			var new_mob = load("res://Mobs/mob.tscn").instantiate()
