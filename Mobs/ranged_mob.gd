@@ -12,10 +12,10 @@ var drop_scene := preload("res://Drops/duck_collectable.tscn") #to Instantiate d
 var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate scene of mob running away upon defeat
 
 ## STATS
-var mob_level : int = 1 #Level for scaling
-var health : int = 2 + (mob_level / 3) #Hits required to kill
-var movement_speed = 100 + 10 * mob_level 
-var damage_rate : float = 3.0 + (float(mob_level) / 2) #damage done to Player by touching
+static var currentMobLevel = 1
+var health : int = 2 + currentMobLevel/2  #Hits required to kill
+var movement_speed = 100 + currentMobLevel * 15
+var damage_rate : float = 3.0  #damage done to Player by touching
 
 
 ## TARGETS
@@ -24,12 +24,14 @@ var target_homing : Node2D #saveslot for current target to make it possible to r
 var weapon_direction = Vector2.RIGHT #used for weapon direction
 var duck_status : int = 1 #modifier for running direction, dependant on wether it's a duck (1) or student (-1)
 
+
+
 func _ready():
+	currentMobLevel = PlayerChracter.level
 	#We only have to change one Variable, Progress Bar adjusts automaticly
 	progressBar.max_value = health
 	progressBar.value = health
 	progressBar.hide()
-	GlobalSignals.mob_level_up.connect(increment_mobLvl)
 
 @warning_ignore("unused_parameter")
 func _process(delta: float):
@@ -118,27 +120,11 @@ func take_damage():
 		progressBar.hide()
 		liberated()
 
-#When Mob gets killed, Animations get stopped
-#func die():
-	##Makes the Mob Stop responding or Animating
-	##Unneeded if we just use queue_free in the end
-	#$CollisionShape.set_deferred("disabled",true)
-	#$AwarenessRadius/AwarenessBox.set_deferred("disabled",true)
-	#$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
-	##can be taken out in case we want a death animation first... etc
-	#run_away()#spawns running away scene BEFORE we get rid of current mob
-	#queue_free()
-	#drop_item()
 
 #Calls on the preloaded duck drop scene to instantiate it once
 func drop_item():
 	GlobalSignals.drop_duck.emit(global_position)
 
-#function to spawn the running away scene
-#func run_away():
-	#var running = run_away_scene.instantiate()
-	#running.position = position
-	#main.call_deferred("add_child", running)
 
 func liberated():
 	duck_status = -1 #becomes a student, runs away from Player
@@ -157,11 +143,11 @@ func liberated():
 	weapon.swap_fire_status()
 	progressBar.hide()
 	drop_item()
-	GlobalSignals.reduce_mob_counter.emit()
 
 func _on_time_to_live_timeout() -> void:
 	#await $FeatherExplosion.finished
 	queue_free()
+	GlobalSignals.reduce_mob_counter.emit()
 
 #the two following functions go into effect whenever any body enters our mobs AwarenessRadius
 #if the body is a player we set it as current target/if player body leaves AwarenessRadius we 
@@ -190,6 +176,3 @@ func _on_hurt_player_area_body_exited(body : Node2D):
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
-
-func increment_mobLvl():
-	mob_level += 1

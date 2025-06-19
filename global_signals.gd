@@ -20,7 +20,7 @@ signal drop_item
 
 #Mob Level and spawn limitation
 signal reduce_mob_counter
-signal mob_level_up
+
 
 #Dialogues that pause the game
 signal dialogue_finished

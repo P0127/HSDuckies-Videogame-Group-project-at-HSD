@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var Mob: PackedScene
-@export var RangedMob : PackedScene #testing
+#@export var Mob: PackedScene
+#@export var RangedMob : PackedScene #testing
 
 @onready var MobSpawnTimer = %MobSpawnTimer
 @onready var MapSpawningFloor = $Test_Tilemap/MobSpawnableTiles
@@ -28,7 +28,6 @@ func _ready():
 	
 	# Connect the player's death signal to show game over
 	GlobalSignals.reduce_mob_counter.connect(reduce_mob_counter)
-	
 
 	GlobalSignals.dialogue_start.connect(_pause_level_on_dialogue_start)
 	GlobalSignals.dialogue_finished.connect(_unpause_level_on_dialogue_end)
@@ -79,14 +78,8 @@ func spawn_mob(maxAttempts : int):
 
 func _on_mob_spawn_timer_timeout():
 	spawn_mob(4)
-	if(MobSpawnTimer.get_wait_time() > 1.5): #only reduces timer if longer than 1.5sec 
+	if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec 
 		MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
-		
-		#every time MobSpawnTimer is dividable by 0.5 increase lvl
-		#currently that would be 135 seconds
-		#fmod and not % since % only works for int
-		if(fmod(MobSpawnTimer.get_wait_time(), 0.5) == 0): 
-			GlobalSignals.mob_level_up.emit()
 
 
 func reduce_mob_counter():

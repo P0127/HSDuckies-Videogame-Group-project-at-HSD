@@ -8,7 +8,8 @@ var direction#saveslot for direction out projectile will fly
 @export var projectile_speed = 200
 var travelled_distance = 0 #saveslot for despawning bullets after a while
 const MAX_RANGE = 1250 #max distance a bullet should live
-var damage_rate : float = 5.0 #htalth amount the bullets damage
+var damage_rate : float = 2.0  + bulletLevel #health amount / 10 the bullets damage
+static var bulletLevel  : float = PlayerChracter.level * 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

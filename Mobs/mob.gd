@@ -19,26 +19,27 @@ var spriteMob : AnimatedSprite2D  #assigned in _ready() function
 var drop_scene := preload("res://Drops/duck_collectable.tscn") #to Instantiate drop item later on
 var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate scene of mob running away upon defeat
 
-## STATS
-var mob_level = 1 #Level for scaling
-var health : int = 3 + (mob_level / 2) #Hits required to kill
-var movement_speed = 75 + 10 * mob_level 
-var damage_rate : float = 5.0 + 2 * mob_level #damage done to Player
-
+## STATS 
+static var currentMobLevel = 1
+var health : int = 2 + currentMobLevel #Hits required to kill
+var movement_speed = 65 + currentMobLevel * 10
+var damage_rate : float = 2.5 + currentMobLevel * 2.5  #damage done to Player
 
 ## TARGETS
 var target_damage : Node2D #saveslot for Player on body entered
 var target_homing : Node2D #saveslot for current target to make it possible to run out of aggro range
 var duck_status : int = 1 #modifier for running direction, dependant on wether it's a duck (1) or student (-1)
 
+
+
+
 func _ready():
 	randomize()
+	currentMobLevel = PlayerChracter.level
 	
 	for sprite in mob_sprites:
 		sprite.visible = false  #Hide every mob sprite in the list – so that none are visible at the beginning
 		sprite.stop() #Stops all animations
-	
-	GlobalSignals.mob_level_up.connect(increment_mobLvl)
 
 	var random_index = randi() % mob_sprites.size()
 	#Generates a random number between 0 and (number of mob sprites - 1)
@@ -56,6 +57,7 @@ func _ready():
 	progressBar.max_value = health
 	progressBar.value = health
 	progressBar.hide()
+	
 
 @warning_ignore("unused_parameter")
 func _process(delta: float):
@@ -116,9 +118,6 @@ func _rotate_sprite():
 		spriteMob.animation = "front"
 		spriteDuckmask.animation = "front"
 
-#for use of NavigationAgent2D stuff we'll first need to define the map with connected nodes aka with
-#other 2D Nav nodes
-
 
 #Subtracts Hitpoints from Mob
 func take_damage():
@@ -132,28 +131,11 @@ func take_damage():
 		progressBar.hide()
 		liberated()
 
-#When Mob gets killed, Animations get stopped
-#func _die():
-	##Makes the Mob Stop responding or Animating
-	##Unneeded if we just use queue_free in the end
-	#spriteMob.stop()
-	#$CollisionShape.set_deferred("disabled",true)
-	#$AwarenessRadius/AwarenessBox.set_deferred("disabled",true)
-	#$HurtPlayerArea/HurtBox.set_deferred("disabled", true)
-	##can be taken out in case we want a death animation first... etc
-	#run_away()#spawns running away scene BEFORE we get rid of current mob
-	#queue_free()
-	#drop_item()
 
 #Calls on the preloaded duck drop scene to instantiate it once
 func drop_item():
 	GlobalSignals.drop_duck.emit(global_position)
 
-#function to spawn the running away scene
-#func run_away():
-	#var running = run_away_scene.instantiate()
-	#running.position = position
-	#main.call_deferred("add_child", running)
 
 #function called once mob is "killed" (transforms into student)
 func liberated():
@@ -169,19 +151,12 @@ func liberated():
 	$FeatherExplosion2.set_deferred("emitting", "true")
 	$SweatParticles.set_deferred("emitting", "true")
 	drop_item()
-	GlobalSignals.reduce_mob_counter.emit()
 
 func _on_time_to_live_timeout():
 	#await $FeatherExplosion.finished
+	GlobalSignals.reduce_mob_counter.emit()
 	queue_free()
 
-
-#temporarily added for mobs to despawn upon leaving players screen... will prob remove later or
-#try to find a way to increase range in order to avoid player just despawning everything with
-#edge of screen
-#func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	##await $FeatherExplosion.finished
-	#queue_free()
 
 #the two following functions go into effect whenever any body enters our mobs AwarenessRadius
 #if the body is a player we set it as current target/if player body leaves AwarenessRadius we 
@@ -210,7 +185,3 @@ func _on_hurt_player_area_body_exited(body : Node2D):
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
-
-func increment_mobLvl():
-	mob_level += 1
-	$LevelUp.set_deferred("emitting", true)
