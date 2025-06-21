@@ -46,7 +46,7 @@ position = Vector2(50, -18)
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="CharCenter/Weapon"]
 stream = ExtResource("4_c7lpg")
-volume_db = -6.0
+volume_db = -15.0
 
 [node name="attack speed" type="Timer" parent="."]
 wait_time = 0.45

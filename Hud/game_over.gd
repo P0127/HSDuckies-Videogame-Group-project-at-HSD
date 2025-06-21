@@ -3,7 +3,7 @@ extends CanvasLayer
 ## FUNCTIONS MENU BUTTON
 func _on_menu_pressed() -> void:
 	$ControlMenu/Menu/AnimatedMenuButton.play("pressed")
-	$ButtonSoundEnd.play()
+	
 	
 
 func _on_animated_menu_button_animation_finished() -> void:
@@ -15,7 +15,7 @@ func _on_animated_menu_button_animation_finished() -> void:
 ## FUNCTIONS QUIT BUTTON
 func _on_quit_pressed() -> void:
 	$ControlQuit/Quit/AnimatedQuitButton.play("pressed")
-	$ButtonSoundEnd.play()
+	
 	
 
 func _on_animated_quit_button_animation_finished() -> void:
