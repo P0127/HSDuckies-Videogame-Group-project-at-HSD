@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 ## SCENES (multiple usage)
 @onready var progressBar = $ProgressBar

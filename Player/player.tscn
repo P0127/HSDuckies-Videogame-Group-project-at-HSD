@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b6ykbxg8byxue" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://cqxxf6tj5g1qs" path="res://Player/camera_2d.gd" id="2_hqtel"]
-[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://hud/Hud_assets/healthbar_progress_player_v03_under.png" id="3_ivps1"]
-[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://hud/Hud_assets/healthbar_progress_player_v01_over.png" id="4_urp6f"]
-[ext_resource type="Texture2D" uid="uid://dg1i5oinsggsi" path="res://hud/Hud_assets/healthbar_progress_player_v01_under.png" id="5_bwjto"]
+[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="3_ivps1"]
+[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://Hud/Hud_assets/healthbar_progress_player_v01_over.png" id="4_urp6f"]
+[ext_resource type="Texture2D" uid="uid://dg1i5oinsggsi" path="res://Hud/Hud_assets/healthbar_progress_player_v01_under.png" id="5_bwjto"]
 [ext_resource type="PackedScene" uid="uid://d0dp7ykne4ajl" path="res://Weapon/player_weapon.tscn" id="5_sweqy"]
 [ext_resource type="Texture2D" uid="uid://oprv8vc258ex" path="res://Player/Player_assets/player1_front2.png" id="6_b26j0"]
 [ext_resource type="Texture2D" uid="uid://dlq5wm4l1o187" path="res://Player/Player_assets/player1_front3.png" id="8_n7ghd"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://Drops/Drops_assets/Ente.png" id="13_dkpta"]
 [ext_resource type="Texture2D" uid="uid://bq341a6hant6e" path="res://assets/effects/feather_1.png" id="13_gu6f8"]
 [ext_resource type="Texture2D" uid="uid://bdi06crlaffq3" path="res://assets/effects/feather_2.png" id="14_dkpta"]
-[ext_resource type="Texture2D" uid="uid://bpvhtvem2xapy" path="res://hud/shine_scaled.png" id="16_lfmf2"]
+[ext_resource type="Texture2D" uid="uid://bpvhtvem2xapy" path="res://Hud/shine_scaled.png" id="16_lfmf2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dw050"]
 radius = 306.685
@@ -458,6 +458,7 @@ radius = 4750.27
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.3, 0.3)
+collision_layer = 9
 collision_mask = 20
 collision_priority = 2.0
 platform_on_leave = 2
