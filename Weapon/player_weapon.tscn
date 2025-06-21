@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0dp7ykne4ajl"]
+[gd_scene load_steps=7 format=3 uid="uid://d0dp7ykne4ajl"]
 
 [ext_resource type="Script" uid="uid://cds1ogvatg4y6" path="res://Weapon/player_weapon.gd" id="1_awtn4"]
 [ext_resource type="Texture2D" uid="uid://b547fhl3y02ur" path="res://Weapon/Weapon_assets/Watergun_yellow.png" id="2_g1uu5"]
 [ext_resource type="Texture2D" uid="uid://cym0uk0wu7pi8" path="res://Weapon/Weapon_assets/watergun_top_down.png" id="3_eoxce"]
+[ext_resource type="AudioStream" uid="uid://uwreo1i01hy2" path="res://Weapon/retro-laser-1-236669.mp3" id="4_c7lpg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_awtn4"]
 
@@ -42,6 +43,10 @@ animation = &"sideways"
 
 [node name="BulletSpawnPoint" type="Marker2D" parent="CharCenter/Weapon"]
 position = Vector2(50, -18)
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="CharCenter/Weapon"]
+stream = ExtResource("4_c7lpg")
+volume_db = -6.0
 
 [node name="attack speed" type="Timer" parent="."]
 wait_time = 0.45

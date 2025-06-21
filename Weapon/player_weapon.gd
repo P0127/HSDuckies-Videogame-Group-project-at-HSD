@@ -51,6 +51,9 @@ func shoot():
 		
 		#add new bullets as child nodes of the spawnpoint
 		spawnpoint.add_child(new_bullet)
+		
+		#Play soundeffect
+		$CharCenter/Weapon/ShootSound.play()
 
 #Spawnpoint does not flip together with weapon
 func _spawnpoint_correction():
