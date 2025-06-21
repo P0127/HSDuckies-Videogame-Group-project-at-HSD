@@ -195,6 +195,8 @@ func _die():
 	#no movement allowed
 	speed = 0
 	
+	$SoundDie.play()
+	
 	$AnimatedPlayerSprite/AnimationPlayer.play("scale")
 
 func _on_game_won():
