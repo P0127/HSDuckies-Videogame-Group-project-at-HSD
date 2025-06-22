@@ -88,7 +88,7 @@ func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		if typing:
 			# If still typing, instantly show the whole line
-			typing_sound.stop()
+			GlobalSignals.stop_sound.emit("typing_sound")
 			chat_label.visible_characters = chat_label.text.length()
 			typing = false
 		else:
@@ -138,11 +138,11 @@ func _on_timer_timeout() -> void:
 
 	if char_index <= chat_label.text.length(): 
 		# if there are still characters left play sound 
-		if not typing_sound.playing:
-				typing_sound.play()
+		
+				GlobalSignals.play_sound.emit("typing_sound")
 		#stop sound and typing when ther are no characters left
 	if char_index >= chat_label.text.length():
 		typing = false
 		timer.stop()
-		typing_sound.stop()
+		GlobalSignals.stop_sound.emit("typing_sound")
 		Herr_Dahm.play("default")

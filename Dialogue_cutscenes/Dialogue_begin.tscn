@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://crnhw3bvk4u0"]
+[gd_scene load_steps=6 format=3 uid="uid://crnhw3bvk4u0"]
 
 [ext_resource type="Script" uid="uid://bc3tvdlsid1pr" path="res://Dialogue_cutscenes/Dialogue_begin.gd" id="1_1t5kr"]
 [ext_resource type="Texture2D" uid="uid://b1mwggjucdsbw" path="res://Dialogue_cutscenes/textbox.png" id="2_04duq"]
 [ext_resource type="Texture2D" uid="uid://b3xpqb5pi57d0" path="res://Characters/Character_assets/DahmSpeaking2.png" id="3_04duq"]
 [ext_resource type="Texture2D" uid="uid://i3ts8lgnrpty" path="res://Dialogue_cutscenes/DahmSpeaking1.png" id="3_iloir"]
-[ext_resource type="AudioStream" uid="uid://scl4qsinywka" path="res://CutScene/Dialogue/keyboard-typing-5997.mp3" id="4_1t5kr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jj3m1"]
 animations = [{
@@ -102,8 +101,5 @@ bbcode_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.055
-
-[node name="typing_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_1t5kr")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

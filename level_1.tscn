@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://esi7qim0g042"]
+[gd_scene load_steps=5 format=3 uid="uid://esi7qim0g042"]
 
 [ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://level_1.gd" id="1_5hph3"]
 [ext_resource type="PackedScene" uid="uid://b23fkwbnh2ijx" path="res://Map/Tilemap.tscn" id="4_5rr72"]
 [ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://Player/player.tscn" id="5_gyffv"]
-[ext_resource type="AudioStream" uid="uid://bytus7rudnd6g" path="res://assets/sound/darkwing_autist.ogg" id="6_1pe0h"]
 
 [sub_resource type="Curve2D" id="Curve2D_kek77"]
 _data = {
@@ -36,10 +35,5 @@ rotation = 0.00108264
 [node name="MobSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 4.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_1pe0h")
-volume_db = -15.0
-autoplay = true
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

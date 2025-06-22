@@ -7,6 +7,7 @@ class_name Scene_Controller extends Node
 @export var world2D : Node2D
 @export var gui : Control
 
+
 #Currently playing/needed scenes
 var current_scene
 var current_gui
@@ -19,6 +20,10 @@ func _ready():
 	
 	#This is what we start with; our start screen!
 	GlobalSignals.scene_controller.change_gui_scene("res://Hud/startscreen.tscn")
+	GlobalSignals.play_sound.connect($Sounds._play_sound)
+	GlobalSignals.stop_sound.connect($Sounds._stop_sound)
+	
+	
 
 func change_game_scene (new_scene_name: String, delete: bool = true, visibility: bool = false):
 	remove_scene(delete, visibility)

@@ -18,6 +18,7 @@ var dialog_after_pickup_triggered = false		# Flag, um Dialog nur einmal zu start
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GlobalSignals.play_sound.emit("level_sound")
 	#to prevent the panning over
 	#moves player to starting position & removed hide()
 	$Player.start($StartPosition.position)

@@ -31,7 +31,7 @@ func _on_start_button_pressed():
 	start_button_animation.play("pressed")
 	
 	# plays button sound when pressed 
-	button_sound_player.play()
+	GlobalSignals.play_sound.emit("starting_sound")
 	
 	#Once Signal is finnished, start_game!
 	
