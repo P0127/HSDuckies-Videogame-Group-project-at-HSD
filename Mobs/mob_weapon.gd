@@ -32,11 +32,17 @@ func _physics_process(delta: float) -> void:
 			$CharCenter/Weapon.animation = "sideways"
 	
 	#Flips Sprites depending on rotation (position to Player)
-	match int(rotation_degrees):
-		-135, 180, 135:
-			$CharCenter/Weapon.flip_v = true
-		_:
-			$CharCenter/Weapon.flip_v = false
+	#match int(rotation_degrees):
+		#-135, 180, 135:
+			#$CharCenter/Weapon.flip_v = true
+		#_:
+			#$CharCenter/Weapon.flip_v = false
+	
+	#Flips sprite correctly
+	if (rotation_degrees < -90 or rotation_degrees > 90):
+		$CharCenter/Weapon.flip_v = true
+	else:
+		$CharCenter/Weapon.flip_v = false
 
 func shoot():
 	if BULLET.can_instantiate():
@@ -59,6 +65,8 @@ func _on_attack_speed_timeout():
 	if(fire_status):
 		shoot()
 
+#honestly idk why this is here? looks more like a player thing unless we want
+#a chance for a temporary bullet hell?
 func change_firerate(firerate : float, change : bool):
 	if change:
 		$attack_speed.wait_time = firerate

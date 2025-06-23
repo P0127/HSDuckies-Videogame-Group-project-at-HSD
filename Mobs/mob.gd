@@ -21,8 +21,8 @@ var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate sc
 
 ## STATS 
 static var moblvl = 1
-var health : int = 2 + moblvl #Hits required to kill
-var movement_speed = 65 + moblvl * 10 
+var health : int = 3 + (moblvl-1) * 2 #Hits required to kill
+var movement_speed = 75 + (moblvl-1) * 20 
 var damage_rate : float = 2.5 + moblvl * 2.5  #damage done to Player
 
 ## TARGETS
@@ -190,3 +190,4 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 
 static func _levelUp():
 	moblvl += 1
+	#prints("Mobs have levelled up to lvl: ", moblvl)

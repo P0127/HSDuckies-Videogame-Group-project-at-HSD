@@ -14,7 +14,7 @@ var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate sc
 ## STATS
 static var moblvl = 1
 var health : int = 2 + moblvl/2  #Hits required to kill
-var movement_speed = 100 + moblvl * 15
+var movement_speed = 100 + (moblvl-1) * 25
 var damage_rate : float = 3.0  #damage done to Player by touching
 
 
@@ -27,7 +27,13 @@ var duck_status : int = 1 #modifier for running direction, dependant on wether i
 
 
 func _ready():
-	GlobalSignals.duck_collected_levelUp.connect(_levelUp)
+	if not GlobalSignals.duck_collected_levelUp.is_connected(_levelUp):
+		GlobalSignals.duck_collected_levelUp.connect(_levelUp)
+	
+	#added firerate scaling
+	var firerate_adjustment = (moblvl-1) * 0.2 #this depends on how high we want it to scale
+	weapon.change_firerate(3-firerate_adjustment, true)
+	
 	#We only have to change one Variable, Progress Bar adjusts automaticly
 	progressBar.max_value = health
 	progressBar.value = health
@@ -179,3 +185,4 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 
 static func _levelUp():
 	moblvl += 1
+	#prints("Ranged have levelled up to lvl: ", moblvl)
