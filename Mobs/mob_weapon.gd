@@ -46,6 +46,8 @@ func shoot():
 		new_bullet.global_position = spawnpoint.global_position
 		new_bullet.global_rotation = spawnpoint.global_rotation
 		
+		$MobWeaponSound.play()
+		
 		#add new bullets as child nodes of the spawnpoint
 		mob.add_child(new_bullet)
 

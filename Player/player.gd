@@ -75,7 +75,7 @@ func _physics_process(delta : float):
 	
 	## SPRITE ORIENTATION
 	_rotate_sprite(movement_timer)
-	_rotate_weapon(last_direction_faced)
+	_rotate_weapon()
 	#If this is done in the function, would only be saved globally
 	if movement_timer >= weapon_direction_change_min_time:
 		movement_timer = 0 #reset timer
@@ -139,21 +139,31 @@ func _rotate_sprite(movement_timer : float):
 	else:
 		spritePlayer.animation = "stand"
 
-#function that rotates the weapon along with the players movement
-func _rotate_weapon(direction_player : Vector2): 
-	weapon.rotation = direction_player.angle() #both work via vector
-	match int(rad_to_deg((direction_player.angle()))): 
-		#Corrects Position of Weapon due to Sprite model
-		-90:
-			weapon.position.y = -60
-			weapon.position.x = 0
-		-45:
-			weapon.position.x = 80
-		-135:
-			weapon.position.x = -80
-		_:
-			weapon.position.y = 150
-			weapon.position.x = 0
+#function that rotates the weapon to aim at the current mouse position
+func _rotate_weapon(): 
+	
+	var direction_vector = get_global_mouse_position() - self.global_position
+	direction_vector = direction_vector.normalized()
+	var angle = direction_vector.angle()
+	weapon.rotation = angle
+	angle = rad_to_deg(angle)
+	
+	
+	#old system below
+	#weapon.rotation = direction_player.angle() #both work via vector
+	#match int(rad_to_deg(angle)): 
+		##Corrects Position of Weapon due to Sprite model
+		#-90:
+			#weapon.position.y = -60
+			#weapon.position.x = 0
+		#-45:
+			#weapon.position.x = 80
+		#-135:
+			#weapon.position.x = -80
+		#_:
+			#weapon.position.y = 150
+			#weapon.position.x = 0
+			#
 
 
 ## FUNCTIONS STATS
@@ -194,6 +204,8 @@ func _die():
 	$OuchParticles.set_deferred("visible", false)
 	#no movement allowed
 	speed = 0
+	
+	$SoundDie.play()
 	
 	$AnimatedPlayerSprite/AnimationPlayer.play("scale")
 

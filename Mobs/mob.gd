@@ -186,5 +186,5 @@ func _on_hurt_player_area_body_exited(body : Node2D):
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 
-static func _levelUp():
+func _levelUp():
 	moblvl += 1
