@@ -27,6 +27,10 @@ signal dialogue_finished
 signal dialogue_start
 @warning_ignore_restore("unused_signal")
 
+# signal vor sound 
+signal play_sound(name)
+signal stop_sound(name)
+
 ## VARIABLES
 #Timers for the global effects (to avoid stacking effects) 
 #get prolonged when new drop is collected before effect of prior one runs out
@@ -37,6 +41,7 @@ var timerFirerate = Timer.new()
 var scene_controller : Scene_Controller
 #Global access to Duck Counter (how many have been collected), as it has to be scene independent
 var duck_counter : Level_Manager
+
 
 ## FUNCTIONS
 # Called when the node enters the scene tree for the first time.

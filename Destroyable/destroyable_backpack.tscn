@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxr5tal3pik4a"]
+[gd_scene load_steps=15 format=3 uid="uid://dxr5tal3pik4a"]
 
 [ext_resource type="Script" uid="uid://csv12hipm7b21" path="res://Destroyable/destroyable_backpack.gd" id="1_nxqqf"]
 [ext_resource type="Texture2D" uid="uid://bs26he6kqdvfc" path="res://Destroyable/Destroyable_assets/Backpack_new.png" id="2_nxqqf"]
+[ext_resource type="AudioStream" uid="uid://bhxf1tru8ih76" path="res://Weapon/game-bonus-144751.mp3" id="3_stv5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prvvt"]
 size = Vector2(670, 575)
@@ -229,3 +230,6 @@ scale_amount_max = 300.0
 scale_amount_curve = SubResource("Curve_prvvt")
 color_ramp = SubResource("Gradient_c3s1s")
 color_initial_ramp = SubResource("Gradient_om2c3")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_stv5u")

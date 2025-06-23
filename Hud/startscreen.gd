@@ -3,7 +3,6 @@ extends CanvasLayer
 ## NODE NAMES
 @onready var start_button = $ControlStartButton/StartButton
 @onready var start_button_animation = $ControlStartButton/StartButton/StartButtonAnimations
-@onready var button_sound_player = $AudioStreamPlayer
 @onready var background_pic = $ControlBG
 @onready var duck = $ControlDuck/duck
 @onready var duck_anim = $ControlDuck/duck/AnimationPlayer
@@ -31,7 +30,7 @@ func _on_start_button_pressed():
 	start_button_animation.play("pressed")
 	
 	# plays button sound when pressed 
-	button_sound_player.play()
+	GlobalSignals.play_sound.emit("starting_sound")
 	
 	#Once Signal is finnished, start_game!
 	

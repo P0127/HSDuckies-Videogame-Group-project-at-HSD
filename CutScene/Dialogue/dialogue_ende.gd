@@ -7,7 +7,6 @@ extends Node2D
 @onready var textbox = $textbox
 @onready var textbox_name = $textbox/name
 @onready var textbox_text = $textbox/text
-@onready var typing_sound = $typing_sound
 @onready var Herr_Dahm = $"Herr Dahm"
 @onready var timer = $Timer
 var dialogue = []   # Loaded dialogue lines
@@ -60,6 +59,7 @@ func _input(event):
 		$fade_in/AnimationPlayer.play("RESET")
 		dialogue_done = true
 		set_process_input(false)
+		GlobalSignals.stop_sound.emit("typing_sound")
 		return
 	if not dialogue_done:
 		if event.is_action_pressed("ui_accept"):
@@ -67,7 +67,7 @@ func _input(event):
 				# If typing, immediately show full text and stop sound
 				textbox_text.visible_characters = textbox_text.text.length()
 				typing = false
-				typing_sound.stop()
+				GlobalSignals.stop_sound.emit("typing_sound") 
 			else:
 				# Move to next dialogue line
 				next_script()
@@ -103,6 +103,8 @@ func next_script():
 
 
 
+
+# Typing effect: reveals characters one by one each frame
 func _on_timer_timeout() -> void:
 	if not typing: # if it´s not typing then stop the timer 
 		Herr_Dahm.play("open")
@@ -112,15 +114,15 @@ func _on_timer_timeout() -> void:
 	char_index += 1 #else add a character every 0.05 seconds
 	textbox_text.visible_characters = char_index # update 
 
-	if char_index <= textbox_text.text.length(): 
+	if char_index <= textbox_text.text.length():
 		# if there are still characters left play sound 
-		if not typing_sound.playing:
-				typing_sound.play()
+		
+				GlobalSignals.play_sound.emit("typing_sound")
 		#stop sound and typing when ther are no characters left
 	if char_index >= textbox_text.text.length():
 		typing = false
 		timer.stop()
-		typing_sound.stop()
+		GlobalSignals.stop_sound.emit("typing_sound")
 		Herr_Dahm.play("default")
 
 
