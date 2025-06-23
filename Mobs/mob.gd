@@ -35,7 +35,9 @@ var duck_status : int = 1 #modifier for running direction, dependant on wether i
 
 func _ready():
 	randomize()
-	GlobalSignals.duck_collected_levelUp.connect(_levelUp)
+	
+	if not GlobalSignals.duck_collected_levelUp.is_connected(_levelUp):
+		GlobalSignals.duck_collected_levelUp.connect(_levelUp)
 	
 	for sprite in mob_sprites:
 		sprite.visible = false  #Hide every mob sprite in the list – so that none are visible at the beginning

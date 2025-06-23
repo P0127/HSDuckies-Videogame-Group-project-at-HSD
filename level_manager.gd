@@ -12,8 +12,7 @@ func _ready():
 	GlobalSignals.duck_counter = self
 	GlobalSignals.duck_collected_signal.connect(duck_collected_counter)
 	GlobalSignals.game_over.connect(_game_over)
-
-	
+	GlobalSignals.game_won.connect(duck_reset)
 	
 
 ## FUNCTIONS DUCK COUNT
@@ -34,14 +33,14 @@ func duck_collected_counter(amount: int = 1):
 func duck_collected_levelUp():
 	GlobalSignals.duck_collected_levelUp.emit()
 
-func duck_gameOver():
+func duck_reset():
 	ducks_collected = 0
 
 
 ## FUNCTIONS GAME STATE
 func _game_over():
 	#resets ducks collected for new game attempt
-	GlobalSignals.duck_counter.duck_gameOver()
+	duck_reset()
 	#Calls on end screen as overlay over main and pauses/hides ingame overlay
 	#hiding/pausing avoids reload on button pressed "start game anew"
 	GlobalSignals.scene_controller.change_gui_scene("res://Hud/game_over.tscn", false, false)
