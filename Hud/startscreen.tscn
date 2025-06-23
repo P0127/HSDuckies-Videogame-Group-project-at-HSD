@@ -1,11 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://bp8gs76r0swmn"]
+[gd_scene load_steps=20 format=3 uid="uid://dexr3q1i6qqtm"]
 
-[ext_resource type="Script" uid="uid://dw6uqc1wm6rho" path="res://Hud/startscreen.gd" id="1_37p78"]
-[ext_resource type="Texture2D" uid="uid://ctsqrawq335qq" path="res://Hud/Hud_assets/hsd_gebaude.png" id="2_0ivg5"]
-[ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://Fonts/Xolonium-Regular.ttf" id="2_64ctp"]
+[ext_resource type="Script" path="res://hud/startscreen.gd" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://ctsqrawq335qq" path="res://hud/Hud_assets/hsd_gebaude.png" id="2_0ivg5"]
+[ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://fonts/Xolonium-Regular.ttf" id="2_64ctp"]
 [ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://Drops/Drops_assets/Ente.png" id="3_1kkc0"]
-[ext_resource type="Texture2D" uid="uid://bwtxhwe4kvqde" path="res://Hud/Hud_assets/start_button_spritesheet.png" id="3_svhta"]
-[ext_resource type="Texture2D" uid="uid://wdytae5hsfg1" path="res://Hud/Hud_assets/shine_scaled.png" id="5_qv4qp"]
+[ext_resource type="Texture2D" uid="uid://bwtxhwe4kvqde" path="res://hud/Hud_assets/start_button_spritesheet.png" id="3_svhta"]
+[ext_resource type="Texture2D" uid="uid://wdytae5hsfg1" path="res://hud/Hud_assets/shine_scaled.png" id="5_qv4qp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aolia"]
+bg_color = Color(0.796078, 0, 0, 0.552941)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svhta"]
 atlas = ExtResource("3_svhta")
@@ -47,6 +54,13 @@ animations = [{
 "name": &"pressed",
 "speed": 10.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkdvy"]
+bg_color = Color(0.6, 0, 0, 0.533333)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [sub_resource type="Animation" id="Animation_hwufu"]
 length = 0.001
@@ -149,6 +163,18 @@ size_flags_vertical = 4
 texture = ExtResource("2_0ivg5")
 expand_mode = 3
 
+[node name="PanelButton" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -87.0
+offset_right = 164.0
+offset_bottom = 121.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_aolia")
+
 [node name="ControlStartButton" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 8
@@ -156,10 +182,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -107.0
-offset_top = -58.0
-offset_right = 13.0
-offset_bottom = -4.0
+offset_left = -20.9999
+offset_top = -37.0
+offset_right = 89.0
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.5, 2.5)
@@ -167,15 +193,15 @@ scale = Vector2(2.5, 2.5)
 [node name="StartButton" type="Button" parent="ControlStartButton"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -69.5
-offset_top = -34.0
-offset_right = 69.5
-offset_bottom = 34.0
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.454
+anchor_right = 0.067
+anchor_bottom = 0.454
+offset_left = -76.04
+offset_top = -33.516
+offset_right = 75.96
+offset_bottom = 33.484
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -184,33 +210,48 @@ icon_alignment = 1
 
 [node name="StartButtonAnimations" type="AnimatedSprite2D" parent="ControlStartButton/StartButton"]
 texture_filter = 1
-position = Vector2(-19.5, -1.5)
+position = Vector2(-4.8, -13.2)
 sprite_frames = SubResource("SpriteFrames_qv4qp")
 animation = &"normal"
 centered = false
 
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.519
+anchor_top = 0.25
+anchor_right = 0.519
+anchor_bottom = 0.25
+offset_left = -843.48
+offset_top = -77.0
+offset_right = 828.52
+offset_bottom = 99.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qkdvy")
+
 [node name="ContainerTitle+Bling" type="VBoxContainer" parent="."]
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.247
 anchor_right = 0.5
-offset_left = -375.0
-offset_top = 1.0
-offset_right = 787.0
-offset_bottom = 133.0
+anchor_bottom = 0.247
+offset_left = -695.0
+offset_top = -77.76
+offset_right = 1629.0
+offset_bottom = 162.24
 grow_horizontal = 2
 scale = Vector2(0.65, 0.65)
+metadata/_edit_use_anchors_ = true
 
 [node name="Title Text" type="Label" parent="ContainerTitle+Bling"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.641279, 0.204082, 1)
-theme_override_colors/font_outline_color = Color(0.749308, 0.455625, 1.92523e-07, 1)
-theme_override_constants/outline_size = 10
+theme_override_colors/font_outline_color = Color(1, 0.643137, 0.203922, 1)
+theme_override_constants/outline_size = 45
 theme_override_fonts/font = ExtResource("2_64ctp")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 215
 text = "Duck Duck Düsseldorf"
 
 [node name="ShineScaled" type="Sprite2D" parent="ContainerTitle+Bling"]
-position = Vector2(6.15385, 29.2308)
+position = Vector2(8.46154, 52.3077)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_qv4qp")
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://esi7qim0g042"]
+[gd_scene load_steps=5 format=3 uid="uid://dvpjral4l2d0q"]
 
-[ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://level_1.gd" id="1_5hph3"]
-[ext_resource type="PackedScene" uid="uid://b23fkwbnh2ijx" path="res://Map/Tilemap.tscn" id="4_5rr72"]
+[ext_resource type="Script" path="res://level_1.gd" id="1_5hph3"]
+[ext_resource type="PackedScene" path="res://Map/Tilemap.tscn" id="4_5rr72"]
 [ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://Player/player.tscn" id="5_gyffv"]
 
 [sub_resource type="Curve2D" id="Curve2D_kek77"]
