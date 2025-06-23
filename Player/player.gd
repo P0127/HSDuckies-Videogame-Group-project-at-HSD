@@ -214,6 +214,7 @@ func _on_game_won():
 	$PickUp/CollisionShape2D.set_deferred("disabled", true)
 	$PlayerCollisionShape.set_deferred("disabled", true)
 	$OuchParticles.set_deferred("visible", false)
+	$SoundWin.play()
 	#no movement allowed
 	speed = 0
 	
