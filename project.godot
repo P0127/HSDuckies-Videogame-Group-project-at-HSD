@@ -22,6 +22,7 @@ config/icon="uid://blo0wpyfk7dww"
 
 GlobalSignals="*res://global_signals.gd"
 ItemManager="*res://item_manager.gd"
+scene_manager="*res://scene_manager.gd"
 
 [display]
 
@@ -85,4 +86,5 @@ pause_game={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Hitbox"
 2d_physics/layer_3="Pickup"
+2d_physics/layer_4="Aufzug"
 2d_physics/layer_5="Walls"
