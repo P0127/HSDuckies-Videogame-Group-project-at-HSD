@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bp8gs76r0swmn"]
+[gd_scene load_steps=18 format=3 uid="uid://bp8gs76r0swmn"]
 
 [ext_resource type="Script" uid="uid://dw6uqc1wm6rho" path="res://Hud/startscreen.gd" id="1_37p78"]
 [ext_resource type="Texture2D" uid="uid://ctsqrawq335qq" path="res://Hud/Hud_assets/hsd_gebaude.png" id="2_0ivg5"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://Drops/Drops_assets/Ente.png" id="3_1kkc0"]
 [ext_resource type="Texture2D" uid="uid://bwtxhwe4kvqde" path="res://Hud/Hud_assets/start_button_spritesheet.png" id="3_svhta"]
 [ext_resource type="Texture2D" uid="uid://wdytae5hsfg1" path="res://Hud/Hud_assets/shine_scaled.png" id="5_qv4qp"]
-[ext_resource type="AudioStream" uid="uid://cknc7stdj7q0u" path="res://assets/sound/515408__tabbygus__duck-quack-sound-effect-hd.mp3" id="6_fjv1a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svhta"]
 atlas = ExtResource("3_svhta")
@@ -240,10 +239,6 @@ flip_h = true
 libraries = {
 &"": SubResource("AnimationLibrary_gms7k")
 }
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_fjv1a")
-volume_db = -10.0
 
 [connection signal="pressed" from="ControlStartButton/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="animation_finished" from="ControlStartButton/StartButton/StartButtonAnimations" to="." method="_on_start_button_animations_animation_finished"]

@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cttwy28pac8t1"]
+[gd_scene load_steps=13 format=3 uid="uid://cttwy28pac8t1"]
 
 [ext_resource type="Script" uid="uid://bl0uih77m0qs2" path="res://CutScene/Dialogue/dialogue_ende.gd" id="1_nrco7"]
 [ext_resource type="Texture2D" uid="uid://dhxq32a8tjdw4" path="res://CutScene/CutScene_assets/BackgroundCutScene.png" id="2_nrco7"]
 [ext_resource type="Texture2D" uid="uid://i3ts8lgnrpty" path="res://Dialogue_cutscenes/DahmSpeaking1.png" id="3_nrco7"]
 [ext_resource type="Texture2D" uid="uid://b3xpqb5pi57d0" path="res://Characters/Character_assets/DahmSpeaking2.png" id="4_esyp7"]
 [ext_resource type="Texture2D" uid="uid://b1mwggjucdsbw" path="res://Dialogue_cutscenes/textbox.png" id="5_esyp7"]
-[ext_resource type="AudioStream" uid="uid://scl4qsinywka" path="res://CutScene/Dialogue/keyboard-typing-5997.mp3" id="6_esyp7"]
 [ext_resource type="Texture2D" uid="uid://ck6usna42uy7d" path="res://assets/Ente_Animation_sheet.png" id="7_jv7xh"]
 [ext_resource type="Texture2D" uid="uid://lpreujxxpnd2" path="res://assets/Ente_Animation_sheet_flipped.png" id="8_5q62p"]
 
@@ -125,9 +124,6 @@ offset_bottom = 73.089
 theme_override_colors/font_shadow_color = Color(0.114897, 0.114897, 0.114897, 1)
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
-
-[node name="typing_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_esyp7")
 
 [node name="DuckParticles" type="CPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_awpid")

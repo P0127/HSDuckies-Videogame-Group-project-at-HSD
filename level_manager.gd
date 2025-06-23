@@ -5,13 +5,16 @@ var ducks_collected : int = 0 #How many ducks the Player CURRENTLY has collected
 var ducks_required_levelUp : int = 5 #How many needed for Player level up
 var ducks_required_gameWon : int = 17 #How many needed for Game won
 
+
+
 ## FUNCTIONS 
 func _ready():
 	GlobalSignals.duck_counter = self
 	GlobalSignals.duck_collected_signal.connect(duck_collected_counter)
-	
 	GlobalSignals.game_over.connect(_game_over)
 
+	
+	
 
 ## FUNCTIONS DUCK COUNT
 #Crements global collected ducks, optional: multiple ducks are added at once

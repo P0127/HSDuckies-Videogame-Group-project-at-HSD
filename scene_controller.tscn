@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpiuwyqnm0c2n"]
+[gd_scene load_steps=7 format=3 uid="uid://bpiuwyqnm0c2n"]
 
 [ext_resource type="Script" uid="uid://bqsyjmyqpflw0" path="res://scene_controller.gd" id="1_kyqh3"]
 [ext_resource type="Script" uid="uid://x7jk47pefuvx" path="res://level_manager.gd" id="2_p0mip"]
+[ext_resource type="Script" uid="uid://d3ncp2378yls6" path="res://sounds.gd" id="3_lds82"]
+[ext_resource type="AudioStream" uid="uid://scl4qsinywka" path="res://CutScene/Dialogue/keyboard-typing-5997.mp3" id="3_q26a2"]
+[ext_resource type="AudioStream" uid="uid://cknc7stdj7q0u" path="res://assets/sound/515408__tabbygus__duck-quack-sound-effect-hd.mp3" id="4_7gd2o"]
+[ext_resource type="AudioStream" uid="uid://bytus7rudnd6g" path="res://assets/sound/darkwing_autist.ogg" id="5_7gd2o"]
 
 [node name="Scene_Controller" type="Node" node_paths=PackedStringArray("world2D", "gui")]
 process_mode = 3
@@ -17,3 +21,23 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Sounds" type="Node" parent="."]
+script = ExtResource("3_lds82")
+
+[node name="typing_sound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("3_q26a2")
+
+[node name="collecting_sound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_7gd2o")
+volume_db = -20.0
+pitch_scale = 0.8
+
+[node name="starting_sound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_7gd2o")
+volume_db = -10.0
+
+[node name="level_sound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_7gd2o")
+volume_db = -15.0
+autoplay = true
