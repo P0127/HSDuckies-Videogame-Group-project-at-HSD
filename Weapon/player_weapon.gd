@@ -33,11 +33,17 @@ func _physics_process(delta: float) -> void:
 			$CharCenter/Weapon.animation = "sideways"
 	
 	#Flips Sprites depending on rotation (position to Player)
-	match int(rotation_degrees):
-		-135, 180, 135:
-			$CharCenter/Weapon.flip_v = true
-		_:
-			$CharCenter/Weapon.flip_v = false
+	#match int(rotation_degrees):
+		#-135, 180, 135:
+			#$CharCenter/Weapon.flip_v = true
+		#_:
+			#$CharCenter/Weapon.flip_v = false
+	
+	#Flips sprite if we are aiming on the left half
+	if (rotation_degrees < -90 or rotation_degrees > 90):
+		$CharCenter/Weapon.flip_v = true
+	else:
+		$CharCenter/Weapon.flip_v = false
 	
 	_spawnpoint_correction()
 

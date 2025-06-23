@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w667g7m6x556"
-path="res://.godot/imported/duck_scaled_.png-c03a47bcba60915336f1d3c103e95391.ctex"
+uid="uid://bxhte83s3h7jl"
+path="res://.godot/imported/müller.png-2fb82834399fc4cb8298c3e051c5695e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/Hud_assets/duck_scaled_.png"
-dest_files=["res://.godot/imported/duck_scaled_.png-c03a47bcba60915336f1d3c103e95391.ctex"]
+source_file="res://Characters/Character_assets/müller.png"
+dest_files=["res://.godot/imported/müller.png-2fb82834399fc4cb8298c3e051c5695e.ctex"]
 
 [params]
 
