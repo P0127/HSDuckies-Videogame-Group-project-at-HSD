@@ -8,7 +8,6 @@ extends CanvasLayer
 @onready var name_label = $Control/dialoguebox/name
 @onready var Herr_Dahm = $"Control/dialoguebox/Herr Dahm"
 @onready var timer = $Timer
-@onready var typing_sound = $typing_sound
 
 # Stores the parsed dialogue data from JSON
 var dialogue = []
@@ -82,6 +81,7 @@ func _input(event):
 	if event.is_action_pressed("skip_cutscene"):
 		d_active = false
 		visible = false
+		GlobalSignals.stop_sound.emit("typing_sound")
 		GlobalSignals.dialogue_finished.emit()
 		return
 	# Proceed or skip typing effect when 'ui_accept' (Enter/Space) is pressed

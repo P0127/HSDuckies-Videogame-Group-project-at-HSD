@@ -10,7 +10,7 @@ func _play_sound(name: String, pitch: float = 1.0):
 	# Makes sure it's an AudioStreamPlayer and it's not already playing
 	if has_node(name):
 		var player = get_node(name)
-		if player is AudioStreamPlayer and not player.playing:
+		if player is AudioStreamPlayer:
 			player.pitch_scale = pitch # Sets the pitch for duck_collectable 
 			player.play() # play sound
 		

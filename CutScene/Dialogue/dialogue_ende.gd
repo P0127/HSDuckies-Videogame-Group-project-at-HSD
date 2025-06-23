@@ -59,6 +59,7 @@ func _input(event):
 		$fade_in/AnimationPlayer.play("RESET")
 		dialogue_done = true
 		set_process_input(false)
+		GlobalSignals.stop_sound.emit("typing_sound")
 		return
 	if not dialogue_done:
 		if event.is_action_pressed("ui_accept"):

@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bq341a6hant6e" path="res://assets/effects/feather_1.png" id="13_gu6f8"]
 [ext_resource type="Texture2D" uid="uid://bdi06crlaffq3" path="res://assets/effects/feather_2.png" id="14_dkpta"]
 [ext_resource type="Texture2D" uid="uid://bpvhtvem2xapy" path="res://Hud/shine_scaled.png" id="16_lfmf2"]
+[ext_resource type="AudioStream" uid="uid://c4i2b06tfblp3" path="res://assets/sound/412168__poligonstudio__arcade-game-over.wav" id="17_pisgm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dw050"]
 radius = 306.685
