@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b26h6bedxa5pj"]
+[gd_scene load_steps=14 format=3 uid="uid://b26h6bedxa5pj"]
 
 [ext_resource type="Texture2D" uid="uid://dxmy74qlajnft" path="res://Mobs/temp assets Boss/Attacking state temp.jpeg" id="1_f2voa"]
 [ext_resource type="Script" uid="uid://baxe1tyd7mto2" path="res://Mobs/boss_charge.gd" id="1_hi6rg"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://cldmpflx8lofj" path="res://Mobs/Finite State Machine Scripts/state_machine.gd" id="6_r16su"]
 [ext_resource type="Script" uid="uid://dwruppfk36llv" path="res://Mobs/Finite State Machine Scripts/IdleState.gd" id="7_xlxb4"]
 [ext_resource type="Script" uid="uid://4qvn15iiqwpp" path="res://Mobs/Finite State Machine Scripts/FollowState.gd" id="8_u6ydu"]
+[ext_resource type="Script" uid="uid://bbusu5836pdma" path="res://Mobs/AttackState.gd" id="9_j27v5"]
+[ext_resource type="Script" uid="uid://cbnf1oo58hqvm" path="res://SummonState.gd" id="10_m1k7s"]
+[ext_resource type="Script" uid="uid://d11nxl2p13uk1" path="res://TeleportState.gd" id="11_clhv4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u6ydu"]
 animations = [{
@@ -49,13 +52,14 @@ size = Vector2(40, 40)
 
 [node name="Boss_Charging" type="CharacterBody2D"]
 scale = Vector2(1.8, 1.8)
+collision_layer = 2
 collision_mask = 17
 platform_on_leave = 2
 script = ExtResource("1_hi6rg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u6ydu")
-animation = &"following"
+animation = &"channelling attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_f2voa")
@@ -73,3 +77,49 @@ metadata/_custom_type_script = "uid://dwruppfk36llv"
 script = ExtResource("8_u6ydu")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://4qvn15iiqwpp"
+
+[node name="Attack" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("9_j27v5")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://bbusu5836pdma"
+
+[node name="Summon" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("10_m1k7s")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://cbnf1oo58hqvm"
+
+[node name="Teleport" type="Node" parent="State Machine"]
+script = ExtResource("11_clhv4")
+metadata/_custom_type_script = "uid://d11nxl2p13uk1"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -35.0
+offset_right = 175.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -61.5
+offset_top = -60.0
+offset_right = 61.5
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Charging Quack"
