@@ -15,9 +15,6 @@ func _on_back_button_pressed() -> void:
 	back_b_anim.play("pressed")
 	
 
-	GlobalSignals.scene_controller.remove_scene()
-	GlobalSignals.scene_controller.change_gui_scene("res://Hud/startscreen.tscn")
-
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	GlobalSignals.scene_controller.remove_scene()
