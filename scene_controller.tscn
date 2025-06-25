@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bpiuwyqnm0c2n"]
 
-[ext_resource type="Script" path="res://scene_controller.gd" id="1_kyqh3"]
+[ext_resource type="Script" uid="uid://bqsyjmyqpflw0" path="res://scene_controller.gd" id="1_kyqh3"]
 [ext_resource type="Script" path="res://level_manager.gd" id="2_p0mip"]
 [ext_resource type="Script" path="res://sounds.gd" id="3_lds82"]
 [ext_resource type="AudioStream" uid="uid://scl4qsinywka" path="res://CutScene/Dialogue/keyboard-typing-5997.mp3" id="3_q26a2"]

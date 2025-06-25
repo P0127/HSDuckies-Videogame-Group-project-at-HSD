@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://dexr3q1i6qqtm"]
 
-[ext_resource type="Script" path="res://hud/startscreen.gd" id="1_37p78"]
+[ext_resource type="Script" uid="uid://dw6uqc1wm6rho" path="res://hud/startscreen.gd" id="1_37p78"]
 [ext_resource type="Texture2D" uid="uid://ctsqrawq335qq" path="res://hud/Hud_assets/hsd_gebaude.png" id="2_0ivg5"]
 [ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://fonts/Xolonium-Regular.ttf" id="2_64ctp"]
 [ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://Drops/Drops_assets/Ente.png" id="3_1kkc0"]
@@ -169,9 +169,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f8lv1")
 }],
-"loop": true,
+"loop": false,
 "name": &"pressed",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="Startscreen_GUI" type="CanvasLayer"]
@@ -334,22 +334,37 @@ offset_bottom = 85.48
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.534
-anchor_top = 0.321
-anchor_right = 0.534
-anchor_bottom = 0.321
-offset_left = -190.124
-offset_top = -94.57
-offset_right = 189.876
-offset_bottom = 94.43
+anchor_left = 0.63
+anchor_top = 0.291
+anchor_right = 0.63
+anchor_bottom = 0.291
+offset_left = -190.18
+offset_top = -94.47
+offset_right = 189.82
+offset_bottom = 94.53
 focus_mode = 0
 flat = true
 
 [node name="AnimatedCreditB" type="AnimatedSprite2D" parent="ControlCreditB/CreditButton"]
-position = Vector2(131, 121)
+position = Vector2(213, 80)
 scale = Vector2(1.87516, 1.87516)
 sprite_frames = SubResource("SpriteFrames_q4pr5")
 animation = &"pressed"
 
+[node name="QuitButtonOnstart" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.697
+anchor_right = 0.5
+anchor_bottom = 0.697
+offset_left = -73.0
+offset_top = -47.76
+offset_right = 77.0
+offset_bottom = 47.24
+grow_horizontal = 2
+grow_vertical = 0
+
 [connection signal="pressed" from="ControlStartButton/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="animation_finished" from="ControlStartButton/StartButton/StartButtonAnimations" to="." method="_on_start_button_animations_animation_finished"]
+[connection signal="pressed" from="ControlCreditB/CreditButton" to="." method="_on_credit_button_pressed"]
+[connection signal="animation_finished" from="ControlCreditB/CreditButton/AnimatedCreditB" to="." method="_on_animated_credit_b_animation_finished"]
