@@ -1,4 +1,4 @@
-class_name AttackState extends State
+class_name MeeleeAttackState extends State
 ##this was a 3hit attack attempt that didnt quite work due to there being no timer in follow that 
 ##denies us from going straight back to attack
 

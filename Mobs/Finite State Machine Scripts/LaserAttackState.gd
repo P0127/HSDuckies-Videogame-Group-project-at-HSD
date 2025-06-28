@@ -1,13 +1,11 @@
-class_name LazerAttackState extends State
+class_name LaserAttackState extends State
 
 
 @export var enemy: CharacterBody2D
-@export var laser_scene: PackedScene
 
 @onready var sprite = enemy.get_child(0)
-var directions =[Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
+var directions = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
 var current_direction = directions[0]
-var is_shooting : bool
 var fire_duration = 2.5
 var break_duration = 1.0
 var directions_fired = 0
@@ -19,11 +17,10 @@ var directions_fired = 0
 
 func Enter():
 	sprite.animation = "channelling attack"
-	enemy.velocity = Vector2()
-	is_shooting = false
+	#enemy.velocity = Vector2()#dont think this line is needed but maybe if we slide later upon entry
 	directions_fired = 0
 	if (randf() > 0.5):
-		directions.reverse()#for both possible directions
+		directions.reverse()#for both possible spin directions
 	start_shooting_cycle()
 
 
@@ -33,21 +30,23 @@ func Exit():
 func start_shooting_cycle():
 	direction_swap_timer.start(break_duration)
 	change_direction()
-	
 
 func change_direction():
-	is_shooting = false
 	sprite.animation = "channelling attack"
 	if(directions_fired > 3):
-		Transitioned.emit(self, "moving")
-		return
+		var swapTo = randf()
+		if(swapTo > 0.99):
+			Transitioned.emit(self, "moving")
+			return
+		else:
+			Transitioned.emit(self, "teleport")
+			return
 	
 	current_direction = directions[directions_fired]
 	directions_fired +=1
 	direction_swap_timer.start(break_duration)
 
-
-
+##fire duration timer
 func _on_fire_timer_timeout() -> void:
 	laser.is_casting = false
 	sprite.animation = "channelling attack"
@@ -56,12 +55,13 @@ func _on_fire_timer_timeout() -> void:
 
 ##break timer
 func _on_direction_swap_timer_timeout() -> void:
-	
 	sprite.animation = "attacking"
-	shooting_cycleV2(current_direction)
+	shooting_cyclePart2(current_direction)
 
 
-func shooting_cycleV2(direction: Vector2):
+func shooting_cyclePart2(direction: Vector2):
 	laser.look_at(enemy.global_position + direction)
 	laser.is_casting = true
+	#could add a distance collision check here that if laser collides with a wall within 200px
+	#we turn laser off, change sprite, reopen change_direction() and return so that timer doesnt start
 	fire_timer.start(fire_duration)

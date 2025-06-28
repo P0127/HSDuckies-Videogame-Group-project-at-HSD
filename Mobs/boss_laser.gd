@@ -16,9 +16,13 @@ extends RayCast2D
 @export var color := Color.WHITE: set = set_color
 
 ##variables for laser effect
-@onready var line_2d: Line2D = $Line2D
+@onready var line_2d: Line2D = $outerLine
 @onready var line_width := line_2d.width
+@onready var line_2d2: Line2D = $innerLine
+@onready var line_width2 := line_2d2.width
+
 var tween: Tween = null
+var tween2: Tween = null
 
 
 func _ready() -> void:
@@ -27,6 +31,9 @@ func _ready() -> void:
 	line_2d.points[0] = Vector2.RIGHT * start_distance
 	line_2d.points[1] = Vector2.ZERO
 	line_2d.visible = false
+	line_2d2.points[0] = Vector2.RIGHT * start_distance
+	line_2d2.points[1] = Vector2.ZERO
+	line_2d2.visible = false
 
 
 func _physics_process(delta: float) -> void:
@@ -42,7 +49,12 @@ func _physics_process(delta: float) -> void:
 		laser_end_position = to_local(get_collision_point())
 		if get_collider() == player:
 			player.take_damage(delta, 5.0)
+	
+	if line_2d == null or line_2d2 == null:
+		return
+	
 	line_2d.points[1] = laser_end_position
+	line_2d2.points[1] = laser_end_position
 
 
 
@@ -52,13 +64,15 @@ func set_is_casting(new_value: bool):
 	is_casting = new_value
 	set_physics_process(is_casting)
 	
-	if not line_2d:
+	if not line_2d or not line_2d2:
 		return
 	
 	if is_casting:
 		var laser_start := Vector2.RIGHT * start_distance
 		line_2d.points[0] = laser_start
 		line_2d.points[1] = laser_start
+		line_2d2.points[0] = laser_start 
+		line_2d2.points[1] = laser_start 
 		appear()
 	else:
 		target_position = Vector2.ZERO
@@ -73,10 +87,16 @@ func set_color(new_color: Color):
 
 func appear():
 	line_2d.visible = true
+	line_2d2.visible = true
 	if tween and tween.is_running():
 		tween.kill()
 	tween = create_tween()
 	tween.tween_property(line_2d, "width", line_width, growth_time * 2.0).from(0.0)
+	
+	if tween2 and tween2.is_running():
+		tween2.kill()
+	tween2 = create_tween()
+	tween2.tween_property(line_2d2, "width", line_width2, growth_time * 2.0).from(0.0)
 
 func disappear():
 	if tween and tween.is_running():
@@ -84,3 +104,9 @@ func disappear():
 	tween = create_tween()
 	tween.tween_property(line_2d, "width", 0.0, growth_time).from_current()
 	tween.tween_callback(line_2d.hide)
+	
+	if tween2 and tween2.is_running():
+		tween2.kill()
+	tween2 = create_tween()
+	tween2.tween_property(line_2d2, "width", 0.0, growth_time).from_current()
+	tween2.tween_callback(line_2d2.hide)
