@@ -155,9 +155,12 @@ func liberated():
 	drop_item()
 
 func _on_time_to_live_timeout():
-	#await $FeatherExplosion.finished
 	GlobalSignals.reduce_mob_counter.emit()
-	queue_free()
+	var tween = get_tree().create_tween()
+	# Tween the modulate.a property to 0 (not visible)
+	tween.tween_property(self, "modulate:a", 0, 0.6)
+	# When the fade-in is complete, queue_free entire Instance
+	tween.tween_callback(self.queue_free)
 
 
 #the two following functions go into effect whenever any body enters our mobs AwarenessRadius
