@@ -190,6 +190,7 @@ func _die():
 #Disables Player, starts victory animation
 func _on_game_won():
 	_disable_player_interactions()
+	$SoundWin.play()
 	$AnimatedPlayerSprite/AnimationPlayer.play("game_won")
 
 #Stops Interactions, Freezes Player
@@ -198,7 +199,6 @@ func _disable_player_interactions():
 	$PickUp/CollisionShape2D.set_deferred("disabled", true)
 	$PlayerCollisionShape.set_deferred("disabled", true)
 	$OuchParticles.set_deferred("visible", false)
-	$SoundWin.play()
 	#no movement allowed
 	speed = 0
 
@@ -231,6 +231,3 @@ func _on_despawnrange_body_exited(body: Node2D) -> void:
 	if body.is_in_group("all_mobs"):
 		body.queue_free()
 		GlobalSignals.reduce_mob_counter.emit()
-
-func set_collision_enabled(enabled: bool):
-	$PlayerCollisionShape.disabled = not enabled
