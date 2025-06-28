@@ -2,7 +2,6 @@ class_name MovingState extends State
 
 
 @export var enemy: CharacterBody2D
-@export var map: TileMapLayer
 @onready var navAgent: NavigationAgent2D = $"../../NavigationAgent2D"
 
 ##Array of all main Boss Positions
@@ -14,7 +13,7 @@ class_name MovingState extends State
 ]
 
 var next_pos
-var movement_speed = 200
+var movement_speed = 400
 
 ##have setpoints on the map and use navagent2d alongside a navmesh to make him path between the points
 ##prob have the points saved in an array then choose a rdm index and path to that point
@@ -38,8 +37,8 @@ func Physics_Update(delta: float):
 		var new_velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 		
 		if navAgent.is_navigation_finished():
-			Transitioned.emit(self, "attack")
-			#return 
+			Transitioned.emit(self, "laserattack")
+			return 
 			#prob some transition to lazer attack state
 		
 		if navAgent.avoidance_enabled:

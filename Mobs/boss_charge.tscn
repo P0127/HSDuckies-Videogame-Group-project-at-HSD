@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b26h6bedxa5pj"]
+[gd_scene load_steps=17 format=3 uid="uid://b26h6bedxa5pj"]
 
 [ext_resource type="Texture2D" uid="uid://dxmy74qlajnft" path="res://Mobs/temp assets Boss/Attacking state temp.jpeg" id="1_f2voa"]
 [ext_resource type="Script" uid="uid://baxe1tyd7mto2" path="res://Mobs/boss_charge.gd" id="1_hi6rg"]
@@ -12,7 +12,8 @@
 [ext_resource type="Script" uid="uid://cbnf1oo58hqvm" path="res://Mobs/Finite State Machine Scripts/SummonState.gd" id="10_m1k7s"]
 [ext_resource type="Script" uid="uid://d11nxl2p13uk1" path="res://Mobs/Finite State Machine Scripts/TeleportState.gd" id="11_clhv4"]
 [ext_resource type="Script" uid="uid://d27np5axuscdr" path="res://Mobs/Finite State Machine Scripts/MovingState.gd" id="12_5gokl"]
-[ext_resource type="Script" uid="uid://jm8nl766rd73" path="res://Mobs/Finite State Machine Scripts/LazerAttackState.gd" id="13_xql5s"]
+[ext_resource type="Script" uid="uid://jm8nl766rd73" path="res://Mobs/Finite State Machine Scripts/LaserAttackState.gd" id="13_xql5s"]
+[ext_resource type="PackedScene" uid="uid://bdpw6r2f3pmp4" path="res://Mobs/BossLaser.tscn" id="14_qfa54"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u6ydu"]
 animations = [{
@@ -100,10 +101,18 @@ script = ExtResource("12_5gokl")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://d27np5axuscdr"
 
-[node name="LazerAttackState" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+[node name="LaserAttack" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("13_xql5s")
 enemy = NodePath("../..")
+laser_scene = ExtResource("14_qfa54")
 metadata/_custom_type_script = "uid://jm8nl766rd73"
+
+[node name="FireTimer" type="Timer" parent="State Machine/LaserAttack"]
+wait_time = 2.5
+one_shot = true
+
+[node name="DirectionSwapTimer" type="Timer" parent="State Machine/LaserAttack"]
+one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -139,3 +148,10 @@ text = "Charging Quack"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 2
+
+[node name="RayCast2D" parent="." instance=ExtResource("14_qfa54")]
+is_casting = true
+color = Color(1, 0, 0.00784314, 1)
+
+[connection signal="timeout" from="State Machine/LaserAttack/FireTimer" to="State Machine/LaserAttack" method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="State Machine/LaserAttack/DirectionSwapTimer" to="State Machine/LaserAttack" method="_on_direction_swap_timer_timeout"]

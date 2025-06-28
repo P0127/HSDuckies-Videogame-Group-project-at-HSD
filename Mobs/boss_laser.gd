@@ -69,9 +69,6 @@ func set_color(new_color: Color):
 	if line_2d == null:
 		return
 	line_2d.modulate = new_color
-	casting_particles.modulate = new_color
-	collision_particles.modulate = new_color
-	beam_particles.modulate = new_color
 
 
 func appear():
@@ -87,12 +84,3 @@ func disappear():
 	tween = create_tween()
 	tween.tween_property(line_2d, "width", 0.0, growth_time).from_current()
 	tween.tween_callback(line_2d.hide)
-
-
-##--------------------------------------------------------------------------
-#particles at the starting point
-@onready var casting_particles: GPUParticles2D = $CastingParticles
-#particles at the ending/collision point
-@onready var collision_particles: GPUParticles2D = $CollisionParticles
-#particles between the two points
-@onready var beam_particles: GPUParticles2D = $BeamParticles
