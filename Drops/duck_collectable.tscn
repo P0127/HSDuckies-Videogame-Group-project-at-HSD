@@ -151,7 +151,6 @@ script = ExtResource("1_npn1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.000114441, 0.000114441)
-scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_oatfm")
 debug_color = Color(0.822804, 0.400381, 0, 0.42)
 
@@ -171,7 +170,6 @@ libraries = {
 }
 
 [node name="FeatherExplosion" type="CPUParticles2D" parent="DuckPath/DuckPathFollow"]
-scale = Vector2(1, 1)
 emitting = false
 amount = 2
 texture = ExtResource("5_j5py5")
@@ -193,7 +191,6 @@ scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_hlqqf")
 
 [node name="FeatherExplosion2" type="CPUParticles2D" parent="DuckPath/DuckPathFollow"]
-scale = Vector2(1, 1)
 emitting = false
 amount = 1
 texture = ExtResource("6_ua53g")
@@ -215,7 +212,6 @@ scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_hlqqf")
 
 [node name="CollectionArea" type="Area2D" parent="DuckPath/DuckPathFollow"]
-scale = Vector2(1, 1)
 collision_layer = 4
 
 [node name="CollectionShape2D" type="CollisionShape2D" parent="DuckPath/DuckPathFollow/CollectionArea"]

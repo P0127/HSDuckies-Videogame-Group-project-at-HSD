@@ -24,7 +24,6 @@ func _ready():
 	#Starts Animation on initiation
 	duckSprite.play("flapping")
 	
-	## SIGNAL CONNECTIONS
 	#Duck stops following the path and stops flapping
 	path_finished.connect(_on_path_finished)
 
