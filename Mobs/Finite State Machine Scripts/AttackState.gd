@@ -1,4 +1,6 @@
 class_name AttackState extends State
+##this was a 3hit attack attempt that didnt quite work due to there being no timer in follow that 
+##denies us from going straight back to attack
 
 @export var enemy: CharacterBody2D
 #onready for sprite here due to multiple uses
@@ -25,7 +27,7 @@ func Update(delta: float):
 			time_between_hits = 1
 		
 		if(direction.length() > 300): 
-			Transitioned.emit(self, "follow")
+			Transitioned.emit(self, "moving")
 		
 		if(time_between_hits > 0):
 			time_between_hits -= delta

@@ -5,3 +5,4 @@ class_name TeleportState extends State
 
 
 ##setup so that we can lazer fire into all hallways
+##prob work with set points on the map play animation tp there
