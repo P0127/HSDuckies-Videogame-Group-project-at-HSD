@@ -83,11 +83,6 @@ func _physics_process(delta : float):
 	## COLLISION
 	move_and_collide(velocity * delta) #check for collisions with walls
 	
-	##testing laser
-	laser.look_at(get_global_mouse_position())
-	laser.is_casting = Input.is_action_pressed("click")
-@onready var laser: RayCast2D = $RayCast2D
-##above for testing laser
 
 ## PHYSICS FUNCTIONS (DELTA)
 # Function that processes Player's movement

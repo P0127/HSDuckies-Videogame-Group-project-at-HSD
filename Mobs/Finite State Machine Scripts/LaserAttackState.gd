@@ -19,6 +19,11 @@ func Enter():
 	sprite.animation = "channelling attack"
 	#enemy.velocity = Vector2()#dont think this line is needed but maybe if we slide later upon entry
 	directions_fired = 0
+	
+	##this needs to be called in Enter else the first laser from first state entry is invisible
+	laser.is_casting = false
+	
+	#directions.shuffle() #for rdm direction order
 	if (randf() > 0.5):
 		directions.reverse()#for both possible spin directions
 	start_shooting_cycle()
@@ -64,4 +69,7 @@ func shooting_cyclePart2(direction: Vector2):
 	laser.is_casting = true
 	#could add a distance collision check here that if laser collides with a wall within 200px
 	#we turn laser off, change sprite, reopen change_direction() and return so that timer doesnt start
+	#if collision check
+		#try with next direction
+		#return
 	fire_timer.start(fire_duration)

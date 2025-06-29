@@ -1,4 +1,6 @@
-class_name ChargingQuack extends CharacterBody2D
+class_name SirQuackAlot extends CharacterBody2D
+
+##todo make it so that player cant push the boss
 
 @export var attack_dmg: float = 5
 var health = 100

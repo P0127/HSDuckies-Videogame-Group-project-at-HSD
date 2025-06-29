@@ -1,5 +1,6 @@
 class_name TeleportState extends State
 
+##todo fix mob keeping momentum if we push it so that it doesnt continue sliding after teleporting
 
 @export var enemy: CharacterBody2D
 @onready var sprite = enemy.get_child(0)

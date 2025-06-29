@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://b26h6bedxa5pj"]
 
 [ext_resource type="Texture2D" uid="uid://dxmy74qlajnft" path="res://Mobs/temp assets Boss/Attacking state temp.jpeg" id="1_f2voa"]
-[ext_resource type="Script" uid="uid://baxe1tyd7mto2" path="res://Mobs/boss_charge.gd" id="1_hi6rg"]
+[ext_resource type="Script" uid="uid://baxe1tyd7mto2" path="res://Mobs/ent_boss.gd" id="1_hi6rg"]
 [ext_resource type="Texture2D" uid="uid://cq7jm6w4bdct1" path="res://Mobs/temp assets Boss/Attack channelling temp.jpeg" id="2_hi6rg"]
 [ext_resource type="Texture2D" uid="uid://dubt5vrchpsq5" path="res://Mobs/temp assets Boss/Passive temp.jpeg" id="3_r16su"]
 [ext_resource type="Texture2D" uid="uid://c0e5bruunu5ya" path="res://Mobs/temp assets Boss/target spotted temp.jpeg" id="4_xlxb4"]
@@ -53,7 +53,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2voa"]
 size = Vector2(40, 40)
 
-[node name="Boss_Charging" type="CharacterBody2D"]
+[node name="Ent-Boss" type="CharacterBody2D"]
 scale = Vector2(1.8, 1.8)
 collision_layer = 2
 collision_mask = 17
@@ -150,7 +150,6 @@ text = "Charging Quack"
 navigation_layers = 2
 
 [node name="RayCast2D" parent="." instance=ExtResource("14_qfa54")]
-is_casting = true
 color = Color(1, 0, 0.00784314, 1)
 
 [connection signal="timeout" from="State Machine/LaserAttack/FireTimer" to="State Machine/LaserAttack" method="_on_fire_timer_timeout"]
