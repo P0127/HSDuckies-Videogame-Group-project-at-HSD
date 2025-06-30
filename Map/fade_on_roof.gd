@@ -1,7 +1,7 @@
 class_name fadeIN_and_fadeOut
 extends Area2D
 
-@onready var dach: TileMapLayer = $"../Dach-Empfang"
+@onready var dach: TileMapLayer = $"../Dach_fade"
 
 var fading_in: bool
 var fading_out: bool
