@@ -1,6 +1,7 @@
 class_name MeeleeAttackState extends State
 ##this was a 3hit attack attempt that didnt quite work due to there being no timer in follow that 
-##denies us from going straight back to attack
+##denies us from going straight back to attack -> could also solve it by swapping between attack 
+##patterns but dont think theres enough time + wouldnt fit as we dont have a meelee hit animation
 
 @export var enemy: CharacterBody2D
 #onready for sprite here due to multiple uses
@@ -26,8 +27,9 @@ func Update(delta: float):
 		if time_between_hits <= 0:
 			time_between_hits = 1
 		
+		#if player out of attack range swap to follow state
 		if(direction.length() > 300): 
-			Transitioned.emit(self, "moving")
+			Transitioned.emit(self, "follow")
 		
 		if(time_between_hits > 0):
 			time_between_hits -= delta
@@ -38,7 +40,7 @@ func Update(delta: float):
 			hitCounter += 1
 			
 			if(hitCounter >= 3):
-				Transitioned.emit(self, "follow")
+				Transitioned.emit(self, "moving")
 
 func Exit():
 	sprite.animation = "following"

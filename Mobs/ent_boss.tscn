@@ -118,6 +118,7 @@ one_shot = true
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 visible = false
+modulate = Color(1, 0, 0, 1)
 custom_minimum_size = Vector2(200, 0)
 anchors_preset = 7
 anchor_left = 0.5
@@ -129,10 +130,12 @@ offset_top = -35.0
 offset_right = 175.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 value = 100.0
 
-[node name="Label" type="Label" parent="CanvasLayer/ProgressBar"]
-layout_mode = 1
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+modulate = Color(1, 1, 0, 1)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -144,7 +147,9 @@ offset_right = 61.5
 offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Charging Quack"
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Sir Quackalot"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 2

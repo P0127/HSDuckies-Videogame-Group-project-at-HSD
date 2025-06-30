@@ -1,7 +1,5 @@
 class_name TeleportState extends State
 
-##todo fix mob keeping momentum if we push it so that it doesnt continue sliding after teleporting
-
 @export var enemy: CharacterBody2D
 @onready var sprite = enemy.get_child(0)
 
@@ -15,24 +13,26 @@ class_name TeleportState extends State
 	$"../../../Test_Tilemap/BossPos2",
 	$"../../../Test_Tilemap/BossPos3",
 	$"../../../Test_Tilemap/BossPos4"
-]
+] 
 var next_pos
 var waitBefore : float = 2.0
 var waitAfter : float = 1.0
-var enemyTeleported : bool
 
 func Enter():
-	##select random point where we will path to
+	#select random point where we will path to
 	var indexPos = randi_range(0,3)
 	next_pos = allPossiblePositions[indexPos]
-	##play animation
-	#animation_player.play("teleport")
-	#await animation_player.animation_finished
+	#if we are at that position choose a different one
+	while next_pos == enemy.last_pos:
+		indexPos = randi_range(0,3)
+		next_pos = allPossiblePositions[indexPos]
+	#save chosen position into last_pos for future check
+	enemy.last_pos = next_pos
 	waitBefore = 2.0
 	sprite.animation = "passive"
-	enemyTeleported = false
 
 func Update(delta: float):
+	enemy.velocity = Vector2()
 	if waitBefore > 0:
 		waitBefore -= delta
 	else:
@@ -42,9 +42,9 @@ func Update(delta: float):
 		
 		teleport()
 		waitBefore = 500 #not fancy but to bugtest so that we dont reopen teleport() on repeat
-		
 
-##insert key in animation to link to teleport method
+
+#alternative way one could call it: insert key in animation to link to teleport method
 func teleport():
 	#wait for fadeout to fully play
 	await get_tree().create_timer(1).timeout
@@ -59,22 +59,16 @@ func teleport():
 	
 	#wait for fadein to fully play
 	await get_tree().create_timer(1).timeout
-	Transitioned.emit(self, "laserattack")
+	swapState()
 
-
-
-func Exit():
-	print("teleport state exit called")
-
-
-func _on_opacity_timer_timeout() -> void:
-	teleport()
-	
-	var tween = create_tween()
-	tween.tween_property(sprite, "self_modulate:a", 1.0, 1.0)
-	#Fade out to 100% opacity over 1 second
-	#else:
-		#var tween = create_tween()
-		#tween.tween_property(sprite, "self_modulate", 0.1, 1.0)
-		##Fade in to 10% opacity over 1 second
-		#opacity_timer.start(1.0)
+##method for swapping state, in phase 1 it will always swap to laserattack state
+##whilst in phase 2 theres a 30% chance to swap to summon state
+func swapState():
+	if enemy.phase2:
+		var whichState = randf()
+		if whichState > 0.3:
+			Transitioned.emit(self, "laserattack")
+		else:
+			Transitioned.emit(self, "summon")
+	else:
+		Transitioned.emit(self, "laserattack")

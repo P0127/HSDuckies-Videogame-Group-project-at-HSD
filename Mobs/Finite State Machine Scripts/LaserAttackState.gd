@@ -6,8 +6,8 @@ class_name LaserAttackState extends State
 @onready var sprite = enemy.get_child(0)
 var directions = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
 var current_direction = directions[0]
-var fire_duration = 2.5
-var break_duration = 1.0
+@export var fire_duration = 2.5
+@export var break_duration = 1.0
 var directions_fired = 0
 @onready var fire_timer: Timer = $FireTimer
 @onready var direction_swap_timer: Timer = $DirectionSwapTimer
