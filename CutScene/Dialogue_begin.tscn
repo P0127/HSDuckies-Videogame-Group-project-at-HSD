@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bc3tvdlsid1pr" path="res://CutScene/Dialogue_begin.gd" id="1_1t5kr"]
 [ext_resource type="Texture2D" uid="uid://b1mwggjucdsbw" path="res://CutScene/CutScene_assets/textbox.png" id="2_04duq"]
 [ext_resource type="Texture2D" uid="uid://b3xpqb5pi57d0" path="res://Characters/Character_assets/DahmSpeaking2.png" id="3_04duq"]
-[ext_resource type="Texture2D" uid="uid://i3ts8lgnrpty" path="res://CutScene/CutScene_assets/DahmSpeaking1.png" id="3_iloir"]
+[ext_resource type="Texture2D" uid="uid://i3ts8lgnrpty" path="res://Characters/Character_assets/DahmSpeaking1.png" id="3_iloir"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jj3m1"]
 animations = [{
@@ -18,6 +18,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_iloir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_04duq")
 }],
 "loop": true,
 "name": &"open",

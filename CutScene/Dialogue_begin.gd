@@ -52,6 +52,8 @@ func start(dialogue_path: String = "") -> void:
 	dialogue_box.visible = true
 	$Overlay.visible = true
 	
+	Herr_Dahm.play("open")
+	
 	next_script()
 
 # Loads and parses the JSON dialogue file
@@ -90,6 +92,7 @@ func _input(event):
 			# If still typing, instantly show the whole line
 			GlobalSignals.stop_sound.emit("typing_sound")
 			chat_label.visible_characters = chat_label.text.length()
+			Herr_Dahm.set_deferred("animation", "default") #Stops Mouth movement
 			typing = false
 		else:
 			# Otherwise go to the next line
@@ -124,24 +127,23 @@ func next_script():
 	chat_label.visible_characters = 0
 	typing = true
 	timer.start()
-	Herr_Dahm.play("open")
 
 # Typing effect: reveals characters one by one each frame
 func _on_timer_timeout() -> void:
-	if not typing: # if it´s not typing then stop the timer 
-		Herr_Dahm.play("open")
+	if not typing: # if it´s not typing then stop the timer
 		timer.stop()
 		return
 
 	char_index += 1 #else add a character every 0.05 seconds
 	chat_label.visible_characters = char_index # update 
 
-	if char_index <= chat_label.text.length(): 
+	if char_index <= chat_label.text.length():
+		Herr_Dahm.set_deferred("animation", "open") #Plays Animation aslong as text is typed
 		# if there are still characters left play sound 
 		GlobalSignals.play_sound.emit("typing_sound")
-		#stop sound and typing when ther are no characters left
+	#stop sound and typing when ther are no characters left
 	if char_index >= chat_label.text.length():
 		typing = false
 		timer.stop()
 		GlobalSignals.stop_sound.emit("typing_sound")
-		Herr_Dahm.play("default")
+		Herr_Dahm.set_deferred("animation", "default") #Stops Mouth movement

@@ -41,6 +41,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func start():
 	dialogue = load_dialogue()
 	current_dialogue_id = -1
+	Herr_Dahm.play("open")
 	next_script()
 
 
@@ -67,7 +68,8 @@ func _input(event):
 				# If typing, immediately show full text and stop sound
 				textbox_text.visible_characters = textbox_text.text.length()
 				typing = false
-				GlobalSignals.stop_sound.emit("typing_sound") 
+				GlobalSignals.stop_sound.emit("typing_sound")
+				Herr_Dahm.set_deferred("animation", "default") #Stops Mouth movement
 			else:
 				# Move to next dialogue line
 				next_script()
@@ -97,7 +99,6 @@ func next_script():
 	textbox_text.visible_characters = 0
 	typing = true
 	timer.start()
-	Herr_Dahm.play("open")
 
 
 
@@ -106,8 +107,7 @@ func next_script():
 
 # Typing effect: reveals characters one by one each frame
 func _on_timer_timeout() -> void:
-	if not typing: # if it´s not typing then stop the timer 
-		Herr_Dahm.play("open")
+	if not typing: # if it´s not typing then stop the timer
 		timer.stop()
 		return
 
@@ -115,15 +115,15 @@ func _on_timer_timeout() -> void:
 	textbox_text.visible_characters = char_index # update 
 
 	if char_index <= textbox_text.text.length():
+		Herr_Dahm.set_deferred("animation", "open") #Plays Animation aslong as text is typed
 		# if there are still characters left play sound 
-		
-				GlobalSignals.play_sound.emit("typing_sound")
+		GlobalSignals.play_sound.emit("typing_sound")
 		#stop sound and typing when ther are no characters left
 	if char_index >= textbox_text.text.length():
 		typing = false
 		timer.stop()
 		GlobalSignals.stop_sound.emit("typing_sound")
-		Herr_Dahm.play("default")
+		Herr_Dahm.set_deferred("animation", "default") #Stops Mouth movement
 
 
 func _on_duck_particles_flipped_finished() -> void:
