@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1mwggjucdsbw"
-path="res://.godot/imported/textbox.png-d25e4d86c3a7ce9a6fe068e3fa59fe7a.ctex"
+path="res://.godot/imported/textbox.png-a75dbde3793858d45967ebb48ccad517.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CutScene/Dialogue/textbox.png"
-dest_files=["res://.godot/imported/textbox.png-d25e4d86c3a7ce9a6fe068e3fa59fe7a.ctex"]
+source_file="res://CutScene/CutScene_assets/textbox.png"
+dest_files=["res://.godot/imported/textbox.png-a75dbde3793858d45967ebb48ccad517.ctex"]
 
 [params]
 
