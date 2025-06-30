@@ -32,7 +32,7 @@ position = Vector2(345.25, 610)
 position = Vector2(943, 618.75)
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(1811, 2295)
+position = Vector2(958, 5040)
 
 [node name="Player" parent="." instance=ExtResource("5_gyffv")]
 

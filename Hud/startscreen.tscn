@@ -1,11 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://dexr3q1i6qqtm"]
+[gd_scene load_steps=34 format=3 uid="uid://dexr3q1i6qqtm"]
 
-[ext_resource type="Script" path="res://hud/startscreen.gd" id="1_37p78"]
+[ext_resource type="Script" uid="uid://dw6uqc1wm6rho" path="res://hud/startscreen.gd" id="1_37p78"]
 [ext_resource type="Texture2D" uid="uid://ctsqrawq335qq" path="res://hud/Hud_assets/hsd_gebaude.png" id="2_0ivg5"]
 [ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://fonts/Xolonium-Regular.ttf" id="2_64ctp"]
 [ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://Drops/Drops_assets/Ente.png" id="3_1kkc0"]
 [ext_resource type="Texture2D" uid="uid://bwtxhwe4kvqde" path="res://hud/Hud_assets/start_button_spritesheet.png" id="3_svhta"]
 [ext_resource type="Texture2D" uid="uid://wdytae5hsfg1" path="res://hud/Hud_assets/shine_scaled.png" id="5_qv4qp"]
+[ext_resource type="Texture2D" uid="uid://i8ys6lpkdiww" path="res://hud/Hud_assets/credits_button_sheet.png" id="7_qkdvy"]
+[ext_resource type="Texture2D" uid="uid://c7ymyt04wtwpv" path="res://hud/Hud_assets/quit_button.png" id="8_vdndi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aolia"]
 bg_color = Color(0.796078, 0, 0, 0.552941)
@@ -137,6 +139,92 @@ _data = {
 &"duckie": SubResource("Animation_qv4qp")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0yt0d"]
+bg_color = Color(0.00784314, 0.00784314, 0.00784314, 0.835294)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdndi"]
+atlas = ExtResource("7_qkdvy")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yt0d"]
+atlas = ExtResource("7_qkdvy")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5eti"]
+atlas = ExtResource("7_qkdvy")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8lv1"]
+atlas = ExtResource("7_qkdvy")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q4pr5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdndi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yt0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5eti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8lv1")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 10.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdndi"]
+bg_color = Color(0.764706, 0.101961, 0.101961, 0.721569)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4pr5"]
+atlas = ExtResource("8_vdndi")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh5mb"]
+atlas = ExtResource("8_vdndi")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1y2s"]
+atlas = ExtResource("8_vdndi")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tclkp"]
+atlas = ExtResource("8_vdndi")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i03ke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4pr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh5mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1y2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tclkp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Startscreen_GUI" type="CanvasLayer"]
 script = ExtResource("1_37p78")
 
@@ -164,7 +252,7 @@ texture = ExtResource("2_0ivg5")
 expand_mode = 3
 
 [node name="PanelButton" type="Panel" parent="."]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -215,7 +303,7 @@ sprite_frames = SubResource("SpriteFrames_qv4qp")
 animation = &"normal"
 centered = false
 
-[node name="Panel" type="Panel" parent="."]
+[node name="PanelTitle" type="Panel" parent="."]
 anchors_preset = -1
 anchor_left = 0.519
 anchor_top = 0.25
@@ -281,5 +369,86 @@ libraries = {
 &"": SubResource("AnimationLibrary_gms7k")
 }
 
+[node name="ControlCreditB" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.105
+anchor_top = 0.919
+anchor_right = 0.105
+anchor_bottom = 0.919
+offset_left = -192.6
+offset_top = -84.52
+offset_right = 193.4
+offset_bottom = 85.48
+
+[node name="PanelCredits" type="Panel" parent="ControlCreditB"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.69
+anchor_top = 0.129
+anchor_right = 0.69
+anchor_bottom = 0.129
+offset_left = -132.34
+offset_top = -71.93
+offset_right = 132.66
+offset_bottom = 72.07
+theme_override_styles/panel = SubResource("StyleBoxFlat_0yt0d")
+
+[node name="CreditButton" type="Button" parent="ControlCreditB"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.63
+anchor_top = 0.291
+anchor_right = 0.63
+anchor_bottom = 0.291
+offset_left = -190.18
+offset_top = -94.47
+offset_right = 189.82
+offset_bottom = 94.53
+focus_mode = 0
+flat = true
+
+[node name="AnimatedCreditB" type="AnimatedSprite2D" parent="ControlCreditB/CreditButton"]
+position = Vector2(213, 80)
+scale = Vector2(1.87516, 1.87516)
+sprite_frames = SubResource("SpriteFrames_q4pr5")
+animation = &"pressed"
+
+[node name="PanelQuit" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.675
+anchor_right = 0.498
+anchor_bottom = 0.675
+offset_left = -91.16
+offset_top = -51.0
+offset_right = 79.84
+offset_bottom = 57.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdndi")
+
+[node name="QuitButtonOnstart" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.674
+anchor_right = 0.5
+anchor_bottom = 0.674
+offset_left = -75.08
+offset_top = -47.92
+offset_right = 73.0
+offset_bottom = 47.08
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+flat = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="QuitButtonOnstart"]
+position = Vector2(70, 59)
+sprite_frames = SubResource("SpriteFrames_i03ke")
+
 [connection signal="pressed" from="ControlStartButton/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="animation_finished" from="ControlStartButton/StartButton/StartButtonAnimations" to="." method="_on_start_button_animations_animation_finished"]
+[connection signal="pressed" from="ControlCreditB/CreditButton" to="." method="_on_credit_button_pressed"]
+[connection signal="animation_finished" from="ControlCreditB/CreditButton/AnimatedCreditB" to="." method="_on_animated_credit_b_animation_finished"]
+[connection signal="pressed" from="QuitButtonOnstart" to="." method="_on_quit_button_onstart_pressed"]
+[connection signal="animation_finished" from="QuitButtonOnstart/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

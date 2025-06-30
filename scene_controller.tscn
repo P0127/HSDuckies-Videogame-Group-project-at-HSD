@@ -28,11 +28,6 @@ script = ExtResource("3_lds82")
 [node name="typing_sound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_q26a2")
 
-[node name="collecting_sound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("4_7gd2o")
-volume_db = -20.0
-pitch_scale = 0.8
-
 [node name="starting_sound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("4_7gd2o")
 volume_db = -10.0

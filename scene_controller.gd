@@ -20,10 +20,6 @@ func _ready():
 	
 	#This is what we start with; our start screen!
 	GlobalSignals.scene_controller.change_gui_scene("res://Hud/startscreen.tscn")
-	GlobalSignals.play_sound.connect($Sounds._play_sound)
-	GlobalSignals.stop_sound.connect($Sounds._stop_sound)
-	
-	
 
 func change_game_scene (new_scene_name: String, delete: bool = true, visibility: bool = false):
 	remove_scene(delete, visibility)
@@ -62,7 +58,7 @@ func remove_gui (delete: bool = true, visibility: bool = false):
 			current_gui.queue_free() 
 		elif visibility:
 			#keeps running, just not showing 
-			current_gui.visibile = false
+			current_gui.visible = false
 		else:
 			#keeps in memory, but doesn't update session (no reload necessary on recall)
 			gui.remove_child(current_gui)

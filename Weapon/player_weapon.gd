@@ -1,17 +1,18 @@
-extends Area2D #player weapon
+extends Area2D 
+#player weapon
 
+## STATS
 var standard_firerate_waittime : float = 0.50 #Waittime before it's shot again, the lower the better
-var firerate_waittime := standard_firerate_waittime
-const FIRERATE_WATTIME_ON_LEVELUP : float = 0.02
+var firerate_waittime := standard_firerate_waittime #present firerate (can be influenced by effects)
+const FIRERATE_WATTIME_ON_LEVELUP : float = 0.02 #Change of Firerate on LevelUp
 var bullet_size : float = 1 #Standard scaling at the start
 const BULLET_SIZE_ON_LEVELUP : float = 0.1 #How much size increase on levelUp
 
+## SCENES
 const BULLET = preload("res://Weapon/projectile.tscn")
 @onready var spawnpoint = $CharCenter/Weapon/BulletSpawnPoint
-#yes that var is needed and we cant just reference the BSP node since for some reason
-#that creates an error and will act like it doesnt have a position for us to 
-#reference even though it very much does
 
+## FUNCTIONS PRESETS
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CharCenter/Weapon.animation = "sideways"
@@ -19,11 +20,12 @@ func _ready() -> void:
 	
 	#Global Timer timeouts to reset stats
 	GlobalSignals.timerFirerate.connect("timeout", _on_global_firerate_timeout)
+	#Increases firerate on levelUp
 	GlobalSignals.duck_collected_signal.connect(_levelUp)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
+#Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	#Switches Animations depending on the rotation
 	match int(rotation_degrees):
@@ -31,15 +33,8 @@ func _physics_process(delta: float) -> void:
 			$CharCenter/Weapon.animation = "topdown"
 		_:
 			$CharCenter/Weapon.animation = "sideways"
-	
-	#Flips Sprites depending on rotation (position to Player)
-	#match int(rotation_degrees):
-		#-135, 180, 135:
-			#$CharCenter/Weapon.flip_v = true
-		#_:
-			#$CharCenter/Weapon.flip_v = false
-	
-	#Flips sprite if we are aiming on the left half
+			
+	#Flips sprite if we are aiming towards the left
 	if (rotation_degrees < -90 or rotation_degrees > 90):
 		$CharCenter/Weapon.flip_v = true
 	else:
@@ -47,12 +42,15 @@ func _physics_process(delta: float) -> void:
 	
 	_spawnpoint_correction()
 
+## FUNCTIONS
+#Spawns Bullet on global position
 func shoot():
 	if BULLET.can_instantiate():
 		var new_bullet = BULLET.instantiate()
 		#use global_position cuz position is relative to parent node
 		new_bullet.global_position = spawnpoint.global_position
 		new_bullet.global_rotation = spawnpoint.global_rotation
+		#Changes size dependant on level, determined on initialisation
 		new_bullet.apply_scale(Vector2(bullet_size, bullet_size))
 		
 		#add new bullets as child nodes of the spawnpoint
@@ -70,13 +68,13 @@ func _spawnpoint_correction():
 			$CharCenter/Weapon/BulletSpawnPoint.position = Vector2(50, 18)
 		_:
 			$CharCenter/Weapon/BulletSpawnPoint.position = Vector2(50, -18)
-			
 
-#shoots bullet everytime atk speed timer timesout
+#Shoots bullet everytime atk speed timer timesout
 func _on_attack_speed_timeout():
 	shoot()
 
-#ticks up firerate on item pickup
+## FUNCTIONS STAT CHANGES
+#Reduces firerate on item pickup
 func boost_firerate_collected(changerate : float):
 	$"attack speed".wait_time = (firerate_waittime / changerate)
 
@@ -84,7 +82,8 @@ func boost_firerate_collected(changerate : float):
 func _on_global_firerate_timeout():
 	$"attack speed".wait_time = standard_firerate_waittime
 
+#Firerate change on LevelUp, works while Effect is active
 func _levelUp ():
-	standard_firerate_waittime -= FIRERATE_WATTIME_ON_LEVELUP #adds 0.1 at a time
+	standard_firerate_waittime -= FIRERATE_WATTIME_ON_LEVELUP #removes waiting time between shots
 	$"attack speed".wait_time -= FIRERATE_WATTIME_ON_LEVELUP #else only adds to current firerate once boost runs out
 	bullet_size += BULLET_SIZE_ON_LEVELUP #Bullets get larger

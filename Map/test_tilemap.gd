@@ -1,9 +1,5 @@
 extends Node2D # used for spawncheck only right now
 
-func _ready() -> void:
-	if scene_manager.activ_player:
-		add_child(scene_manager.activ_player)
-
 #-1 output = invalid spawnpoint
 #0 output = very close to edge reset position in tile
 #1 output = position okay 

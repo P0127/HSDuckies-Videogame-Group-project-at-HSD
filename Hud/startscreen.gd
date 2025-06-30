@@ -7,9 +7,11 @@ extends CanvasLayer
 @onready var duck = $ControlDuck/duck
 @onready var duck_anim = $ControlDuck/duck/AnimationPlayer
 @onready var shine_anim = $"ContainerTitle+Bling/ShineScaled/bling"
+@onready var credits_button = $ControlCreditB/CreditButton
+@onready var credits_button_anim = $ControlCreditB/CreditButton/AnimatedCreditB
 
-
-
+@onready var quit_button_start= $QuitButtonOnstart
+@onready var quit_button_start_anim = $QuitButtonOnstart/AnimatedSprite2D
 
 ## FUNCTIONS 
 # Called when the node enters the scene tree for the first time.
@@ -41,3 +43,21 @@ func _on_start_button_animations_animation_finished() -> void:
 	#signals the scene controller to switch to main game and to ingame hud
 	GlobalSignals.scene_controller.change_game_scene("res://level_1.tscn")
 	GlobalSignals.scene_controller.change_gui_scene("res://Hud/ingame.tscn")
+	
+	
+func _on_credit_button_pressed() -> void:
+	credits_button_anim.play("pressed")
+
+	
+	
+func _on_animated_credit_b_animation_finished() -> void:
+	GlobalSignals.scene_controller.change_game_scene("res://Hud/credits_screen.tscn", false, false)
+	credits_button.hide()
+	$ControlCreditB/PanelCredits.hide()
+	
+func _on_quit_button_onstart_pressed() -> void:
+	quit_button_start_anim.play()
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	get_tree().quit()

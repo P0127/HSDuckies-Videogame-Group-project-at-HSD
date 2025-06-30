@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cttwy28pac8t1"]
+[gd_scene load_steps=14 format=3 uid="uid://cttwy28pac8t1"]
 
 [ext_resource type="Script" uid="uid://bl0uih77m0qs2" path="res://CutScene/Dialogue/dialogue_ende.gd" id="1_nrco7"]
 [ext_resource type="Texture2D" uid="uid://dhxq32a8tjdw4" path="res://CutScene/CutScene_assets/BackgroundCutScene.png" id="2_nrco7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b1mwggjucdsbw" path="res://Dialogue_cutscenes/textbox.png" id="5_esyp7"]
 [ext_resource type="Texture2D" uid="uid://ck6usna42uy7d" path="res://assets/Ente_Animation_sheet.png" id="7_jv7xh"]
 [ext_resource type="Texture2D" uid="uid://lpreujxxpnd2" path="res://assets/Ente_Animation_sheet_flipped.png" id="8_5q62p"]
+[ext_resource type="AudioStream" uid="uid://d0ma03hsmhj2t" path="res://assets/sound/274177__littlerobotsoundfactory__jingle_win_synth_03.wav" id="8_jv7xh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_haow2"]
 animations = [{
@@ -183,6 +184,9 @@ libraries = {
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.055
+
+[node name="SoundWin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_jv7xh")
 
 [connection signal="finished" from="DuckParticles_flipped" to="." method="_on_duck_particles_flipped_finished"]
 [connection signal="animation_finished" from="fade_in/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

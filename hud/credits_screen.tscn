@@ -1,0 +1,195 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8llnk358v07t"]
+
+[ext_resource type="Script" uid="uid://bhp65vguyw8y" path="res://hud/credits_screen.gd" id="1_4apr6"]
+[ext_resource type="FontFile" uid="uid://dmoqmmrb2ndjb" path="res://Dialogue_cutscenes/font_counter_letters.ttf" id="1_l8mw8"]
+[ext_resource type="FontFile" uid="uid://b8x5x1t4wh1xq" path="res://fonts/DePixelBreitFett.ttf" id="2_gfybg"]
+[ext_resource type="Texture2D" uid="uid://ci2h706sw5r7y" path="res://hud/Hud_assets/back_button.png" id="4_imea6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfybg"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.649029, 0.868537, 0.636231, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7hds"]
+atlas = ExtResource("4_imea6")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dsdp"]
+atlas = ExtResource("4_imea6")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w87a5"]
+atlas = ExtResource("4_imea6")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iss0d"]
+atlas = ExtResource("4_imea6")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tcnv8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7hds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dsdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w87a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iss0d")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 10.0
+}]
+
+[node name="CreditsScreen" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_4apr6")
+
+[node name="VScrollBar" type="ScrollContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.091
+anchor_top = 0.069
+anchor_right = 0.887
+anchor_bottom = 0.858
+offset_left = 372.28
+offset_top = -5.52
+offset_right = -310.04
+offset_bottom = 35.36
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gfybg")
+horizontal_scroll_mode = 0
+
+[node name="creditsText" type="RichTextLabel" parent="VScrollBar"]
+custom_minimum_size = Vector2(700, 300)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_fonts/normal_font = ExtResource("1_l8mw8")
+theme_override_fonts/bold_font = ExtResource("2_gfybg")
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
+bbcode_enabled = true
+text = "												
+
+		[center][b]CREDITS[/b][/center]
+
+
+
+• Sound [color=#C8A2C8][b]\"darkwing_autist.ogg\"[/b][/color] 
+by [color=#87CEEB]Spring Spring[/color] (OpenGameArt.org)
+CC0 (Public Domain)
+[color=#98FB98][url=https://opengameart.org/content/darkwing-autist-]https://opengameart.org/content/darkwing-autist-[/url][/color]
+
+
+
+• Sound [color=#C8A2C8][b]\"665183\"[/b][/color] 
+by [color=#87CEEB]el_boss[/color] (Freesound.org) 
+CC0 (Public Domain)
+[color=#98FB98][url=https://freesound.org/people/el_boss/sounds/665183/]https://freesound.org/people/el_boss/sounds/665183/[/url][/color]
+
+
+
+• Sound [color=#C8A2C8][b]\"Power Boost\"[/b][/color] 
+by [color=#87CEEB]colorsCrimsonTears[/color] (Freesound.org)
+CC0 (Public Domain)
+[color=#98FB98][url=https://freesound.org/people/colorsCrimsonTears/sounds/585803/]https://freesound.org/people/colorsCrimsonTears/sounds/585803/[/url][/color]
+
+
+
+• Sound [color=#C8A2C8][b]\"8-bit Game Over Sound/Tune\"[/b][/color] 
+by [color=#87CEEB]EVRetro[/color] (Freesound.org)
+CC0 (Public Domain)
+[color=#98FB98][url=https://freesound.org/people/EVRetro/sounds/533034/]https://freesound.org/people/EVRetro/sounds/533034/[/url][/color]
+
+
+
+• Sound [color=#C8A2C8][b]\"Duck Quack – Sound Effect (HD)\"[/b][/color] 
+by [color=#87CEEB]Tabby+Gus.[/color] (Freesound.org)
+CC0 (Public Domain)
+[color=#98FB98][url=https://freesound.org/people/Tabby%2BGus./sounds/515408/]https://freesound.org/people/Tabby%2BGus./sounds/515408/[/url][/color]
+
+
+
+• Sound [color=#C8A2C8][b]\"Arcade Game Over\"[/b][/color] 
+by [color=#87CEEB]Poligonstudio[/color] (Freesound.org)
+CC0 (Public Domain)
+[color=#98FB98][url=https://freesound.org/people/Poligonstudio/sounds/412168/]https://freesound.org/people/Poligonstudio/sounds/412168/[/url][/color]
+
+
+
+• Sound [color=#C8A2C8][b]\"Comical Sprout\"[/b][/color] 
+by [color=#87CEEB]Jofae[/color] (Freesound.org)
+CC0 (Public Domain)
+[color=#98FB98][url=https://freesound.org/people/Jofae/sounds/364692/]https://freesound.org/people/Jofae/sounds/364692/[/url][/color]
+
+
+
+• Sound [color=#C8A2C8][b]\"Game Bonus\"[/b][/color] 
+by [color=#87CEEB]Universfield[/color] (Pixabay)
+Pixabay Content License 
+[color=#98FB98][url=https://pixabay.com/sound-effects/game-bonus-144751/]https://pixabay.com/sound-effects/game-bonus-144751/[/url][/color]
+
+
+
+• Sound [color=#C8A2C8][b]\"Retro Laser 1\"[/b][/color] 
+by [color=#87CEEB]Driken5482[/color] (Pixabay)
+Pixabay Content License
+[color=#98FB98][url=https://pixabay.com/sound-effects/retro-laser-1-236669/]https://pixabay.com/sound-effects/retro-laser-1-236669/[/url][/color]
+
+
+• Font [color=#C8A2C8][b]\"DePixel\"[/b][/color] 
+by [color=#87CEEB]ingoFonts[/color] (DaFont)
+100% Free
+[color=#98FB98][url=https://www.dafont.com/depixel.font]https://www.dafont.com/depixel.font[/url][/color]
+
+
+
+• Font [color=#C8A2C8][b]\"Xolonium\"[/b][/color] 
+by [color=#87CEEB]Severin Meyer[/color] (DaFont)
+Public Domain/GPL/OFL
+[color=#98FB98][url=https://www.dafont.com/xolonium.font]https://www.dafont.com/xolonium.font[/url][/color]
+
+
+
+• Font [color=#C8A2C8][b]\"04b_30\"[/b][/color] 
+by [color=#87CEEB]04[/color] (DaFont)
+Personal Use
+[color=#98FB98][url=https://www.dafont.com/font-comment.php?file=04b_30]https://www.dafont.com/font-comment.php?file=04b_30[/url][/color]
+
+
+
+
+[center][color=#F0E68C][b]Thanks for playing![/b][/color][/center]"
+fit_content = true
+
+[node name="BackButton" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.505
+anchor_top = 0.933
+anchor_right = 0.505
+anchor_bottom = 0.933
+offset_left = -92.6
+offset_top = -52.64
+offset_right = 93.4
+offset_bottom = 52.36
+focus_mode = 0
+text = "
+"
+flat = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BackButton"]
+position = Vector2(94, 57)
+sprite_frames = SubResource("SpriteFrames_tcnv8")
+animation = &"pressed"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="animation_finished" from="BackButton/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
