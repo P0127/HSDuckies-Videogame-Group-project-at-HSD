@@ -9,7 +9,7 @@ extends Node2D
 @onready var Map = $Test_Tilemap
 
 
-const MOB_LIMIT = 10 #MOB LIMIT
+const MOB_LIMIT = 0 #MOB LIMIT
 var current_mob_amount = 0 #tracks how many mobs are currently spawned
 
 # Referenz auf den Dialogue

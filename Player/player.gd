@@ -81,7 +81,7 @@ func _physics_process(delta : float):
 	
 	## COLLISION
 	move_and_collide(velocity * delta) #check for collisions with walls
-
+	
 
 ## PHYSICS FUNCTIONS (DELTA)
 # Function that processes Player's movement

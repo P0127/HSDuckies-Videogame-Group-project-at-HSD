@@ -5,7 +5,13 @@ class_name FollowState extends State
 @export var move_speed := 100
 var player: CharacterBody2D
 
+@onready var progress_bar = owner.find_child("ProgressBar")
+
 func Enter():
+	
+	#upon entering boss aggro range the health bar appears
+	progress_bar.set_deferred("visible", true)
+	
 	player = get_tree().get_first_node_in_group("Player")
 	#enemy.AnimatedSprite2D.animation = "following" #this doesnt work
 	var sprite = enemy.get_child(0) 
@@ -14,10 +20,12 @@ func Enter():
 func Physics_Update(delta: float):
 	var direction = player.global_position - enemy.global_position
 	
-	if direction.length() > 25:
+	if direction.length() > 160:
+		#if player is too far to hit follow
 		enemy.velocity = direction.normalized() * move_speed
-	else:
-		enemy.velocity = Vector2()
+	#else:
+		#if player is in range switch to attack state
+		#Transitioned.emit(self, "attack")
 
-	if direction.length() > 500:
+	if direction.length() > 700:
 		Transitioned.emit(self, "idle")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvpjral4l2d0q"]
+[gd_scene load_steps=6 format=3 uid="uid://dvpjral4l2d0q"]
 
 [ext_resource type="Script" uid="uid://pqcn33eyebmm" path="res://level_1.gd" id="1_5hph3"]
 [ext_resource type="PackedScene" uid="uid://b23fkwbnh2ijx" path="res://Map/Tilemap.tscn" id="4_5rr72"]
+[ext_resource type="PackedScene" uid="uid://b26h6bedxa5pj" path="res://Mobs/ent_boss.tscn" id="4_ihfcg"]
 [ext_resource type="PackedScene" uid="uid://c135wng7wv7tp" path="res://Player/player.tscn" id="5_gyffv"]
 
 [sub_resource type="Curve2D" id="Curve2D_kek77"]
@@ -18,11 +19,22 @@ script = ExtResource("1_5hph3")
 z_index = -1
 scale = Vector2(4, 4)
 
+[node name="BossPos1" type="Marker2D" parent="Test_Tilemap"]
+position = Vector2(342.5, 102.25)
+
+[node name="BossPos2" type="Marker2D" parent="Test_Tilemap"]
+position = Vector2(941.5, 107.25)
+
+[node name="BossPos3" type="Marker2D" parent="Test_Tilemap"]
+position = Vector2(345.25, 610)
+
+[node name="BossPos4" type="Marker2D" parent="Test_Tilemap"]
+position = Vector2(943, 618.75)
+
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(958, 5040)
 
 [node name="Player" parent="." instance=ExtResource("5_gyffv")]
-godmode = false
 
 [node name="Path2D" type="Path2D" parent="Player"]
 curve = SubResource("Curve2D_kek77")
@@ -35,5 +47,8 @@ rotation = 0.00108264
 [node name="MobSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 4.0
+
+[node name="Boss_Charging" parent="." instance=ExtResource("4_ihfcg")]
+position = Vector2(2072, 2440)
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
