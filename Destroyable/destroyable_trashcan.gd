@@ -26,25 +26,16 @@ func take_damage():
 	hitpoints -= 1
 	
 	match (hitpoints):
-		2: 
+		1,2: 
 			$Sprite2D/AnimationPlayer.stop()
 			$Sprite2D/AnimationPlayer.play("hit")
 			$HitParticle_1.set_deferred("emitting", true)
-			$HitSoundTrashcan.play()  
-		1:
-			$Sprite2D/AnimationPlayer.stop()
-			$Sprite2D/AnimationPlayer.play("hit")
-			$HitParticle_2.set_deferred("emitting", true)
-			$HitSoundTrashcan.play()
 		0:
 			$Sprite2D/AnimationPlayer.stop()
 			$Sprite2D/AnimationPlayer.play("destroyed")
 			$CollisionShape2D.set_deferred("disabled", true)
 			$HitSoundTrashcan.play()
 			GlobalSignals.drop_item.emit(global_position)
-			
-
-
 
 func destroy():
 	queue_free()

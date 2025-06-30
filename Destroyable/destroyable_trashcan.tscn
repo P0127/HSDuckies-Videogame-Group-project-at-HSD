@@ -281,3 +281,4 @@ color_ramp = SubResource("Gradient_ft5qy")
 
 [node name="HitSoundTrashcan" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_ft5qy")
+volume_db = -5.0
