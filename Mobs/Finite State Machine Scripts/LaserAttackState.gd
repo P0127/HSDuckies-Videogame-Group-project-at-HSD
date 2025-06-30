@@ -19,6 +19,7 @@ func Enter():
 	sprite.animation = "channelling attack"
 	#enemy.velocity = Vector2()#dont think this line is needed but maybe if we slide later upon entry
 	directions_fired = 0
+	laser.adjust_width(1) ##TESTING DIFFERENT LASER SIZES
 	
 	##this needs to be called in Enter else the first laser from first state entry is invisible
 	#laser.is_casting = false #now called in the _ready of the boss so dont think needs to be here anymore
