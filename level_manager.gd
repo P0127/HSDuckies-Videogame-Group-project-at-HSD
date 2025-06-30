@@ -22,11 +22,11 @@ func duck_collected_counter(amount: int = 1):
 	
 	#Checks if enough ducks were collected for victory
 	if ducks_collected == ducks_required_gameWon:
-		GlobalSignals.dialogue_start.emit("res://Dialogue_cutscenes/ZwischenDialog_3.json")
+		GlobalSignals.dialogue_start.emit("res://CutScene/Dialogue/ZwischenDialog_3.json")
 		GlobalSignals.game_won.emit()
 	#Starts Dialogue on half way to victory
 	if ducks_collected == ducks_required_gameWon / 2:
-		GlobalSignals.dialogue_start.emit("res://Dialogue_cutscenes/ZwischenDialog_2.json")
+		GlobalSignals.dialogue_start.emit("res://CutScene/Dialogue/ZwischenDialog_2.json")
 	#Checks if LevelUp Milestone has been reached, emits Signal
 	if ducks_collected % ducks_required_levelUp == 0:
 		GlobalSignals.duck_collected_levelUp.emit()

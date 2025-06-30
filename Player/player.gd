@@ -60,7 +60,7 @@ func _process(delta : float):
 	progressBar.value = health #Updates bar progress
 	if !dialogue_start_triggered:
 		# Start the dialogue with the specified JSON dialogue file, pauses game
-		GlobalSignals.dialogue_start.emit("res://Dialogue_cutscenes/dialog_anfang.json")
+		GlobalSignals.dialogue_start.emit("res://CutScene/Dialogue/dialog_anfang.json")
 		dialogue_start_triggered = true
 		$PlayerCamera.position_smoothing_enabled = true #After Dialogue Camera is smooth
 
@@ -151,7 +151,6 @@ func _rotate_weapon():
 	else:
 		weapon.show_behind_parent = false
 
-
 ## FUNCTIONS STATS
 #Called on LevelUp (Level_Manager, enough ducks collected)
 func _levelUp ():
@@ -190,7 +189,7 @@ func _die():
 #Disables Player, starts victory animation
 func _on_game_won():
 	_disable_player_interactions()
-	$SoundWin.play()
+	#$SoundWin.play() #MISSING ASSET
 	$AnimatedPlayerSprite/AnimationPlayer.play("game_won")
 
 #Stops Interactions, Freezes Player
@@ -220,7 +219,7 @@ func _on_pick_up_area_entered(area: Area2D) -> void:
 		if !dialogue_pickup_triggered:
 			dialogue_pickup_triggered = true
 			# Set the dialogue file and start the dialogue
-			GlobalSignals.dialogue_start.emit("res://Dialogue_cutscenes/ZwischenDialog_1.json")
+			GlobalSignals.dialogue_start.emit("res://CutScene/Dialogue/ZwischenDialog_1.json")
 		else:
 			print("DEBUG: PickUp Dialogue not triggered")
 		area.pickup(self) #Calls on Pickup Method

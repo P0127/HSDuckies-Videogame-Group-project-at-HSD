@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1mwggjucdsbw"
-path="res://.godot/imported/textbox.png-b9ea23289c750119079f7676c3279ef7.ctex"
+uid="uid://i3ts8lgnrpty"
+path="res://.godot/imported/DahmSpeaking1.png-0c30afa0a895adb045eb48048bafea94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Dialogue_cutscenes/textbox.png"
-dest_files=["res://.godot/imported/textbox.png-b9ea23289c750119079f7676c3279ef7.ctex"]
+source_file="res://CutScene/CutScene_assets/DahmSpeaking1.png"
+dest_files=["res://.godot/imported/DahmSpeaking1.png-0c30afa0a895adb045eb48048bafea94.ctex"]
 
 [params]
 

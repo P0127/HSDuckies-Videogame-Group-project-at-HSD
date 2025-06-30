@@ -138,8 +138,7 @@ func _on_timer_timeout() -> void:
 
 	if char_index <= chat_label.text.length(): 
 		# if there are still characters left play sound 
-		
-				GlobalSignals.play_sound.emit("typing_sound")
+		GlobalSignals.play_sound.emit("typing_sound")
 		#stop sound and typing when ther are no characters left
 	if char_index >= chat_label.text.length():
 		typing = false
