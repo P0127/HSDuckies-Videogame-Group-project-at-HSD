@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wdytae5hsfg1"
-path="res://.godot/imported/shine_scaled.png-7698b98218ff66c5dc3c7c9eb67e763f.ctex"
+path="res://.godot/imported/shine_scaled.png-6e751cbd4014ac5ae792a711293f7091.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hud/Hud_assets/shine_scaled.png"
-dest_files=["res://.godot/imported/shine_scaled.png-7698b98218ff66c5dc3c7c9eb67e763f.ctex"]
+source_file="res://hud/Hud_assets/shine_scaled.png"
+dest_files=["res://.godot/imported/shine_scaled.png-6e751cbd4014ac5ae792a711293f7091.ctex"]
 
 [params]
 

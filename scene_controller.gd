@@ -58,7 +58,7 @@ func remove_gui (delete: bool = true, visibility: bool = false):
 			current_gui.queue_free() 
 		elif visibility:
 			#keeps running, just not showing 
-			current_gui.visibile = false
+			current_gui.visible = false
 		else:
 			#keeps in memory, but doesn't update session (no reload necessary on recall)
 			gui.remove_child(current_gui)
