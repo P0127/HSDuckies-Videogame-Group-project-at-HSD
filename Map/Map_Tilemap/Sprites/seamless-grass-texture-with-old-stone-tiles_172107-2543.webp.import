@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw4afi77kbi7"
-path="res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"
+uid="uid://c76xlngs5xqvc"
+path="res://.godot/imported/seamless-grass-texture-with-old-stone-tiles_172107-2543.webp-b1d34c4f4e663c936253b31e4be9fc8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/font_item_zahler.png"
-dest_files=["res://.godot/imported/font_item_zahler.png-b9cd88caca68dbdf78ab9e71690e947c.ctex"]
+source_file="res://Map/Map_Tilemap/Sprites/seamless-grass-texture-with-old-stone-tiles_172107-2543.webp"
+dest_files=["res://.godot/imported/seamless-grass-texture-with-old-stone-tiles_172107-2543.webp-b1d34c4f4e663c936253b31e4be9fc8f.ctex"]
 
 [params]
 

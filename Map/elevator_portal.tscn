@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dodcysrubmaig"]
+
+[ext_resource type="Script" uid="uid://b3ykecr6cx45l" path="res://Map/elevator_portal.gd" id="1_lp1m8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0yr3"]
+
+[node name="elevator_portal" type="Area2D"]
+script = ExtResource("1_lp1m8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_w0yr3")
+
+[node name="destinationPoint" type="Marker2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
