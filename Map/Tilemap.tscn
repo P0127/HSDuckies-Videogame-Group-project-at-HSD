@@ -644,13 +644,16 @@ polygon = PackedVector2Array(467, 172, 643, 172, 642, 654, 466, 654)
 position = Vector2(152, 220)
 
 [node name="destinationPoint" parent="elevator_portal" index="1"]
-position = Vector2(3368, 1)
+position = Vector2(3328, 1)
 
 [node name="elevator_portal2" parent="." instance=ExtResource("19_oy0cw")]
 position = Vector2(317, 248)
 
 [node name="CollisionShape2D" parent="elevator_portal2" index="0"]
 position = Vector2(3114, -28)
+
+[node name="destinationPoint" parent="elevator_portal2" index="1"]
+position = Vector2(-117, -27)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

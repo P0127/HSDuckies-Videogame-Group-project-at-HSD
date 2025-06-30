@@ -10,5 +10,4 @@ func _on_body_entered(body: Node2D) -> void:
 
 func manage_PlayerCamera_panning (body : Node2D, panEnabled : bool = false):
 	if body.has_node("PlayerCamera"):
-		print("Camera", panEnabled)
 		body.get_node("PlayerCamera").position_smoothing_enabled = panEnabled
