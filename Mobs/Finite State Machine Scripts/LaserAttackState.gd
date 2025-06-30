@@ -21,7 +21,7 @@ func Enter():
 	directions_fired = 0
 	
 	##this needs to be called in Enter else the first laser from first state entry is invisible
-	laser.is_casting = false
+	#laser.is_casting = false #now called in the _ready of the boss so dont think needs to be here anymore
 	
 	#directions.shuffle() #for rdm direction order
 	if (randf() > 0.5):

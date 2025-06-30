@@ -92,6 +92,18 @@ script = ExtResource("10_m1k7s")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://cbnf1oo58hqvm"
 
+[node name="Spawnpoints" type="Node2D" parent="State Machine/Summon"]
+
+[node name="Right" type="Marker2D" parent="State Machine/Summon/Spawnpoints"]
+position = Vector2(70, 50)
+
+[node name="Left" type="Marker2D" parent="State Machine/Summon/Spawnpoints"]
+position = Vector2(70, -50)
+
+[node name="Center" type="Marker2D" parent="State Machine/Summon/Spawnpoints"]
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(100, 0)
+
 [node name="Teleport" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("11_clhv4")
 enemy = NodePath("../..")
@@ -156,20 +168,6 @@ navigation_layers = 2
 
 [node name="RayCast2D" parent="." instance=ExtResource("14_qfa54")]
 color = Color(1, 0, 0.00784314, 1)
-
-[node name="Spawnpoints" type="Node2D" parent="."]
-rotation = 0.785398
-scale = Vector2(0.555556, 0.555556)
-
-[node name="Right" type="Marker2D" parent="Spawnpoints"]
-position = Vector2(70, 90)
-
-[node name="Left" type="Marker2D" parent="Spawnpoints"]
-position = Vector2(70, -90)
-
-[node name="Center" type="Marker2D" parent="Spawnpoints"]
-self_modulate = Color(1, 0, 0, 1)
-position = Vector2(150, 0)
 
 [connection signal="timeout" from="State Machine/LaserAttack/FireTimer" to="State Machine/LaserAttack" method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="State Machine/LaserAttack/DirectionSwapTimer" to="State Machine/LaserAttack" method="_on_direction_swap_timer_timeout"]

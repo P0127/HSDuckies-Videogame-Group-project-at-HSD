@@ -6,6 +6,7 @@ extends RayCast2D
 @export var max_length := 1400.0
 @export var start_distance := 40.0
 @export var growth_time := 0.1
+@export var damage_rate := 5.0
 
 #for collision and damge
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -48,7 +49,7 @@ func _physics_process(delta: float) -> void:
 	if is_colliding():
 		laser_end_position = to_local(get_collision_point())
 		if get_collider() == player:
-			player.take_damage(delta, 5.0)
+			player.take_damage(delta, damage_rate)
 	
 	if line_2d == null or line_2d2 == null:
 		return
