@@ -198,6 +198,7 @@ func _disable_player_interactions():
 	$PickUp/CollisionShape2D.set_deferred("disabled", true)
 	$PlayerCollisionShape.set_deferred("disabled", true)
 	$OuchParticles.set_deferred("visible", false)
+	remove_child($"player weapon") #stops visuals and sound
 	#no movement allowed
 	speed = 0
 
