@@ -3,12 +3,12 @@
 importer="font_data_image"
 type="FontFile"
 uid="uid://dekqnr7q8ahcs"
-path="res://.godot/imported/font_counter_digits.png-f42858dbc413f95d0a8fe382b3953cf1.fontdata"
+path="res://.godot/imported/font_counter_digits.png-bde0aed780dc0fe00fdedfa8fb0d40e7.fontdata"
 
 [deps]
 
-source_file="res://Fonts/font_counter_digits.png"
-dest_files=["res://.godot/imported/font_counter_digits.png-f42858dbc413f95d0a8fe382b3953cf1.fontdata"]
+source_file="res://fonts/font_counter_digits.png"
+dest_files=["res://.godot/imported/font_counter_digits.png-bde0aed780dc0fe00fdedfa8fb0d40e7.fontdata"]
 
 [params]
 
