@@ -158,7 +158,6 @@ navigation_layers = 2
 color = Color(1, 0, 0.00784314, 1)
 
 [node name="Spawnpoints" type="Node2D" parent="."]
-rotation = 0.785398
 scale = Vector2(0.555556, 0.555556)
 
 [node name="Right" type="Marker2D" parent="Spawnpoints"]
