@@ -16,6 +16,7 @@ static var moblvl = 1
 var health : int = 2 + moblvl/2  #Hits required to kill
 var movement_speed = 100 + (moblvl-1) * 25
 var damage_rate : float = 3.0  #damage done to Player by touching
+var boss_movement_speed = 125
 
 
 ## TARGETS

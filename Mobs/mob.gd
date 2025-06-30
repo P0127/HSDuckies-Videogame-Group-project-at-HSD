@@ -24,6 +24,7 @@ static var moblvl = 1
 var health : int = 3 + (moblvl-1) * 2 #Hits required to kill
 var movement_speed = 75 + (moblvl-1) * 20 
 var damage_rate : float = 2.5 + moblvl * 2.5  #damage done to Player
+var boss_movement_speed = 95
 
 ## TARGETS
 var target_damage : Node2D #saveslot for Player on body entered
