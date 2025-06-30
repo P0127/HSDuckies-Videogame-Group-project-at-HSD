@@ -104,6 +104,18 @@ func summonMobs():
 	##TODO move the 4 lines between check and setting its position, along with this speed set and await
 	##into its own function in mob/ranged mob to just call that 3x
 	
+	swapState()
 
 ##BUG IF WE ADD MOBS LIKE THIS WE WILL HAVE TO DISABLE SPAWNING ENTIRELY OR ELSE IT WILL
 ##LOWER THE MAX MOBS TO BELOW 0 SO THAT IT ALLOWS MOBS TO SPAWN
+
+
+func swapState():
+	if enemy.phase2:
+		var swapTo = randf()
+		if(swapTo > 0.5):
+			Transitioned.emit(self, "moving")
+		else:
+			Transitioned.emit(self, "teleport")
+	else:
+		Transitioned.emit(self, "moving")
