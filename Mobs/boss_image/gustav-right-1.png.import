@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctsqrawq335qq"
-path="res://.godot/imported/hsd_gebaude.png-af2a33c7b990a90f99ac5186b9f5d0ca.ctex"
+uid="uid://dvoltvfx8c5k8"
+path="res://.godot/imported/gustav-right-1.png-2f3f760622713bdf42db08418d3ca155.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hud/Hud_assets/hsd_gebaude.png"
-dest_files=["res://.godot/imported/hsd_gebaude.png-af2a33c7b990a90f99ac5186b9f5d0ca.ctex"]
+source_file="res://Mobs/boss_image/gustav-right-1.png"
+dest_files=["res://.godot/imported/gustav-right-1.png-2f3f760622713bdf42db08418d3ca155.ctex"]
 
 [params]
 
