@@ -4,15 +4,16 @@ class_name MovingState extends State
 @export var enemy: CharacterBody2D
 @onready var navAgent: NavigationAgent2D = $"../../NavigationAgent2D"
 
-##Array of all main Boss Positions
-@onready var allPossiblePositions = [
-	$"../../../Test_Tilemap/BossPos1",
-	$"../../../Test_Tilemap/BossPos2",
-	$"../../../Test_Tilemap/BossPos3",
-	$"../../../Test_Tilemap/BossPos4"
-]
 var next_pos
 @export var movement_speed = 400
+@onready var allPossiblePositions := [
+	$"../../../Test_Tilemap/BossPathPoints/BossPos",
+	$"../../../Test_Tilemap/BossPathPoints/BossPos2",
+	$"../../../Test_Tilemap/BossPathPoints/BossPos3",
+	$"../../../Test_Tilemap/BossPathPoints/BossPos4",
+	$"../../../Test_Tilemap/BossPathPoints/BossPos5",
+	$"../../../Test_Tilemap/BossPathPoints/BossPos6"
+]
 
 ##have setpoints on the map and use navagent2d alongside a navmesh to make him path between the points
 ##prob have the points saved in an array then choose a rdm index and path to that point
@@ -20,11 +21,11 @@ var next_pos
 
 func Enter():
 	##select random point where we will path to
-	var indexPos = randi_range(0,3)
+	var indexPos = randi_range(0,5)
 	next_pos = allPossiblePositions[indexPos]
 	##if we are at that position choose a different one
 	while next_pos == enemy.last_pos:
-		indexPos = randi_range(0,3)
+		indexPos = randi_range(0,5)
 		next_pos = allPossiblePositions[indexPos]
 	##save chosen position into last_pos for future check
 	enemy.last_pos = next_pos
@@ -61,8 +62,6 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 ##method for swapping state, in phase 1 it will always swap to laserattack state
 ##whilst in phase 2 theres a 30% chance to swap to summon state
 func swapState():
-	Transitioned.emit(self, "summon")#these two lines are temp for testing
-	return
 	if enemy.phase2:
 		var whichState = randf()
 		if whichState > 0.3:

@@ -101,7 +101,8 @@ func summonMobs():
 	meelee1.movement_speed = meelee1.boss_movement_speed
 	meelee2.movement_speed = meelee2.boss_movement_speed
 	ranged.movement_speed = ranged.boss_movement_speed
-	
+	##TODO move the 4 lines between check and setting its position, along with this speed set and await
+	##into its own function in mob/ranged mob to just call that 3x
 	
 
 ##BUG IF WE ADD MOBS LIKE THIS WE WILL HAVE TO DISABLE SPAWNING ENTIRELY OR ELSE IT WILL

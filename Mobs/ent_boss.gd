@@ -9,9 +9,10 @@ class_name SirQuackAlot extends CharacterBody2D
 @onready var label: Label = $CanvasLayer/Label
 @onready var laser: RayCast2D = $RayCast2D
 
-##variables that some states check
+##Variables that multiple States use
 var phase2 : bool
 var last_pos 
+#cant have array of all possible positions here, needs to be in using states
 
 
 

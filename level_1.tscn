@@ -19,18 +19,6 @@ script = ExtResource("1_5hph3")
 z_index = -1
 scale = Vector2(4, 4)
 
-[node name="BossPos1" type="Marker2D" parent="Test_Tilemap"]
-position = Vector2(342.5, 102.25)
-
-[node name="BossPos2" type="Marker2D" parent="Test_Tilemap"]
-position = Vector2(941.5, 107.25)
-
-[node name="BossPos3" type="Marker2D" parent="Test_Tilemap"]
-position = Vector2(345.25, 610)
-
-[node name="BossPos4" type="Marker2D" parent="Test_Tilemap"]
-position = Vector2(943, 618.75)
-
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(958, 5040)
 
@@ -48,7 +36,7 @@ rotation = 0.00108264
 unique_name_in_owner = true
 wait_time = 4.0
 
-[node name="Boss_Charging" parent="." instance=ExtResource("4_ihfcg")]
-position = Vector2(2072, 2440)
+[node name="SirQuackAlot" parent="." instance=ExtResource("4_ihfcg")]
+position = Vector2(15458, 1859)
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

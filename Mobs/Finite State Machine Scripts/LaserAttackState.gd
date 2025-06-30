@@ -39,13 +39,8 @@ func start_shooting_cycle():
 func change_direction():
 	sprite.animation = "channelling attack"
 	if(directions_fired > 3):
-		var swapTo = randf()
-		if(swapTo > 0.99):
-			Transitioned.emit(self, "moving")
-			return
-		else:
-			Transitioned.emit(self, "teleport")
-			return
+		swapState()
+		return
 	
 	current_direction = directions[directions_fired]
 	directions_fired +=1
@@ -73,3 +68,13 @@ func shooting_cyclePart2(direction: Vector2):
 		#try with next direction
 		#return
 	fire_timer.start(fire_duration)
+
+func swapState():
+	if enemy.phase2:
+		var swapTo = randf()
+		if(swapTo > 0.5):
+			Transitioned.emit(self, "moving")
+		else:
+			Transitioned.emit(self, "teleport")
+	else:
+		Transitioned.emit(self, "moving")
