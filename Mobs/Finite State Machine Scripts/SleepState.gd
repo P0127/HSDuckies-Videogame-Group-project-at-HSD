@@ -17,3 +17,9 @@ func Update(delta: float):
 func wakeUp():
 	#maybe play a quack sound or do a fancy zoom on it/doubt we have time for wakeup animation
 	Transitioned.emit(self, "moving") #maybe wakeup spin attack into tp out
+
+func Exit():
+	#GlobalSignals.toggle_mob_drops.emit()
+	#GlobalSignals.toggle_natural_spawns.emit()
+	#moved those two signals to the elevator
+	pass

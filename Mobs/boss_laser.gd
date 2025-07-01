@@ -56,8 +56,10 @@ func _physics_process(delta: float) -> void:
 	if is_colliding():
 		laser_end_position = to_local(get_collision_point())
 		if get_collider() == player:
+			#if collider is player deal damage
 			player.take_damage(delta, damage_rate)
 		elif get_collider() is CharacterBody2D and get_collider().has_method("take_damage"):
+			#if collider is a mob
 			get_collider().take_damage()
 	
 	if line_2d == null or line_2d2 == null:

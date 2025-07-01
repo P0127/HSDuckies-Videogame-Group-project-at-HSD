@@ -20,7 +20,7 @@ var last_pos
 func _ready() -> void:
 	$CanvasLayer/ProgressBar.max_value = max_health
 	$CanvasLayer/ProgressBar.value = health
-	phase2 = false
+	phase2 = true
 	laser.is_casting = false
 
 
