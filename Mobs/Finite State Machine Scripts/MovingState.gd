@@ -64,7 +64,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 func swapState():
 	if enemy.phase2:
 		var whichState = randf()
-		if whichState > 0.3:
+		if whichState > 0.3: #30%summon state
 			Transitioned.emit(self, "laserattack")
 		else:
 			Transitioned.emit(self, "summon")

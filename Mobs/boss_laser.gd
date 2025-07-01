@@ -126,14 +126,21 @@ func disappear():
 #testing function for different laser width for different states
 #this can work for maybe spin attack upon waking up
 #have presets that change width and length to make it match whatever attack we want
-func adjust_width(preset: int):
+func change_preset(preset: String):
 	match (preset):
-		-1:
+		"small":
 			line_width = LOWERED_OUTER_WIDTH
 			line_width2 = LOWERED_INNER_WIDTH
-		1:
+			max_length = 200
+			growth_time = 1
+			cast_speed = 3000
+		"big":
 			line_width = UPPED_OUTER_WIDTH
 			line_width2 = UPPED_INNER_WIDTH
-		_:
+			start_distance = 80
+		_:#unknown input sets laser to default preset
 			line_width = DEFAULT_OUTER_WIDTH
 			line_width2 = DEFAULT_INNER_WIDTH
+			start_distance = 40
+			max_length = 1400
+			growth_time = 0.1

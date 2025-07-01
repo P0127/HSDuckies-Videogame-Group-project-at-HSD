@@ -20,7 +20,7 @@ z_index = -1
 scale = Vector2(4, 4)
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(958, 5040)
+position = Vector2(1083, 1360)
 
 [node name="Player" parent="." instance=ExtResource("5_gyffv")]
 

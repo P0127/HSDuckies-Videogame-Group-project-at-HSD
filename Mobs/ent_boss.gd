@@ -8,6 +8,8 @@ class_name SirQuackAlot extends CharacterBody2D
 @onready var progressBar: ProgressBar = $CanvasLayer/ProgressBar
 @onready var label: Label = $CanvasLayer/Label
 @onready var laser: RayCast2D = $RayCast2D
+@onready var laser2: RayCast2D = $laser2
+
 
 ##Variables that multiple States use
 var phase2 : bool
@@ -22,6 +24,7 @@ func _ready() -> void:
 	$CanvasLayer/ProgressBar.value = health
 	phase2 = true
 	laser.is_casting = false
+	laser2.is_casting = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

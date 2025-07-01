@@ -155,7 +155,10 @@ func liberated():
 	weapon.hide()
 	weapon.swap_fire_status()
 	progressBar.hide()
-	drop_item()
+	if dont_drop:
+		return
+	else:
+		drop_item()
 
 func _on_time_to_live_timeout() -> void:
 	GlobalSignals.reduce_mob_counter.emit()
