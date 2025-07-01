@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b26h6bedxa5pj"]
+[gd_scene load_steps=19 format=3 uid="uid://b26h6bedxa5pj"]
 
 [ext_resource type="Texture2D" uid="uid://dxmy74qlajnft" path="res://Mobs/temp assets Boss/Attacking state temp.jpeg" id="1_f2voa"]
 [ext_resource type="Script" uid="uid://baxe1tyd7mto2" path="res://Mobs/ent_boss.gd" id="1_hi6rg"]
@@ -54,10 +54,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2voa"]
 size = Vector2(40, 40)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y3i7a"]
+radius = 51.1865
+
 [node name="Ent-Boss" type="CharacterBody2D"]
 scale = Vector2(1.8, 1.8)
-collision_layer = 2
-collision_mask = 17
+collision_layer = 18
+collision_mask = 3
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_hi6rg")
@@ -180,5 +183,14 @@ position = Vector2(70, -90)
 self_modulate = Color(1, 0, 0, 1)
 position = Vector2(150, 0)
 
+[node name="self defense stab" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="self defense stab"]
+shape = SubResource("CircleShape2D_y3i7a")
+
+[node name="stab" parent="." instance=ExtResource("14_qfa54")]
+
 [connection signal="timeout" from="State Machine/LaserAttack/FireTimer" to="State Machine/LaserAttack" method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="State Machine/LaserAttack/DirectionSwapTimer" to="State Machine/LaserAttack" method="_on_direction_swap_timer_timeout"]
+[connection signal="body_entered" from="self defense stab" to="." method="_on_self_defense_stab_body_entered"]
+[connection signal="body_exited" from="self defense stab" to="." method="_on_self_defense_stab_body_exited"]

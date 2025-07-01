@@ -138,6 +138,10 @@ func change_preset(preset: String):
 			line_width = UPPED_OUTER_WIDTH
 			line_width2 = UPPED_INNER_WIDTH
 			start_distance = 80
+		"stab":
+			line_width = LOWERED_OUTER_WIDTH
+			line_width2 = LOWERED_INNER_WIDTH
+			start_distance = 20
 		_:#unknown input sets laser to default preset
 			line_width = DEFAULT_OUTER_WIDTH
 			line_width2 = DEFAULT_INNER_WIDTH

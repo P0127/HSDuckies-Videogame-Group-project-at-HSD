@@ -13,6 +13,8 @@ var directions_fired = 0
 @onready var direction_swap_timer: Timer = $DirectionSwapTimer
 @onready var laser: RayCast2D = $"../../RayCast2D"
 @onready var laser_2: RayCast2D = $"../../laser2"
+@onready var stablaser: RayCast2D = $"../../stab"
+
 
 
 
