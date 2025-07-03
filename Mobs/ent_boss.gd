@@ -25,7 +25,7 @@ var dont_push_me: bool #still WIP to test out pushing
 func _ready() -> void:
 	$CanvasLayer/ProgressBar.max_value = max_health
 	$CanvasLayer/ProgressBar.value = health
-	phase2 = true
+	phase2 = false
 	initial_laser_setup()
 	dont_push_me = false
 

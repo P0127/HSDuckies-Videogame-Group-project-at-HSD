@@ -189,6 +189,7 @@ position = Vector2(150, 0)
 shape = SubResource("CircleShape2D_y3i7a")
 
 [node name="stab" parent="." instance=ExtResource("14_qfa54")]
+damage_rate = 1.0
 
 [connection signal="timeout" from="State Machine/LaserAttack/FireTimer" to="State Machine/LaserAttack" method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="State Machine/LaserAttack/DirectionSwapTimer" to="State Machine/LaserAttack" method="_on_direction_swap_timer_timeout"]
