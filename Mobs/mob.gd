@@ -154,7 +154,7 @@ func liberated():
 	$FeatherExplosion2.set_deferred("emitting", "true")
 	$SweatParticles.set_deferred("emitting", "true")
 	if dont_drop:
-		return
+		GlobalSignals.bossMinion_item.emit(self.global_position)
 	else:
 		drop_item()
 
