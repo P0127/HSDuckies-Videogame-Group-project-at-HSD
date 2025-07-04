@@ -13,9 +13,10 @@ signal game_won
 signal duck_collected_signal
 signal duck_collected_levelUp
 
-#For spawning Items
+#For spawning Items, global_position on emit required
 signal drop_duck
 signal drop_item
+signal bossMinion_item
 
 #Mob Level and spawn limitation
 signal reduce_mob_counter

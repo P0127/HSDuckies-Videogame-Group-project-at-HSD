@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cn5r51qbiy1gh" path="res://Map/Map_Tilemap/Sprites/dekotiles.png" id="8_np6tf"]
 [ext_resource type="Texture2D" uid="uid://pe6lbg71ni6u" path="res://Map/Map_Tilemap/Sprites/wand1.png" id="9_8qka3"]
 [ext_resource type="Script" uid="uid://coglm1jsjk5g2" path="res://Map/fade_on_roof.gd" id="10_srcvq"]
-[ext_resource type="PackedScene" uid="uid://dxr5tal3pik4a" path="res://assets/sound/destroyable_backpack.tscn" id="11_rrev1"]
+[ext_resource type="PackedScene" uid="uid://dxr5tal3pik4a" path="res://Destroyable/destroyable_backpack.tscn" id="11_rrev1"]
 [ext_resource type="PackedScene" uid="uid://b2qfans1eui5b" path="res://Destroyable/destroyable_trashcan.tscn" id="12_uaiai"]
 [ext_resource type="Texture2D" uid="uid://dlq6vqnmfrq8o" path="res://Map/Map_Tilemap/Sprites/MobSpawnableTile.jpg" id="16_le2oh"]
 [ext_resource type="Script" uid="uid://cxc3i0hlmx387" path="res://Map/mob_spawnable_tiles.gd" id="17_8q1wr"]

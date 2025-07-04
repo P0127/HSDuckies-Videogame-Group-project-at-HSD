@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cco85by3eu8u2"
-path="res://.godot/imported/Uhr.png-c24c41ca1c3bdf7b2a64952770d4794c.ctex"
+uid="uid://cf7vlqpyktxg2"
+path="res://.godot/imported/Untitled 23.png-9dd4e7853957739c8e180e1f2e4d10fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objekte/Uhr.png"
-dest_files=["res://.godot/imported/Uhr.png-c24c41ca1c3bdf7b2a64952770d4794c.ctex"]
+source_file="res://assets/Objekte/Untitled 23.png"
+dest_files=["res://.godot/imported/Untitled 23.png-9dd4e7853957739c8e180e1f2e4d10fb.ctex"]
 
 [params]
 

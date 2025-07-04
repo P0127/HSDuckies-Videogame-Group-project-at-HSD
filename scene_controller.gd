@@ -1,6 +1,9 @@
 class_name Scene_Controller extends Node
-
-#Controls Scenes, loads/unloads
+#MAIN SCRIPT and always executed / running
+#Contains the Methods that Manage a Scene Switch
+#Splits GUI and Worldmap Scenes, as these run parallel
+#Called upon via GlobalSignal Variable through Classname
+#Methods are called with the filename as parameter
 
 ## VARIABLES
 #Our control nodes in our scene_controller Nodes for both HUD and game scenes
@@ -21,6 +24,8 @@ func _ready():
 	#This is what we start with; our start screen!
 	GlobalSignals.scene_controller.change_gui_scene("res://Hud/startscreen.tscn")
 
+#Function that changes the Game Scene, removes prior Scene
+#Can also just hide Scene or leave it loaded but frozen, instead of removing entirely
 func change_game_scene (new_scene_name: String, delete: bool = true, visibility: bool = false):
 	remove_scene(delete, visibility)
 	#loads new scene and starts it
@@ -29,6 +34,8 @@ func change_game_scene (new_scene_name: String, delete: bool = true, visibility:
 	print("Current Scene: ", current_scene)
 	world2D.add_child(new_scene)
 
+#Function that changes the HUD Scene, removes prior Scene
+#Can also just hide Scene or leave it loaded but frozen, instead of removing entirely
 func change_gui_scene (new_gui_name: String, delete: bool = true, visibility: bool = false):
 	remove_gui(delete, visibility)
 	#loads new scene and starts it
@@ -37,6 +44,7 @@ func change_gui_scene (new_gui_name: String, delete: bool = true, visibility: bo
 	print("Current GUI: ", current_gui)
 	gui.add_child(new_gui)
 
+#Function called to remove a Scene (or putting it in a different state)
 func remove_scene (delete: bool = true, visibility: bool = false):	
 	#Only if there is a scene already loaded, does it manipulate the prior scene
 	if current_scene != null:
@@ -50,6 +58,7 @@ func remove_scene (delete: bool = true, visibility: bool = false):
 			#keeps in memory, but doesn't update session (no reload necessary on recall)
 			world2D.remove_child(current_scene)
 
+#Function called to remove a HUD (or putting it in a different state)
 func remove_gui (delete: bool = true, visibility: bool = false):
 	#Only if there is a scene already loaded, does it manipulate the prior scene
 	if current_gui != null:
