@@ -6,25 +6,25 @@ class_name TeleportState extends State
 ##setup so that we can lazer fire into all hallways
 ##prob work with set points on the map play animation tp there
 
-
-##Array of all main Boss Positions
-@onready var allPossiblePositions = [
-	$"../../../Test_Tilemap/BossPos1",
-	$"../../../Test_Tilemap/BossPos2",
-	$"../../../Test_Tilemap/BossPos3",
-	$"../../../Test_Tilemap/BossPos4"
-] 
 var next_pos
-var waitBefore : float = 2.0
-var waitAfter : float = 1.0
+@export var waitBefore : float = 2.0
+@export var waitAfter : float = 1.0
+@onready var allPossiblePositions := [
+	$"../../../Test_Tilemap/BossPathPoints/BossPos",
+	$"../../../Test_Tilemap/BossPathPoints/BossPos2",
+	$"../../../Test_Tilemap/BossPathPoints/BossPos3",
+	$"../../../Test_Tilemap/BossPathPoints/BossPos4",
+	$"../../../Test_Tilemap/BossPathPoints/BossPos5",
+	$"../../../Test_Tilemap/BossPathPoints/BossPos6"
+]
 
 func Enter():
 	#select random point where we will path to
-	var indexPos = randi_range(0,3)
+	var indexPos = randi_range(0,5)
 	next_pos = allPossiblePositions[indexPos]
 	#if we are at that position choose a different one
 	while next_pos == enemy.last_pos:
-		indexPos = randi_range(0,3)
+		indexPos = randi_range(0,5)
 		next_pos = allPossiblePositions[indexPos]
 	#save chosen position into last_pos for future check
 	enemy.last_pos = next_pos

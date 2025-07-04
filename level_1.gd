@@ -9,8 +9,9 @@ extends Node2D
 @onready var Map = $Test_Tilemap
 
 
-const MOB_LIMIT = 0 #MOB LIMIT
+const MOB_LIMIT = 10 #MOB LIMIT
 var current_mob_amount = 0 #tracks how many mobs are currently spawned
+var natural_spawning_enabled = true #used to disable spawning after boss fight start
 
 # Referenz auf den Dialogue
 var dialog_after_pickup_triggered = false		# Flag, um Dialog nur einmal zu starten
@@ -23,9 +24,7 @@ func _ready():
 	#moves player to starting position & removed hide()
 	$Player.start($StartPosition.position)
 	
-	#spawn_mob(5)
 	MobSpawnTimer.start()
-	#$Player/Path2D.
 	
 	# Connect the player's death signal to show game over
 	GlobalSignals.reduce_mob_counter.connect(reduce_mob_counter)
@@ -33,9 +32,9 @@ func _ready():
 	GlobalSignals.dialogue_start.connect(_pause_level_on_dialogue_start)
 	GlobalSignals.dialogue_finished.connect(_unpause_level_on_dialogue_end)
 
+	GlobalSignals.toggle_natural_spawns.connect(toggle_spawn_cycle)
 	update_curve_to_screen_edges()
-	#couldnt find a better way of getting the Path2D to our screen edges so this will do for now
-	#will prob look more into it after TDOT
+	
 
 #Spawns Mobs if Left Mouse Button is clicked at Mouse position
 #For Testing
@@ -78,9 +77,11 @@ func spawn_mob(maxAttempts : int):
 
 
 func _on_mob_spawn_timer_timeout():
-	spawn_mob(4)
-	if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec 
-		MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
+	if natural_spawning_enabled:
+		spawn_mob(4)
+		if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec 
+			MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
+
 
 
 func reduce_mob_counter():
@@ -111,3 +112,6 @@ func update_curve_to_screen_edges():
 		$Player/Path2D.curve.add_point(point)
 	
 	$Player/Path2D.curve.add_point(curve_points[0]) #finish loop
+
+func toggle_spawn_cycle():
+	natural_spawning_enabled = !natural_spawning_enabled

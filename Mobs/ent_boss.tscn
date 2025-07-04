@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b26h6bedxa5pj"]
+[gd_scene load_steps=19 format=3 uid="uid://b26h6bedxa5pj"]
 
 [ext_resource type="Texture2D" uid="uid://dxmy74qlajnft" path="res://Mobs/temp assets Boss/Attacking state temp.jpeg" id="1_f2voa"]
 [ext_resource type="Script" uid="uid://baxe1tyd7mto2" path="res://Mobs/ent_boss.gd" id="1_hi6rg"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://d27np5axuscdr" path="res://Mobs/Finite State Machine Scripts/MovingState.gd" id="12_5gokl"]
 [ext_resource type="Script" uid="uid://jm8nl766rd73" path="res://Mobs/Finite State Machine Scripts/LaserAttackState.gd" id="13_xql5s"]
 [ext_resource type="PackedScene" uid="uid://bdpw6r2f3pmp4" path="res://Mobs/BossLaser.tscn" id="14_qfa54"]
+[ext_resource type="Script" uid="uid://2lqmen2xx4xa" path="res://Mobs/Finite State Machine Scripts/SleepState.gd" id="14_y3i7a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u6ydu"]
 animations = [{
@@ -53,24 +54,27 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2voa"]
 size = Vector2(40, 40)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y3i7a"]
+radius = 51.1865
+
 [node name="Ent-Boss" type="CharacterBody2D"]
 scale = Vector2(1.8, 1.8)
-collision_layer = 2
-collision_mask = 17
+collision_layer = 18
+collision_mask = 3
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_hi6rg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u6ydu")
-animation = &"passive"
+animation = &"channelling attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_f2voa")
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_r16su")
-initial_state = NodePath("Moving")
+initial_state = NodePath("Sleep")
 
 [node name="Wandering" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_xlxb4")
@@ -113,6 +117,11 @@ one_shot = true
 
 [node name="DirectionSwapTimer" type="Timer" parent="State Machine/LaserAttack"]
 one_shot = true
+
+[node name="Sleep" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("14_y3i7a")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://2lqmen2xx4xa"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -157,6 +166,10 @@ navigation_layers = 2
 [node name="RayCast2D" parent="." instance=ExtResource("14_qfa54")]
 color = Color(1, 0, 0.00784314, 1)
 
+[node name="laser2" parent="." instance=ExtResource("14_qfa54")]
+rotation = -3.14159
+color = Color(1, 0, 0.00784314, 1)
+
 [node name="Spawnpoints" type="Node2D" parent="."]
 scale = Vector2(0.555556, 0.555556)
 
@@ -170,5 +183,15 @@ position = Vector2(70, -90)
 self_modulate = Color(1, 0, 0, 1)
 position = Vector2(150, 0)
 
+[node name="self defense stab" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="self defense stab"]
+shape = SubResource("CircleShape2D_y3i7a")
+
+[node name="stab" parent="." instance=ExtResource("14_qfa54")]
+damage_rate = 1.0
+
 [connection signal="timeout" from="State Machine/LaserAttack/FireTimer" to="State Machine/LaserAttack" method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="State Machine/LaserAttack/DirectionSwapTimer" to="State Machine/LaserAttack" method="_on_direction_swap_timer_timeout"]
+[connection signal="body_entered" from="self defense stab" to="." method="_on_self_defense_stab_body_entered"]
+[connection signal="body_exited" from="self defense stab" to="." method="_on_self_defense_stab_body_exited"]

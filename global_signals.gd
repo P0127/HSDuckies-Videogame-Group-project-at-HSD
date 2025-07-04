@@ -21,6 +21,10 @@ signal bossMinion_item
 #Mob Level and spawn limitation
 signal reduce_mob_counter
 
+#Boss Fight start
+signal toggle_natural_spawns
+signal toggle_mob_drops
+
 #Dialogues that pause the game
 signal dialogue_finished
 signal dialogue_start

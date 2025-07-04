@@ -16,7 +16,6 @@ static var moblvl = 1
 var health : int = 2 + moblvl/2  #Hits required to kill
 var movement_speed = 100 + (moblvl-1) * 25
 var damage_rate : float = 3.0  #damage done to Player by touching
-var boss_movement_speed = 125
 
 
 ## TARGETS
@@ -26,10 +25,17 @@ var weapon_direction = Vector2.RIGHT #used for weapon direction
 var duck_status : int = 1 #modifier for running direction, dependant on wether it's a duck (1) or student (-1)
 
 
+## BOSS FIGHT CHANGES
+const BOSS_MOVEMENT_SPEED = 125
+static var dont_drop: bool = false
+
 
 func _ready():
 	if not GlobalSignals.duck_collected_levelUp.is_connected(_levelUp):
 		GlobalSignals.duck_collected_levelUp.connect(_levelUp)
+	
+	if not GlobalSignals.toggle_mob_drops.is_connected(boss_fight_started):
+		GlobalSignals.toggle_mob_drops.connect(boss_fight_started)
 	
 	#added firerate scaling
 	var firerate_adjustment = (moblvl-1) * 0.2 #this depends on how high we want it to scale
@@ -149,7 +155,10 @@ func liberated():
 	weapon.hide()
 	weapon.swap_fire_status()
 	progressBar.hide()
-	drop_item()
+	if dont_drop:
+		return
+	else:
+		drop_item()
 
 func _on_time_to_live_timeout() -> void:
 	GlobalSignals.reduce_mob_counter.emit()
@@ -189,4 +198,15 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 
 static func _levelUp():
 	moblvl += 1
-	#prints("Ranged have levelled up to lvl: ", moblvl)
+
+static func boss_fight_started():
+	dont_drop = !dont_drop
+
+##This function is only for when mobs get summoned by the boss, they will spawn invisble 
+##with no movementspeed then it will slowly fade in and speed up
+func summoned():
+	var tween = create_tween()
+	self.modulate.a = 0
+	self.movement_speed = 0
+	tween.tween_property(self, "modulate:a", 1.0, 1.5)
+	tween.tween_property(self, "movement_speed", BOSS_MOVEMENT_SPEED, 1.5)

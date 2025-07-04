@@ -73,36 +73,33 @@ func summonMobs():
 	var ranged = load("res://Mobs/ranged_mob.tscn").instantiate()
 	
 	if(navLayer.spawncheck(individual_spawn_positions[0].global_position)):
-		var tween = create_tween()
-		meelee1.modulate.a = 0
-		meelee1.movement_speed = 0
-		tween.tween_property(meelee1, "modulate:a", 1.0, 1.5)
+		meelee1.summoned()
 		meelee1.global_position = individual_spawn_positions[0].global_position
 		enemy.add_sibling(meelee1)
 	
 	if(navLayer.spawncheck(individual_spawn_positions[1].global_position)):
-		var tween = create_tween()
-		ranged.modulate.a = 0
-		ranged.movement_speed = 0
-		tween.tween_property(ranged, "modulate:a", 1.0, 1.5)
+		ranged.summoned()
 		ranged.global_position = individual_spawn_positions[1].global_position
 		enemy.add_sibling(ranged)
 	
 	if(navLayer.spawncheck(individual_spawn_positions[2].global_position)):
-		print("spawncheck worked!")
-		var tween = create_tween()
-		meelee2.modulate.a = 0
-		meelee2.movement_speed = 0
-		tween.tween_property(meelee2, "modulate:a", 1.0, 1.5)
+		meelee2.summoned()
 		meelee2.global_position = individual_spawn_positions[2].global_position
 		enemy.add_sibling(meelee2)
 	
-	await get_tree().create_timer(1.5).timeout
-	meelee1.movement_speed = meelee1.boss_movement_speed
-	meelee2.movement_speed = meelee2.boss_movement_speed
-	ranged.movement_speed = ranged.boss_movement_speed
 	
-	
+	swapState()
 
 ##BUG IF WE ADD MOBS LIKE THIS WE WILL HAVE TO DISABLE SPAWNING ENTIRELY OR ELSE IT WILL
 ##LOWER THE MAX MOBS TO BELOW 0 SO THAT IT ALLOWS MOBS TO SPAWN
+
+
+func swapState():
+	if enemy.phase2:
+		var swapTo = randf()
+		if(swapTo > 0.5):
+			Transitioned.emit(self, "moving")
+		else:
+			Transitioned.emit(self, "teleport")
+	else:
+		Transitioned.emit(self, "moving")

@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 ## SCENES (multiple usage)
 @onready var progressBar = $ProgressBar
-#@onready var spriteMob = $AnimatedMobSprite
 @onready var spriteDuckmask = $DuckmaskSprite
 @onready var mob_sprites = [  
 	$AnimatedMobSprite,
@@ -12,26 +11,25 @@ extends CharacterBody2D
 	$AnimatedMobSprite3,
 	$AnimatedMobSprite4
 ] #list of all mob sprite variations
-var spriteMob : AnimatedSprite2D  #assigned in _ready() function
+var spriteMob : AnimatedSprite2D  #chosen sprite assigned in _ready() function
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
-
 var drop_scene := preload("res://Drops/duck_collectable.tscn") #to Instantiate drop item later on
-var run_away_scene := preload("res://Mobs/mob_run_away.tscn") #to instantiate scene of mob running away upon defeat
 
 ## STATS 
 static var moblvl = 1
 var health : int = 3 + (moblvl-1) * 2 #Hits required to kill
 var movement_speed = 75 + (moblvl-1) * 20 
 var damage_rate : float = 2.5 + moblvl * 2.5  #damage done to Player
-var boss_movement_speed = 95
 
 ## TARGETS
 var target_damage : Node2D #saveslot for Player on body entered
 var target_homing : Node2D #saveslot for current target to make it possible to run out of aggro range
 var duck_status : int = 1 #modifier for running direction, dependant on wether it's a duck (1) or student (-1)
 
-
+## BOSS FIGHT CHANGES
+const BOSS_MOVEMENT_SPEED = 95
+static var dont_drop: bool = false
 
 
 func _ready():
@@ -39,6 +37,9 @@ func _ready():
 	
 	if not GlobalSignals.duck_collected_levelUp.is_connected(_levelUp):
 		GlobalSignals.duck_collected_levelUp.connect(_levelUp)
+	
+	if not GlobalSignals.toggle_mob_drops.is_connected(boss_fight_started):
+		GlobalSignals.toggle_mob_drops.connect(boss_fight_started)
 	
 	for sprite in mob_sprites:
 		sprite.visible = false  #Hide every mob sprite in the list – so that none are visible at the beginning
@@ -129,7 +130,6 @@ func take_damage():
 		progressBar.show()
 		$OuchParticles.set_deferred("emitting", true)
 	if health == 0:
-		#_die()
 		health = -1
 		progressBar.hide()
 		liberated()
@@ -153,7 +153,10 @@ func liberated():
 	$FeatherExplosion.set_deferred("emitting", "true")
 	$FeatherExplosion2.set_deferred("emitting", "true")
 	$SweatParticles.set_deferred("emitting", "true")
-	drop_item()
+	if dont_drop:
+		return
+	else:
+		drop_item()
 
 func _on_time_to_live_timeout():
 	GlobalSignals.reduce_mob_counter.emit()
@@ -194,4 +197,15 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 
 static func _levelUp():
 	moblvl += 1
-	#prints("Mobs have levelled up to lvl: ", moblvl)
+
+static func boss_fight_started():
+	dont_drop = !dont_drop
+
+##This function is only for when mobs get summoned by the boss, they will spawn invisble 
+##with no movementspeed then it will slowly fade in and speed up
+func summoned():
+	var tween = create_tween()
+	self.modulate.a = 0
+	self.movement_speed = 0
+	tween.tween_property(self, "modulate:a", 1.0, 1.5)
+	tween.tween_property(self, "movement_speed", BOSS_MOVEMENT_SPEED, 1.5)

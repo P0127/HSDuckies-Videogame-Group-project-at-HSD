@@ -12,6 +12,9 @@ var directions_fired = 0
 @onready var fire_timer: Timer = $FireTimer
 @onready var direction_swap_timer: Timer = $DirectionSwapTimer
 @onready var laser: RayCast2D = $"../../RayCast2D"
+@onready var laser_2: RayCast2D = $"../../laser2"
+@onready var stablaser: RayCast2D = $"../../stab"
+
 
 
 
@@ -20,12 +23,16 @@ func Enter():
 	#enemy.velocity = Vector2()#dont think this line is needed but maybe if we slide later upon entry
 	directions_fired = 0
 	
+	
+	laser.change_preset("default")
+	laser_2.change_preset("default")
+	
 	##this needs to be called in Enter else the first laser from first state entry is invisible
 	#laser.is_casting = false #now called in the _ready of the boss so dont think needs to be here anymore
 	
-	#directions.shuffle() #for rdm direction order
-	if (randf() > 0.5):
-		directions.reverse()#for both possible spin directions
+	directions.shuffle() #for rdm direction order
+	#if (randf() > 0.5):
+	#	directions.reverse()#for both possible spin directions
 	start_shooting_cycle()
 
 
@@ -39,13 +46,8 @@ func start_shooting_cycle():
 func change_direction():
 	sprite.animation = "channelling attack"
 	if(directions_fired > 3):
-		var swapTo = randf()
-		if(swapTo > 0.99):
-			Transitioned.emit(self, "moving")
-			return
-		else:
-			Transitioned.emit(self, "teleport")
-			return
+		swapState()
+		return
 	
 	current_direction = directions[directions_fired]
 	directions_fired +=1
@@ -73,3 +75,13 @@ func shooting_cyclePart2(direction: Vector2):
 		#try with next direction
 		#return
 	fire_timer.start(fire_duration)
+
+func swapState():
+	if enemy.phase2:
+		var swapTo = randf()
+		if(swapTo > 0.5):
+			Transitioned.emit(self, "moving")
+		else:
+			Transitioned.emit(self, "teleport")
+	else:
+		Transitioned.emit(self, "moving")

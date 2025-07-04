@@ -8,6 +8,7 @@ extends RayCast2D
 @export var growth_time := 0.1
 @export var damage_rate := 5.0
 
+
 #for collision and damge
 @onready var player = get_tree().get_first_node_in_group("Player")
 
@@ -21,6 +22,12 @@ extends RayCast2D
 @onready var line_width := line_2d.width
 @onready var line_2d2: Line2D = $innerLine
 @onready var line_width2 := line_2d2.width
+const DEFAULT_INNER_WIDTH := 10.0
+const DEFAULT_OUTER_WIDTH := 20.0
+const UPPED_INNER_WIDTH := 15.0
+const UPPED_OUTER_WIDTH := 30.0
+const LOWERED_INNER_WIDTH := 5.0
+const LOWERED_OUTER_WIDTH := 10.0
 
 var tween: Tween = null
 var tween2: Tween = null
@@ -49,7 +56,11 @@ func _physics_process(delta: float) -> void:
 	if is_colliding():
 		laser_end_position = to_local(get_collision_point())
 		if get_collider() == player:
+			#if collider is player deal damage
 			player.take_damage(delta, damage_rate)
+		elif get_collider() is CharacterBody2D and get_collider().has_method("take_damage"):
+			#if collider is a mob
+			get_collider().take_damage()
 	
 	if line_2d == null or line_2d2 == null:
 		return
@@ -111,3 +122,29 @@ func disappear():
 	tween2 = create_tween()
 	tween2.tween_property(line_2d2, "width", 0.0, growth_time).from_current()
 	tween2.tween_callback(line_2d2.hide)
+
+#testing function for different laser width for different states
+#this can work for maybe spin attack upon waking up
+#have presets that change width and length to make it match whatever attack we want
+func change_preset(preset: String):
+	match (preset):
+		"small":
+			line_width = LOWERED_OUTER_WIDTH
+			line_width2 = LOWERED_INNER_WIDTH
+			max_length = 200
+			growth_time = 1
+			cast_speed = 3000
+		"big":
+			line_width = UPPED_OUTER_WIDTH
+			line_width2 = UPPED_INNER_WIDTH
+			start_distance = 80
+		"stab":
+			line_width = LOWERED_OUTER_WIDTH
+			line_width2 = LOWERED_INNER_WIDTH
+			start_distance = 20
+		_:#unknown input sets laser to default preset
+			line_width = DEFAULT_OUTER_WIDTH
+			line_width2 = DEFAULT_INNER_WIDTH
+			start_distance = 40
+			max_length = 1400
+			growth_time = 0.1

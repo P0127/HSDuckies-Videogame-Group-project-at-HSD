@@ -28,4 +28,4 @@ func Physics_Update(delta: float):
 		#Transitioned.emit(self, "attack")
 
 	if direction.length() > 700:
-		Transitioned.emit(self, "idle")
+		Transitioned.emit(self, "wandering")
