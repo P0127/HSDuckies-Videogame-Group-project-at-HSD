@@ -1,14 +1,13 @@
 extends Node2D
 
-#@export var Mob: PackedScene
-#@export var RangedMob : PackedScene #testing
-
+## Node Variables
 @onready var MobSpawnTimer = %MobSpawnTimer
 @onready var MapSpawningFloor = $Test_Tilemap/MobSpawnableTiles
+@onready var path_2d: Path2D = $Player/Path2D
 @onready var MobSpawningPath = %MobSpawningPath
 @onready var Map = $Test_Tilemap
 
-
+## Mob spawning cycle variables
 const MOB_LIMIT = 10 #MOB LIMIT
 var current_mob_amount = 0 #tracks how many mobs are currently spawned
 var natural_spawning_enabled = true #used to disable spawning after boss fight start
@@ -24,8 +23,11 @@ func _ready():
 	#moves player to starting position & removed hide()
 	$Player.start($StartPosition.position)
 	
+	#upon starting the game, start the mob spawning cycle
 	MobSpawnTimer.start()
-	
+	#adjust the mob spawning path to rough edges of users screen
+	update_curve_to_screen_edges()
+
 	# Connect the player's death signal to show game over
 	GlobalSignals.reduce_mob_counter.connect(reduce_mob_counter)
 
@@ -33,49 +35,48 @@ func _ready():
 	GlobalSignals.dialogue_finished.connect(_unpause_level_on_dialogue_end)
 
 	GlobalSignals.toggle_natural_spawns.connect(toggle_spawn_cycle)
-	update_curve_to_screen_edges()
-	
 
-#Spawns Mobs if Left Mouse Button is clicked at Mouse position
-#For Testing
-#func _input(event):
-	#if event.is_action_pressed("click"):
-		#if Mob.can_instantiate():
-			#var new_Mob = Mob.instantiate()
-			#new_Mob.position = $Player.position + get_viewport().get_mouse_position() - Vector2($StartPosition.position) * 0.8 - Vector2(260,230)
-			#add_child(new_Mob)
-		#if RangedMob.can_instantiate():
-			#var new_Mob = RangedMob.instantiate()
-			#new_Mob.position = $Player.position + get_viewport().get_mouse_position() - Vector2($StartPosition.position) * 0.8 - Vector2(260,230)
-			#add_child(new_Mob)
 
-#if you spawn multiple mobs at once they will all use same model
+#This function handels our mob spawns, the param decides how many positions we check
+#whilst trying to find a valid spawnpoint.
 func spawn_mob(maxAttempts : int):
+	#check if there are less mobs than our mob limit currently spawned
 	if(current_mob_amount < MOB_LIMIT):
+		#generate a random number between 0-1
 		var which_mob = randf()
 		if (which_mob > 0.2): #80% chance for meelee mob 
 			var new_mob = load("res://Mobs/mob.tscn").instantiate()
-			MobSpawningPath.progress_ratio = randf() #produces rdm decimal number between 0 & 1
+			#sets the var to a rdm position on its path
+			MobSpawningPath.progress_ratio = randf() 
+			
+			#if that spawn position is within our navmesh -> spawn mob at that position
 			if(MapSpawningFloor.spawncheck(MobSpawningPath.global_position)):
 				new_mob.global_position = MobSpawningPath.global_position
-				#print("spawn mob", new_mob)
 				add_child(new_mob)
 				current_mob_amount += 1
-			elif(maxAttempts > 0):
-				spawn_mob(maxAttempts - 1) #try again with different position
-			
+				
+			elif(maxAttempts > 0):#do we have more attempts?
+				spawn_mob(maxAttempts - 1) #yes -> try again with different position
+				# -1 to avoid infinite loop
+
 		else: #20% chance for ranged mob
 			var new_mob = load("res://Mobs/ranged_mob.tscn").instantiate()
-			MobSpawningPath.progress_ratio = randf() #produces rdm decimal number between 0 & 1
+			#sets the var to a rdm position on its path
+			MobSpawningPath.progress_ratio = randf()
+			
+			#if that spawn position is within our navmesh -> spawn mob at that position
 			if(MapSpawningFloor.spawncheck(MobSpawningPath.global_position)):
 				new_mob.global_position = MobSpawningPath.global_position
-				#print("spawn mob", new_mob)
 				add_child(new_mob)
 				current_mob_amount += 1
-			elif(maxAttempts > 0):
-				spawn_mob(maxAttempts - 1)#try again with different position
+				
+			elif(maxAttempts > 0):#do we have more attempts?
+				spawn_mob(maxAttempts - 1)#yes ->try again with different position
+				# -1 to avoid infinite loop 
 
 
+#function called everytime the MobSpawnTimer times out, initiates a spawn with 4 tries
+#additionally it will reduce its own wait time to slowly increase spawns over time
 func _on_mob_spawn_timer_timeout():
 	if natural_spawning_enabled:
 		spawn_mob(4)
@@ -83,7 +84,7 @@ func _on_mob_spawn_timer_timeout():
 			MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
 
 
-
+#function that is called upon a mob being defeated/despawning
 func reduce_mob_counter():
 	current_mob_amount -= 1
 
@@ -94,24 +95,39 @@ func _pause_level_on_dialogue_start(dialogueFile : String = ""):
 func _unpause_level_on_dialogue_end():
 	get_tree().paused = false
 
+#function called upon entering scene to set MobSpawningPath to the rough edges
+# of the players screen
 func update_curve_to_screen_edges():
+	#* 5.5 as from testing that gets the best results
 	var viewport_size = get_viewport_rect().size * 5.5
-	#print("VIEWPORT SIZE X = ", viewport_size.x)
-	#print("VIEWPORT SIZE Y = ", viewport_size.y)
 	
-	$Player/Path2D.curve.clear_points()
+	#get rid of previous points
+	path_2d.curve.clear_points()
 	
-	#v2
 	var curve_points = [ #since coords are relativ from Path2D this works
 		Vector2(-viewport_size.x/2, -viewport_size.y/2), #top left
 		Vector2(viewport_size.x/2, -viewport_size.y/2),  #top right
 		Vector2(viewport_size.x/2, viewport_size.y/2),   #bot right
 		Vector2(-viewport_size.x/2, viewport_size.y/2)   #bot left
-	]
-	for point in curve_points:
-		$Player/Path2D.curve.add_point(point)
+	]#/2 as we calc from player position so top left is -1/2,-1/2 instead of 0,0
 	
-	$Player/Path2D.curve.add_point(curve_points[0]) #finish loop
+	#add the points to our curve
+	for point in curve_points:
+		path_2d.curve.add_point(point)
+	
+	path_2d.curve.add_point(curve_points[0]) #finish loop
 
+#function that is called once the player enters the 2nd floor to disable natural spawns
 func toggle_spawn_cycle():
 	natural_spawning_enabled = !natural_spawning_enabled
+
+
+
+##testing delete me later
+@export var Mob: PackedScene
+func _input(event):
+	if event.is_action_pressed("click"):
+		if Mob.can_instantiate():
+			var new_Mob = Mob.instantiate()
+			new_Mob.position = get_global_mouse_position()
+			add_child(new_Mob)
