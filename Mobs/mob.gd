@@ -29,7 +29,7 @@ var duck_status : int = 1 #modifier for running direction, dependant on wether i
 
 ## BOSS FIGHT CHANGES
 const BOSS_MOVEMENT_SPEED = 95
-static var dont_drop: bool = false
+static var dont_drop_duck: bool = false
 
 
 func _ready():
@@ -153,7 +153,7 @@ func liberated():
 	$FeatherExplosion.set_deferred("emitting", "true")
 	$FeatherExplosion2.set_deferred("emitting", "true")
 	$SweatParticles.set_deferred("emitting", "true")
-	if dont_drop:
+	if dont_drop_duck:
 		GlobalSignals.bossMinion_item.emit(self.global_position)
 	else:
 		drop_item()
@@ -199,7 +199,7 @@ static func _levelUp():
 	moblvl += 1
 
 static func boss_fight_started():
-	dont_drop = !dont_drop
+	dont_drop_duck = !dont_drop_duck
 
 ##This function is only for when mobs get summoned by the boss, they will spawn invisble 
 ##with no movementspeed then it will slowly fade in and speed up

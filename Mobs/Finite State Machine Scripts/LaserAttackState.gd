@@ -1,6 +1,13 @@
 class_name LaserAttackState extends State
+## Laser Attack State ##
+##This State will fire a laser in all 4 cardinal directions once in a random order.
+##How long each laser is fired is decided by the fire_duration variable, whilst the
+## delay, between the laser getting disabled in one direction and enabled into another
+## direction, is set through the break_duration variable.
+##After having fired in all 4 directions it will transition to a movement State.
 
 
+## Variables
 @export var enemy: CharacterBody2D
 
 @onready var sprite = enemy.get_child(0)
@@ -17,46 +24,51 @@ var directions_fired = 0
 
 
 
-
 func Enter():
+	#swap sprite
 	sprite.animation = "channelling attack"
-	#enemy.velocity = Vector2()#dont think this line is needed but maybe if we slide later upon entry
+	
+	#set shots fired counter to 0
 	directions_fired = 0
 	
-	
+	#set both main lasers to the default preset
 	laser.change_preset("default")
 	laser_2.change_preset("default")
-	
-	##this needs to be called in Enter else the first laser from first state entry is invisible
-	#laser.is_casting = false #now called in the _ready of the boss so dont think needs to be here anymore
+	#2nd laser is currently not used in laser attack but might be in the future
+	#especially for phase 2 would make sense
 	
 	directions.shuffle() #for rdm direction order
-	#if (randf() > 0.5):
-	#	directions.reverse()#for both possible spin directions
+	
 	start_shooting_cycle()
 
 
 func Exit():
 	sprite.animation = "following"
 
+
+
 func start_shooting_cycle():
 	direction_swap_timer.start(break_duration)
 	change_direction()
 
+
+#function that updates our currently selected direction
 func change_direction():
 	sprite.animation = "channelling attack"
-	if(directions_fired > 3):
-		swapState()
+	if(directions_fired > 3): #if we've fired in all directions
+		swapState()# swap state
 		return
 	
+	#update current direction
 	current_direction = directions[directions_fired]
 	directions_fired +=1
 	direction_swap_timer.start(break_duration)
 
 ##fire duration timer
 func _on_fire_timer_timeout() -> void:
-	laser.is_casting = false
+	laser.is_casting = false #turn laser off
 	sprite.animation = "channelling attack"
+	#initiate shooting just with a different direction
 	change_direction()
 
 
@@ -65,23 +77,27 @@ func _on_direction_swap_timer_timeout() -> void:
 	sprite.animation = "attacking"
 	shooting_cyclePart2(current_direction)
 
-
+# called in break timer timeout
 func shooting_cyclePart2(direction: Vector2):
+	#make laser look at our current direction
 	laser.look_at(enemy.global_position + direction)
-	laser.is_casting = true
+	laser.is_casting = true#turn laser on
+	
 	#could add a distance collision check here that if laser collides with a wall within 200px
 	#we turn laser off, change sprite, reopen change_direction() and return so that timer doesnt start
 	#if collision check
 		#try with next direction
 		#return
+	
 	fire_timer.start(fire_duration)
+	#start fire timer which will turn the laser off again
 
 func swapState():
 	if enemy.phase2:
 		var swapTo = randf()
-		if(swapTo > 0.5):
+		if(swapTo > 0.5): #50%chance for moving state
 			Transitioned.emit(self, "moving")
-		else:
+		else: #50% chance for teleport state
 			Transitioned.emit(self, "teleport")
-	else:
+	else:#if we arent in phase2 always swap to moving state
 		Transitioned.emit(self, "moving")

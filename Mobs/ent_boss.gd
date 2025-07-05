@@ -1,4 +1,8 @@
 class_name SirQuackAlot extends CharacterBody2D
+			  ## Important ##
+##This Boss uses a state Machine, meaning most of the functionalities are happening
+## inside the individual States. Each State has a short summary at the top + additional
+## step by step descriptions throughout the code.
 
 ## Variables #Damage is defined in laser and laser.change_preset()
 @export var max_health = 100
@@ -54,21 +58,23 @@ func take_damage():
 		if health <= max_health/2:#if health reaches halfway point
 			phase2 = true
 
+#basic death function that will drop final duck and make the boss despawn upon reaching 0 HP
 func _die(): #might move this to a death state
 	drop_item()
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 2.5)
 	await get_tree().create_timer(2.5).timeout
 	queue_free()
-##todo add a death method incl dropping final duck
+
 
 #Calls on the preloaded duck drop scene to instantiate it once
 func drop_item():
 	GlobalSignals.drop_duck.emit(global_position)
 
+#inital setup for all lasers attached to the boss
 func initial_laser_setup():
-	laser.is_casting = false #have to set is_casting for lasers individually like this
-	laser2.is_casting = false #setting it in the _ready of BossLaser results in
+	laser.is_casting = false     #have to set is_casting for lasers individually like this
+	laser2.is_casting = false    #setting it in the _ready of BossLaser results in
 	stablaser.is_casting = false #invisible lasers
 	stablaser.change_preset("stab")
 
