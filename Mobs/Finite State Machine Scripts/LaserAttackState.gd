@@ -9,7 +9,6 @@ class_name LaserAttackState extends State
 
 ## Variables
 @export var enemy: CharacterBody2D
-
 @onready var sprite = enemy.get_child(0)
 var directions = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
 var current_direction = directions[0]
@@ -43,12 +42,8 @@ func Enter():
 	directions.shuffle() #for rdm direction order
 	
 	start_shooting_cycle()
-
-
-func Exit():
-	sprite.animation = "following"
-
-
+	
+	enemy.velocity = Vector2.ZERO
 
 func start_shooting_cycle():
 	direction_swap_timer.start(break_duration)
@@ -57,7 +52,6 @@ func start_shooting_cycle():
 
 #function that updates our currently selected direction
 func change_direction():
-	sprite.animation = "channelling attack"
 	if(directions_fired > 3): #if we've fired in all directions
 		swapState()# swap state
 		return
@@ -70,14 +64,12 @@ func change_direction():
 ##fire duration timer
 func _on_fire_timer_timeout() -> void:
 	laser.is_casting = false #turn laser off
-	sprite.animation = "channelling attack"
 	#initiate shooting just with a different direction
 	change_direction()
 
 
 ##break timer
 func _on_direction_swap_timer_timeout() -> void:
-	sprite.animation = "attacking"
 	shooting_cyclePart2(current_direction)
 
 # called in break timer timeout

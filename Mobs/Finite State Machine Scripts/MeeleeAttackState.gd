@@ -13,7 +13,6 @@ var time_between_hits : float = 1
 var hitCounter = 0
 
 func Enter():
-	sprite.animation = "channelling attack"
 	enemy.velocity = Vector2()
 	
 
@@ -23,7 +22,6 @@ func Update(delta: float):
 	
 	else:
 		var direction = player.global_position - enemy.global_position
-		sprite.animation = "channelling attack"
 		if time_between_hits <= 0:
 			time_between_hits = 1
 		
@@ -34,13 +32,8 @@ func Update(delta: float):
 		if(time_between_hits > 0):
 			time_between_hits -= delta
 		else:
-			
-			sprite.animation = "attacking"
 			player.take_damage(delta, enemy.attack_dmg)
 			hitCounter += 1
 			
 			if(hitCounter >= 3):
 				Transitioned.emit(self, "moving")
-
-func Exit():
-	sprite.animation = "following"
