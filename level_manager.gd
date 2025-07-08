@@ -15,7 +15,7 @@ func _ready():
 	GlobalSignals.duck_collected_signal.connect(duck_collected_counter)
 	GlobalSignals.game_over.connect(_game_over)
 	GlobalSignals.game_won.connect(duck_reset)
-	
+
 
 ## FUNCTIONS DUCK COUNT
 #Crements global collected ducks, optional: multiple ducks are added at once

@@ -232,7 +232,7 @@ debug_color = Color(0.8, 0.956863, 1, 0.176471)
 
 [node name="AnimatedMobSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b3mxk")
-animation = &"front"
+animation = &"back"
 
 [node name="AnimatedMobSprite2" type="AnimatedSprite2D" parent="."]
 visible = false
