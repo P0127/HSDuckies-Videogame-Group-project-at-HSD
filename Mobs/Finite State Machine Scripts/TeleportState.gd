@@ -23,6 +23,11 @@ var next_pos
 	$"../../../Test_Tilemap/BossPathPoints/BossPos6"
 ]
 
+
+func _ready():
+	if not GlobalSignals.phase2_reached.is_connected(phase2Started):
+		GlobalSignals.phase2_reached.connect(phase2Started)
+
 #Enter function of the TeleportState
 func Enter():
 	#select random point where we will path to
@@ -37,8 +42,14 @@ func Enter():
 	#save chosen position into last_pos for future check
 	enemy.last_pos = next_pos
 	
-	#set waitBefore time to 2seconds
-	waitBefore = 2.0
+	#set waitBefore time to 2seconds if in phase 1 else to 1second
+	if enemy.phase2:
+		waitBefore = 1.0
+	else:
+		waitBefore = 2.0
+	
+	#change sprite
+	sprite.animation = "stand"
 
 #update called every frame whilst in the teleport state
 func Update(delta: float):
@@ -73,7 +84,7 @@ func teleport():
 	#Fade out to 100% opacity over 1 second
 	
 	#wait for fadein to fully play
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(waitAfter).timeout
 	swapState()
 
 #method for swapping state, in phase 1 it will always swap to laserattack state
@@ -87,3 +98,8 @@ func swapState():
 			Transitioned.emit(self, "summon")
 	else:#if not in phase2 always swaps to laser attack
 		Transitioned.emit(self, "laserattack")
+
+#simple function to adjust stats upon reaching phase2
+func phase2Started():
+	waitBefore = 1.25
+	waitAfter = 0.5

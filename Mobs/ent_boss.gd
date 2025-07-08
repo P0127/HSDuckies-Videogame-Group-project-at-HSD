@@ -11,7 +11,7 @@ class_name SirQuackAlot extends CharacterBody2D
 # Nodes we need to adjust
 @onready var progressBar: ProgressBar = $CanvasLayer/ProgressBar
 @onready var label: Label = $CanvasLayer/Label
-@onready var laser: RayCast2D = $RayCast2D
+@onready var laser: RayCast2D = $laser1
 @onready var laser2: RayCast2D = $laser2
 @onready var stablaser: RayCast2D = $stab
 @onready var entbossSprite = $AnimatedSprite2D
@@ -71,6 +71,7 @@ func take_damage():
 	if !phase2:#only check this if we arent already in phase2
 		if health <= max_health/2:#if health reaches halfway point
 			phase2 = true
+			GlobalSignals.phase2_reached.emit()
 
 #basic death function that will drop final duck and make the boss despawn upon reaching 0 HP
 func _die(): #might move this to a death state

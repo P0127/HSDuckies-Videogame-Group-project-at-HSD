@@ -23,6 +23,10 @@ var next_pos #saveslot for our target position
 ]#positions have been chosen with laser attack in mind
 
 
+func _ready():
+	if not GlobalSignals.phase2_reached.is_connected(phase2Started):
+		GlobalSignals.phase2_reached.connect(phase2Started)
+
 #upon entering the state we will choose a location to path to
 func Enter():
 	#select random point where we will path to
@@ -85,3 +89,6 @@ func swapState():
 	else:
 		#if we're still in phase 1 we'll always swap to laserattack
 		Transitioned.emit(self, "laserattack")
+
+func phase2Started():
+	movement_speed = 600

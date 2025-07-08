@@ -229,7 +229,7 @@ text = "Sir Quackalot"
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 2
 
-[node name="RayCast2D" parent="." instance=ExtResource("14_qfa54")]
+[node name="laser1" parent="." instance=ExtResource("14_qfa54")]
 color = Color(1, 0, 0.00784314, 1)
 
 [node name="laser2" parent="." instance=ExtResource("14_qfa54")]

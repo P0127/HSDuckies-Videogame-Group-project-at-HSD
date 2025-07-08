@@ -9,7 +9,7 @@ class_name SleepState extends State
 @export var enemy: CharacterBody2D
 
 ## Variables
-@onready var laser: RayCast2D = $"../../RayCast2D"
+@onready var laser: RayCast2D = $"../../laser1"
 @onready var laser_2: RayCast2D = $"../../laser2"
 @onready var progress_bar = owner.find_child("ProgressBar")
 @onready var starting_health = enemy.max_health
@@ -48,9 +48,9 @@ func spin_attack():
 	
 	#make lasers rotate around the boss
 	var tween = create_tween()
-	tween.tween_property(laser, "rotation_degrees", 180, 2)
+	tween.tween_property(laser, "rotation_degrees", 180, 1.75)
 	var tween2 = create_tween()
-	tween2.tween_property(laser_2, "rotation_degrees", 0, 2)
+	tween2.tween_property(laser_2, "rotation_degrees", 0, 1.75)
 	
 	#wait for the rotation to complete
 	await get_tree().create_timer(2).timeout 

@@ -14,9 +14,9 @@ signal duck_collected_signal
 signal duck_collected_levelUp
 
 #For spawning Items, global_position on emit required
-signal drop_duck
-signal drop_item
-signal bossMinion_item
+signal drop_duck(global_position)
+signal drop_item(global_position)
+signal bossMinion_item(global_position)
 
 #Mob Level and spawn limitation
 signal reduce_mob_counter
@@ -24,6 +24,7 @@ signal reduce_mob_counter
 #Boss Fight start
 signal toggle_natural_spawns
 signal toggle_mob_drops
+signal phase2_reached
 
 #Dialogues that pause the game
 signal dialogue_finished

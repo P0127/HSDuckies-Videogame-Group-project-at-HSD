@@ -147,6 +147,7 @@ func change_preset(preset: String):
 			max_length = 200
 			growth_time = 1
 			cast_speed = 3000
+			
 		"big":
 			outerWidth = UPPED_OUTER_WIDTH
 			innerWidth = UPPED_INNER_WIDTH
@@ -156,9 +157,16 @@ func change_preset(preset: String):
 			innerWidth = LOWERED_INNER_WIDTH
 			start_distance = 20
 			max_length = 80
+		"phase2":
+			innerLine.default_color = Color.BLACK
+			outerLine.modulate = Color.WHITE
 		_:#unknown input sets laser to default preset
 			outerWidth = DEFAULT_OUTER_WIDTH
 			innerWidth = DEFAULT_INNER_WIDTH
 			start_distance = 40
 			max_length = 1400
 			growth_time = 0.1
+			if outerLine.width_curve:
+				outerLine.width_curve = null
+			if innerLine.width_curve:
+				innerLine.width_curve = null
