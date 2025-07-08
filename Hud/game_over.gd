@@ -1,11 +1,8 @@
 extends CanvasLayer
 
-@onready var button_quit_sound_player = $buttonQuit
-@onready var button_menu_sound_player = $buttonMenu
-
 ## FUNCTIONS MENU BUTTON
 func _on_menu_pressed() -> void:
-	button_menu_sound_player.play()
+	GlobalSignals.play_sound.emit("starting_sound")
 	$ControlMenu/Menu/AnimatedMenuButton.play("pressed")
 	
 	
@@ -18,7 +15,8 @@ func _on_animated_menu_button_animation_finished() -> void:
 
 ## FUNCTIONS QUIT BUTTON
 func _on_quit_pressed() -> void:
-	button_quit_sound_player.play()
+	
+	GlobalSignals.play_sound.emit("starting_sound")
 	$ControlQuit/Quit/AnimatedQuitButton.play("pressed")
 	
 	
