@@ -89,27 +89,22 @@ metadata/_custom_type_script = "uid://4qvn15iiqwpp"
 [node name="MeeleeAttack" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("9_j27v5")
 enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://bbusu5836pdma"
 
 [node name="Summon" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("10_m1k7s")
 enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://cbnf1oo58hqvm"
 
 [node name="Teleport" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("11_clhv4")
 enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://d11nxl2p13uk1"
 
 [node name="Moving" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("12_5gokl")
 enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://d27np5axuscdr"
 
 [node name="LaserAttack" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("13_xql5s")
 enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://jm8nl766rd73"
 
 [node name="FireTimer" type="Timer" parent="State Machine/LaserAttack"]
 wait_time = 2.5
@@ -121,7 +116,6 @@ one_shot = true
 [node name="Sleep" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("14_y3i7a")
 enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://2lqmen2xx4xa"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
