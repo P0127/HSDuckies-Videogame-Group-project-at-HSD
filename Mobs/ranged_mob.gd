@@ -90,16 +90,17 @@ func _rotate_sprite():
 		#int to eliminate decimals (reduces errors)
 		#rad to deg to have easy, whole numbers to work with
 		#velocity.angle() gives back angle (right is 1,0 - down is 0,1) in radians!
-		match int(rad_to_deg((velocity.angle()))):
-			-90:
-				spriteMob.animation = "back"
-				spriteDuckmask.animation = "back"
-			45, 90, 135: 
-				spriteMob.animation = "front"
-				spriteDuckmask.animation = "front"
-			0, -45, 180, -135:
-				spriteMob.animation = "side"
-				spriteDuckmask.animation = "side"
+		var angle_formatted = rad_to_deg((velocity.angle()))
+		
+		if angle_formatted >= -120 and angle_formatted <= -60:
+			spriteMob.animation = "back"
+			spriteDuckmask.animation = "back"
+		elif angle_formatted >= 20 and angle_formatted <= 160:
+			spriteMob.animation = "front"
+			spriteDuckmask.animation = "front"
+		else:
+			spriteMob.animation = "side"
+			spriteDuckmask.animation = "side"
 		#Flips Animation if walking to the side
 		spriteMob.flip_h = velocity.x < 0 * duck_status
 		spriteDuckmask.flip_h = velocity.x < 0 * duck_status
