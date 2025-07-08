@@ -12,13 +12,14 @@ extends CanvasLayer
 
 @onready var quit_button_start= $QuitButtonOnstart
 @onready var quit_button_start_anim = $QuitButtonOnstart/AnimatedSprite2D
+@onready var background_music = $backgroundMusicStart
 
 ## FUNCTIONS 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	duck_anim.play("duckie")
 	shine_anim.play("bling")
-
+	background_music.play()
 	# Signal verbinden
 	#dialogue_node.connect("dialog_finished", Callable(self, "_on_dialog_finished"))  
 
@@ -43,7 +44,7 @@ func _on_start_button_animations_animation_finished() -> void:
 	#signals the scene controller to switch to main game and to ingame hud
 	GlobalSignals.scene_controller.change_game_scene("res://level_1.tscn")
 	GlobalSignals.scene_controller.change_gui_scene("res://Hud/ingame.tscn")
-	
+	background_music.stop()
 	
 func _on_credit_button_pressed() -> void:
 	credits_button_anim.play("pressed")

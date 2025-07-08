@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdpw6r2f3pmp4"]
 
-[ext_resource type="Script" uid="uid://bnq5hw6my40d6" path="res://Mobs/boss_laser.gd" id="1_b82l3"]
+[ext_resource type="Script" path="res://Mobs/boss_laser.gd" id="1_b82l3"]
 
 [node name="RayCast2D" type="RayCast2D"]
 target_position = Vector2(1400, 0)
@@ -12,13 +12,13 @@ color = Color(0.903797, 0.296738, 0.245492, 1)
 [node name="outerLine" type="Line2D" parent="."]
 visible = false
 modulate = Color(0.903797, 0.296738, 0.245492, 1)
-points = PackedVector2Array(40, 0, 1400, 0)
+points = PackedVector2Array(40, 0, 0, 0)
 width = 20.0
 begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="innerLine" type="Line2D" parent="."]
 visible = false
-points = PackedVector2Array(40, 0, 1400, 0)
+points = PackedVector2Array(40, 0, 0, 0)
 begin_cap_mode = 2
 end_cap_mode = 2
