@@ -55,8 +55,9 @@ func take_damage():
 		label.hide()
 	
 	if !phase2:#only check this if we arent already in phase2
-		if health <= max_health/2:#if health reaches halfway point
+		if health <= max_health-2:#if health reaches halfway point
 			phase2 = true
+			GlobalSignals.phase2_reached.emit()
 
 #basic death function that will drop final duck and make the boss despawn upon reaching 0 HP
 func _die(): #might move this to a death state

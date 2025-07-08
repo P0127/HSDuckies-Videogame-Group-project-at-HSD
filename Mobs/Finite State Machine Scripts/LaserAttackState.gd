@@ -23,6 +23,9 @@ var directions_fired = 0
 @onready var stablaser: RayCast2D = $"../../stab"
 
 
+func _ready():
+	if not GlobalSignals.phase2_reached.is_connected(phase2Started):
+		GlobalSignals.phase2_reached.connect(phase2Started)
 
 func Enter():
 	#swap sprite
@@ -101,3 +104,15 @@ func swapState():
 			Transitioned.emit(self, "teleport")
 	else:#if we arent in phase2 always swap to moving state
 		Transitioned.emit(self, "moving")
+
+
+#function thats called upon reaching phase 2 which will be called only once
+#this will change the laser colors and adjust stats
+func phase2Started():
+	#change colors from red-white to white-black
+	laser.change_preset("phase2")
+	laser_2.change_preset("phase2")
+	stablaser.change_preset("phase2")
+	
+	fire_duration = 1.5
+	break_duration = 0.5

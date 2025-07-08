@@ -24,6 +24,7 @@ signal reduce_mob_counter
 #Boss Fight start
 signal toggle_natural_spawns
 signal toggle_mob_drops
+signal phase2_reached
 
 #Dialogues that pause the game
 signal dialogue_finished
