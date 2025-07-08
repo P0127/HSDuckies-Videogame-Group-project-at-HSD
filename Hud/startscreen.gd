@@ -13,6 +13,8 @@ extends CanvasLayer
 @onready var quit_button_start= $QuitButtonOnstart
 @onready var quit_button_start_anim = $QuitButtonOnstart/AnimatedSprite2D
 @onready var background_music = $backgroundMusicStart
+@onready var button_quit_sound = $buttonQuitS
+@onready var button_credit_sound = $buttonCredits
 
 ## FUNCTIONS 
 # Called when the node enters the scene tree for the first time.
@@ -47,6 +49,7 @@ func _on_start_button_animations_animation_finished() -> void:
 	background_music.stop()
 	
 func _on_credit_button_pressed() -> void:
+	button_credit_sound.play()
 	credits_button_anim.play("pressed")
 
 	
@@ -57,6 +60,7 @@ func _on_animated_credit_b_animation_finished() -> void:
 	$ControlCreditB/PanelCredits.hide()
 	
 func _on_quit_button_onstart_pressed() -> void:
+	button_quit_sound.play()
 	quit_button_start_anim.play()
 
 

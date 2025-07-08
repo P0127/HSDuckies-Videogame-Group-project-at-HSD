@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw4afi77kbi7"
-path="res://.godot/imported/font_item_zahler.png-0a2970625b88885f74d4256e233d0c7b.ctex"
+uid="uid://bchopm62ow8lr"
+path="res://.godot/imported/pfeilSchild.png-5c5b5b7ec3fc1ba8fc22d5673ff152d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fonts/font_item_zahler.png"
-dest_files=["res://.godot/imported/font_item_zahler.png-0a2970625b88885f74d4256e233d0c7b.ctex"]
+source_file="res://Map/Map_Tilemap/Sprites/pfeilSchild.png"
+dest_files=["res://.godot/imported/pfeilSchild.png-5c5b5b7ec3fc1ba8fc22d5673ff152d6.ctex"]
 
 [params]
 

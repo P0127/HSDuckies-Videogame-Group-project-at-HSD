@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dbco2ccl5yka3" path="res://Hud/ingame.gd" id="1_mroh3"]
 [ext_resource type="PackedScene" uid="uid://crnhw3bvk4u0" path="res://CutScene/Dialogue_begin.tscn" id="4_aatcm"]
 [ext_resource type="FontFile" uid="uid://dmoqmmrb2ndjb" path="res://CutScene/CutScene_assets/font_counter_letters.ttf" id="7_l4vq7"]
-[ext_resource type="FontFile" uid="uid://dekqnr7q8ahcs" path="res://Fonts/font_counter_digits.png" id="8_7am0o"]
+[ext_resource type="FontFile" uid="uid://dekqnr7q8ahcs" path="res://fonts/font_counter_digits.png" id="8_7am0o"]
 
 [node name="Ingame_GUI" type="CanvasLayer"]
 script = ExtResource("1_mroh3")
