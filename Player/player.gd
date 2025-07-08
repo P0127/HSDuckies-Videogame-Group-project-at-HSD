@@ -184,6 +184,7 @@ func increase_firerate(firerate_amount : float):
 func _die():
 	_disable_player_interactions()	
 	$SoundDie.play()
+	GlobalSignals.stop_sound.emit("level_sound")
 	$AnimatedPlayerSprite/AnimationPlayer.play("scale")
 
 #Disables Player, starts victory animation
