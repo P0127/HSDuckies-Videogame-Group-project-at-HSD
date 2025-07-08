@@ -157,7 +157,7 @@ func liberated():
 	weapon.swap_fire_status()
 	progressBar.hide()
 	if dont_drop:
-		return
+		GlobalSignals.bossMinion_item.emit(self.global_position)
 	else:
 		drop_item()
 

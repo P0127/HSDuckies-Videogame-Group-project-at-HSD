@@ -55,7 +55,7 @@ func take_damage():
 		label.hide()
 	
 	if !phase2:#only check this if we arent already in phase2
-		if health <= max_health-2:#if health reaches halfway point
+		if health <= max_health/2:#if health reaches halfway point
 			phase2 = true
 			GlobalSignals.phase2_reached.emit()
 
