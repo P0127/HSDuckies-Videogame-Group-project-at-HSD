@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckl8tyj7tii85"]
+
+[ext_resource type="Script" uid="uid://dbco2ccl5yka3" path="res://Hud/ingame.gd" id="1_mroh3"]
+[ext_resource type="PackedScene" uid="uid://crnhw3bvk4u0" path="res://CutScene/Dialogue_begin.tscn" id="4_aatcm"]
+[ext_resource type="FontFile" uid="uid://dmoqmmrb2ndjb" path="res://CutScene/CutScene_assets/font_counter_letters.ttf" id="7_l4vq7"]
+[ext_resource type="FontFile" uid="uid://dekqnr7q8ahcs" path="res://fonts/font_counter_digits.png" id="8_7am0o"]
+
+[node name="Ingame_GUI" type="CanvasLayer"]
+script = ExtResource("1_mroh3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Counter" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Duck counter letters" type="Label" parent="HBoxContainer/Counter"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 26.0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.498039, 0, 1)
+theme_override_fonts/font = ExtResource("7_l4vq7")
+theme_override_font_sizes/font_size = 32
+
+[node name="Duck counter digits" type="Label" parent="HBoxContainer/Counter"]
+modulate = Color(1, 1, 0, 1)
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 0
+offset_left = 150.0
+offset_right = 350.0
+offset_bottom = 40.0
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("8_7am0o")
+theme_override_font_sizes/font_size = 40
+
+[node name="Dialogue_begin" parent="." instance=ExtResource("4_aatcm")]
+visible = false

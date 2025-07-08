@@ -1,0 +1,235 @@
+[gd_scene load_steps=16 format=3 uid="uid://474jdlfblfc7"]
+
+[ext_resource type="Script" uid="uid://bdp0ve7hb1mb7" path="res://Hud/game_over.gd" id="1_yxx3c"]
+[ext_resource type="Texture2D" uid="uid://cwn7e60lwk240" path="res://Hud/Hud_assets/menu_button.png" id="2_ccer4"]
+[ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://fonts/Xolonium-Regular.ttf" id="2_ftari"]
+[ext_resource type="Texture2D" uid="uid://c7ymyt04wtwpv" path="res://Hud/Hud_assets/quit_button.png" id="3_ccer4"]
+[ext_resource type="Texture2D" uid="uid://w667g7m6x556" path="res://Hud/Hud_assets/duck_scaled_.png" id="4_8u835"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5r80v"]
+atlas = ExtResource("2_ccer4")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5673d"]
+atlas = ExtResource("2_ccer4")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn282"]
+atlas = ExtResource("2_ccer4")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwf6q"]
+atlas = ExtResource("2_ccer4")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sx4vg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5r80v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5673d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn282")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwf6q")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u835"]
+atlas = ExtResource("3_ccer4")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftari"]
+atlas = ExtResource("3_ccer4")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28vn7"]
+atlas = ExtResource("3_ccer4")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2vha"]
+atlas = ExtResource("3_ccer4")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkf4o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u835")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftari")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28vn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2vha")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 10.0
+}]
+
+[node name="GameOver_GUI" type="CanvasLayer"]
+script = ExtResource("1_yxx3c")
+
+[node name="ControlOverlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorOverlay" type="ColorRect" parent="ControlOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 16.0
+offset_right = -18.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.657722, 0, 0.177612, 0.831373)
+
+[node name="ControlMenu" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.127
+anchor_top = 0.407
+anchor_right = 0.127
+anchor_bottom = 0.407
+offset_left = -32.6
+offset_top = -24.2
+offset_right = 99.4
+offset_bottom = 17.8
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+
+[node name="Menu" type="Button" parent="ControlMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.193
+anchor_top = 1.238
+anchor_right = 0.193
+anchor_bottom = 1.238
+offset_left = -62.476
+offset_top = -30.996
+offset_right = 62.524
+offset_bottom = 31.004
+focus_mode = 0
+flat = true
+
+[node name="AnimatedMenuButton" type="AnimatedSprite2D" parent="ControlMenu/Menu"]
+position = Vector2(62, 46)
+scale = Vector2(1.26875, 1.42)
+sprite_frames = SubResource("SpriteFrames_sx4vg")
+animation = &"pressed"
+
+[node name="ControlQuit" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.122
+anchor_top = 0.592
+anchor_right = 0.122
+anchor_bottom = 0.592
+offset_left = -26.6
+offset_top = -19.2
+offset_right = 32.4
+offset_bottom = 16.8
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+
+[node name="Quit" type="Button" parent="ControlQuit"]
+layout_mode = 2
+anchor_left = 0.339
+anchor_top = 0.625
+anchor_right = 0.339
+anchor_bottom = 0.625
+offset_left = -61.001
+offset_top = -28.5
+offset_right = 60.999
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+flat = true
+
+[node name="AnimatedQuitButton" type="AnimatedSprite2D" parent="ControlQuit/Quit"]
+position = Vector2(65, 39)
+scale = Vector2(1.24375, 1.365)
+sprite_frames = SubResource("SpriteFrames_fkf4o")
+animation = &"pressed"
+
+[node name="OptionalWorlOvertake" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = -0.007
+anchor_top = 0.842
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 331.44
+offset_top = 17.64
+offset_right = 938.84
+offset_bottom = 71.8401
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_ftari")
+theme_override_font_sizes/font_size = 60
+text = "The Duckies went on to overtake the world...
+"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="GameOverText" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.229
+offset_left = 87.0
+offset_top = 24.0
+offset_right = 161.0
+offset_bottom = 67.6
+grow_horizontal = 2
+scale = Vector2(0.86, 0.86)
+theme_override_colors/font_color = Color(1, 0.827451, 0.34902, 1)
+theme_override_colors/font_outline_color = Color(0.964706, 0.760784, 0.0156863, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_ftari")
+theme_override_font_sizes/font_size = 150
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="ControlDuckie" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 1.0
+anchor_bottom = 0.805
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 398.0
+offset_bottom = 348.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Duckie" type="TextureRect" parent="ControlDuckie"]
+layout_mode = 0
+offset_left = -255.0
+offset_top = -317.0
+offset_right = 705.0
+offset_bottom = 483.0
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("4_8u835")
+
+[connection signal="pressed" from="ControlMenu/Menu" to="." method="_on_menu_pressed"]
+[connection signal="animation_finished" from="ControlMenu/Menu/AnimatedMenuButton" to="." method="_on_animated_menu_button_animation_finished"]
+[connection signal="pressed" from="ControlQuit/Quit" to="." method="_on_quit_pressed"]
+[connection signal="animation_finished" from="ControlQuit/Quit/AnimatedQuitButton" to="." method="_on_animated_quit_button_animation_finished"]

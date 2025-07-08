@@ -23,4 +23,3 @@ func _stop_sound(name: String):
 		# Ensures it's an AudioStreamPlayer and stop it
 		if player is AudioStreamPlayer:
 			player.stop() #stops sound
-			

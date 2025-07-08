@@ -1,0 +1,195 @@
+[gd_scene load_steps=14 format=3 uid="uid://cttwy28pac8t1"]
+
+[ext_resource type="Script" uid="uid://bl0uih77m0qs2" path="res://CutScene/dialogue_ende.gd" id="1_nrco7"]
+[ext_resource type="Texture2D" uid="uid://dhxq32a8tjdw4" path="res://CutScene/CutScene_assets/BackgroundCutScene.png" id="2_nrco7"]
+[ext_resource type="Texture2D" uid="uid://i3ts8lgnrpty" path="res://Characters/Character_assets/DahmSpeaking1.png" id="3_nrco7"]
+[ext_resource type="Texture2D" uid="uid://b3xpqb5pi57d0" path="res://Characters/Character_assets/DahmSpeaking2.png" id="4_esyp7"]
+[ext_resource type="Texture2D" uid="uid://b1mwggjucdsbw" path="res://CutScene/CutScene_assets/textbox.png" id="5_esyp7"]
+[ext_resource type="Texture2D" uid="uid://ck6usna42uy7d" path="res://assets/Ente_Animation_sheet.png" id="7_jv7xh"]
+[ext_resource type="Texture2D" uid="uid://lpreujxxpnd2" path="res://assets/Ente_Animation_sheet_flipped.png" id="8_5q62p"]
+[ext_resource type="AudioStream" uid="uid://d0ma03hsmhj2t" path="res://assets/sound/274177__littlerobotsoundfactory__jingle_win_synth_03.wav" id="8_jv7xh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_haow2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_esyp7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nrco7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_esyp7")
+}],
+"loop": true,
+"name": &"open",
+"speed": 8.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_awpid"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Animation" id="Animation_k6dt3"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dialogue_Ende/fade_in:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a42tg"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dialogue_Ende/fade_in:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.54912, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jv7xh"]
+_data = {
+&"RESET": SubResource("Animation_k6dt3"),
+&"fade_in": SubResource("Animation_a42tg")
+}
+
+[node name="dialogue_Ende" type="Node2D"]
+script = ExtResource("1_nrco7")
+d_file = "res://CutScene/Dialogue/Dialogue_Dahm.json"
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1916.0
+offset_bottom = 1075.0
+
+[node name="Hintergrund" type="Sprite2D" parent="Panel"]
+position = Vector2(960.5, 540)
+texture = ExtResource("2_nrco7")
+
+[node name="Herr Dahm" type="AnimatedSprite2D" parent="."]
+position = Vector2(175, 932)
+scale = Vector2(0.767767, 0.771467)
+sprite_frames = SubResource("SpriteFrames_haow2")
+
+[node name="textbox" type="NinePatchRect" parent="."]
+offset_left = 347.0
+offset_top = 832.0
+offset_right = 1898.0
+offset_bottom = 1039.0
+texture = ExtResource("5_esyp7")
+patch_margin_left = 98
+patch_margin_right = 95
+
+[node name="name" type="Label" parent="textbox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.026
+anchor_top = 0.174
+anchor_right = 0.026
+anchor_bottom = 0.174
+offset_left = 4.67401
+offset_top = 3.98197
+offset_right = 444.674
+offset_bottom = 69.982
+theme_override_colors/font_shadow_color = Color(0.154876, 0.154876, 0.154876, 1)
+theme_override_font_sizes/font_size = 28
+ellipsis_char = ""
+
+[node name="text" type="RichTextLabel" parent="textbox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.473
+anchor_right = 0.029
+anchor_bottom = 0.473
+offset_left = 4.021
+offset_top = 0.0889969
+offset_right = 1461.02
+offset_bottom = 73.089
+theme_override_colors/font_shadow_color = Color(0.114897, 0.114897, 0.114897, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+
+[node name="DuckParticles" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_awpid")
+position = Vector2(1211, 671)
+emitting = false
+amount = 10
+texture = ExtResource("7_jv7xh")
+lifetime = 3.0
+one_shot = true
+preprocess = 1.0
+explosiveness = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(60, 30)
+direction = Vector2(1, -1)
+gravity = Vector2(0, 200)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.15
+scale_amount_max = 0.2
+anim_speed_min = 8.0
+anim_speed_max = 8.5
+anim_offset_max = 1.0
+
+[node name="DuckParticles_flipped" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_awpid")
+position = Vector2(1211, 671)
+emitting = false
+amount = 10
+texture = ExtResource("8_5q62p")
+lifetime = 3.0
+one_shot = true
+preprocess = 1.0
+explosiveness = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(60, 30)
+direction = Vector2(-1, -1)
+gravity = Vector2(0, 200)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.15
+scale_amount_max = 0.2
+anim_speed_min = 8.0
+anim_speed_max = 8.5
+anim_offset_max = 1.0
+
+[node name="fade_in" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0)
+position = Vector2(960.5, 540)
+scale = Vector2(3.74023, 3.74306)
+texture = ExtResource("2_nrco7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fade_in"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_jv7xh")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.055
+
+[node name="SoundWin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_jv7xh")
+
+[connection signal="finished" from="DuckParticles_flipped" to="." method="_on_duck_particles_flipped_finished"]
+[connection signal="animation_finished" from="fade_in/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

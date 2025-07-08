@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://crnhw3bvk4u0"]
+
+[ext_resource type="Script" uid="uid://bc3tvdlsid1pr" path="res://CutScene/Dialogue_begin.gd" id="1_1t5kr"]
+[ext_resource type="Texture2D" uid="uid://b1mwggjucdsbw" path="res://CutScene/CutScene_assets/textbox.png" id="2_04duq"]
+[ext_resource type="Texture2D" uid="uid://b3xpqb5pi57d0" path="res://Characters/Character_assets/DahmSpeaking2.png" id="3_04duq"]
+[ext_resource type="Texture2D" uid="uid://i3ts8lgnrpty" path="res://Characters/Character_assets/DahmSpeaking1.png" id="3_iloir"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jj3m1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_04duq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_iloir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_04duq")
+}],
+"loop": true,
+"name": &"open",
+"speed": 8.0
+}]
+
+[node name="Dialogue_begin" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_1t5kr")
+
+[node name="Overlay" type="ColorRect" parent="."]
+z_index = 200
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -406.213
+offset_top = -1242.74
+offset_right = 6125.79
+offset_bottom = 3681.26
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.592157)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1980.0
+offset_bottom = 1080.0
+
+[node name="dialoguebox" type="NinePatchRect" parent="Control"]
+z_index = 200
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 320.0
+offset_top = -270.0
+offset_right = -50.0
+offset_bottom = -50.0
+texture = ExtResource("2_04duq")
+patch_margin_left = 90
+patch_margin_right = 88
+
+[node name="Herr Dahm" type="AnimatedSprite2D" parent="Control/dialoguebox"]
+position = Vector2(-157.868, 117.205)
+scale = Vector2(0.704717, 0.708113)
+sprite_frames = SubResource("SpriteFrames_jj3m1")
+animation = &"open"
+
+[node name="name" type="Label" parent="Control/dialoguebox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.026
+anchor_top = 0.174
+anchor_right = 0.026
+anchor_bottom = 0.174
+offset_left = 4.67401
+offset_top = 3.98197
+offset_right = 444.674
+offset_bottom = 69.982
+theme_override_colors/font_shadow_color = Color(0.154876, 0.154876, 0.154876, 1)
+theme_override_font_sizes/font_size = 28
+ellipsis_char = ""
+
+[node name="chat" type="RichTextLabel" parent="Control/dialoguebox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.473
+anchor_right = 0.029
+anchor_bottom = 0.473
+offset_left = 4.31
+offset_top = -0.0599976
+offset_right = 1461.31
+offset_bottom = 88.94
+theme_override_colors/font_shadow_color = Color(0.114897, 0.114897, 0.114897, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.055
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

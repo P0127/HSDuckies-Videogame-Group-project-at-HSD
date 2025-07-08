@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://dkla36ebv0n0o"]
+[gd_scene load_steps=41 format=3 uid="uid://dkla36ebv0n0o"]
 
 [ext_resource type="Script" uid="uid://cvuxy46rlr8ok" path="res://Mobs/mob.gd" id="1_nokgg"]
-[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://Hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
-[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://Hud/Hud_assets/healthbar_progress_player_v01_over.png" id="3_1qmh0"]
-[ext_resource type="Texture2D" uid="uid://dua0vsfn1mf8x" path="res://Hud/Hud_assets/healthbar_progress_player_v02_under.png" id="4_gfurk"]
+[ext_resource type="Texture2D" uid="uid://chuw1ed0nybfv" path="res://hud/Hud_assets/healthbar_progress_player_v03_under.png" id="2_b3mxk"]
+[ext_resource type="Texture2D" uid="uid://jksog0jv1jww" path="res://hud/Hud_assets/healthbar_progress_player_v01_over.png" id="3_1qmh0"]
+[ext_resource type="Texture2D" uid="uid://dua0vsfn1mf8x" path="res://hud/Hud_assets/healthbar_progress_player_v02_under.png" id="4_gfurk"]
 [ext_resource type="Texture2D" uid="uid://1s4binyeljpr" path="res://Mobs/Mobs_assets/student_grayblue_front_active.png" id="5_b3mxk"]
 [ext_resource type="Texture2D" uid="uid://dfxhn4xxwifem" path="res://Mobs/Mobs_assets/student_grayblue.png" id="5_kbsid"]
 [ext_resource type="Texture2D" uid="uid://bkvhqe2sg6tny" path="res://Mobs/Mobs_assets/student_grayblue__active_sideview.png" id="7_di24j"]
@@ -14,17 +14,19 @@
 [ext_resource type="Texture2D" uid="uid://djby5v37lnarv" path="res://Mobs/Mobs_assets/Student_lilac_front.png" id="12_s0j0i"]
 [ext_resource type="Texture2D" uid="uid://cybb5q47lxlr" path="res://Mobs/Mobs_assets/student_lilac_side.png" id="13_pduau"]
 [ext_resource type="Texture2D" uid="uid://cyhmiddjx18ej" path="res://Mobs/Mobs_assets/student_orange_back.png" id="14_anuj1"]
+[ext_resource type="Texture2D" uid="uid://hyud6sb2mn6p" path="res://Mobs/Mobs_assets/Duckmask_back_tail.png" id="14_jqjwq"]
 [ext_resource type="Texture2D" uid="uid://cd7pylurgpjft" path="res://Mobs/Mobs_assets/student_orange_front.png" id="15_2uhec"]
+[ext_resource type="Texture2D" uid="uid://d3ue0iltjutg0" path="res://Mobs/Mobs_assets/Duckmask_front_closed.png" id="15_s0j0i"]
 [ext_resource type="Texture2D" uid="uid://bj3ciyn0uv0a1" path="res://Mobs/Mobs_assets/student_orange_side.png" id="16_n3yji"]
+[ext_resource type="Texture2D" uid="uid://cnw5i0mmhwxee" path="res://Mobs/Mobs_assets/Duckmask_front_open.png" id="16_pduau"]
+[ext_resource type="Texture2D" uid="uid://dyvfhb37h0rv6" path="res://Mobs/Mobs_assets/Duckmask_side_closed.png" id="17_anuj1"]
+[ext_resource type="Texture2D" uid="uid://cyxl5cjn20eku" path="res://Mobs/Mobs_assets/Duckmask_side_open.png" id="18_2uhec"]
+[ext_resource type="Texture2D" uid="uid://bq341a6hant6e" path="res://assets/effects/feather_1.png" id="22_s0j0i"]
+[ext_resource type="Texture2D" uid="uid://bdi06crlaffq3" path="res://assets/effects/feather_2.png" id="23_pduau"]
+[ext_resource type="Texture2D" uid="uid://bpvhtvem2xapy" path="res://hud/shine_scaled.png" id="24_anuj1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
-radius = 230.169
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xi5bs"]
-radius = 216.667
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ubaqv"]
-radius = 206.774
+radius = 835.134
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3mxk"]
 animations = [{
@@ -134,16 +136,91 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Mob" type="CharacterBody2D"]
-scale = Vector2(0.3, 0.3)
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3yji"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_jqjwq")
+}],
+"loop": true,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_s0j0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pduau")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_anuj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_2uhec")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_pduau"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.846591, 0.898876), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_anuj1"]
+offsets = PackedFloat32Array(0, 0.726667, 1)
+colors = PackedColorArray(0.403922, 0.117647, 0.290196, 1, 0.403922, 0.117647, 0.290196, 1, 0.4, 0.116, 0.2864, 0)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pduau"]
+radius = 207.143
+height = 550.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_anuj1"]
+radius = 200.0
+height = 535.714
+
+[sub_resource type="Curve" id="Curve_anuj1"]
+_data = [Vector2(0.00568181, 0), 0.0, 0.0, 0, 0, Vector2(0.392045, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_pduau"]
+offsets = PackedFloat32Array(0, 0.813333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_2uhec"]
+colors = PackedColorArray(0.490196, 0.796078, 1, 1, 0.2856, 0.61824, 0.84, 1)
+
+[sub_resource type="Gradient" id="Gradient_s0j0i"]
+offsets = PackedFloat32Array(0, 0.84, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_n3yji"]
+offsets = PackedFloat32Array(0.855263, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_65cxp"]
+offsets = PackedFloat32Array(0, 0.993421)
+colors = PackedColorArray(1, 0.926333, 0.66, 1, 1, 0.816797, 0.67117, 1)
+
+[node name="Mob" type="CharacterBody2D" groups=["all_mobs"]]
+scale = Vector2(0.28, 0.28)
 collision_layer = 2
 collision_mask = 17
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_nokgg")
 metadata/_edit_group_ = true
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 100.0
+navigation_layers = 2
+debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="AwarenessRadius" type="Area2D" parent="."]
 collision_layer = 0
@@ -153,16 +230,47 @@ scale = Vector2(12, 12)
 shape = SubResource("CircleShape2D_nokgg")
 debug_color = Color(0.8, 0.956863, 1, 0.176471)
 
-[node name="HurtPlayerArea" type="Area2D" parent="."]
-collision_layer = 0
+[node name="AnimatedMobSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b3mxk")
+animation = &"side"
 
-[node name="HurtBox" type="CollisionShape2D" parent="HurtPlayerArea"]
-shape = SubResource("CircleShape2D_xi5bs")
-debug_color = Color(0.971984, 0.0381848, 3.85046e-07, 0.42)
+[node name="AnimatedMobSprite2" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_65cxp")
+animation = &"side"
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ubaqv")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
+[node name="AnimatedMobSprite3" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_du7bc")
+animation = &"front"
+
+[node name="AnimatedMobSprite4" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ui2w4")
+animation = &"front"
+
+[node name="DuckmaskSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n3yji")
+animation = &"front"
+
+[node name="OuchParticles" type="CPUParticles2D" parent="."]
+position = Vector2(139.286, -200)
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+lifetime_randomness = 0.2
+local_coords = true
+direction = Vector2(10, -10)
+spread = 30.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 200.0
+initial_velocity_max = 280.0
+scale_amount_min = 25.0
+scale_amount_max = 27.0
+scale_amount_curve = SubResource("Curve_pduau")
+color_ramp = SubResource("Gradient_anuj1")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 5
@@ -181,24 +289,101 @@ texture_under = ExtResource("2_b3mxk")
 texture_over = ExtResource("3_1qmh0")
 texture_progress = ExtResource("4_gfurk")
 
-[node name="AnimatedMobSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_b3mxk")
-animation = &"back"
+[node name="HurtPlayerArea" type="Area2D" parent="."]
+collision_layer = 0
 
-[node name="AnimatedMobSprite2" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_65cxp")
-animation = &"side"
+[node name="HurtBox" type="CollisionShape2D" parent="HurtPlayerArea"]
+position = Vector2(0, 28.5714)
+shape = SubResource("CapsuleShape2D_pduau")
+debug_color = Color(0.971984, 0.0381848, 3.85046e-07, 0.42)
 
-[node name="AnimatedMobSprite3" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_du7bc")
-animation = &"side"
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 28.5714)
+shape = SubResource("CapsuleShape2D_anuj1")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[node name="AnimatedMobSprite4" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_ui2w4")
-animation = &"side"
+[node name="Time_to_live" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[node name="SweatParticles" type="CPUParticles2D" parent="."]
+position = Vector2(110.714, -150)
+emitting = false
+lifetime = 0.8
+explosiveness = 0.8
+lifetime_randomness = 0.3
+local_coords = true
+direction = Vector2(1, -1)
+spread = 20.0
+gravity = Vector2(0, 350)
+initial_velocity_min = 230.0
+initial_velocity_max = 320.0
+scale_amount_min = 23.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_anuj1")
+color_ramp = SubResource("Gradient_pduau")
+color_initial_ramp = SubResource("Gradient_2uhec")
+
+[node name="FeatherExplosion" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 5
+texture = ExtResource("22_s0j0i")
+lifetime = 3.0
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 30)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_min = 5.0
+angular_velocity_max = 90.0
+angle_max = 360.0
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_s0j0i")
+
+[node name="FeatherExplosion2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 3
+texture = ExtResource("23_pduau")
+lifetime = 3.0
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 30)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_min = 5.0
+angular_velocity_max = 90.0
+angle_max = 360.0
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_s0j0i")
+
+[node name="LevelUp" type="CPUParticles2D" parent="."]
+position = Vector2(0, -228.571)
+emitting = false
+amount = 10
+texture = ExtResource("24_anuj1")
+one_shot = true
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(100, 1)
+direction = Vector2(0, -1)
+spread = 6.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+color_ramp = SubResource("Gradient_n3yji")
+color_initial_ramp = SubResource("Gradient_65cxp")
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="AwarenessRadius" to="." method="_on_DetectRadius_body_exited"]
 [connection signal="body_entered" from="HurtPlayerArea" to="." method="_on_hurt_player_area_body_entered"]
 [connection signal="body_exited" from="HurtPlayerArea" to="." method="_on_hurt_player_area_body_exited"]
+[connection signal="timeout" from="Time_to_live" to="." method="_on_time_to_live_timeout"]

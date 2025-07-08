@@ -20,7 +20,6 @@ var dialogue_done := false # Deactivates input event upon dialogue end
 var typing = false
 var char_index = 0
 
-
 #Called when the node enters the scene tree for the first time.
 func _ready():
 	#starts scene with a black fade in
@@ -40,7 +39,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		#Triggered at Dialogue end, after fade to black; switches to main menue
 		"RESET":
 			GlobalSignals.scene_controller.change_gui_scene("res://Hud/startscreen.tscn")
-
 
 # starts the dialogue sequence. 
 func start():
@@ -104,10 +102,6 @@ func next_script():
 	textbox_text.visible_characters = 0
 	typing = true
 	timer.start()
-
-
-
-
 
 
 # Typing effect: reveals characters one by one each frame

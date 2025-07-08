@@ -1,13 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://ls35oqi028hm"]
+[gd_scene load_steps=15 format=3 uid="uid://ls35oqi028hm"]
 
 [ext_resource type="Script" uid="uid://cvw1jwmj7pda7" path="res://Drops/drop_mensaessen.gd" id="1_pscde"]
 [ext_resource type="Texture2D" uid="uid://dnsn6bjjhc5jp" path="res://Drops/Drops_assets/Mensaessen.png" id="1_xscuf"]
+[ext_resource type="Texture2D" uid="uid://y1cm81h7kuw4" path="res://Drops/Drops_assets/Mensaessen 2.png" id="2_vwhym"]
+[ext_resource type="Texture2D" uid="uid://b8no75ppj2wdt" path="res://Drops/Drops_assets/Mensaessen 3.png" id="4_ixd7e"]
+[ext_resource type="AudioStream" uid="uid://drus4bat4yxpn" path="res://assets/sound/665182__el_boss__item-or-material-pickup-pop-2-of-3.wav" id="5_0oxh6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pscde"]
+radius = 49.0306
+
+[sub_resource type="Curve" id="Curve_d0m38"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, -3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_b34rs"]
+offsets = PackedFloat32Array(0, 0.735849, 1)
+colors = PackedColorArray(0.917647, 0.509804, 0, 1, 0.960784, 0.654902, 0.0784314, 1, 1, 0.801667, 0.15, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pscde"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 5.0,
+"texture": ExtResource("2_vwhym")
+}, {
+"duration": 5.0,
 "texture": ExtResource("1_xscuf")
+}, {
+"duration": 5.0,
+"texture": ExtResource("2_vwhym")
+}, {
+"duration": 5.0,
+"texture": ExtResource("4_ixd7e")
 }],
 "loop": true,
 "name": &"Mensaessen",
@@ -19,18 +43,197 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pscde"]
-radius = 49.0306
+[sub_resource type="Animation" id="Animation_ixd7e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollectedParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_vwhym"]
+resource_name = "collected"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollectedParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 36.7584),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0oxh6"]
+resource_name = "drop"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.133972, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d0m38"]
+resource_name = "lifetime_end"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.92817, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CPUParticles2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0oxh6"]
+_data = {
+&"RESET": SubResource("Animation_ixd7e"),
+&"collected": SubResource("Animation_vwhym"),
+&"drop": SubResource("Animation_0oxh6"),
+&"lifetime_end": SubResource("Animation_d0m38")
+}
 
 [node name="drop_Mensaessen" type="Area2D" groups=["pickupable_player"]]
 collision_layer = 4
 script = ExtResource("1_pscde")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_pscde")
-animation = &"Mensaessen"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pscde")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(1, 6)
+amount = 60
+lifetime = 3.5
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+linear_accel_min = 3.0
+linear_accel_max = 4.0
+linear_accel_curve = SubResource("Curve_d0m38")
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_b34rs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pscde")
+animation = &"Mensaessen"
+frame = 2
+frame_progress = 0.475021
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_0oxh6")
+}
+autoplay = "drop"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_0oxh6")
+volume_db = -20.0
+
+[node name="CollectedParticles" type="CPUParticles2D" parent="."]
+position = Vector2(2, 12)
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 0.7
+lifetime_randomness = 0.3
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+linear_accel_min = 20.0
+linear_accel_max = 25.0
+linear_accel_curve = SubResource("Curve_d0m38")
+scale_amount_min = 5.0
+scale_amount_max = 7.0
+color_ramp = SubResource("Gradient_b34rs")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

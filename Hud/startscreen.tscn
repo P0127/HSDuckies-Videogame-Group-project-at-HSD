@@ -1,0 +1,465 @@
+[gd_scene load_steps=36 format=3 uid="uid://dexr3q1i6qqtm"]
+
+[ext_resource type="Script" uid="uid://dw6uqc1wm6rho" path="res://Hud/startscreen.gd" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://ctsqrawq335qq" path="res://Hud/Hud_assets/hsd_gebaude.png" id="2_0ivg5"]
+[ext_resource type="FontFile" uid="uid://ca5aq6g0vepts" path="res://fonts/Xolonium-Regular.ttf" id="2_64ctp"]
+[ext_resource type="Texture2D" uid="uid://blo0wpyfk7dww" path="res://Drops/Drops_assets/Ente.png" id="3_1kkc0"]
+[ext_resource type="Texture2D" uid="uid://bwtxhwe4kvqde" path="res://Hud/Hud_assets/start_button_spritesheet.png" id="3_svhta"]
+[ext_resource type="Texture2D" uid="uid://wdytae5hsfg1" path="res://Hud/Hud_assets/shine_scaled.png" id="5_qv4qp"]
+[ext_resource type="Texture2D" uid="uid://i8ys6lpkdiww" path="res://Hud/Hud_assets/credits_button_sheet.png" id="7_qkdvy"]
+[ext_resource type="Texture2D" uid="uid://c7ymyt04wtwpv" path="res://Hud/Hud_assets/quit_button.png" id="8_vdndi"]
+[ext_resource type="AudioStream" uid="uid://bome4r73w00on" path="res://assets/sound/388079__xsgianni__marios-way.mp3" id="9_t34ly"]
+[ext_resource type="AudioStream" uid="uid://cknc7stdj7q0u" path="res://assets/sound/515408__tabbygus__duck-quack-sound-effect-hd.mp3" id="10_8ff7w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aolia"]
+bg_color = Color(0.796078, 0, 0, 0.552941)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svhta"]
+atlas = ExtResource("3_svhta")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjv1a"]
+atlas = ExtResource("3_svhta")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ivg5"]
+atlas = ExtResource("3_svhta")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kkc0"]
+atlas = ExtResource("3_svhta")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qv4qp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svhta")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjv1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ivg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kkc0")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 10.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkdvy"]
+bg_color = Color(0.6, 0, 0, 0.533333)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="Animation" id="Animation_hwufu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_gms7k"]
+resource_name = "bling"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1.03),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.5, 0.5), Vector2(0.2, 0.2), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mq7b8"]
+_data = {
+&"RESET": SubResource("Animation_hwufu"),
+&"bling": SubResource("Animation_gms7k")
+}
+
+[sub_resource type="Animation" id="Animation_sh35x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qv4qp"]
+resource_name = "duckie"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4333, 0.68),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.226893, 0.0, 0.216421]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gms7k"]
+_data = {
+&"RESET": SubResource("Animation_sh35x"),
+&"duckie": SubResource("Animation_qv4qp")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0yt0d"]
+bg_color = Color(0.00784314, 0.00784314, 0.00784314, 0.835294)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdndi"]
+atlas = ExtResource("7_qkdvy")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yt0d"]
+atlas = ExtResource("7_qkdvy")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5eti"]
+atlas = ExtResource("7_qkdvy")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8lv1"]
+atlas = ExtResource("7_qkdvy")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q4pr5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdndi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yt0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5eti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8lv1")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 10.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdndi"]
+bg_color = Color(0.764706, 0.101961, 0.101961, 0.721569)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4pr5"]
+atlas = ExtResource("8_vdndi")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh5mb"]
+atlas = ExtResource("8_vdndi")
+region = Rect2(160, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1y2s"]
+atlas = ExtResource("8_vdndi")
+region = Rect2(320, 0, 160, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tclkp"]
+atlas = ExtResource("8_vdndi")
+region = Rect2(0, 0, 160, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i03ke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4pr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh5mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1y2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tclkp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Startscreen_GUI" type="CanvasLayer"]
+script = ExtResource("1_37p78")
+
+[node name="ControlBG" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="ControlBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -378.0
+offset_top = -434.0
+offset_right = 316.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+texture = ExtResource("2_0ivg5")
+expand_mode = 3
+
+[node name="PanelButton" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -87.0
+offset_right = 164.0
+offset_bottom = 121.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_aolia")
+
+[node name="ControlStartButton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.9999
+offset_top = -37.0
+offset_right = 89.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.5, 2.5)
+
+[node name="StartButton" type="Button" parent="ControlStartButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.454
+anchor_right = 0.067
+anchor_bottom = 0.454
+offset_left = -76.04
+offset_top = -33.516
+offset_right = 75.96
+offset_bottom = 33.484
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+flat = true
+icon_alignment = 1
+
+[node name="StartButtonAnimations" type="AnimatedSprite2D" parent="ControlStartButton/StartButton"]
+texture_filter = 1
+position = Vector2(-4.8, -13.2)
+sprite_frames = SubResource("SpriteFrames_qv4qp")
+animation = &"normal"
+centered = false
+
+[node name="PanelTitle" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.519
+anchor_top = 0.25
+anchor_right = 0.519
+anchor_bottom = 0.25
+offset_left = -843.48
+offset_top = -77.0
+offset_right = 828.52
+offset_bottom = 99.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qkdvy")
+
+[node name="ContainerTitle+Bling" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.247
+anchor_right = 0.5
+anchor_bottom = 0.247
+offset_left = -695.0
+offset_top = -77.76
+offset_right = 1629.0
+offset_bottom = 162.24
+grow_horizontal = 2
+scale = Vector2(0.65, 0.65)
+metadata/_edit_use_anchors_ = true
+
+[node name="Title Text" type="Label" parent="ContainerTitle+Bling"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.641279, 0.204082, 1)
+theme_override_colors/font_outline_color = Color(1, 0.643137, 0.203922, 1)
+theme_override_constants/outline_size = 45
+theme_override_fonts/font = ExtResource("2_64ctp")
+theme_override_font_sizes/font_size = 215
+text = "Duck Duck Düsseldorf"
+
+[node name="ShineScaled" type="Sprite2D" parent="ContainerTitle+Bling"]
+position = Vector2(8.46154, 52.3077)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_qv4qp")
+
+[node name="bling" type="AnimationPlayer" parent="ContainerTitle+Bling/ShineScaled"]
+libraries = {
+&"": SubResource("AnimationLibrary_mq7b8")
+}
+
+[node name="ControlDuck" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="duck" type="Sprite2D" parent="ControlDuck"]
+position = Vector2(-120, -125)
+scale = Vector2(0.490625, 0.494531)
+texture = ExtResource("3_1kkc0")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ControlDuck/duck"]
+libraries = {
+&"": SubResource("AnimationLibrary_gms7k")
+}
+
+[node name="ControlCreditB" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.105
+anchor_top = 0.919
+anchor_right = 0.105
+anchor_bottom = 0.919
+offset_left = -192.6
+offset_top = -84.52
+offset_right = 193.4
+offset_bottom = 85.48
+
+[node name="PanelCredits" type="Panel" parent="ControlCreditB"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.69
+anchor_top = 0.129
+anchor_right = 0.69
+anchor_bottom = 0.129
+offset_left = -132.34
+offset_top = -71.93
+offset_right = 132.66
+offset_bottom = 72.07
+theme_override_styles/panel = SubResource("StyleBoxFlat_0yt0d")
+
+[node name="CreditButton" type="Button" parent="ControlCreditB"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.63
+anchor_top = 0.291
+anchor_right = 0.63
+anchor_bottom = 0.291
+offset_left = -190.18
+offset_top = -94.47
+offset_right = 189.82
+offset_bottom = 94.53
+focus_mode = 0
+flat = true
+
+[node name="AnimatedCreditB" type="AnimatedSprite2D" parent="ControlCreditB/CreditButton"]
+position = Vector2(213, 80)
+scale = Vector2(1.87516, 1.87516)
+sprite_frames = SubResource("SpriteFrames_q4pr5")
+animation = &"pressed"
+
+[node name="PanelQuit" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.675
+anchor_right = 0.498
+anchor_bottom = 0.675
+offset_left = -91.16
+offset_top = -51.0
+offset_right = 79.84
+offset_bottom = 57.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdndi")
+
+[node name="QuitButtonOnstart" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.674
+anchor_right = 0.5
+anchor_bottom = 0.674
+offset_left = -75.08
+offset_top = -47.92
+offset_right = 73.0
+offset_bottom = 47.08
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+flat = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="QuitButtonOnstart"]
+position = Vector2(70, 59)
+sprite_frames = SubResource("SpriteFrames_i03ke")
+
+[node name="backgroundMusicStart" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_t34ly")
+
+[node name="buttonQuitS" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_8ff7w")
+
+[node name="buttonCredits" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_8ff7w")
+
+[connection signal="pressed" from="ControlStartButton/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="animation_finished" from="ControlStartButton/StartButton/StartButtonAnimations" to="." method="_on_start_button_animations_animation_finished"]
+[connection signal="pressed" from="ControlCreditB/CreditButton" to="." method="_on_credit_button_pressed"]
+[connection signal="animation_finished" from="ControlCreditB/CreditButton/AnimatedCreditB" to="." method="_on_animated_credit_b_animation_finished"]
+[connection signal="pressed" from="QuitButtonOnstart" to="." method="_on_quit_button_onstart_pressed"]
+[connection signal="animation_finished" from="QuitButtonOnstart/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
