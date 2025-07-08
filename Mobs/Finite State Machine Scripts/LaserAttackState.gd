@@ -52,7 +52,6 @@ func start_shooting_cycle():
 
 #function that updates our currently selected direction
 func change_direction():
-	sprite.animation = "channelling attack"
 	if(directions_fired > 3): #if we've fired in all directions
 		swapState()# swap state
 		return
@@ -65,14 +64,12 @@ func change_direction():
 ##fire duration timer
 func _on_fire_timer_timeout() -> void:
 	laser.is_casting = false #turn laser off
-	sprite.animation = "channelling attack"
 	#initiate shooting just with a different direction
 	change_direction()
 
 
 ##break timer
 func _on_direction_swap_timer_timeout() -> void:
-	sprite.animation = "attacking"
 	shooting_cyclePart2(current_direction)
 
 # called in break timer timeout

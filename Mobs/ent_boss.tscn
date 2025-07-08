@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b26h6bedxa5pj"]
+[gd_scene load_steps=36 format=3 uid="uid://b26h6bedxa5pj"]
 
 [ext_resource type="Script" uid="uid://baxe1tyd7mto2" path="res://Mobs/ent_boss.gd" id="1_hi6rg"]
 [ext_resource type="Texture2D" uid="uid://cag0uj2vgmt47" path="res://Mobs/boss_image/gustav-stand_channeling_1.png" id="3_0ldja"]
@@ -23,6 +23,10 @@
 [ext_resource type="Script" uid="uid://jm8nl766rd73" path="res://Mobs/Finite State Machine Scripts/LaserAttackState.gd" id="13_xql5s"]
 [ext_resource type="PackedScene" uid="uid://bdpw6r2f3pmp4" path="res://Mobs/BossLaser.tscn" id="14_qfa54"]
 [ext_resource type="Script" uid="uid://2lqmen2xx4xa" path="res://Mobs/Finite State Machine Scripts/SleepState.gd" id="14_y3i7a"]
+[ext_resource type="Texture2D" uid="uid://bv0p1j7d8i4oo" path="res://Characters/Character_assets/müller_antes.png" id="24_68vvf"]
+[ext_resource type="Texture2D" uid="uid://bq341a6hant6e" path="res://assets/effects/feather_1.png" id="24_ytmer"]
+[ext_resource type="FontFile" uid="uid://b8x5x1t4wh1xq" path="res://Fonts/DePixelBreitFett.ttf" id="25_y4bb5"]
+[ext_resource type="Texture2D" uid="uid://cltuaquxftfjd" path="res://assets/effects/feather_4.png" id="27_yoqku"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u6ydu"]
 animations = [{
@@ -120,11 +124,222 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="Animation" id="Animation_n5f14"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(2.21913, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.533333, 1),
+"transitions": PackedFloat32Array(0.466516, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.967, 0.00999999, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../FeatherExplosion:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../FeatherExplosion2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Antes_Müller:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.21914, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Antes_Müller:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.27456, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.15, 0.15)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Text_antes_müller:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 3.86375, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Text_antes_müller:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.733333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-175, -120), Vector2(-175, -140)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Text_antes_müller:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../CollisionShape2D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../CollisionShape2D_müller_antes:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_xrsal"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Text_antes_müller:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Text_antes_müller:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-175, -130)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Text_antes_müller:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CollisionShape2D_müller_antes:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fji6r"]
+_data = {
+&"RESET": SubResource("Animation_xrsal"),
+&"death": SubResource("Animation_n5f14")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_bkmed"]
 radius = 91.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68vvf"]
+size = Vector2(137.778, 65.6669)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3i7a"]
 radius = 51.1865
+
+[sub_resource type="Gradient" id="Gradient_ecsfk"]
+offsets = PackedFloat32Array(0, 0.84, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Ent-Boss" type="CharacterBody2D"]
 top_level = true
@@ -136,13 +351,23 @@ platform_floor_layers = 4294967040
 script = ExtResource("1_hi6rg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_u6ydu")
 animation = &"stand"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_fji6r")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -21.778)
 shape = SubResource("CircleShape2D_bkmed")
+
+[node name="CollisionShape2D_müller_antes" type="CollisionShape2D" parent="."]
+position = Vector2(-0.555556, 1.05544)
+shape = SubResource("RectangleShape2D_68vvf")
+disabled = true
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_r16su")
@@ -258,6 +483,67 @@ shape = SubResource("CircleShape2D_y3i7a")
 [node name="stab" parent="." instance=ExtResource("14_qfa54")]
 damage_rate = 1.0
 
+[node name="Antes_Müller" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("24_68vvf")
+
+[node name="Text_antes_müller" type="Label" parent="."]
+visible = false
+offset_left = -175.0
+offset_top = -130.0
+offset_right = 175.0
+offset_bottom = -85.0
+theme_override_fonts/font = ExtResource("25_y4bb5")
+text = "Danke, du hast 
+uns gerettet! "
+horizontal_alignment = 1
+
+[node name="FeatherExplosion" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 120
+texture = ExtResource("24_ytmer")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 80.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 70)
+initial_velocity_min = 80.0
+initial_velocity_max = 180.0
+angular_velocity_min = 5.0
+angular_velocity_max = 90.0
+angle_max = 360.0
+scale_amount_min = 2.5
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_ecsfk")
+
+[node name="FeatherExplosion2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 50
+texture = ExtResource("27_yoqku")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 80.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 70)
+initial_velocity_min = 80.0
+initial_velocity_max = 180.0
+angular_velocity_min = 5.0
+angular_velocity_max = 90.0
+angle_max = 360.0
+scale_amount_min = 2.5
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_ecsfk")
+
+[connection signal="animation_finished" from="AnimatedSprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="State Machine/LaserAttack/FireTimer" to="State Machine/LaserAttack" method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="State Machine/LaserAttack/DirectionSwapTimer" to="State Machine/LaserAttack" method="_on_direction_swap_timer_timeout"]
 [connection signal="body_entered" from="self defense stab" to="." method="_on_self_defense_stab_body_entered"]
