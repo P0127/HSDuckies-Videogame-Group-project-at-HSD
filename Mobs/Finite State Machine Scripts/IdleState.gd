@@ -15,7 +15,7 @@ func randomize_wandering():
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
 	var sprite = enemy.get_child(0)
-	sprite.animation = "passive"
+	sprite.animation = "sleep"
 	randomize_wandering()
 
 func Update(delta: float):

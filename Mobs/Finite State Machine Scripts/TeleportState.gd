@@ -41,7 +41,7 @@ func Enter():
 	waitBefore = 2.0
 	
 	#change sprite
-	sprite.animation = "passive"
+	sprite.animation = "sleep"
 
 #update called every frame whilst in the teleport state
 func Update(delta: float):

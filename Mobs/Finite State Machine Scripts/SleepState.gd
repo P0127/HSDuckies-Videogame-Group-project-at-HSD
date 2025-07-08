@@ -13,12 +13,13 @@ class_name SleepState extends State
 @onready var laser_2: RayCast2D = $"../../laser2"
 @onready var progress_bar = owner.find_child("ProgressBar")
 @onready var starting_health = enemy.max_health
+@onready var spritePlayer = $"../../AnimatedSprite2D"
 #saveslot for deciding when we wake up
 
 #upon entering sleep state swap sprite to sleeping/passive mode
 func Enter():
 	var sprite = enemy.get_child(0)
-	sprite.animation = "passive"
+	#sprite.animation = "sleep"
 
 #check each frame if we have taken >= 5 damage, if yes its time to wake up
 func Update(delta: float):
@@ -27,6 +28,9 @@ func Update(delta: float):
 
 #called upon reaching 95% health
 func wakeUp():
+	var sprite = enemy.get_child(0)
+	spritePlayer.play("wake_up")
+	#sprite.animation = "wake_up"
 	#maybe play a quack sound or do a fancy zoom on it/doubt we have time for wakeup animation
 	Transitioned.emit(self, "teleport") 
 	#swap to teleport state after spin wake up attack

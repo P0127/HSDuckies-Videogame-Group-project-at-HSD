@@ -21,5 +21,5 @@ func manage_PlayerCamera_panning (body : Node2D, panEnabled : bool = false):
 		body.get_node("PlayerCamera").position_smoothing_enabled = panEnabled
 
 func show_elevator() -> void:
-	if (GlobalSignals.duck_counter.ducks_collected >= 2) && (!elevator.visible):
+	if (GlobalSignals.duck_counter.ducks_collected >= 19) && (!elevator.visible):
 		elevator.show()
