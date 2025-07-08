@@ -1,8 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://b26h6bedxa5pj"]
+[gd_scene load_steps=27 format=3 uid="uid://b26h6bedxa5pj"]
 
 [ext_resource type="Script" uid="uid://baxe1tyd7mto2" path="res://Mobs/ent_boss.gd" id="1_hi6rg"]
-[ext_resource type="Texture2D" uid="uid://dubt5vrchpsq5" path="res://Mobs/temp assets Boss/Passive temp.jpeg" id="3_r16su"]
-[ext_resource type="Texture2D" uid="uid://c0e5bruunu5ya" path="res://Mobs/temp assets Boss/target spotted temp.jpeg" id="4_xlxb4"]
+[ext_resource type="Texture2D" uid="uid://cag0uj2vgmt47" path="res://Mobs/boss_image/gustav-stand_channeling_1.png" id="3_0ldja"]
+[ext_resource type="Texture2D" uid="uid://dcsq3jlyieg2u" path="res://Mobs/boss_image/gustav-stand_channeling_2.png" id="4_ytmer"]
 [ext_resource type="Texture2D" uid="uid://blmsmppd27pl8" path="res://Mobs/boss_image/gustav-up-1.png" id="6_6fo75"]
 [ext_resource type="Texture2D" uid="uid://68id1snfvlxf" path="res://Mobs/boss_image/enteAsleep.png" id="6_l0e0a"]
 [ext_resource type="Script" uid="uid://cldmpflx8lofj" path="res://Mobs/Finite State Machine Scripts/state_machine.gd" id="6_r16su"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bypwg72k1gr2o" path="res://Mobs/boss_image/gustav-down-1.png" id="8_0ldja"]
 [ext_resource type="Texture2D" uid="uid://rjxadf0s0scx" path="res://Mobs/boss_image/enteWokeUp.png" id="8_ecsfk"]
 [ext_resource type="Script" uid="uid://4qvn15iiqwpp" path="res://Mobs/Finite State Machine Scripts/FollowState.gd" id="8_u6ydu"]
+[ext_resource type="Texture2D" uid="uid://v1dnkroexvtx" path="res://Mobs/boss_image/gustav-stand.png" id="9_bkmed"]
 [ext_resource type="Script" uid="uid://bbusu5836pdma" path="res://Mobs/Finite State Machine Scripts/MeeleeAttackState.gd" id="9_j27v5"]
 [ext_resource type="Texture2D" uid="uid://c502g2sxmognv" path="res://Mobs/boss_image/gustav-down-2.png" id="9_ytmer"]
 [ext_resource type="Texture2D" uid="uid://dvoltvfx8c5k8" path="res://Mobs/boss_image/gustav-right-1.png" id="10_ecsfk"]
@@ -27,7 +28,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_0ldja")
+"texture": ExtResource("9_bkmed")
 }],
 "loop": true,
 "name": &"attacking",
@@ -35,27 +36,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_0ldja")
+"texture": ExtResource("8_ecsfk")
 }],
 "loop": true,
+"name": &"awoken",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0ldja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ytmer")
+}],
+"loop": false,
 "name": &"channelling attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_xlxb4")
-}],
-"loop": true,
-"name": &"following",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_r16su")
-}],
-"loop": true,
-"name": &"passive",
-"speed": 5.0
+"speed": 2.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -67,15 +63,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("9_bkmed")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_l0e0a")
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_ytmer")
 }, {
-"duration": 1.0,
+"duration": 99.0,
 "texture": ExtResource("8_ecsfk")
 }],
-"loop": true,
+"loop": false,
 "name": &"wake_up",
 "speed": 2.0
 }, {
@@ -93,6 +97,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("8_0ldja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bkmed")
 }, {
 "duration": 1.0,
 "texture": ExtResource("9_ytmer")
@@ -120,6 +127,7 @@ radius = 91.0
 radius = 51.1865
 
 [node name="Ent-Boss" type="CharacterBody2D"]
+top_level = true
 scale = Vector2(1.8, 1.8)
 collision_layer = 18
 collision_mask = 3
@@ -130,7 +138,7 @@ script = ExtResource("1_hi6rg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_u6ydu")
-animation = &"walk_side"
+animation = &"stand"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -21.778)

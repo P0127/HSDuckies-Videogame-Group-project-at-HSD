@@ -42,13 +42,6 @@ func Enter():
 	
 	enemy.velocity = Vector2.ZERO
 
-
-func Exit():
-	_rotate_sprite()
-	#sprite.animation = "walk_side"
-
-
-
 func start_shooting_cycle():
 	direction_swap_timer.start(break_duration)
 	change_direction()
@@ -103,22 +96,3 @@ func swapState():
 			Transitioned.emit(self, "teleport")
 	else:#if we arent in phase2 always swap to moving state
 		Transitioned.emit(self, "moving")
-
-#function that manages the sprite animation
-func _rotate_sprite():
-	if enemy.velocity != Vector2.ZERO:
-		#int to eliminate decimals (reduces errors)
-		#rad to deg to have easy, whole numbers to work with
-		#velocity.angle() gives back angle (right is 1,0 - down is 0,1) in radians!
-		var angle_formatted = rad_to_deg((enemy.velocity.angle()))
-		
-		if angle_formatted >= -120 and angle_formatted <= -60:
-			sprite.animation = "walk_back"
-		elif angle_formatted >= 20 and angle_formatted <= 160:
-			sprite.animation = "walk_front"
-		else:
-			sprite.animation = "walk_side"
-		#Flips Animation if walking to the side
-		sprite.flip_h = enemy.velocity.x < 0 
-	else:
-		sprite.animation = "walk_front"

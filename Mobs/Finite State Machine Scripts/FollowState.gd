@@ -16,10 +16,6 @@ func Enter():
 	player = get_tree().get_first_node_in_group("Player")
 	#enemy.AnimatedSprite2D.animation = "following" #this doesnt work
 	var sprite = enemy.get_child(0) 
-	
-	# sprite.animation = "walk_side"
-	## SPRITE ORIENTATION
-	_rotate_sprite()
 
 func Physics_Update(delta: float):
 	var direction = player.global_position - enemy.global_position
@@ -33,24 +29,3 @@ func Physics_Update(delta: float):
 
 	if direction.length() > 700:
 		Transitioned.emit(self, "wandering")
-
-
-#function that manages the sprite animation
-func _rotate_sprite():
-	var sprite = enemy.get_child(0)
-	if enemy.velocity != Vector2.ZERO:
-		#int to eliminate decimals (reduces errors)
-		#rad to deg to have easy, whole numbers to work with
-		#velocity.angle() gives back angle (right is 1,0 - down is 0,1) in radians!
-		var angle_formatted = rad_to_deg((enemy.velocity.angle()))
-		
-		if angle_formatted >= -120 and angle_formatted <= -60:
-			sprite.animation = "walk_back"
-		elif angle_formatted >= 20 and angle_formatted <= 160:
-			sprite.animation = "walk_front"
-		else:
-			sprite.animation = "walk_side"
-		#Flips Animation if walking to the side
-		sprite.flip_h = enemy.velocity.x < 0 * duck_status
-	else:
-		sprite.animation = "walk_front"

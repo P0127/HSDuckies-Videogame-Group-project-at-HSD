@@ -39,9 +39,6 @@ func Enter():
 	
 	#set waitBefore time to 2seconds
 	waitBefore = 2.0
-	
-	#change sprite
-	sprite.animation = "sleep"
 
 #update called every frame whilst in the teleport state
 func Update(delta: float):
