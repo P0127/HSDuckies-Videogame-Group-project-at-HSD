@@ -11,7 +11,7 @@ class_name SirQuackAlot extends CharacterBody2D
 # Nodes we need to adjust
 @onready var progressBar: ProgressBar = $CanvasLayer/ProgressBar
 @onready var label: Label = $CanvasLayer/Label
-@onready var laser: RayCast2D = $RayCast2D
+@onready var laser: RayCast2D = $laser1
 @onready var laser2: RayCast2D = $laser2
 @onready var stablaser: RayCast2D = $stab
 

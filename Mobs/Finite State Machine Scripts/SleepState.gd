@@ -9,7 +9,7 @@ class_name SleepState extends State
 @export var enemy: CharacterBody2D
 
 ## Variables
-@onready var laser: RayCast2D = $"../../RayCast2D"
+@onready var laser: RayCast2D = $"../../laser1"
 @onready var laser_2: RayCast2D = $"../../laser2"
 @onready var progress_bar = owner.find_child("ProgressBar")
 @onready var starting_health = enemy.max_health
