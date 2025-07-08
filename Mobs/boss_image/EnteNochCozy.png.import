@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://htfk6lnoo8pg"
-valid=false
+uid="uid://d1tjpt3jx6ygj"
+path="res://.godot/imported/EnteNochCozy.png-292f5f106c65842398b1e184ddd4518d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Map/Map_Tilemap/Sprites/pfeil1.png"
+source_file="res://Mobs/boss_image/EnteNochCozy.png"
+dest_files=["res://.godot/imported/EnteNochCozy.png-292f5f106c65842398b1e184ddd4518d.ctex"]
 
 [params]
 
