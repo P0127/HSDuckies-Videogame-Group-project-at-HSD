@@ -4,6 +4,7 @@ class_name FollowState extends State
 @export var enemy: CharacterBody2D
 @export var move_speed := 100
 var player: CharacterBody2D
+var duck_status : int = 1 #modifier for running direction, dependant on wether it's a duck (1) or student (-1)
 
 @onready var progress_bar = owner.find_child("ProgressBar")
 
@@ -15,7 +16,6 @@ func Enter():
 	player = get_tree().get_first_node_in_group("Player")
 	#enemy.AnimatedSprite2D.animation = "following" #this doesnt work
 	var sprite = enemy.get_child(0) 
-	sprite.animation = "following"
 
 func Physics_Update(delta: float):
 	var direction = player.global_position - enemy.global_position
