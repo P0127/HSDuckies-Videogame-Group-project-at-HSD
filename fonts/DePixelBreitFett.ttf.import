@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b8x5x1t4wh1xq"
-path="res://.godot/imported/DePixelBreitFett.ttf-668b81e9c096cbe71bad381cb1b6851c.fontdata"
+path="res://.godot/imported/DePixelBreitFett.ttf-5356aa0d8bd5bfdfddeb65b8e43cc112.fontdata"
 
 [deps]
 
-source_file="res://Fonts/DePixelBreitFett.ttf"
-dest_files=["res://.godot/imported/DePixelBreitFett.ttf-668b81e9c096cbe71bad381cb1b6851c.fontdata"]
+source_file="res://fonts/DePixelBreitFett.ttf"
+dest_files=["res://.godot/imported/DePixelBreitFett.ttf-5356aa0d8bd5bfdfddeb65b8e43cc112.fontdata"]
 
 [params]
 
