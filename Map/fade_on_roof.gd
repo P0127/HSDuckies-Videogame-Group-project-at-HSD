@@ -6,7 +6,13 @@ extends Area2D
 var fading_in: bool
 var fading_out: bool
 
+var endScene_enabled : bool = false #Gets changed with a Signal
+
 const fade_speed: float = 5.0 # controls the rate at which the fading occurs
+
+#Connects to boss_slain Signal to enable dialogue once game is finnished
+func _ready() -> void:
+	GlobalSignals.boss_slain.connect(_set_endScene_flag)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -32,8 +38,15 @@ func _check_fade(body: CharacterBody2D, entered: bool) -> void:
 		fading_in = true
 		fading_out = false
 
+func _set_endScene_flag():
+	endScene_enabled = true
+
 func _on_body_entered(body: Node2D) -> void:
 	_check_fade(body, true)
+	if endScene_enabled:
+		GlobalSignals.scene_controller.change_game_scene("res://CutScene/Dialogue_Ende.tscn")
+		GlobalSignals.scene_controller.remove_gui()
+		GlobalSignals.stop_sound.emit("level_sound")
 
 func _on_body_exited(body: Node2D) -> void:
 	_check_fade(body, false)

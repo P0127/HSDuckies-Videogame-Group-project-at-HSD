@@ -8,6 +8,7 @@ extends Node
 #Change in Game State
 signal game_over
 signal game_won
+signal boss_slain
 
 #Tracking Duck Counter
 signal duck_collected_signal

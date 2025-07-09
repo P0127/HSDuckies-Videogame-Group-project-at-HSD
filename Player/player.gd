@@ -193,15 +193,20 @@ func _on_game_won():
 	#$SoundWin.play() #MISSING ASSET
 	$AnimatedPlayerSprite/AnimationPlayer.play("game_won")
 
-#Stops Interactions, Freezes Player
-func _disable_player_interactions():
-	$HurtBox/CollisionShape2D.set_deferred("disabled", true)
-	$PickUp/CollisionShape2D.set_deferred("disabled", true)
-	$PlayerCollisionShape.set_deferred("disabled", true)
-	$OuchParticles.set_deferred("visible", false)
-	remove_child($"player weapon") #stops visuals and sound
-	#no movement allowed
-	speed = 0
+#Stops Interactions, Freezes Player, or returns to active state
+func _disable_player_interactions(state : bool = true):
+	$HurtBox/CollisionShape2D.set_deferred("disabled", state)
+	$PickUp/CollisionShape2D.set_deferred("disabled", state)
+	$PlayerCollisionShape.set_deferred("disabled", state)
+	$OuchParticles.set_deferred("visible", not state)
+	#Sets Player Weapon Variable pause and changes visibility
+	$"player weapon".pause = state
+	$"player weapon".set_deferred("visible", not state)
+	#no movement allowed, or returns to standard speed
+	if state:
+		speed = 0
+	else:
+		speed = STANDARD_SPEED
 
 ## FUNCTIONS SIGNALS
 @warning_ignore("unused_parameter")
@@ -211,8 +216,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		#global game over
 		GlobalSignals.game_over.emit()
 	elif anim_name == "game_won":
-		#emits Signal to start end_dialogue
-		GlobalSignals.duck_counter._game_won()
+		#Emits signal to stop enemies from spawning on this floor
+		GlobalSignals.toggle_natural_spawns.emit()
+		#Reanimates Player and his weapon
+		_disable_player_interactions(false)
 
 #checks if touched body is an allowed pickup (has a method called pickup to be called)
 func _on_pick_up_area_entered(area: Area2D) -> void:

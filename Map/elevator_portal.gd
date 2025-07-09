@@ -19,7 +19,6 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		##Going to the 2nd floor will toggle mobs dropping ducks and natural spawns
 		GlobalSignals.toggle_mob_drops.emit()
-		GlobalSignals.toggle_natural_spawns.emit()
 
 		# Start dialogue after reaching the second floor, if not already shown
 		if not elevator_dialog_triggered:

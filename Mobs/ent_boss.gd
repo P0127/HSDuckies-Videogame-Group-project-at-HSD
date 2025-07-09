@@ -85,6 +85,9 @@ func _die(): #might move this to a death state
 	$AnimatedSprite2D/AnimationPlayer.play("death")
 	initial_laser_setup() #turns off all lasers
 	self.find_child("State Machine").queue_free() #stops state machine
+	
+	#Fires Signal to enable PC pool cutscene trigger
+	GlobalSignals.boss_slain.emit()
 
 
 #function that manages the sprite animation

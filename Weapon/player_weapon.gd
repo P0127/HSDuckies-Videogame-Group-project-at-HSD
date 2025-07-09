@@ -8,6 +8,8 @@ const FIRERATE_WATTIME_ON_LEVELUP : float = 0.04 #Change of Firerate on LevelUp
 var bullet_size : float = 1 #Standard scaling at the start
 const BULLET_SIZE_ON_LEVELUP : float = 0.2 #How much size increase on levelUp
 
+var pause : bool = false #If shooting bullets needs to be paused
+
 ## SCENES
 const BULLET = preload("res://Weapon/projectile.tscn")
 @onready var spawnpoint = $CharCenter/Weapon/BulletSpawnPoint
@@ -41,6 +43,8 @@ func _physics_process(delta: float) -> void:
 		$CharCenter/Weapon.flip_v = false
 	
 	_spawnpoint_correction()
+	
+
 
 ## FUNCTIONS
 #Spawns Bullet on global position
@@ -71,7 +75,8 @@ func _spawnpoint_correction():
 
 #Shoots bullet everytime atk speed timer timesout
 func _on_attack_speed_timeout():
-	shoot()
+	if not pause:
+		shoot()
 
 ## FUNCTIONS STAT CHANGES
 #Reduces firerate on item pickup
