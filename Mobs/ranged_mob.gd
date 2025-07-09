@@ -37,10 +37,10 @@ func _ready():
 	if not GlobalSignals.toggle_mob_drops.is_connected(boss_fight_started):
 		GlobalSignals.toggle_mob_drops.connect(boss_fight_started)
 	
-	if not GlobalSignals.game_over.is_connected(reset_mob_level):
-		GlobalSignals.game_over.connect(reset_mob_level)
-	if not GlobalSignals.game_won.is_connected(reset_mob_level):
-		GlobalSignals.game_won.connect(reset_mob_level)
+	if not GlobalSignals.game_over.is_connected(_reset_mob_level):
+		GlobalSignals.game_over.connect(_reset_mob_level)
+	if not GlobalSignals.game_won.is_connected(_reset_mob_level):
+		GlobalSignals.game_won.connect(_reset_mob_level)
 	
 	#added firerate scaling
 	var firerate_adjustment = (moblvl-1) * 0.2 #this depends on how high we want it to scale
@@ -205,7 +205,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 static func _levelUp():
 	moblvl += 1
 
-static func reset_mob_level():
+static func _reset_mob_level():
 	moblvl = 1
 
 static func boss_fight_started():

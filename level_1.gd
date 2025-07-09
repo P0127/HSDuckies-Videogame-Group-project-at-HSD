@@ -83,7 +83,6 @@ func _on_mob_spawn_timer_timeout():
 		if natural_spawning_enabled:
 			spawn_mob(4)
 			spawn_mob(2)
-			spawn_mob(4)
 			if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec 
 				MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
 	else: #90%chance for single spawn
@@ -132,11 +131,12 @@ func toggle_spawn_cycle():
 
 
 
-##testing delete me later
-@export var Mob: PackedScene
-func _input(event):
-	if event.is_action_pressed("click"):
-		if Mob.can_instantiate():
-			var new_Mob = Mob.instantiate()
-			new_Mob.position = get_global_mouse_position()
-			add_child(new_Mob)
+##this is for testing mob stuff simply spawns a mob at mouse click location
+##not deleted since could be useful for future team
+#@export var Mob: PackedScene
+#func _input(event):
+	#if event.is_action_pressed("click"):
+		#if Mob.can_instantiate():
+			#var new_Mob = Mob.instantiate()
+			#new_Mob.position = get_global_mouse_position()
+			#add_child(new_Mob)
