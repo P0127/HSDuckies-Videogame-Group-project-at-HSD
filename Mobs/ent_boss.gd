@@ -48,16 +48,17 @@ func _physics_process(delta: float) -> void:
 	self.global_position += velocity * delta
 	
 	#Depending on Velocity angle and state, changes Sprite
-	match ($"State Machine".current_state):
-		stateSleeping:
-			if health < 100:
-				entbossSprite.play("wake_up")
-		stateTeleporting:
-			pass
-		stateLasering:
-			entbossSprite.play("channelling attack")
-		_:
-			_rotate_sprite()
+	if health > 0:
+		match ($"State Machine".current_state):
+			stateSleeping:
+				if health < 100:
+					entbossSprite.play("wake_up")
+			stateTeleporting:
+				pass
+			stateLasering:
+				entbossSprite.play("channelling attack")
+			_:
+				_rotate_sprite()
 	
 	#update health
 	$CanvasLayer/ProgressBar.value = health
@@ -82,6 +83,9 @@ func take_damage():
 #basic death function will trigger animation
 func _die(): #might move this to a death state
 	$AnimatedSprite2D/AnimationPlayer.play("death")
+	initial_laser_setup() #turns off all lasers
+	self.find_child("State Machine").queue_free() #stops state machine
+
 
 #function that manages the sprite animation
 func _rotate_sprite():
@@ -117,7 +121,7 @@ func initial_laser_setup():
 #if a player tries to bodyblock the boss or push it, a small laser will fire in his direction
 #laser is set to weaker as its not meant to kill just show player to not block the boss
 func _on_self_defense_stab_body_entered(body: Node2D) -> void:
-	if health < 96 and body == player:
+	if health < 96 and body == player and health > 0:
 		stablaser.is_casting = true
 		stablaser.look_at(player.global_position)
 

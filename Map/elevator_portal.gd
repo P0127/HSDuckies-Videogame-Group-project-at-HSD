@@ -1,14 +1,14 @@
 extends Area2D
 
-<<<<<<< HEAD
+
 # Flag to ensure the elevator dialogue only triggers once
 var elevator_dialog_triggered := false
-=======
+
 @onready var elevator : TileMapLayer = $"../Aufzug"
 
 func _ready() -> void:
 	GlobalSignals.duck_collected_signal.connect(show_elevator)
->>>>>>> 1772e425fb116c56d6a1a73dfb774ec60adb2114
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):

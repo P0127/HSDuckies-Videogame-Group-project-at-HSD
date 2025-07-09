@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://2lqmen2xx4xa" path="res://Mobs/Finite State Machine Scripts/SleepState.gd" id="14_y3i7a"]
 [ext_resource type="Texture2D" uid="uid://bv0p1j7d8i4oo" path="res://Characters/Character_assets/müller_antes.png" id="24_68vvf"]
 [ext_resource type="Texture2D" uid="uid://bq341a6hant6e" path="res://assets/effects/feather_1.png" id="24_ytmer"]
-[ext_resource type="FontFile" uid="uid://b8x5x1t4wh1xq" path="res://Fonts/DePixelBreitFett.ttf" id="25_y4bb5"]
+[ext_resource type="FontFile" uid="uid://b8x5x1t4wh1xq" path="res://fonts/DePixelBreitFett.ttf" id="25_y4bb5"]
 [ext_resource type="Texture2D" uid="uid://cltuaquxftfjd" path="res://assets/effects/feather_4.png" id="27_yoqku"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u6ydu"]
@@ -123,6 +123,69 @@ animations = [{
 "name": &"walk_side",
 "speed": 4.0
 }]
+
+[sub_resource type="Animation" id="Animation_xrsal"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Text_antes_müller:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Text_antes_müller:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-175, -130)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Text_antes_müller:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CollisionShape2D_müller_antes:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_n5f14"]
 resource_name = "death"
@@ -259,69 +322,6 @@ tracks/10/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_xrsal"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Text_antes_müller:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Text_antes_müller:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-175, -130)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Text_antes_müller:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../CollisionShape2D_müller_antes:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fji6r"]
 _data = {
 &"RESET": SubResource("Animation_xrsal"),
@@ -329,7 +329,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bkmed"]
-radius = 91.0
+radius = 91.6734
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68vvf"]
 size = Vector2(137.778, 65.6669)
@@ -349,11 +349,12 @@ collision_mask = 3
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_hi6rg")
+max_health = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_u6ydu")
-animation = &"stand"
+animation = &"channelling attack"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 libraries = {
@@ -361,7 +362,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -21.778)
+position = Vector2(0, -5.55556)
 shape = SubResource("CircleShape2D_bkmed")
 
 [node name="CollisionShape2D_müller_antes" type="CollisionShape2D" parent="."]
@@ -462,7 +463,6 @@ rotation = -3.14159
 color = Color(1, 0, 0.00784314, 1)
 
 [node name="Spawnpoints" type="Node2D" parent="."]
-scale = Vector2(0.555556, 0.555556)
 
 [node name="Right" type="Marker2D" parent="Spawnpoints"]
 position = Vector2(70, 90)
@@ -475,6 +475,7 @@ self_modulate = Color(1, 0, 0, 1)
 position = Vector2(150, 0)
 
 [node name="self defense stab" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="self defense stab"]
 scale = Vector2(2.7, 2.7)
