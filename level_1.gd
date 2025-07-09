@@ -78,10 +78,19 @@ func spawn_mob(maxAttempts : int):
 #function called everytime the MobSpawnTimer times out, initiates a spawn with 4 tries
 #additionally it will reduce its own wait time to slowly increase spawns over time
 func _on_mob_spawn_timer_timeout():
-	if natural_spawning_enabled:
-		spawn_mob(4)
-		if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec 
-			MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
+	var chanceForMultispawn = randf()
+	if chanceForMultispawn < 0.1: #10%chance for multispawn
+		if natural_spawning_enabled:
+			spawn_mob(4)
+			spawn_mob(2)
+			spawn_mob(4)
+			if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec 
+				MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
+	else: #90%chance for single spawn
+		if natural_spawning_enabled:
+			spawn_mob(4)
+			if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec 
+				MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)
 
 
 #function that is called upon a mob being defeated/despawning

@@ -65,7 +65,7 @@ func _on_attack_speed_timeout():
 	if(fire_status):
 		shoot()
 
-#currently this is not used but could be used for a chance of a temporary bullet hell
+#currently this is used for scaling but could also be used for a chance of a temporary bullet hell
 func change_firerate(firerate : float, change : bool):
 	if change:
 		$attack_speed.wait_time = firerate
