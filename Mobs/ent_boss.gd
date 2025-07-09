@@ -5,7 +5,7 @@ class_name SirQuackAlot extends CharacterBody2D
 ## step by step descriptions throughout the code.
 
 ## Variables #Damage is defined in laser and laser.change_preset()
-@export var max_health = 1
+@export var max_health = 100
 @onready var health = max_health
 
 # Nodes we need to adjust
