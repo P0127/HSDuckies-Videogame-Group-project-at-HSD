@@ -48,9 +48,9 @@ func spin_attack():
 	
 	#make lasers rotate around the boss
 	var tween = create_tween()
-	tween.tween_property(laser, "rotation_degrees", 180, 1.75)
+	tween.tween_property(laser, "rotation_degrees", 180, 2)
 	var tween2 = create_tween()
-	tween2.tween_property(laser_2, "rotation_degrees", 0, 1.75)
+	tween2.tween_property(laser_2, "rotation_degrees", 0, 2)
 	
 	#wait for the rotation to complete
 	await get_tree().create_timer(2).timeout 

@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://2lqmen2xx4xa" path="res://Mobs/Finite State Machine Scripts/SleepState.gd" id="14_y3i7a"]
 [ext_resource type="Texture2D" uid="uid://bv0p1j7d8i4oo" path="res://Characters/Character_assets/müller_antes.png" id="24_68vvf"]
 [ext_resource type="Texture2D" uid="uid://bq341a6hant6e" path="res://assets/effects/feather_1.png" id="24_ytmer"]
-[ext_resource type="FontFile" uid="uid://b8x5x1t4wh1xq" path="res://Fonts/DePixelBreitFett.ttf" id="25_y4bb5"]
+[ext_resource type="FontFile" uid="uid://b8x5x1t4wh1xq" path="res://fonts/DePixelBreitFett.ttf" id="25_y4bb5"]
 [ext_resource type="Texture2D" uid="uid://cltuaquxftfjd" path="res://assets/effects/feather_4.png" id="27_yoqku"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u6ydu"]
@@ -456,10 +456,12 @@ text = "Sir Quackalot"
 navigation_layers = 2
 
 [node name="laser1" parent="." instance=ExtResource("14_qfa54")]
+max_length = 1400.0
 color = Color(1, 0, 0.00784314, 1)
 
 [node name="laser2" parent="." instance=ExtResource("14_qfa54")]
 rotation = -3.14159
+max_length = 1400.0
 color = Color(1, 0, 0.00784314, 1)
 
 [node name="Spawnpoints" type="Node2D" parent="."]
@@ -482,6 +484,7 @@ scale = Vector2(2.7, 2.7)
 shape = SubResource("CircleShape2D_y3i7a")
 
 [node name="stab" parent="." instance=ExtResource("14_qfa54")]
+max_length = 1400.0
 damage_rate = 1.0
 
 [node name="Antes_Müller" type="Sprite2D" parent="."]

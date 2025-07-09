@@ -1,8 +1,8 @@
 extends Area2D #Mob weapon
-#yes I know its weirdly big right now will look into it later with why that much scale is required??
+
 
 const STANDARD_FIRERATE_WAITTIME : float = 3 #Waittime in seconds before it's shot again
-
+#preload of the bullet scene we'll constantly be spawning
 const BULLET = preload("res://Mobs/mob_projectile.tscn")
 
 #Every weapon needs to know to which mob it belongs and uses this to spawn the bullets
@@ -44,11 +44,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		$CharCenter/Weapon.flip_v = false
 
+#
 func shoot():
 	if BULLET.can_instantiate():
-		#print("bullet should exist")#testing
 		var new_bullet = BULLET.instantiate()
-		#use global_position cuz position is relative to parent node
+		#use global_position as position is relative to parent node
 		new_bullet.global_position = spawnpoint.global_position
 		new_bullet.global_rotation = spawnpoint.global_rotation
 		
@@ -65,13 +65,13 @@ func _on_attack_speed_timeout():
 	if(fire_status):
 		shoot()
 
-#honestly idk why this is here? looks more like a player thing unless we want
-#a chance for a temporary bullet hell?
+#currently this is not used but could be used for a chance of a temporary bullet hell
 func change_firerate(firerate : float, change : bool):
 	if change:
 		$attack_speed.wait_time = firerate
 	else:
 		$attack_speed.wait_time = STANDARD_FIRERATE_WAITTIME
 
+#this function stops the weapon from shooting after being hidden in liberated() of ranged_mob
 func swap_fire_status():
 	fire_status = !fire_status

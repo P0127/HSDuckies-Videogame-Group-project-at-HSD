@@ -3,7 +3,7 @@ extends RayCast2D
 
 ## Variables
 @export var cast_speed := 7000.0#The higher the cast speed the faster the beam extends
-@export var max_length := 1400.0
+@export var max_length := 2000.0
 @export var start_distance := 40.0#distance from the caster
 @export var growth_time := 0.1
 @export var damage_rate := 5.0
@@ -161,11 +161,12 @@ func change_preset(preset: String):
 		"phase2":
 			innerLine.default_color = Color.BLACK
 			outerLine.modulate = Color.WHITE
+			max_length = 2000
 		_:#unknown input sets laser to default preset
 			outerWidth = DEFAULT_OUTER_WIDTH
 			innerWidth = DEFAULT_INNER_WIDTH
 			start_distance = 100
-			max_length = 1400
+			max_length = 2000
 			growth_time = 0.1
 			if outerLine.width_curve:
 				outerLine.width_curve = null

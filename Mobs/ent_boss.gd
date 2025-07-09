@@ -44,11 +44,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	#boss DOESNT move with move_and_slide() to deny player pushing it too much
-	self.global_position += velocity * delta
+	
 	
 	#Depending on Velocity angle and state, changes Sprite
-	if health > 0:
+	if health > 0: #this fixes nullpointerexception after getting rid of state machine child
+		
+		#boss DOESNT move with move_and_slide() to deny player pushing it too much
+		self.global_position += velocity * delta
+		
 		match ($"State Machine".current_state):
 			stateSleeping:
 				if health < 100:
