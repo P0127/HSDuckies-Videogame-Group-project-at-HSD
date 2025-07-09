@@ -200,7 +200,9 @@ static func _levelUp():
 	moblvl += 1
 
 static func boss_fight_started():
-	dont_drop_duck = !dont_drop_duck
+	dont_drop_duck = true
+	#changed from !dont_drop_duck to true so that if you somehow go back to floor 1
+	#you cant get the final duck from a basic mob
 
 ##This function is only for when mobs get summoned by the boss, they will spawn invisble 
 ##with no movementspeed then it will slowly fade in and speed up
