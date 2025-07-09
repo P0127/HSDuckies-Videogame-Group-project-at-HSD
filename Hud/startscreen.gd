@@ -50,19 +50,25 @@ func _on_start_button_animations_animation_finished() -> void:
 	
 func _on_credit_button_pressed() -> void:
 	button_credit_sound.play()
+	# plays pressed animation
 	credits_button_anim.play("pressed")
 
 	
 	
 func _on_animated_credit_b_animation_finished() -> void:
+	#signals the scene controller to switch to credits scene and to keep the start screen visible
 	GlobalSignals.scene_controller.change_game_scene("res://Hud/credits_screen.tscn", false, false)
+	#changes credits button visibility to 0
 	credits_button.hide()
+	#changes panels visibility to 0
 	$ControlCreditB/PanelCredits.hide()
 	
 func _on_quit_button_onstart_pressed() -> void:
 	button_quit_sound.play()
+	# plays quit buttons only animation
 	quit_button_start_anim.play()
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
+	#after quit button animation is finished the game is exited
 	get_tree().quit()
