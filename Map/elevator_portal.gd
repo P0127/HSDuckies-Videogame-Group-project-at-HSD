@@ -7,7 +7,12 @@ var elevator_dialog_triggered := false
 @onready var elevator : TileMapLayer = $"../Aufzug"
 
 func _ready() -> void:
-	GlobalSignals.duck_collected_signal.connect(show_elevator)
+	#to open up the elevator floor
+	GlobalSignals.game_won.connect(show_elevator)
+	
+	#collision disabled until enough ducks collected
+	$CollisionShape2D.disabled = true
+	
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -31,5 +36,6 @@ func manage_PlayerCamera_panning (body : Node2D, panEnabled : bool = false):
 		body.get_node("PlayerCamera").position_smoothing_enabled = panEnabled
 
 func show_elevator() -> void:
-	if (GlobalSignals.duck_counter.ducks_collected >= 19) && (!elevator.visible):
+	if !elevator.visible:
 		elevator.show()
+	$CollisionShape2D.set_deferred("disabled", false)
