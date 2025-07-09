@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhp65vguyw8y" path="res://Hud/credits_screen.gd" id="1_4apr6"]
 [ext_resource type="FontFile" uid="uid://dmoqmmrb2ndjb" path="res://CutScene/CutScene_assets/font_counter_letters.ttf" id="1_l8mw8"]
-[ext_resource type="FontFile" uid="uid://b8x5x1t4wh1xq" path="res://Fonts/DePixelBreitFett.ttf" id="2_gfybg"]
+[ext_resource type="FontFile" uid="uid://b8x5x1t4wh1xq" path="res://fonts/DePixelBreitFett.ttf" id="2_gfybg"]
 [ext_resource type="Texture2D" uid="uid://ci2h706sw5r7y" path="res://Hud/Hud_assets/back_button.png" id="4_imea6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfybg"]

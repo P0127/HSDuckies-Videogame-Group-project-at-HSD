@@ -51,3 +51,4 @@ var timerFirerate = Timer.new()
 func _ready() -> void:
 	add_child(timerSpeedUp)
 	add_child(timerFirerate)
+	

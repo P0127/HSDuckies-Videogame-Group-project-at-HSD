@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-#handles HUD ingame
+# Handles HUD ingame
 
 ## VARIABLES
 @onready var counter_letters = $"HBoxContainer/Counter/Duck counter letters"
@@ -9,10 +9,10 @@ extends CanvasLayer
 ## FUNCTIONS
 func _ready() -> void:
 	GlobalSignals.duck_collected_signal.connect(duck_collected_func)
-	#on Default, only visible when paused (processed by Dialogue begin)
+	# On default, only visible when paused (processed by Dialogue begin)
 	$Dialogue_begin.visible = false
 
-#Adds Duck Counter in Bottom screen, which counts up on duck collected
+# Adds Duck Counter in bottom screen, which counts up on duck collected
 func duck_collected_func():
 	counter_letters.text = "Ducks: " 
 	counter_numbers.text = str(GlobalSignals.duck_counter.ducks_collected)

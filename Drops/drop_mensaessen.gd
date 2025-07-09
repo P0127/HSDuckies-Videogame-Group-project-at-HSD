@@ -23,7 +23,7 @@ func pickup(player : Node2D):
 	# plays Sound when picked up
 	if sound:
 		sound.play()
-	
+
 	#Gets hidden until Animation is finnished, then removed
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D/AnimationPlayer.play("collected")

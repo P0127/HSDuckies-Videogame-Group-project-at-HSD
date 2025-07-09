@@ -24,7 +24,7 @@ func pickup(player : Node2D):
 	# plays Sound when picked up
 	if sound:
 		sound.play()
-		
+	
 	#Starts Globaltimer for effect end
 	GlobalSignals.timerSpeedUp.start(effectLength)
 	

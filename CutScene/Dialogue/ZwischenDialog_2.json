@@ -1,6 +1,14 @@
 [
   {
-	"name": "Dahm",
-	"chat": "Mach weiter so! Du bist bei der Hälfte, aber beeil dich !!"
+	"name": "Herr Dahm",
+	"chat": "Du hast es also bis zur zweiten Etage geschafft…"
+  },
+  {
+	"name": "Herr Dahm",
+	"chat": "Hier oben wird es noch gefährlicher. Sei auf der Hut!"
+  },
+  {
+	"name": "Herr Dahm",
+	"chat": "Und denk dran: Die Enten sind der Schlüssel."
   }
 ]
