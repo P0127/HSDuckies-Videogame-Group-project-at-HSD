@@ -78,13 +78,13 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 
 
 ##method for swapping state, in phase 1 it will always swap to laserattack state
-##whilst in phase 2 theres a 30% chance to swap to summon state
+##whilst in phase 2 theres a 25% chance to swap to summon state
 func swapState():
 	if enemy.phase2:
 		var whichState = randf()
-		if whichState > 0.3: #70%chance for laser attack
+		if whichState > 0.25: #75%chance for laser attack
 			Transitioned.emit(self, "laserattack")
-		else:#30%chance for summon
+		else:#25%chance for summon
 			Transitioned.emit(self, "summon")
 	else:
 		#if we're still in phase 1 we'll always swap to laserattack

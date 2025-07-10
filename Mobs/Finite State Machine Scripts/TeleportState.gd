@@ -89,9 +89,9 @@ func teleport():
 func swapState():
 	if enemy.phase2:
 		var whichState = randf()
-		if whichState > 0.3: #70% chance for laser attack
+		if whichState > 0.25: #75% chance for laser attack
 			Transitioned.emit(self, "laserattack")
-		else:#30% chance for summon state
+		else:#25% chance for summon state
 			Transitioned.emit(self, "summon")
 	else:#if not in phase2 always swaps to laser attack
 		Transitioned.emit(self, "laserattack")

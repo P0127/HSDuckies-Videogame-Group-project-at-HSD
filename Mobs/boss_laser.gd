@@ -25,8 +25,8 @@ extends RayCast2D
 ## Constants for presets
 const DEFAULT_INNER_WIDTH := 10.0
 const DEFAULT_OUTER_WIDTH := 20.0
-const UPPED_INNER_WIDTH := 24.0
-const UPPED_OUTER_WIDTH := 50.0
+const UPPED_INNER_WIDTH := 28.0
+const UPPED_OUTER_WIDTH := 60.0
 const LOWERED_INNER_WIDTH := 5.0
 const LOWERED_OUTER_WIDTH := 10.0
 
@@ -162,6 +162,7 @@ func change_preset(preset: String):
 			innerLine.default_color = Color.BLACK
 			outerLine.modulate = Color.WHITE
 			max_length = 2000
+			damage_rate = 12.0
 		_:#unknown input sets laser to default preset
 			outerWidth = DEFAULT_OUTER_WIDTH
 			innerWidth = DEFAULT_INNER_WIDTH
@@ -175,3 +176,4 @@ func change_preset(preset: String):
 			if owner.phase2:
 				outerWidth = UPPED_OUTER_WIDTH
 				innerWidth = UPPED_INNER_WIDTH
+				damage_rate = 12.0

@@ -90,9 +90,9 @@ func shooting_cyclePart2(direction: Vector2):
 func swapState():
 	if enemy.phase2:
 		var swapTo = randf()
-		if(swapTo > 0.5): #50%chance for moving state
+		if(swapTo > 0.4): #60%chance for moving state
 			Transitioned.emit(self, "moving")
-		else: #50% chance for teleport state
+		else: #40% chance for teleport state
 			Transitioned.emit(self, "teleport")
 	else:#if we arent in phase2 always swap to moving state
 		Transitioned.emit(self, "moving")

@@ -481,7 +481,7 @@ scale = Vector2(2.7, 2.7)
 shape = SubResource("CircleShape2D_y3i7a")
 
 [node name="stab" parent="." instance=ExtResource("14_qfa54")]
-damage_rate = 1.0
+damage_rate = 2.5
 
 [node name="Antes_Müller" type="Sprite2D" parent="."]
 visible = false
