@@ -82,6 +82,7 @@ func _on_mob_spawn_timer_timeout():
 	if chanceForMultispawn < 0.1: #10%chance for multispawn
 		if natural_spawning_enabled:
 			spawn_mob(4)
+			spawn_mob(3)
 			spawn_mob(2)
 			if(MobSpawnTimer.get_wait_time() > 2): #only reduces timer if longer than 2sec 
 				MobSpawnTimer.set_wait_time(MobSpawnTimer.get_wait_time() - 0.025)

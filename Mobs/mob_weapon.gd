@@ -6,7 +6,10 @@ const STANDARD_FIRERATE_WAITTIME : float = 3 #Waittime in seconds before it's sh
 const BULLET = preload("res://Mobs/mob_projectile.tscn")
 
 #Every weapon needs to know to which mob it belongs and uses this to spawn the bullets
-@export var mob : CharacterBody2D
+@export var mob : CharacterBody2D 
+#On the Inspector it looks like this is empty but its not
+#do not touch this variable else it breaks enemy bullet spawns
+
 @onready var spawnpoint = $CharCenter/Weapon/BulletSpawnPoint
 
 var fire_status = true

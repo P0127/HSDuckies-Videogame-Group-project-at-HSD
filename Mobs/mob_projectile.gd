@@ -4,12 +4,16 @@ extends Area2D
 
 @onready var hit_effect = $Particles_Hit
 
+
+## Stats
 var direction#saveslot for direction out projectile will fly
 @export var projectile_speed = 150 + (bulletLevel-1) * 50
 var travelled_distance = 0 #saveslot for despawning bullets after a while
 const MAX_RANGE = 1250 #max distance a bullet should live
 var damage_rate : float = 2.5  + (bulletLevel-1) * 0.5 #health amount / 10 the bullets damage
 static var bulletLevel = 1
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

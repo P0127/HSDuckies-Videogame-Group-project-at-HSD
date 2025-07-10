@@ -349,7 +349,6 @@ collision_mask = 3
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_hi6rg")
-max_health = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
